@@ -14,24 +14,28 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
+    image: 'http://domapic.com/assets/domapic-logo.png',
+    infoLink: 'https://www.domapic.com',
     pinned: true,
   },
 ];
 
+const baseUrl = '/';
+const repoUrl = 'https://github.com/mocks-server/main';
+
 const siteConfig = {
-  title: 'Test Site', // Title for your website.
-  tagline: 'A website for testing',
-  url: 'https://your-docusaurus-test-site.com', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  title: 'Mocks Server', // Title for your website.
+  tagline: 'A nodejs server for emulating REST APIs',
+  url: 'https://mocks-server.netlify.com', // Your website URL
+  repoUrl,
+  baseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'test-site',
-  organizationName: 'facebook',
+  projectName: 'mocks-server',
+  organizationName: 'mocks-server',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
@@ -39,7 +43,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
+    {doc: 'api-rest-api', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
@@ -49,13 +53,13 @@ const siteConfig = {
 
   /* path to images for header/footer */
   headerIcon: 'img/favicon.ico',
-  footerIcon: 'img/favicon.ico',
+  footerIcon: 'img/logo-white.svg',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#5c7646',
-    secondaryColor: '#405231',
+    primaryColor: '#417080',
+    secondaryColor: '#2a474d',
   },
 
   /* Custom fonts for website */
@@ -105,6 +109,16 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  webSiteRepoUrl: 'https://github.com/mocks-server/website',
+  stackOverflowUrl: 'https://stackoverflow.com/questions/tagged/mocks-server',
+  stackOverflowAskUrl: 'https://stackoverflow.com/questions/ask?tags=mocks-server',
+  githubProjectUrl: 'https://github.com/orgs/mocks-server/projects/1',
+  githubIssuesUrl: `${repoUrl}/issues`,
+  blogUrl: `${baseUrl}blog`,
+  npmUrl: 'https://www.npmjs.com/package/@mocks-server/main',
+  codeOfConductUrl: `${repoUrl}/blob/master/.github/CODE_OF_CONDUCT.md`,
+  contributingUrl: `${repoUrl}/blob/master/.github/CONTRIBUTING.md`,
+  contributorCovenanceUrl: 'https://www.contributor-covenant.org/'
 };
 
 module.exports = siteConfig;
