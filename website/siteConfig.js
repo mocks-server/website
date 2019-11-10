@@ -16,7 +16,7 @@ const users = [
     // if it is not '/', like: '/test-site/img/image.jpg'.
     image: 'http://domapic.com/assets/domapic-logo.png',
     infoLink: 'https://www.domapic.com',
-    pinned: true,
+    pinned: false,
   },
 ];
 
@@ -25,7 +25,7 @@ const repoUrl = 'https://github.com/mocks-server/main';
 
 const siteConfig = {
   title: 'Mocks Server', // Title for your website.
-  tagline: 'A nodejs server for emulating REST APIs',
+  tagline: 'A Node.js server for emulating REST APIs',
   url: 'https://mocks-server.netlify.com', // Your website URL
   repoUrl,
   baseUrl, // Base URL for your project */
