@@ -3,4 +3,4 @@ id: integrations-local-development
 title: Local development
 ---
 
-This is the REST API documentation
+TODO, add examples of how to configure a Create React App to make requests to Mocks Server in local environment.

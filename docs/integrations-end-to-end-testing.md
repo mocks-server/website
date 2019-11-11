@@ -3,4 +3,4 @@ id: integrations-end-to-end-testing
 title: End to end testing
 ---
 
-This is the REST API documentation
+TODO, add examples of how to use the Mocks Server with Cypress.

@@ -3,11 +3,7 @@
     "Welcome": ["welcome-about-docs"],
     "Getting started": ["get-started-intro", "get-started-fixtures", "get-started-behaviors"],
     "Tutorials": ["tutorials-static", "tutorials-dynamic"],
-    "Configuration": ["configuration-command-line-arguments"],
-    "Integrations": ["integrations-local-development", "integrations-end-to-end-testing"]
-  },
-  "api": {
-    "REST": ["api-rest-api"],
-    "Node.js": ["api-nodejs-server", "api-nodejs-cli"]
+    "Configuration": ["configuration-command-line-arguments", "configuration-interactive-cli", "configuration-rest-api"],
+    "Advanced": ["advanced-programmatic-usage"]
   }
 }
