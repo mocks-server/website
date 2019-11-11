@@ -1,12 +1,12 @@
 const React = require('react');
 
 class Footer extends React.Component {
-  docUrl(doc, language) {
+  docUrl(doc, language = "") {
     const baseUrl = this.props.config.baseUrl;
     const docsUrl = this.props.config.docsUrl;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
     const langPart = `${language ? `${language}/` : ''}`;
-    return `${baseUrl}${docsPart}${langPart}${doc}`;
+    return `${baseUrl}${docsPart}${doc}`;
   }
 
   pageUrl(doc, language) {
@@ -30,22 +30,19 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('doc1.html', this.props.language)}>
+            <a href={this.docUrl('get-started-intro', this.props.language)}>
               Getting Started
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
+            <a href={this.docUrl('tutorials-static', this.props.language)}>
               Tutorial
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
+            <a href={this.docUrl('configuration-command-line-arguments', this.props.language)}>
               Configuration
-            </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
-              API Reference
             </a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>
+            <a href={this.pageUrl('users', this.props.language)}>
               User Showcase
             </a>
             <a
@@ -70,7 +67,7 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             <a href={this.props.config.blogUrl}>Blog</a>
-            <a href={this.props.config.repoUrl} target="_blank"
+            <a href={this.props.config.organizationUrl} target="_blank"
               rel="noreferrer noopener">GitHub</a>
             <a href={this.props.config.npmUrl} target="_blank"
               rel="noreferrer noopener">NPM</a>

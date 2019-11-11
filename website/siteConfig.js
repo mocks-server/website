@@ -20,9 +20,10 @@ const users = [
   },
 ];
 
+const organizationUrl = 'https://github.com/mocks-server';
 const baseUrl = '/';
-const repoUrl = 'https://github.com/mocks-server/main';
-const webSiteRepoUrl = 'https://github.com/mocks-server/website';
+const repoUrl = `${organizationUrl}/main`;
+const webSiteRepoUrl = `${organizationUrl}/website`;
 
 const siteConfig = {
   title: 'Mocks Server', // Title for your website.
@@ -110,6 +111,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  organizationUrl,
   webSiteRepoUrl,
   stackOverflowUrl: 'https://stackoverflow.com/questions/tagged/mocks-server',
   stackOverflowAskUrl: 'https://stackoverflow.com/questions/ask?tags=mocks-server',

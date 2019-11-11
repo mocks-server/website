@@ -56,7 +56,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href={docUrl('get-started-intro.html')}>Get started</Button>
+            <Button href={docUrl('get-started-intro')}>Get started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -112,7 +112,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              "Follow the tutorial and you'll have a mocks server running in seconds. Use the built-in interactive CLI or the admin API REST for changing settings as delay time, current behavior, etc.",
+              "Follow the tutorial and you'll have a mocks server running in few minutes. Use the built-in interactive CLI or the admin API REST for changing settings as delay time, current behavior, etc.",
             image: `${baseUrl}img/undraw_done.svg`,
             imageAlign: 'right',
             title: 'Easy to use',
@@ -180,7 +180,7 @@ class Index extends React.Component {
           <p>This project is used by all these people</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
+            <a className="button" href={pageUrl('users')}>
               More {siteConfig.title} Users
             </a>
           </div>
