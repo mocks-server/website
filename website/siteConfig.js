@@ -94,8 +94,8 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+  //ogImage: 'img/undraw_online.svg',
+  //twitterImage: 'img/undraw_tweetstorm.svg',
   editUrl: `${webSiteRepoUrl}/edit/master/docs/`,
 
   // For sites with a sizable amount of content, set collapsible to true.
@@ -107,6 +107,9 @@ const siteConfig = {
 
   // Show documentation's last update time.
   enableUpdateTime: true,
+
+  gaTrackingId: "UA-151983197-1",
+  gaGtag: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
