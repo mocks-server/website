@@ -22,6 +22,7 @@ const users = [
 
 const baseUrl = '/';
 const repoUrl = 'https://github.com/mocks-server/main';
+const webSiteRepoUrl = 'https://github.com/mocks-server/website';
 
 const siteConfig = {
   title: 'Mocks Server', // Title for your website.
@@ -42,7 +43,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
+    {doc: 'get-started-intro', label: 'Docs'},
     {doc: 'api-rest-api', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
@@ -95,21 +96,22 @@ const siteConfig = {
   // Open Graph and Twitter card images.
   ogImage: 'img/undraw_online.svg',
   twitterImage: 'img/undraw_tweetstorm.svg',
+  editUrl: `${webSiteRepoUrl}/edit/master/docs/`,
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
-  // docsSideNavCollapsible: true,
+  docsSideNavCollapsible: false,
 
   // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
+  enableUpdateBy: true,
 
   // Show documentation's last update time.
-  // enableUpdateTime: true,
+  enableUpdateTime: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-  webSiteRepoUrl: 'https://github.com/mocks-server/website',
+  webSiteRepoUrl,
   stackOverflowUrl: 'https://stackoverflow.com/questions/tagged/mocks-server',
   stackOverflowAskUrl: 'https://stackoverflow.com/questions/ask?tags=mocks-server',
   githubProjectUrl: 'https://github.com/orgs/mocks-server/projects/1',

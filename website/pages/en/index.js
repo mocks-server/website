@@ -56,7 +56,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href={docUrl('doc1.html')}>Get started</Button>
+            <Button href={docUrl('get-started-intro.html')}>Get started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -154,7 +154,7 @@ class Index extends React.Component {
         className="productShowcaseSection paddingBottom paddingTop lightBackground"
         style={{textAlign: 'center'}} >
         <h2>Upcoming features</h2>
-        <p>Electron administration user interface, multiple sessions handling, configuration through yaml file, etc. Check the <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">github project</a> to stay up to date on what we are working now.</p>
+        <p>Electron administration user interface, multiple sessions handling, configuration through yaml file, etc. Check the <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">github project</a> to stay up to date on what we are working.</p>
       </div>
     );
 

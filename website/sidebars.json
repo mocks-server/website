@@ -1,11 +1,13 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
+    "Welcome": ["welcome-about-docs"],
+    "Getting started": ["get-started-intro", "get-started-fixtures", "get-started-behaviors"],
+    "Tutorials": ["tutorials-static", "tutorials-dynamic"],
+    "Configuration": ["configuration-command-line-arguments"],
+    "Integrations": ["integrations-local-development", "integrations-end-to-end-testing"]
   },
   "api": {
     "REST": ["api-rest-api"],
-    "Nodejs": ["api-nodejs-server", "api-nodejs-cli"]
+    "Node.js": ["api-nodejs-server", "api-nodejs-cli"]
   }
 }
