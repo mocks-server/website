@@ -28,7 +28,7 @@ const webSiteRepoUrl = `${organizationUrl}/website`;
 const siteConfig = {
   title: 'Mocks Server', // Title for your website.
   tagline: 'A Node.js server for emulating REST APIs',
-  url: 'https://mocks-server.netlify.com', // Your website URL
+  url: 'https://www.mocks-server.org', // Your website URL
   repoUrl,
   baseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
