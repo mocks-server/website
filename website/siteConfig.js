@@ -11,7 +11,7 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'Domapic',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
     image: 'https://domapic.com/assets/domapic-logo.png',
@@ -94,8 +94,8 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  //ogImage: 'img/undraw_online.svg',
-  //twitterImage: 'img/undraw_tweetstorm.svg',
+  ogImage: 'img/og_image.jpg',
+  twitterImage: 'img/og_image.jpg',
   editUrl: `${webSiteRepoUrl}/edit/master/docs/`,
 
   // For sites with a sizable amount of content, set collapsible to true.
