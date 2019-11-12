@@ -17,5 +17,5 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 ## Feedback
 We are always open to [your feedback][repo-docs-url].
 
-[issues-url]: https://github.com/mocks-server/main/issues
+[issues-url]: https://github.com/mocks-server/website/issues
 [repo-docs-url]: https://github.com/mocks-server/website/tree/master/docs/

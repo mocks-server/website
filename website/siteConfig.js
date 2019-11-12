@@ -127,6 +127,7 @@ const siteConfig = {
   stackOverflowAskUrl: 'https://stackoverflow.com/questions/ask?tags=mocks-server',
   githubProjectUrl: 'https://github.com/orgs/mocks-server/projects/1',
   githubIssuesUrl: `${repoUrl}/issues`,
+  websiteIssuesUrl: `${webSiteRepoUrl}/issues`,
   blogUrl: `${baseUrl}blog`,
   npmUrl: 'https://www.npmjs.com/package/@mocks-server/main',
   codeOfConductUrl: `${repoUrl}/blob/master/.github/CODE_OF_CONDUCT.md`,
