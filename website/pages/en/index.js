@@ -35,6 +35,12 @@ class HomeSplash extends React.Component {
       </h2>
     );
 
+    const ProjectMotto = () => (
+      <h3 className="projectPromo">
+        Npm install. Add mocks. Run npm command.
+      </h3>
+    );
+
     const PromoSection = props => (
       <div className="section promoSection">
         <div className="promoRow">
@@ -55,6 +61,7 @@ class HomeSplash extends React.Component {
       <SplashContainer>
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
+          <ProjectMotto/>
           <PromoSection>
             <Button href={docUrl('get-started-intro')}>Get started</Button>
           </PromoSection>
@@ -67,7 +74,10 @@ class HomeSplash extends React.Component {
 class Index extends React.Component {
   render() {
     const {config: siteConfig, language = ''} = this.props;
-    const {baseUrl, githubProjectUrl} = siteConfig;
+    const {baseUrl, githubProjectUrl, docsUrl} = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+    const langPart = `${language ? `${language}/` : ''}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const Block = props => (
       <Container
@@ -86,7 +96,7 @@ class Index extends React.Component {
       <Block layout="fourColumn" background="light">
         {[
           {
-            content: "Define api contracts, add mocks-server fixtures and start front-end development. Don't wait for the api to be ready.",
+            content: `Define api contracts, add [mocks-server fixtures](${docUrl('get-started-fixtures')}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`,
             image: `${baseUrl}img/undraw_code_typing.svg`,
             imageAlign: 'top',
             title: 'Isolated front-end development',
@@ -98,7 +108,7 @@ class Index extends React.Component {
             title: 'Solid acceptance tests',
           },
           {
-            content: 'Define multiple api behaviors easily, including error cases. Ensure that your front-end application is ready for all cases.',
+            content: `Define [multiple api behaviors](${docUrl('get-started-behaviors')}) easily, including error cases. Ensure that your front-end application is ready for all cases.`,
             image: `${baseUrl}img/undraw_programming.svg`,
             imageAlign: 'top',
             title: 'Multiple api behaviors',
@@ -112,7 +122,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              "Follow the tutorial and you'll have a mocks server running in few minutes. Use the built-in interactive CLI or the admin API REST for changing settings as delay time, current behavior, etc.",
+              `Follow the [tutorial](${docUrl('tutorials-static')}) and you'll have a mocks server running in few minutes. Use the built-in [interactive CLI](${docUrl('configuration-interactive-cli')}) or the [admin API REST](${docUrl('configuration-rest-api')}) for changing [settings](${docUrl('configuration-command-line-arguments')}) as delay time, current behavior, etc.`,
             image: `${baseUrl}img/undraw_done.svg`,
             imageAlign: 'right',
             title: 'Easy to use',
@@ -126,7 +136,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Easy to maintain. Define the default behavior of your api. Extend it redefining the response of some specific uris and save it as a new behavior. All extended behaviors can be extended as well.',
+              `Easy to maintain. Define the default [behavior](${docUrl('get-started-behaviors')}) of your mocks. Extend it redefining the response of some specific uris and save it as a new behavior. All extended behaviors can be extended as well.`,
             image: `${baseUrl}img/undraw_file_bundle.svg`,
             imageAlign: 'left',
             title: 'Extensible api behaviors',
@@ -140,7 +150,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'Add dynamic fixtures using express middlewares. Provide programmatic behaviors to your mocks when needed. Almost a real api with few lines of code.',
+              `Add [dynamic fixtures](${docUrl('tutorials-dynamic')}) using express middlewares. Provide programmatic behaviors to your mocks when needed. Almost a real api with few lines of code.`,
             image: `${baseUrl}img/undraw_code_review.svg`,
             imageAlign: 'right',
             title: 'Dynamic fixtures',
