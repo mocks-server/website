@@ -92,7 +92,18 @@ class Footer extends React.Component {
             )}
           </div>
         </section>
-        <section className="copyright">{this.props.config.copyright}</section>
+        <a
+          href=" http://opensource.org/"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="openSourceInitiativeLogo">
+          <img
+            src={`${this.props.config.baseUrl}img/open-source-initiative.png`}
+            alt="Open Source Initiative"
+          />
+        </a>
+        <section className="copyright">{this.props.config.copyright}.</section>
+        <section className="copyright-statements">The OSI logo trademark is the trademark of Open Source Initiative.</section>
       </footer>
     );
   }
