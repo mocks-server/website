@@ -10,10 +10,9 @@ This website was created with [Docusaurus][docusaurus-url]. Read the [website/RE
 
 ## Scripts
 
-### Start
+### Start website
 
 ```sh
-cd website
 npm start
 ```
 
