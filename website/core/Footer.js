@@ -52,10 +52,10 @@ class Footer extends React.Component {
               Stack Overflow
             </a>
             <a
-              href={this.props.config.githubProjectUrl}
+              href={this.props.config.contributingUrl}
               target="_blank"
               rel="noreferrer noopener">
-              Github Project
+              Contributors guidelines
             </a>
             <a
               href={this.props.config.githubIssuesUrl}
