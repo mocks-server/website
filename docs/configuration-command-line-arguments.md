@@ -20,8 +20,10 @@ title: Command line arguments
 Supossing you have a `mocks-server` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), you can define options directly in the npm script:
 
 ```json
-"scripts": {
-  "mocks-server" : "mocks-server --behaviors=./mocks --log=verbose --watch=false"
+{
+  "scripts": {
+    "mocks-server" : "mocks-server --behaviors=./mocks --log=verbose --watch=false"
+  }
 }
 ```
 

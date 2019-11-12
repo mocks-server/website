@@ -38,8 +38,10 @@ npm i @mocks-server/main --save-dev
 Add an start script to your `package.json` file, specifying the path containing your fixtures and behaviors:
 
 ```json
-"scripts": {
-  "mocks-server" : "mocks-server --behaviors=./mocks"
+{
+  "scripts": {
+    "mocks-server" : "mocks-server --behaviors=./mocks"
+  }
 }
 ```
 
