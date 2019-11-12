@@ -85,7 +85,7 @@ const siteConfig = {
     theme: 'atom-one-dark'
   },
 
-  usePrism: ['js', 'bash', 'json'],
+  usePrism: ['js', 'bash'],
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [

@@ -16,7 +16,7 @@ For creating a Behavior, you have to use the mocks-server `Behavior` class, prov
 
 _Read the ["fixtures" code example](get-started-fixtures.md#examples) to see how fixtures were defined first._
 
-```js
+```javascript
 const { Behavior } = require("@mocks-server/main");
 
 const { getUsers, getUser, updateUser } = require("./fixtures/users");
@@ -43,7 +43,7 @@ Behaviors are extensibles, so, you can have an "standard" behavior, which define
 
 You can add another one behavior extending the first one and changing only the response for "getUsers", for example:
 
-```js
+```javascript
 const { Behavior } = require("@mocks-server/main");
 
 const { getUsers, getUser, updateUser, updateUserError } = require("./fixtures/users");

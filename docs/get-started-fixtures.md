@@ -18,7 +18,7 @@ A "fixture" defines the response for an specific uri. It has to be an object con
 
 In the next example you can see how static and dynamic fixtures are defined:
 
-```js
+```javascript
 // File containing "users" fixtures
 
 // fixtures with static responses

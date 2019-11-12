@@ -7,7 +7,7 @@ title: Programmatic usage
 
 The server can be instantiated and started programmatically:
 
-```js
+```javascript
 const { Server } = require("@mocks-server/main");
 
 const server = new Server(path.resolve(__dirname, "mocks"), {
@@ -47,7 +47,7 @@ Available getters are:
 
 The interactive CLI can be instantiated and started programmatically:
 
-```js
+```javascript
 const { Cli } = require("@mocks-server/main");
 
 const cli = new Cli({
