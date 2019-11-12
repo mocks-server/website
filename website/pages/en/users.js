@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 
 const CompLibrary = require("../../core/CompLibrary.js");
 
@@ -37,5 +38,9 @@ class Users extends React.Component {
     );
   }
 }
+
+Users.propTypes = {
+  config: PropTypes.object
+};
 
 module.exports = Users;

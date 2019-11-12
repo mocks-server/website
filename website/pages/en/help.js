@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 
 const CompLibrary = require("../../core/CompLibrary.js");
 
@@ -71,5 +72,10 @@ function Help(props) {
     </div>
   );
 }
+
+Help.propTypes = {
+  config: PropTypes.object,
+  language: PropTypes.string
+};
 
 module.exports = Help;

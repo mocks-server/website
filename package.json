@@ -8,7 +8,8 @@
   "repository": "https://github.com/mocks-server/website",
   "scripts": {
     "lint": "eslint website",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "start": "cd website && npm run start"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",

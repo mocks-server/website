@@ -1,11 +1,12 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 
 class Footer extends React.Component {
-  docUrl(doc, language = "") {
+  docUrl(doc) {
     const baseUrl = this.props.config.baseUrl;
     const docsUrl = this.props.config.docsUrl;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
-    const langPart = `${language ? `${language}/` : ""}`;
+    // const langPart = `${language ? `${language}/` : ""}`;
     return `${baseUrl}${docsPart}${doc}`;
   }
 
@@ -100,5 +101,10 @@ class Footer extends React.Component {
     );
   }
 }
+
+Footer.propTypes = {
+  config: PropTypes.object,
+  language: PropTypes.string
+};
 
 module.exports = Footer;
