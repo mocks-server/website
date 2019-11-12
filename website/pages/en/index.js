@@ -1,6 +1,6 @@
-const React = require('react');
+const React = require("react");
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require("../../core/CompLibrary.js");
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
@@ -8,10 +8,10 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
-    const {siteConfig, language = ''} = this.props;
-    const {baseUrl, docsUrl} = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
+    const { siteConfig, language = "" } = this.props;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SplashContainer = props => (
@@ -36,9 +36,7 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectMotto = () => (
-      <h3 className="projectPromo">
-        Npm install. Add mocks. Run npm command.
-      </h3>
+      <h3 className="projectPromo">Npm install. Add mocks. Run npm command.</h3>
     );
 
     const PromoSection = props => (
@@ -61,9 +59,9 @@ class HomeSplash extends React.Component {
       <SplashContainer>
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
-          <ProjectMotto/>
+          <ProjectMotto />
           <PromoSection>
-            <Button href={docUrl('get-started-intro')}>Get started</Button>
+            <Button href={docUrl("get-started-intro")}>Get started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -73,22 +71,15 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const {config: siteConfig, language = ''} = this.props;
-    const {baseUrl, githubProjectUrl, docsUrl} = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
+    const { config: siteConfig, language = "" } = this.props;
+    const { baseUrl, githubProjectUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const Block = props => (
-      <Container
-        padding={['bottom', 'top']}
-        id={props.id}
-        background={props.background}>
-        <GridBlock
-          align="center"
-          contents={props.children}
-          layout={props.layout}
-        />
+      <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
+        <GridBlock align="center" contents={props.children} layout={props.layout} />
       </Container>
     );
 
@@ -96,37 +87,49 @@ class Index extends React.Component {
       <Block layout="fourColumn" background="light">
         {[
           {
-            content: `Define api contracts, add [mocks-server fixtures](${docUrl('get-started-fixtures')}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`,
+            content: `Define api contracts, add [mocks-server fixtures](${docUrl(
+              "get-started-fixtures"
+            )}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`,
             image: `${baseUrl}img/undraw_code_typing.svg`,
-            imageAlign: 'top',
-            title: 'Isolated front-end development',
+            imageAlign: "top",
+            title: "Isolated front-end development"
           },
           {
-            content: 'Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests against the real api in more advanced phases of integration.',
+            content:
+              "Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests against the real api in more advanced phases of integration.",
             image: `${baseUrl}img/undraw_exams.svg`,
-            imageAlign: 'top',
-            title: 'Solid acceptance tests',
+            imageAlign: "top",
+            title: "Solid acceptance tests"
           },
           {
-            content: `Define [multiple api behaviors](${docUrl('get-started-behaviors')}) easily, including error cases. Ensure that your front-end application is ready for all cases.`,
+            content: `Define [multiple api behaviors](${docUrl(
+              "get-started-behaviors"
+            )}) easily, including error cases. Ensure that your front-end application is ready for all cases.`,
             image: `${baseUrl}img/undraw_programming.svg`,
-            imageAlign: 'top',
-            title: 'Multiple api behaviors',
-          },
+            imageAlign: "top",
+            title: "Multiple api behaviors"
+          }
         ]}
       </Block>
     );
 
     const Easy = () => (
-      <Block >
+      <Block>
         {[
           {
-            content:
-              `Follow the [tutorial](${docUrl('tutorials-static')}) and you'll have a mocks server running in few minutes. Use the built-in [interactive CLI](${docUrl('configuration-interactive-cli')}) or the [admin API REST](${docUrl('configuration-rest-api')}) for changing [settings](${docUrl('configuration-command-line-arguments')}) as delay time, current behavior, etc.`,
+            content: `Follow the [tutorial](${docUrl(
+              "tutorials-static"
+            )}) and you'll have a mocks server running in few minutes. Use the built-in [interactive CLI](${docUrl(
+              "configuration-interactive-cli"
+            )}) or the [admin API REST](${docUrl(
+              "configuration-rest-api"
+            )}) for changing [settings](${docUrl(
+              "configuration-command-line-arguments"
+            )}) as delay time, current behavior, etc.`,
             image: `${baseUrl}img/undraw_done.svg`,
-            imageAlign: 'right',
-            title: 'Easy to use',
-          },
+            imageAlign: "right",
+            title: "Easy to use"
+          }
         ]}
       </Block>
     );
@@ -135,12 +138,13 @@ class Index extends React.Component {
       <Block background="dark">
         {[
           {
-            content:
-              `Easy to maintain. Define the default [behavior](${docUrl('get-started-behaviors')}) of your mocks. Extend it redefining the response of some specific uris and save it as a new behavior. All extended behaviors can be extended as well.`,
+            content: `Easy to maintain. Define the default [behavior](${docUrl(
+              "get-started-behaviors"
+            )}) of your mocks. Extend it redefining the response of some specific uris and save it as a new behavior. All extended behaviors can be extended as well.`,
             image: `${baseUrl}img/undraw_file_bundle.svg`,
-            imageAlign: 'left',
-            title: 'Extensible api behaviors',
-          },
+            imageAlign: "left",
+            title: "Extensible api behaviors"
+          }
         ]}
       </Block>
     );
@@ -149,12 +153,13 @@ class Index extends React.Component {
       <Block id="try">
         {[
           {
-            content:
-              `Add [dynamic fixtures](${docUrl('tutorials-dynamic')}) using express middlewares. Provide programmatic behaviors to your mocks when needed. Almost a real api with few lines of code.`,
+            content: `Add [dynamic fixtures](${docUrl(
+              "tutorials-dynamic"
+            )}) using express middlewares. Provide programmatic behaviors to your mocks when needed. Almost a real api with few lines of code.`,
             image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: 'right',
-            title: 'Dynamic fixtures',
-          },
+            imageAlign: "right",
+            title: "Dynamic fixtures"
+          }
         ]}
       </Block>
     );
@@ -162,27 +167,33 @@ class Index extends React.Component {
     const Roadmap = () => (
       <div
         className="productShowcaseSection paddingBottom paddingTop lightBackground"
-        style={{textAlign: 'center'}} >
+        style={{ textAlign: "center" }}
+      >
         <h2>Upcoming features</h2>
-        <p>Electron administration user interface, multiple sessions handling, configuration through yaml file, etc. Check the <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">github project</a> to stay up to date on what we are working.</p>
+        <p>
+          Electron administration user interface, multiple sessions handling, configuration through
+          yaml file, etc. Check the{" "}
+          <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">
+            github project
+          </a>{" "}
+          to stay up to date on what we are working.
+        </p>
       </div>
     );
 
     const Showcase = () => {
-      const pinnedUsers = siteConfig.users ? siteConfig.users
-        .filter(user => user.pinned) : [];
+      const pinnedUsers = siteConfig.users ? siteConfig.users.filter(user => user.pinned) : [];
       if (pinnedUsers.length === 0) {
         return null;
       }
 
-      const showcase = pinnedUsers
-        .map(user => (
-          <a href={user.infoLink} key={user.infoLink}>
-            <img src={user.image} alt={user.caption} title={user.caption} />
-          </a>
-        ));
+      const showcase = pinnedUsers.map(user => (
+        <a href={user.infoLink} key={user.infoLink}>
+          <img src={user.image} alt={user.caption} title={user.caption} />
+        </a>
+      ));
 
-      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
+      const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
       return (
         <div className="productShowcaseSection paddingBottom">
@@ -190,7 +201,7 @@ class Index extends React.Component {
           <p>This project is used by all these people</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
-            <a className="button" href={pageUrl('users')}>
+            <a className="button" href={pageUrl("users")}>
               More {siteConfig.title} Users
             </a>
           </div>

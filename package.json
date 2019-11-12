@@ -1,0 +1,36 @@
+{
+  "name": "mocks-server-website",
+  "description": "Mocks server documentation website",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Javier Brea",
+  "license": "MIT",
+  "repository": "https://github.com/mocks-server/website",
+  "scripts": {
+    "lint": "eslint website",
+    "lint-staged": "lint-staged"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.2",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.19.1"
+  },
+  "lint-staged": {
+    "lib/**/*.js": "eslint",
+    "test/**/*.js": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "engines": {
+    "node": ">8.0.0",
+    "npm": ">6.0.0"
+  }
+}
