@@ -28,7 +28,7 @@ Create a `/mocks` folder in your project root, containing a `behaviors.js` file,
 
 Now we are going to add a fixture to the `/mocks/fixtures/users.js` file, which will be used when GET requests are received in the `/api/users` path or our "api mock":
 
-```js
+```javascript
 //mocks/fixtures/users.js
 
 const getUsers = {
@@ -58,7 +58,7 @@ module.exports = {
 
 Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it:
 
-```js
+```javascript
 //mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");
@@ -94,7 +94,7 @@ Browse to [http://localhost:3100/api/users](http://localhost:3100/api/users) to 
 
 Now we have the mocked the response for the "users" collection. Let's add the fixture for getting an specific user:
 
-```js
+```javascript
 //mocks/fixtures/users.js
 
 //...
@@ -119,7 +119,7 @@ module.exports = {
 
 Add the fixture to the "standard" behavior:
 
-```js
+```javascript
 //mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");
@@ -156,7 +156,7 @@ Well, this is the expected behavior of a mocks server, but you can add a new moc
 
 Let's add another "GET user" fixture, but now it will be always responded with the second user:
 
-```js
+```javascript
 //mocks/fixtures/users.js
 
 //....
@@ -182,7 +182,7 @@ module.exports = {
 
 And let's add a new Behavior extending the standard one:
 
-```js
+```javascript
 //mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");

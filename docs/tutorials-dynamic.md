@@ -17,7 +17,7 @@ Let's see how:
 
 Extract the users collection response from your static fixture, because it is going to be reused also by the dynamic fixture:
 
-```js
+```javascript
 //mocks/fixtures/users.js
 
 const INITIAL_USERS = [
@@ -48,7 +48,7 @@ const getUsers = {
 
 Add a dynamic fixture for `GET` `/api/users/:id` that will respond with the user with correspondant id, or a "not found" error if any user matches:
 
-```js
+```javascript
 //mocks/fixtures/users.js
 
 //....
@@ -85,7 +85,7 @@ module.exports = {
 
 Add a new behavior extending the "standard" one, and adding the "getRealUser" fixture:
 
-```js
+```javascript
 // /mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");
