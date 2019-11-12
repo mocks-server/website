@@ -22,8 +22,11 @@
     "prettier": "^1.19.1"
   },
   "lint-staged": {
-    "lib/**/*.js": "eslint",
-    "test/**/*.js": "eslint"
+    "website/pages/**/*.js": "eslint",
+    "website/core/**/*.js": "eslint",
+    "website/i18n/**/*.js": "eslint",
+    "website/static/**/*.js": "eslint",
+    "website/siteConfig.js": "eslint"
   },
   "husky": {
     "hooks": {
