@@ -27,7 +27,7 @@ const webSiteRepoUrl = `${organizationUrl}/website`;
 
 const siteConfig = {
   title: 'Mocks Server', // Title for your website.
-  tagline: 'A Node.js server for emulating REST APIs',
+  tagline: 'A Node.js project for emulating REST APIs',
   url: 'https://www.mocks-server.org', // Your website URL
   repoUrl,
   baseUrl, // Base URL for your project */

@@ -39,7 +39,7 @@ Now, when loaded, the server will have available an "standard" behavior, which c
 
 ## Extending behaviors
 
-Behaviors are extensibles, so, you can have an "standard" behavior, which defines the standard behavior of the mocks server and responses for all api uris, and modify this behavior creating new ones that change only responses for certain "uris". All extended behaviors are extensible as well.
+Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mocks server and responses for all api uris, and modify this behavior creating new ones that change only responses for certain "uris". All extended behaviors are extensible as well.
 
 You can add another one behavior extending the first one and changing only the response for "getUsers", for example:
 
