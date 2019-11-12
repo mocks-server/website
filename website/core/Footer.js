@@ -93,7 +93,7 @@ class Footer extends React.Component {
           </div>
         </section>
         <a
-          href=" http://opensource.org/"
+          href="https://opensource.org/"
           target="_blank"
           rel="noreferrer noopener"
           className="openSourceInitiativeLogo">
