@@ -21,11 +21,9 @@
 }
 
 .openSourceInitiativeLogo {
-    display: block;
-    margin: auto;
-    opacity: 90%;
-    transition: opacity 0.15s ease-in-out;
-    width: 75px;
+  display: block;
+  margin: auto;
+  width: 75px;
 }
 
 .nav-footer section.sitemap {
