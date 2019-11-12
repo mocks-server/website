@@ -5,7 +5,7 @@ title: Intro
 
 ## The project
 
-This project provides a server that simulates API behaviors. It can be added as a dependency of your project, and started simply running an npm command.
+This project provides a server that simulates API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
 
 ## Why a mocks server?
 
@@ -13,7 +13,7 @@ Controlling the responses of the api will improve the front-end development work
 
 Defining the api responses during the earliest phases of development will improve the communication among team members and align their expectations.
 
-Working with Node.js, it integrates better in front-end projects as any other dependency, and it will be easier to front-end developers to maintain the mocks.
+Working with Node.js, it integrates better in front-end projects as any other NPM dependency, and it will be easier for front-end developers to maintain the mocks.
 
 ## How does it works?
 
