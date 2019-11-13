@@ -54,7 +54,7 @@ const standard = new Behavior([
   updateUser
 ]);
 
-const errorUpdatingUser = base.extend([updateUserError]);
+const errorUpdatingUser = standard.extend([updateUserError]);
 
 module.exports = {
   standard,
