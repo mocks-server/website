@@ -118,6 +118,12 @@ const siteConfig = {
   gaTrackingId: "UA-151983197-1",
   gaGtag: true,
 
+  algolia: {
+    apiKey: "04369502839c280ae1d3ff3e790b8e31",
+    indexName: "mocks-server",
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
+
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
