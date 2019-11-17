@@ -15,7 +15,7 @@ Defining the api responses during the earliest phases of development will improv
 
 Working with Node.js, it integrates better in front-end projects as any other NPM dependency, and it will be easier for front-end developers to maintain the mocks.
 
-## How does it works?
+## How does it work?
 
 As input, it needs ["fixtures"](get-started-fixtures.md), which are responses for specific uris, and ["behaviors"](get-started-behaviors.md), which are sets of ["fixtures"](get-started-fixtures.md).
 
