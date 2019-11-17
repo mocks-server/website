@@ -1,4 +1,4 @@
-// List of projects/orgs using your project for the users page.
+// List of projects/orgs using this project for the users page.
 
 const users = [
   {
