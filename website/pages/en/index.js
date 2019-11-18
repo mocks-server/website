@@ -171,8 +171,8 @@ class Index extends React.Component {
       >
         <h2>Upcoming features</h2>
         <p>
-          Electron administration user interface, multiple sessions handling, configuration through
-          yaml file, etc. Check the{" "}
+          Administration web user interface, multiple sessions handling, configuration through yaml
+          file, etc. Check the{" "}
           <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">
             github project
           </a>{" "}
