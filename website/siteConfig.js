@@ -128,7 +128,8 @@ const siteConfig = {
   npmUrl: "https://www.npmjs.com/package/@mocks-server/main",
   codeOfConductUrl: `${repoUrl}/blob/master/.github/CODE_OF_CONDUCT.md`,
   contributingUrl: `${repoUrl}/blob/master/.github/CONTRIBUTING.md`,
-  contributorCovenanceUrl: "https://www.contributor-covenant.org/"
+  contributorCovenanceUrl: "https://www.contributor-covenant.org/",
+  nextVersion: "v1.4.0"
 };
 
 module.exports = siteConfig;
