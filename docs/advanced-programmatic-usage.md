@@ -5,76 +5,81 @@ title: Programmatic usage
 
 ## Server
 
-The server can be instantiated and started programmatically:
+The server can be instantiated and started programmatically using the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) package, which does not include plugins.
+
+You can also register your own or another existing plugins, so you could even create your custom distribution with plugins of your choice.
 
 ```javascript
-const path = require("path");
-const { Server } = require("@mocks-server/main");
+const { Core } = require("@mocks-server/core");
+const AdminApi = require("@mocks-server/plugin-admin-api");
+const InquirerCli = require("@mocks-server/plugin-inquirer-cli");
 
-const server = new Server(path.resolve(__dirname, "mocks"), {
-  port: 3200,
-  log: "debug",
-  watch: false
+const server = new Core({
+  onlyProgrammaticOptions: false,
+  plugins: [AdminApi, InquirerCli]
 });
 
-server.start().then(serverInstance => {
-  console.log("Server started", serverInstance);
-});
+server
+  .init({
+    port: 3500,
+    delay: 1000,
+    log: "debug"
+  })
+  .then(server.start);
 ```
 
-### Server API
+### Core API
 
-#### `Server` (behaviorsFolder \[,options\])
+#### `Core` (\[coreOptions\])
 
-First argument is mandatory, and has to be a path to a folder containing "behaviors" and "fixtures".
+##### Arguments
 
-Second argument define the server options, please [read the options](configuration-command-line-arguments.md) chapter of this documentation.
+* `coreOptions`: `<Object>` Containing options reserved for the Core instantiation. (Do not define here any of all another options, which has to be defined in the `init` method)
+	* `onlyProgrammaticOptions`: `<Boolean>` If `true`, options defined through command line arguments will be ignored.
+	* `plugins`: `<Array> of Plugins`. Mocks Server Plugins to be used. Will be registered, initializated and started in same order defined here. Read the [Developing Plugins chapter to learn more about plugins](advanced-developing-plugins.md).
 
-Available methods of an instance are:
+##### Returns a core instance containing:
 
-- `start`(). Starts the server. Resolves the server instance.
-- `stop`(). Stops the server.
-- `restart`(). Stops the server, initializes it again (reloading behaviors files), and starts it again. Returns the server instance.
-- `switchWatch`(state `<Boolean>`). Enable or disable behaviors files watch, depending of the received "state" value.
+###### Methods
 
-Available getters are:
+* `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
+	* `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
+* `start()`. Starts the mocks server and the files watcher. Returns a promise.
+* `stop()`. Stops the mocks server and the files watcher. Returns a promise.
+* `restart()`. Restarts the mocks server.
+* `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded.
+	* `callback([loadedFiles])`: `<Function>`
+		* `loadedFiles`: `<Object>` Information about loaded files. Still not processed as "mocks" objects.
+* `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded.
+	* `callback([loadedMocks])`: `<Function>`
+		* `loadedMocks`: `<Object>` Information about loaded mocks. Already processed as "mocks" objects, ready to be served by the mocks server.
+* `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed.
+	* `callback([changedSettings])`: `<Function>`
+		* `changedSettings`: `<Object>` Settings properties that have changed, with new values.
+* `addCustomSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
+	* `customSetting`: `<Object>` containing next properties:
+		* `name`: `<String>`. Name of the new option.
+		* `type`: `<String>`. One of "string", "number", "boolean". Defines the type of the new option.
+		* `description`: `<String>` Used for giving help to the user in command line arguments, for example.
+		* `default`: `<Any>` Default value for the new option.
+		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.
+* `addCustomRouter` TODO
 
-- `behaviors`. Returns loaded behaviors object.
-- `watchEnabled`. Current state of the behaviors files watcher.
-- `error`. When server has returned an error, or an error ocurred loading behaviors, it is available in this property.
-- `events`. Returns server events object. A "watch-reload" event is emitted when the files watcher detects changes in any behaviors or fixtures file, and restarts the server.
+###### Getters
 
-## CLI
+* `tracer`. Contains methods for using the built-in Mocks Server formatted tracer. Depending of the current `log` setting, the message will be printed or not:
+	* `error(message)`
+	* `warn(message)`
+	* `info(message`
+	* `verbose(message)`
+	* `debug(message)`
+	* `silly(message)`
+* `settings`. Contains methods for interacting with the Mocks Server settings. Settings are equivalent to "options", but we use another word because they are already initialized and contains definitive values, taking into account command line arguments or other configuration methods. Available methods are:
+	* `set(key, value)` Changes the value of a setting.
+		* `key`: `<String>` The name of the setting to be changed. Equivalent to [option](configuration-options.md#main-options) name.
+		* `value`: `<Any>` New value for the specific setting to be set.
+	* `get(key)`. Returns current value of an specific setting.
+		* `key`: `<String>`The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
+* `serverError`. If mocks server throws an unexpected error, it is available at this getter.
+* `behaviors` TODO
 
-The interactive CLI can be instantiated and started programmatically:
-
-```javascript
-const path = require("path");
-const { Cli } = require("@mocks-server/main");
-
-const cli = new Cli({
-  behaviors: path.resolve(__dirname, "mocks"),
-  port: 3200,
-  log: "debug",
-  watch: false
-});
-
-cli.start().catch(err => {
-  console.log("Error starting CLI", err);
-});
-```
-
-### CLI API
-
-#### `Cli` (\[options\])
-
-First argument defines the server options, please [read the options](configuration-command-line-arguments.md) chapter of this documentation.
-
-Available methods of an instance are:
-
-- `start`()
-Inits the server in case it was stopped, adds the watch listeners, and renders main menu.
-- `initServer`()
-Inits the server in case it was stopped, adds the watch listeners.
-- `stopListeningServerWatch`()
-When files watcher is active, the main menu will be displayed always on file changes. This behavior can be deactivated using this method. This is useful when this the CLI is loaded as a submenu of another CLI, for example.
