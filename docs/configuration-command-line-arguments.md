@@ -10,7 +10,7 @@ Supossing you have a `mocks-server` script added to your `package.json` file, as
 ```json
 {
   "scripts": {
-    "mocks-server" : "mocks-server --behaviors=./mocks --log=verbose --watch=false"
+    "mocks-server" : "mocks-server --path=./mocks --log=verbose --watch=false"
   }
 }
 ```

@@ -32,7 +32,7 @@ module.exports = {
 };
 ```
 
-> __Save this file in the `behaviors` folder__ that you defined for your mocks-server when started.
+> __Save this file in the `mocks` folder__ in the root of your project.
 
 Now, when loaded, the server will have available an "standard" behavior, which contains three fixtures.
 

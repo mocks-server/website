@@ -35,12 +35,12 @@ Add it to your dependencies using NPM:
 npm i @mocks-server/main --save-dev
 ```
 
-Add an start script to your `package.json` file, specifying the path containing your fixtures and behaviors:
+Add next script to your `package.json` file:
 
 ```json
 {
   "scripts": {
-    "mocks-server" : "mocks-server --behaviors=./mocks"
+    "mocks-server" : "mocks-server"
   }
 }
 ```
