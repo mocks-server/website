@@ -22,7 +22,7 @@ Create a `/mocks` folder in your project root, containing a `behaviors.js` file,
 |-- package.json
 ```
 
-> You can create as many "behaviors" files as you want in the `mocks` folder. The Mocks Server will load all of them automatically, but never create fixtures at first folder level, as it will try to interprete them also as "behaviors".
+> You can create as many "behaviors" files as you want in the `mocks` folder. The Mocks Server will load all of them automatically.
 
 ## Create an users fixture
 
