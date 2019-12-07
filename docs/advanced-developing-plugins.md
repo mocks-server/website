@@ -7,6 +7,10 @@ title: Developing plugins
 
 You can develop your own plugins for the mocks server to provide more interfaces, ~~add more ways of defining fixtures or behaviors~~ _(not yet available)_, etc.
 
+### Naming plugins
+
+It is recommended that plugins are published with the "mocks-server-plugin-[name]" name format in order to facilitate the search. Plugins should also contain the "mocks-server-plugin" tag in the `package.json`.
+
 ### Plugins lifecycle
 
 Plugins should contain __three main methods__, which will receive the instance of the Mocks Server core. Please read the [programmatic usage chapter](advanced-programmatic-usage.md) to know how to interact with the core.
