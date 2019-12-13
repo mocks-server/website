@@ -29,7 +29,7 @@ server
   .then(server.start);
 ```
 
-### Core API
+## Core API
 
 #### `Core` (\[coreOptions\])
 
@@ -65,8 +65,8 @@ server
 		* `default`: `<Any>` Default value for the new option.
 		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.
 * `addCustomRouter(path, expressRouter)`. Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
-		* `path`: `<String>` Api path for the custom router.
-		* `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+    * `path`: `<String>` Api path for the custom router.
+    * `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
 
 ###### Getters
 

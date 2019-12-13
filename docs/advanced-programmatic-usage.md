@@ -28,7 +28,7 @@ server
   .then(server.start);
 ```
 
-### Core API
+## Core API
 
 #### `Core` (\[coreOptions\])
 
@@ -40,32 +40,38 @@ server
 
 ##### Returns a core instance containing:
 
-###### Methods
+###### Initialization methods
 
 * `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
 	* `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
 * `start()`. Starts the mocks server and the files watcher. Returns a promise.
 * `stop()`. Stops the mocks server and the files watcher. Returns a promise.
 * `restart()`. Restarts the mocks server.
+
+###### Event listeners methods
+
 * `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded. Returns a function for removing the added calback.
-	* `callback([loadedFiles])`: `<Function>`
-		* `loadedFiles`: `<Object>` Information about loaded files. Still not processed as "mocks" objects.
+	* `callback()`: `<Function>`
 * `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded. Returns a function for removing the added calback.
-	* `callback([loadedMocks])`: `<Function>`
-		* `loadedMocks`: `<Object>` Information about loaded mocks. Already processed as "mocks" objects, ready to be served by the mocks server.
+	* `callback()`: `<Function>`
 * `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
-	* `callback([changedSettings])`: `<Function>`
-		* `changedSettings`: `<Object>` Settings properties that have changed, with new values.
-* `addCustomSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
+  * `callback([changedSettings])`: `<Function>`
+    * `changedSettings`: `<Object>` Settings properties that have changed, with new values.
+
+###### Customization methods
+
+* `addSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
 	* `customSetting`: `<Object>` containing next properties:
 		* `name`: `<String>`. Name of the new option.
 		* `type`: `<String>`. One of "string", "number", "boolean". Defines the type of the new option.
 		* `description`: `<String>` Used for giving help to the user in command line arguments, for example.
 		* `default`: `<Any>` Default value for the new option.
 		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.
-* `addCustomRouter(path, expressRouter)`. Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
-		* `path`: `<String>` Api path for the custom router.
-		* `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+* `addRouter(path, expressRouter)` Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
+    * `path`: `<String>` Api path for the custom router
+    * `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+* `addFixturesHandler(FixturesHandler)` Adds a custom fixtures handler. This allows to add new formats or methods of defining fixtures.
+    * `FixturesHandler`: `<Class>` Custom fixtures handler. Read the [adding custom fixtures handlers chapter](advanced-custom-fixtures-handlers) for further info.
 
 ###### Getters
 

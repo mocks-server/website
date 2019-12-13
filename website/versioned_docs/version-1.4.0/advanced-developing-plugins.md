@@ -12,7 +12,7 @@ You can develop your own plugins for the mocks server to provide more interfaces
 
 It is recommended that plugins are published with the "mocks-server-plugin-[name]" name format in order to facilitate the search. Plugins should also contain the "mocks-server-plugin" tag in the `package.json`.
 
-### Plugins lifecycle
+## Plugins lifecycle
 
 Plugins should contain __three main methods__, which will receive the instance of the Mocks Server core. Please read the [programmatic usage chapter](advanced-programmatic-usage.md) to know how to interact with the core.
 
@@ -94,13 +94,13 @@ server
   .then(server.start);
 ```
 
-### Plugins formats
+## Plugins formats
 
 The methods can be defined in a plain `object`, as methods of a `Class` or even using a `function` returning an object containing them.
 
 Next examples show how each format should be defined:
 
-#### Plugin as a `Class`
+### Plugin as a `Class`
 
 ```javascript
 export default class Plugin {
@@ -122,7 +122,7 @@ export default class Plugin {
 }
 ```
 
-#### Plugin as a `function`
+### Plugin as a `function`
 
 ```javascript
 const plugin = core => {
@@ -143,7 +143,7 @@ const plugin = core => {
 export default plugin;
 ```
 
-#### Plugin as an `object`
+### Plugin as an `object`
 
 ```javascript
 const plugin = {
