@@ -82,6 +82,8 @@ server
 	* `verbose(message)`
 	* `debug(message)`
 	* `silly(message)`
+  * `set(level)` Sets the tracer current log level. Can be one of "silent", "error", "warn", "info", "verbose", "debug" or "silly".
+  * `deprecationWarn(oldMethodName, newMethodName)` Calls to `tracer.warn` for giving feedback about a method that is going to be deprecated.
 * `settings`. Contains methods for interacting with the Mocks Server settings. Settings are equivalent to "options", but we use another word because they are already initialized and contains definitive values, taking into account command line arguments or other configuration methods. Available methods are:
 	* `set(key, value)` Changes the value of a setting.
 		* `key`: `<String>` The name of the setting to be changed. Equivalent to [option](configuration-options.md#main-options) name.
