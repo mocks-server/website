@@ -88,6 +88,7 @@ server
 		* `value`: `<Any>` New value for the specific setting to be set.
 	* `get(key)`. Returns current value of an specific setting.
 		* `key`: `<String>`The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
+  * `all`. Getter returning all current settings. Never modify returned object to change settings, as it will have no effect. Use the `settings.set` method instead.
 * `serverError`. If mocks server throws an unexpected error, it is available at this getter.
 * `behaviors`. Returns methods and getters related to currently available behaviors.
 	* `count`. Getter returning total number of behaviors available.
