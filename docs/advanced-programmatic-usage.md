@@ -89,6 +89,12 @@ server
 	* `get(key)`. Returns current value of an specific setting.
 		* `key`: `<String>`The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
 * `serverError`. If mocks server throws an unexpected error, it is available at this getter.
-* `behaviors`. Returns methods and getters related to currently available behaviors. We encourage to not use this getter by the moment, as it is still in development and the api will change in next minor releases. Properties that are going to be maintained and can be used without danger are:
+* `behaviors`. Returns methods and getters related to currently available behaviors.
 	* `count`. Getter returning total number of behaviors available.
 	* `names`. Getter returning an array with all behavior names.
+  * `current`. Getter returning current active behavior.
+  * `collection`. Collection of behaviors instances.
+* `fixtures`. Returns methods and getters related to currently available fixtures.
+  * `count`. Getter returning total number of fixtures available.
+  * `collection`. Collection of fixtures instances.
+

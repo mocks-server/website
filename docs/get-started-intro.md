@@ -5,11 +5,11 @@ title: Intro
 
 ## The project
 
-This project provides a server that simulates API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
+This project provides a server that simulates multiple API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
 
 ## Why a mocks server?
 
-Controlling the responses of the api will improve the front-end development workflow, avoiding early dependencies with back-end. It also improves the testing and development of error cases or another cases that are commonly hard to reproduce in the real api.
+Controlling the responses of the api will improve the front-end development workflow, avoiding early dependencies with back-end. It also improves the testing and development of error cases or another cases that are commonly hard to reproduce with a real api.
 
 Defining the api responses during the earliest phases of development will improve the communication among team members and align their expectations.
 
@@ -40,7 +40,7 @@ Add next script to your `package.json` file:
 ```json
 {
   "scripts": {
-    "mocks-server" : "mocks-server"
+    "mocks" : "mocks-server"
   }
 }
 ```
@@ -50,7 +50,17 @@ Add next script to your `package.json` file:
 Now, you can start the Mocks Server CLI with the command:
 
 ```bash
-npm run mocks-server
+npm run mocks
 ```
 
 ![Interactive CLI](assets/cli_animation.gif)
+
+## Customization
+
+The mocks-server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
+
+- [Start it programmatically](advanced-programmatic-usage) and use his multiple methods and events to manage it from your program.
+- Add new options and features [developing plugins](advanced-developing-plugins).
+- Add new [fixtures handlers](advanced-custom-fixtures-handlers), which allows to customize the format in which fixtures are defined.
+
+

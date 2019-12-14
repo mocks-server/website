@@ -13,6 +13,7 @@ const users = require("./users");
 const organizationUrl = "https://github.com/mocks-server";
 const baseUrl = "/";
 const repoUrl = `${organizationUrl}/main`;
+const coreRepoUrl = `${organizationUrl}/core`;
 const webSiteRepoUrl = `${organizationUrl}/website`;
 
 const siteConfig = {
@@ -122,7 +123,7 @@ const siteConfig = {
   stackOverflowUrl: "https://stackoverflow.com/questions/tagged/mocks-server",
   stackOverflowAskUrl: "https://stackoverflow.com/questions/ask?tags=mocks-server",
   githubProjectUrl: "https://github.com/orgs/mocks-server/projects/1",
-  githubIssuesUrl: `${repoUrl}/issues`,
+  githubIssuesUrl: `${coreRepoUrl}/issues`,
   websiteIssuesUrl: `${webSiteRepoUrl}/issues`,
   blogUrl: `${baseUrl}blog`,
   npmUrl: "https://www.npmjs.com/package/@mocks-server/main",

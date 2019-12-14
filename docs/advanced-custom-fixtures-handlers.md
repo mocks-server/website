@@ -23,7 +23,7 @@ This method should check the received object, and return `true` if it recognizes
 
 #### `static get displayName()`
 
-This sttic getter should return the name of the fixtures handler, which is useful for debugging purposes.
+This static getter should return the name of the fixtures handler, which is useful for debugging purposes.
 
 #### `constructor(fixture, mocksServerInstance)`
 
@@ -47,3 +47,79 @@ This getter should return an unique id for the fixture, different to all other f
 #### `get matchId()`
 
 This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific url and not others. (For example, if your fixture format include an "url" property, this should probably be used to calculate the `matchId`)
+
+## Example
+
+Here you have an example of how a fixtures handler should be defined:
+
+```javascript
+// ./CustomFixturesHandler.js
+class CustomFixturesHandler {
+  static recognize(fixture) {
+    if (fixture.at && fixture.with && fixture.send && fixture.status) {
+      return true;
+    }
+    return false;
+  }
+
+  static get displayName() {
+    return "custom-fixtures-handler";
+  }
+
+  constructor(fixture, core) {
+    this._core = core;
+    this._at = fixture.at;
+    this._with = fixture.with;
+    this._send = fixture.send;
+    this._status = fixture.status;
+    this._id = JSON.stringify(fixture);
+    this._matchId = `${this._with}-${this._at}`;
+  }
+
+  requestMatch(req) {
+    return req.method === this._method && req.url === this._at;
+  }
+
+  handleRequest(req, res) {
+    this._core.tracer.debug(`Sending fixture ${this._id} to request with id ${req.id}`);
+    res.status(this._status);
+    res.send(this._send);
+  }
+
+  get matchId() {
+    return this._matchId;
+  }
+
+  get id() {
+    return this._id;
+  }
+}
+
+module.exports = CustomFixturesHandler;
+```
+
+Now, the mocks server will accept fixtures defined as:
+
+```javascript
+// ./mocks/fixtures/users.js
+const getUsersSuccess = {
+  at: "/api/users",
+  with: "GET",
+  status: 200,
+  send: [
+    {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@foo.com"
+    }
+  ]
+};
+
+module.exports = {
+  getUsersSuccess
+};
+```
+
+> By the moment, custom fixtures handlers [can be added only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.
+
+
