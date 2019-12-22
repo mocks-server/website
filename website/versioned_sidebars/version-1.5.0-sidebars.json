@@ -1,0 +1,27 @@
+{
+  "version-1.5.0-docs": {
+    "Welcome": [
+      "version-1.5.0-welcome-about-docs"
+    ],
+    "Getting started": [
+      "version-1.5.0-get-started-intro",
+      "version-1.5.0-get-started-fixtures",
+      "version-1.5.0-get-started-behaviors"
+    ],
+    "Tutorials": [
+      "version-1.5.0-tutorials-static",
+      "version-1.5.0-tutorials-dynamic"
+    ],
+    "Configuration": [
+      "version-1.5.0-configuration-options",
+      "version-1.5.0-configuration-command-line-arguments",
+      "version-1.5.0-configuration-interactive-cli",
+      "version-1.5.0-configuration-rest-api"
+    ],
+    "Customization": [
+      "version-1.5.0-advanced-programmatic-usage",
+      "version-1.5.0-advanced-developing-plugins",
+      "version-1.5.0-advanced-custom-fixtures-handlers"
+    ]
+  }
+}
