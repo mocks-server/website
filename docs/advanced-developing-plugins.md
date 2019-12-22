@@ -19,7 +19,7 @@ Plugins should contain __three main methods__, which will receive the instance o
 
 This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized.
 
-Here you should register your own custom `options` using the `core.addCustomSetting` method, register your own custom express routers using the `core.addCustomRouter` method, etc.
+Here you should register your own custom `options` using the `core.addSetting` method, register your own custom express routers using the `core.addRouter` method, etc.
 
 You should never access here to the `core.settings` methods, are they are not still ready in this phase, which was defined with the intention of letting the plugins to add their own settings.
 

@@ -50,9 +50,7 @@ server
 
 ###### Event listeners methods
 
-* `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded. Returns a function for removing the added calback.
-	* `callback()`: `<Function>`
-* `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded. Returns a function for removing the added calback.
+* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collection (fixtures or behaviors) changes. Returns a function for removing the added calback.
 	* `callback()`: `<Function>`
 * `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
   * `callback([changedSettings])`: `<Function>`
@@ -70,6 +68,9 @@ server
 * `addRouter(path, expressRouter)` Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
     * `path`: `<String>` Api path for the custom router
     * `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+* `removeRouter(path, expressRouter)` Removes a custom express router previously added with the `addRouter` method.
+    * `path`: `<String>` Api path of the custom router to be removed.
+    * `expressRouter`: `<Express Router>` Instance of the express router to be removed.
 * `addFixturesHandler(FixturesHandler)` Adds a custom fixtures handler. This allows to add new formats or methods of defining fixtures.
     * `FixturesHandler`: `<Class>` Custom fixtures handler. Read the [adding custom fixtures handlers chapter](advanced-custom-fixtures-handlers) for further info.
 
@@ -90,7 +91,9 @@ server
 		* `value`: `<Any>` New value for the specific setting to be set.
 	* `get(key)`. Returns current value of an specific setting.
 		* `key`: `<String>`The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
-  * `all`. Getter returning all current settings. Never modify returned object to change settings, as it will have no effect. Use the `settings.set` method instead.
+  * `all`. Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
+  * `getValidOptionName(optionName)`. Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
+    * `optionName`: `<String>` Option name to check.
 * `serverError`. If mocks server throws an unexpected error, it is available at this getter.
 * `behaviors`. Returns methods and getters related to currently available behaviors.
 	* `count`. Getter returning total number of behaviors available.

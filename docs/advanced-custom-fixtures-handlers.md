@@ -44,9 +44,17 @@ Then, this method should send the correspondant response based on the fixture pr
 
 This getter should return an unique id for the fixture, different to all other fixtures. It should be calculated based on the fixture properties to make it persistant, or, in other words, it should return the same value for the same fixture each time the mocks server is started.
 
-#### `get matchId()`
+#### `get requestMatchId()`
 
-This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific url and not others. (For example, if your fixture format include an "url" property, this should probably be used to calculate the `matchId`)
+This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific url and not others. (For example, if your fixture format include an "url" property, this should probably be used to calculate the `requestMatchId`)
+
+#### `get request()`
+
+This getter should return an object which properties describe what makes this fixture handler to match a request or not.
+
+#### `get response()`
+
+This getter should return a response preview. This response getter is used only for debug and display purposes, real response should be sent by the `handleRequest` method.
 
 ## Example
 
@@ -73,7 +81,7 @@ class CustomFixturesHandler {
     this._send = fixture.send;
     this._status = fixture.status;
     this._id = JSON.stringify(fixture);
-    this._matchId = `${this._with}-${this._at}`;
+    this._requestMatchId = `${this._with}-${this._at}`;
   }
 
   requestMatch(req) {
@@ -86,19 +94,33 @@ class CustomFixturesHandler {
     res.send(this._send);
   }
 
-  get matchId() {
-    return this._matchId;
+  get requestMatchId() {
+    return this._requestMatchId;
   }
 
   get id() {
     return this._id;
+  }
+
+  get request() {
+    return {
+      at: this._at,
+      with: this._with
+    };
+  }
+
+  get response() {
+    return {
+      status: this._status,
+      body: this._send
+    };
   }
 }
 
 module.exports = CustomFixturesHandler;
 ```
 
-Now, the mocks server will accept fixtures defined as:
+Now, after adding this custom fixture handler with the `addFixturesHandler` method, the mocks server will accept fixtures defined as:
 
 ```javascript
 // ./mocks/fixtures/users.js
