@@ -36,6 +36,9 @@ class Footer extends React.Component {
             <a href={this.docUrl("configuration-command-line-arguments", this.props.language)}>
               Configuration
             </a>
+            <a href={this.docUrl("advanced-programmatic-usage", this.props.language)}>
+              Customization
+            </a>
           </div>
           <div>
             <h5>Community</h5>
@@ -56,8 +59,15 @@ class Footer extends React.Component {
             <a href={this.props.config.organizationUrl} target="_blank" rel="noreferrer noopener">
               GitHub
             </a>
-            <a href={this.props.config.npmUrl} target="_blank" rel="noreferrer noopener">
-              NPM
+            <a
+              href="https://www.npmjs.com/package/@mocks-server/main"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img
+                src="https://img.shields.io/npm/dm/@mocks-server/main.svg"
+                alt="NPM Downloads"
+              />
             </a>
             <a
               className="github-button"

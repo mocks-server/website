@@ -4,6 +4,6 @@
     "Getting started": ["get-started-intro", "get-started-fixtures", "get-started-behaviors"],
     "Tutorials": ["tutorials-static", "tutorials-dynamic"],
     "Configuration": ["configuration-options", "configuration-command-line-arguments", "configuration-interactive-cli", "configuration-rest-api"],
-    "Advanced": ["advanced-programmatic-usage", "advanced-developing-plugins"]
+    "Customization": ["advanced-programmatic-usage", "advanced-developing-plugins", "advanced-custom-fixtures-handlers"]
   }
 }

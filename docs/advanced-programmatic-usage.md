@@ -28,7 +28,7 @@ server
   .then(server.start);
 ```
 
-### Core API
+## Core API
 
 #### `Core` (\[coreOptions\])
 
@@ -40,32 +40,39 @@ server
 
 ##### Returns a core instance containing:
 
-###### Methods
+###### Initialization methods
 
 * `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
 	* `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
 * `start()`. Starts the mocks server and the files watcher. Returns a promise.
 * `stop()`. Stops the mocks server and the files watcher. Returns a promise.
 * `restart()`. Restarts the mocks server.
-* `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded. Returns a function for removing the added calback.
-	* `callback([loadedFiles])`: `<Function>`
-		* `loadedFiles`: `<Object>` Information about loaded files. Still not processed as "mocks" objects.
-* `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded. Returns a function for removing the added calback.
-	* `callback([loadedMocks])`: `<Function>`
-		* `loadedMocks`: `<Object>` Information about loaded mocks. Already processed as "mocks" objects, ready to be served by the mocks server.
+
+###### Event listeners methods
+
+* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collection (fixtures or behaviors) changes. Returns a function for removing the added calback.
+	* `callback()`: `<Function>`
 * `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
-	* `callback([changedSettings])`: `<Function>`
-		* `changedSettings`: `<Object>` Settings properties that have changed, with new values.
-* `addCustomSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
+  * `callback([changedSettings])`: `<Function>`
+    * `changedSettings`: `<Object>` Settings properties that have changed, with new values.
+
+###### Customization methods
+
+* `addSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
 	* `customSetting`: `<Object>` containing next properties:
 		* `name`: `<String>`. Name of the new option.
 		* `type`: `<String>`. One of "string", "number", "boolean". Defines the type of the new option.
 		* `description`: `<String>` Used for giving help to the user in command line arguments, for example.
 		* `default`: `<Any>` Default value for the new option.
 		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.
-* `addCustomRouter(path, expressRouter)`. Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
-		* `path`: `<String>` Api path for the custom router.
-		* `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+* `addRouter(path, expressRouter)` Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
+    * `path`: `<String>` Api path for the custom router
+    * `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
+* `removeRouter(path, expressRouter)` Removes a custom express router previously added with the `addRouter` method.
+    * `path`: `<String>` Api path of the custom router to be removed.
+    * `expressRouter`: `<Express Router>` Instance of the express router to be removed.
+* `addFixturesHandler(FixturesHandler)` Adds a custom fixtures handler. This allows to add new formats or methods of defining fixtures.
+    * `FixturesHandler`: `<Class>` Custom fixtures handler. Read the [adding custom fixtures handlers chapter](advanced-custom-fixtures-handlers) for further info.
 
 ###### Getters
 
@@ -76,13 +83,24 @@ server
 	* `verbose(message)`
 	* `debug(message)`
 	* `silly(message)`
+  * `set(level)` Sets the tracer current log level. Can be one of "silent", "error", "warn", "info", "verbose", "debug" or "silly".
+  * `deprecationWarn(oldMethodName, newMethodName)` Calls to `tracer.warn` for giving feedback about a method that is going to be deprecated.
 * `settings`. Contains methods for interacting with the Mocks Server settings. Settings are equivalent to "options", but we use another word because they are already initialized and contains definitive values, taking into account command line arguments or other configuration methods. Available methods are:
 	* `set(key, value)` Changes the value of a setting.
 		* `key`: `<String>` The name of the setting to be changed. Equivalent to [option](configuration-options.md#main-options) name.
 		* `value`: `<Any>` New value for the specific setting to be set.
 	* `get(key)`. Returns current value of an specific setting.
 		* `key`: `<String>`The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
+  * `all`. Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
+  * `getValidOptionName(optionName)`. Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
+    * `optionName`: `<String>` Option name to check.
 * `serverError`. If mocks server throws an unexpected error, it is available at this getter.
-* `behaviors`. Returns methods and getters related to currently available behaviors. We encourage to not use this getter by the moment, as it is still in development and the api will change in next minor releases. Properties that are going to be maintained and can be used without danger are:
+* `behaviors`. Returns methods and getters related to currently available behaviors.
 	* `count`. Getter returning total number of behaviors available.
 	* `names`. Getter returning an array with all behavior names.
+  * `current`. Getter returning current active behavior.
+  * `collection`. Collection of behaviors instances.
+* `fixtures`. Returns methods and getters related to currently available fixtures.
+  * `count`. Getter returning total number of fixtures available.
+  * `collection`. Collection of fixtures instances.
+
