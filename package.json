@@ -1,7 +1,7 @@
 {
   "name": "mocks-server-website",
   "description": "Mocks server documentation website",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "author": "Javier Brea",
   "license": "MIT",
