@@ -12,7 +12,7 @@ A "fixture" defines the response for an specific uri. It has to be an object con
 * `response`: `<Object>` Defines the response that the Mocks Server will send to the request:
   * `status`: `<Number>` Status code to send.
   * `body`: `<Object>` Object to send as body in the response.
-* `response`: `<Function>` Response can be defined as a function too. The function will receive the [express](http://expressjs.com/es/api.html) `request` and `response` arguments, so you are free to handle the server request as you need. _This is what we call a "dynamic" fixture._
+* `response`: `<Function>` Response can be defined as a function too. The function will receive the [express](http://expressjs.com/es/api.html) `request`, `response` and `next` arguments, so you are free to handle the server request as you need. _This is what we call a "dynamic" fixture._
 
 ## Examples
 
