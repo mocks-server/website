@@ -27,7 +27,7 @@ You should never access here to the `core.settings` methods, are they are not st
 
 #### `init(core)`
 
-This method will be called when mocks server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onLoadMocks`, etc.
+This method will be called when mocks server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onChangeMocks`, etc.
 
 #### `start(core)`
 
@@ -50,14 +50,14 @@ class Plugin {
     });
 
     this._core = core;
-    this._onLoadMocks = this._onLoadMocks.bind(this);
+    this._onChangeMocks = this._onChangeMocks.bind(this);
     this._onChangeSettings = this._onChangeSettings.bind(this);
   }
 
   init(core) {
     this._enabled = core.settings.get("traceBehaviors");
-    this._removeLoadMocksListener = core.onLoadMocks(this.onLoadMocks);
-    this._removeChangeSettingsListener = core.onLoadMocks(this.onChangeSettings);
+    this._removeLoadMocksListener = core.onChangeMocks(this.onChangeMocks);
+    this._removeChangeSettingsListener = core.onChangeMocks(this.onChangeSettings);
     core.tracer.debug(`traceBehaviors initial value is ${core.settings.get("traceBehaviors")}`);
   }
 
@@ -72,7 +72,7 @@ class Plugin {
     }
   }
 
-  _onLoadMocks() {
+  _onChangeMocks() {
     if (this._enabled && this._started) {
       this._core.tracer.info(
         `Mocks have been reloaded, now are ${this._core.behaviors.count} available`
