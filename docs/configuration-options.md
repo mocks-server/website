@@ -11,13 +11,15 @@ This chapter describes all available options in the [@mocks-server/main package 
 * `port`: `<Number>` Por number for the Mocks Server to be listening. Default is 3100.
 * `host`: `<String>` Host for the server. Default is "0.0.0.0" (Listen to any local host).
 * `log`: `<String>` Logs level. Can be one of "silly", "debug", "verbose", "info", "warn", "error".
-* `watch`: `<Boolean>` Watch behaviors folder and restart server on changes. Default is `true`.
+* `watch`: `<String>` Watch behaviors folder and restart server on changes. Default is `true`.  Use `false` to disable it.
 * `behavior`: `<String>` Default selected behavior when server is started.
-* `delay`: `<Number` Responses delay time in milliseconds.
+* `delay`: `<Number>` Responses delay time in milliseconds.
 
 ## Plugins extra options
 
-* `cli`: `<Boolean>` Start interactive CLI. Default is `true`.
+* `cli`: `<String>` Start interactive CLI. Default is `true`. Use `false` to disable it.
+* `adminApiPath`: `<String>` Path for the administration api. Default is "/admin". You should change it only in case there is any conflict with the api you are mocking.
+* `adminApiDeprecatedPaths` - `<Boolean>` Disables deprecated "/mocks" api path, which is still enabled by default. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments) for further info)
 
 > These extra options are added by the [@mocks-server/plugin-admin-api](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) and the [@mocks-server/plugin-inquirer-cli](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) plugins, which are included in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main).
 
