@@ -30,3 +30,11 @@ Options added by registered plugins can be defined also using command line argum
 ```bash
 npm run mocks-server -- --language=Es-es
 ```
+
+## Boolean options
+
+For `Boolean` options having a `true` default value, use the `--no-`. prefix for disabling them. (Read [commander documentation](https://www.npmjs.com/package/commander) for further info)
+
+```bash
+npm run mocks-server -- --no-adminApiDeprecatedPaths
+```
