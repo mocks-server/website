@@ -156,7 +156,7 @@ class Index extends React.Component {
           id="home-easy-to-use"
           title="Easy to use"
           left={`
-Install and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
+Install it and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
 to add fixtures and you&apos;ll have a simulated api in few minutes.
 Use one of the included plugins, as the [interactive CLI](${docUrl(
             "configuration-interactive-cli"
@@ -232,7 +232,7 @@ From [defining fixtures using express middlewares](${docUrl(
           )}),
 the mocks-server is very adaptable to achieve any project requirements.
 
-Packages to integrate it are also available. For example, [@mocks-server/cypress-commands](https://www.npmjs.com/package/@mocks-server/cypress-commands) allows to easily
+There are also available packages for integrations. For example, [@mocks-server/cypress-commands](https://www.npmjs.com/package/@mocks-server/cypress-commands) allows to easily
 control the mock server from Cypress.
 `}
           right={`
