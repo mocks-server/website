@@ -3,9 +3,51 @@ const PropTypes = require("prop-types");
 
 const CompLibrary = require("../../core/CompLibrary.js");
 
-// const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
+const MarkdownBlock = CompLibrary.MarkdownBlock;
+
+const CodeExampleSection = ({ id, background, title, left, right }) => {
+  return (
+    <Container id={id} className={background}>
+      <div className="gridBlock">
+        <div className="blockElement twoByGridBlock">
+          <div className="blockContent">
+            <h2>
+              <div>
+                <span>
+                  <p>{title}</p>
+                </span>
+              </div>
+            </h2>
+            <div>
+              <span>
+                <MarkdownBlock>{left}</MarkdownBlock>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="blockElement twoByGridBlock">
+          <div className="blockContent">
+            <div className="code-example">
+              <span>
+                <MarkdownBlock>{right}</MarkdownBlock>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+CodeExampleSection.propTypes = {
+  id: PropTypes.string,
+  background: PropTypes.string,
+  title: PropTypes.string,
+  left: PropTypes.string,
+  right: PropTypes.string
+};
 
 class HomeSplash extends React.Component {
   render() {
@@ -31,7 +73,11 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectMotto = () => (
-      <h3 className="projectPromo">Npm install. Add mocks. Run npm command.</h3>
+      <h3 className="projectPromo">
+        Simple and easy out-of-the-box
+        <br />
+        Very powerful and customizable through plugins
+      </h3>
     );
 
     const PromoSection = props => (
@@ -44,7 +90,7 @@ class HomeSplash extends React.Component {
 
     const Button = props => (
       <div className="pluginWrapper buttonWrapper">
-        <a className="button" href={props.href} target={props.target}>
+        <a className="button get-started" href={props.href} target={props.target}>
           {props.children}
         </a>
       </div>
@@ -77,92 +123,135 @@ class Index extends React.Component {
     const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
-    const Block = props => (
-      <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
-        <GridBlock align="center" contents={props.children} layout={props.layout} />
+    const Features = () => (
+      <Container id="home-features" background="light">
+        <GridBlock
+          contents={[
+            {
+              title: "Isolated front-end development",
+              content: `Define api contracts, add [mocks-server fixtures](${docUrl(
+                "get-started-fixtures"
+              )}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`
+            },
+            {
+              title: "Multiple api behaviors",
+              content: `Define [multiple api behaviors](${docUrl(
+                "get-started-behaviors"
+              )}) easily, including error cases. Ensure that your front-end application is ready for all cases. Change the behavior of the server using one of the available plugins.`
+            },
+            {
+              title: "Solid tests",
+              content:
+                "Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests with the real api in more advanced phases of integration."
+            }
+          ]}
+          layout="fourColumn"
+        />
       </Container>
     );
 
-    const Features = () => (
-      <Block layout="fourColumn" background="light">
-        {[
-          {
-            content: `Define api contracts, add [mocks-server fixtures](${docUrl(
-              "get-started-fixtures"
-            )}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`,
-            image: `${baseUrl}img/undraw_code_typing.svg`,
-            imageAlign: "top",
-            title: "Isolated front-end development"
-          },
-          {
-            content:
-              "Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests against the real api in more advanced phases of integration.",
-            image: `${baseUrl}img/undraw_exams.svg`,
-            imageAlign: "top",
-            title: "Solid acceptance tests"
-          },
-          {
-            content: `Define [multiple api behaviors](${docUrl(
-              "get-started-behaviors"
-            )}) easily, including error cases. Ensure that your front-end application is ready for all cases.`,
-            image: `${baseUrl}img/undraw_programming.svg`,
-            imageAlign: "top",
-            title: "Multiple api behaviors"
-          }
-        ]}
-      </Block>
-    );
+    const Easy = () => {
+      return (
+        <CodeExampleSection
+          id="home-easy-to-use"
+          title="Easy to use"
+          left={`
+Install and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
+to add fixtures and you&apos;ll have a simulated api in few minutes.
+Use one of the included plugins, as the [interactive CLI](${docUrl(
+            "configuration-interactive-cli"
+          )}) or the [admin API REST](${docUrl(
+            "configuration-rest-api"
+          )}) for changing settings easily while it is running.
+`}
+          right={`
+\`\`\` bash
+npm i --save-dev @mocks-server/core
+\`\`\`
 
-    const Easy = () => (
-      <Block>
-        {[
-          {
-            content: `Follow the [tutorial](${docUrl(
-              "tutorials-static"
-            )}) and you'll have a mocks server running in few minutes. Use the built-in [interactive CLI](${docUrl(
-              "configuration-interactive-cli"
-            )}) or the [admin API REST](${docUrl(
-              "configuration-rest-api"
-            )}) for changing [settings](${docUrl(
-              "configuration-command-line-arguments"
-            )}) as delay time, current behavior, etc.`,
-            image: `${baseUrl}img/undraw_done.svg`,
-            imageAlign: "right",
-            title: "Easy to use"
-          }
-        ]}
-      </Block>
-    );
+Add the script to the \`package.json\` file:
+\`\`\` json
+{
+  "scripts": {
+    "mocks": "mocks-server"
+  }
+}
+\`\`\`
+`}
+        />
+      );
+    };
 
-    const Extensible = () => (
-      <Block background="dark">
-        {[
-          {
-            content: `Easy to maintain. Define the default [behavior](${docUrl(
-              "get-started-behaviors"
-            )}) of your mocks. Extend it redefining the response of some specific uris and save it as a new behavior. All extended behaviors can be extended as well.`,
-            image: `${baseUrl}img/undraw_file_bundle.svg`,
-            imageAlign: "left",
-            title: "Extensible api behaviors"
-          }
-        ]}
-      </Block>
-    );
+    const Maintainable = () => {
+      return (
+        <CodeExampleSection
+          id="home-maintainable"
+          background="lightBackground"
+          title="Maintainable"
+          left={`
+Maintain your [fixtures](${docUrl(
+            "get-started-fixtures"
+          )}) organized and group them in different [behaviors](${docUrl(
+            "get-started-behaviors"
+          )}).
+Behaviors can be created extending from another ones, so you can modify or add new fixtures to the main behavior,
+and the rest of behaviors will inherit them.
+`}
+          right={`
+\`\`\`javascript
+const { Behavior } = require("@mocks-server/core");
 
-    const DynamicFixtures = () => (
-      <Block id="try">
-        {[
-          {
-            content: `Add [dynamic fixtures](${docUrl(
-              "tutorials-dynamic"
-            )}) using express middlewares. Provide programmatic behaviors to your mocks when needed. Almost a real api with few lines of code.`,
-            image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: "right",
-            title: "Dynamic fixtures"
-          }
-        ]}
-      </Block>
-    );
+const {
+  userSuccess,
+  userAdminSuccess,
+  productsCatalog
+} = require("./fixtures");
+
+const main = new Behavior([userSuccess, productsCatalog]);
+const admin = main.extend([userAdminSuccess]);
+
+module.exports = { main, admin };
+\`\`\`
+`}
+        />
+      );
+    };
+
+    const Flexible = () => {
+      return (
+        <CodeExampleSection
+          id="home-flexible"
+          title="Flexible and customizable"
+          left={`
+From [defining fixtures using express middlewares](${docUrl(
+            "tutorials-dynamic"
+          )}) to [developing your own plugins](${docUrl(
+            "advanced-developing-plugins"
+          )}) or even [adding new fixtures handlers](${docUrl(
+            "advanced-custom-fixtures-handlers"
+          )}),
+the mocks-server is very adaptable to achieve any project requirements.
+
+Packages to integrate it are also available. For example, [@mocks-server/cypress-commands](https://www.npmjs.com/package/@mocks-server/cypress-commands) allows to easily
+control the mock server from Cypress.
+`}
+          right={`
+\`\`\`javascript
+describe("user with admin role", () => {
+  before(() => {
+    cy.mocksServerSetBehavior("admin-user");
+    cy.visit("/");
+  });
+
+  it("should see the users section link", () => {
+    cy.get("#users-section-link").should("be.visible");
+  });
+});
+\`\`\`
+`}
+        />
+      );
+    };
 
     const Roadmap = () => (
       <div
@@ -171,8 +260,8 @@ class Index extends React.Component {
       >
         <h2>Upcoming features</h2>
         <p>
-          Administration web user interface, multiple sessions handling, configuration through yaml
-          file, etc. Check the{" "}
+          Administration web user interface, Chrome extension, configuration using a javascript
+          file, multiple sessions handling, proxy, etc. Check the{" "}
           <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">
             github project
           </a>{" "}
@@ -212,11 +301,11 @@ class Index extends React.Component {
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
-        <div className="mainContainer">
+        <div className="mainContainer home">
           <Features />
           <Easy />
-          <Extensible />
-          <DynamicFixtures />
+          <Maintainable />
+          <Flexible />
           <Roadmap />
           <Showcase />
         </div>
