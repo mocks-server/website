@@ -45,13 +45,13 @@ server
 
 * `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
 	* `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
-* `start()`. Starts the mocks server and the files watcher. Returns a promise.
-* `stop()`. Stops the mocks server and the files watcher. Returns a promise.
-* `restart()`. Restarts the mocks server.
+* `start()`. Starts the mock server and the files watcher. Returns a promise.
+* `stop()`. Stops the mock server and the files watcher. Returns a promise.
+* `restart()`. Restarts the mock server.
 
 ###### Event listeners methods
 
-* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collection (fixtures or behaviors) changes. Returns a function for removing the added calback.
+* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collections (fixtures or behaviors) changes. Returns a function for removing the added calback.
 	* `callback()`: `<Function>`
 * `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
   * `callback([changedSettings])`: `<Function>`
@@ -66,7 +66,7 @@ server
 		* `description`: `<String>` Used for giving help to the user in command line arguments, for example.
 		* `default`: `<Any>` Default value for the new option.
 		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.
-* `addRouter(path, expressRouter)` Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mocks server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
+* `addRouter(path, expressRouter)` Adds a custom [express router](https://expressjs.com/es/guide/routing.html) to the mock server. Custom routers will be added just before the middleware that serves the fixtures, so if a custom router path matches with a fixture path, the first one will have priority.
     * `path`: `<String>` Api path for the custom router
     * `expressRouter`: `<Express Router>` Instance of an [express router](https://expressjs.com/es/guide/routing.html).
 * `removeRouter(path, expressRouter)` Removes a custom express router previously added with the `addRouter` method.
@@ -95,7 +95,7 @@ server
   * `all`. Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
   * `getValidOptionName(optionName)`. Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
     * `optionName`: `<String>` Option name to check.
-* `serverError`. If mocks server throws an unexpected error, it is available at this getter.
+* `serverError`. If mock server throws an unexpected error, it is available at this getter.
 * `behaviors`. Returns methods and getters related to currently available behaviors.
 	* `count`. Getter returning total number of behaviors available.
 	* `names`. Getter returning an array with all behavior names.

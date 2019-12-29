@@ -76,7 +76,7 @@ class HomeSplash extends React.Component {
       <h3 className="projectPromo">
         Simple and easy out-of-the-box
         <br />
-        Very powerful and customizable through plugins
+        Very powerful and customizable with plugins
       </h3>
     );
 
