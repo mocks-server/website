@@ -6,7 +6,7 @@ original_id: advanced-developing-plugins
 
 ## Plugins
 
-You can develop your own plugins for the mocks server to provide more interfaces, add [more ways of defining fixtures](advanced-custom-fixtures-handlers), etc.
+You can develop your own plugins for the Mocks Server to provide more interfaces, add [more ways of defining fixtures](advanced-custom-fixtures-handlers), etc.
 
 ### Naming plugins
 
@@ -28,11 +28,11 @@ You should never access here to the `core.settings` methods, are they are not st
 
 #### `init(core)`
 
-This method will be called when mocks server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onChangeMocks`, etc.
+This method will be called when Mocks Server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onChangeMocks`, etc.
 
 #### `start(core)`
 
-When this method is called, the mocks server is already started and listening to requests, and the files watcher is observing for changes too.
+When this method is called, the Mocks Server is already started and listening to requests, and the files watcher is observing for changes too.
 
 ### Example
 
@@ -160,3 +160,5 @@ const plugin = {
 
 export default plugin;
 ```
+
+> By the moment, plugins [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.

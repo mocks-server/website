@@ -19,7 +19,7 @@ npm start
 ## Acknowledgments
 
 - [Facebook Open Source][facebook-open-source] because their awesome work with [Docusaurus][docusaurus-url].
-- Landing images from [Undraw.co][undraw-url].
+- Search provided by [Algolia](https://www.algolia.com/)
 - Hosted on [Netlify][netlify-url].
 
 [website-url]: https://www.mocks-server.org

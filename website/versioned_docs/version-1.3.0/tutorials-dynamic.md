@@ -10,7 +10,7 @@ This tutorial assumes that you have completed the ["Adding static fixtures tutor
 
 You have now all your static fixtures defined, but, what if you want your `/api/users/:id` api url to respond with the correspondant user without the need of changing the current behavior?
 
-This is __not recommended__, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
+This is __usually not recommended__, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
 
 Let's see how:
 
@@ -80,7 +80,7 @@ module.exports = {
 };
 ```
 
-> Dynamic fixtures functions are called with express "request" and "response". Read the [express documentation][express-url] to learn more about `req`, `res`.
+> Dynamic fixtures functions are called with express "request", "response" and "next". Read the [express documentation][express-url] to learn more about `req`, `res`, `next`.
 
 ## Add a new behavior
 
@@ -142,8 +142,6 @@ Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3)
 
 You could add also dynamic fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
 
-Changes would be be persisted in memory while Mocks Server is running.
-
-
+Changes would be be persisted in memory while the server is running.
 
 [express-url]: https://expressjs.com/es/4x/api.html

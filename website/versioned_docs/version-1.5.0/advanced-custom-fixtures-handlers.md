@@ -6,7 +6,7 @@ original_id: advanced-custom-fixtures-handlers
 
 ## What is a "fixtures handler"?
 
-"Fixtures handler" are the pieces at charge of handling the fixtures declarations and send responses when appropriate.
+"Fixtures handlers" are the pieces at charge of handling the fixtures declarations, discerning whether a request has to be handled by a fixture or not, and sending responses when appropriate.
 
 The mocks-server includes only one fixtures parser by default, which accepts fixtures declared in the [format described in the "fixtures" chapter](get-started-fixtures), but **you can add your own fixtures declarations formats.**
 
@@ -49,7 +49,7 @@ This getter should return an unique id for the fixture, different to all other f
 
 #### `get requestMatchId()`
 
-This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific url and not others. (For example, if your fixture format include an "url" property, this should probably be used to calculate the `requestMatchId`)
+This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific request and not to others. (For example, if your fixture format includes "url" and "method" properties, these should probably be used to calculate the `requestMatchId`)
 
 #### `get request()`
 
@@ -123,7 +123,7 @@ class CustomFixturesHandler {
 module.exports = CustomFixturesHandler;
 ```
 
-Now, after adding this custom fixture handler with the `addFixturesHandler` method, the mocks server will accept fixtures defined as:
+Now, after adding this custom fixture handler with the `addFixturesHandler` method, Mocks Server will accept fixtures defined as:
 
 ```javascript
 // ./mocks/fixtures/users.js
@@ -145,6 +145,4 @@ module.exports = {
 };
 ```
 
-> By the moment, custom fixtures handlers [can be added only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.
-
-
+> By the moment, custom fixtures handlers [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.

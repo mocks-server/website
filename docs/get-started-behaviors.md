@@ -5,14 +5,14 @@ title: Behaviors
 
 ## Definition
 
-Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are server responses for specific uris.
+Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests.
 
-The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve just in a second.
+The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve while the server is running.
 
 
 ## Creating a behavior
 
-For creating a Behavior, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-fixtures.md) to it:
+For creating a behavior, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-fixtures.md) to it:
 
 _Read the ["fixtures" code example](get-started-fixtures.md#examples) to see how fixtures were defined first._
 
@@ -39,9 +39,9 @@ Now, when loaded, the server will have available an "standard" behavior, which c
 
 ## Extending behaviors
 
-Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mocks server and responses for all api uris, and modify this behavior creating new ones that change only responses for certain "uris". All extended behaviors are extensible as well.
+Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mock server and responses for all your api uris, and modify this behavior creating new ones that change only responses for certain uris. All extended behaviors are extensible as well.
 
-You can add another one behavior extending the first one and changing only the response for "getUsers", for example:
+You can add another one behavior extending the first one and changing only the response of the "getUsers" fixture, for example:
 
 ```javascript
 const { Behavior } = require("@mocks-server/main");
@@ -62,7 +62,7 @@ module.exports = {
 };
 ```
 
-Now, server will have available "standard" and "errorUpdatingUser" behaviors.
+Now, the server will have available "standard" and "errorUpdatingUser" behaviors.
 
-The "errorUpdatingUser" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "errorUpdatingUser" have the same value for the `url` property)_.
+The "errorUpdatingUser" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "errorUpdatingUser" have the same value for the `url` and `method` properties)_.
 

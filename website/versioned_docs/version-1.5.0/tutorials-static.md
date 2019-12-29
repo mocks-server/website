@@ -23,7 +23,7 @@ Create a `/mocks` folder in your project root, containing a `behaviors.js` file,
 |-- package.json
 ```
 
-> You can create as many files as you want in the `mocks` folder, no matter if they contain "behaviors", "fixtures" or both. The Mocks Server will load all of them automatically wherever they are. This files structure is only a suggestion.
+> You can create as many files as you want in the `mocks` folder, no matter if they contain "behaviors", "fixtures" or both. The Mocks Server will load all of them automatically wherever they are. This structure is only a suggestion.
 
 ## Create an users fixture
 
@@ -151,7 +151,7 @@ But... even when you change the user id in the request, ([http://localhost:3100/
 {"id":1,"name":"John Doe"}
 ```
 
-Well, this is the expected behavior of a mocks server, but you can add a new mocks "behavior" to change the response:
+Well, this is the expected behavior of a mock server, but you can add a new "behavior" to change the response:
 
 ## Add another behavior
 
@@ -232,8 +232,4 @@ Now you've seen what Mocks Server can do, you can add as much fixtures you need 
 
 You can __combine all your fixtures in as much behaviors as you need__, extending them or creating them from scratch.
 
-And, very important, you can easily change the current behavior using the [interactive CLI](configuration-interactive-cli.md) or the [REST API](configuration-rest-api.md), which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
-
-
-
-
+And, very important, you can easily change the current behavior using the [interactive CLI](configuration-interactive-cli.md) or the [REST API](configuration-rest-api.md) while the server is running, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__

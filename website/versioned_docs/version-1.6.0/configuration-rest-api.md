@@ -10,6 +10,8 @@ The main distribution includes the [plugin-admin-api plugin](https://www.npmjs.c
 
 This is __very useful when running acceptance tests, as you can change the behavior of the api__ simply with a request in your tests `before` method.
 
+A __client for the administration api__ is also distributed as a separated package: [@mocks-server/admin-api-client](https://www.npmjs.com/package/@mocks-server/admin-api-client).
+
 ## Resources
 
 Available api resources are:
