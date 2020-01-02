@@ -1,6 +1,6 @@
 ---
 id: tutorials-dynamic
-title: Adding dynamic fixtures
+title: Using express middlewares
 ---
 
 ## Preface

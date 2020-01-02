@@ -1,6 +1,6 @@
 ---
-id: tutorials-static
-title: Definitions using javascript
+id: guides-defining-fixtures
+title: Defining fixtures and behaviors
 ---
 
 ## Installation
@@ -9,16 +9,16 @@ Follow the [installation example in the intro](get-started-intro.md#installation
 
 ## Files structure
 
-Create a `/mocks` folder in your project root, containing a `behaviors.js` file, and a `fixtures/users.js` file:
+Create a `/mocks` folder in your project root, containing a `behaviors.json` file, and a `fixtures/users.json` file:
 
 ```
 /your/awesome/project
 |-- node_modules
 |-- src
 |-- mocks
-|   |-- behaviors.js
+|   |-- behaviors.json
 |   |-- fixtures
-|   |   |-- users.js
+|   |   |-- users.json
 |-- package.json
 ```
 
@@ -26,52 +26,40 @@ Create a `/mocks` folder in your project root, containing a `behaviors.js` file,
 
 ## Create an users fixture
 
-Now we are going to add a fixture to the `/mocks/fixtures/users.js` file, which will be used when GET requests are received in the `/api/users` path or our "api mock":
+Now we are going to add a fixture to the `/mocks/fixtures/users.json` file, which will be used when GET requests are received in the `/api/users` path or our "api mock":
 
-```javascript
-//mocks/fixtures/users.js
-
-const getUsers = {
-  url: "/api/users",
-  method: "GET",
-  response: {
-    status: 200,
-    body: [
+```json
+// mocks/fixtures/users.json
+{
+  "id": "get-users",
+  "url": "/api/users",
+  "method": "GET",
+  "response": {
+    "status": 200,
+    "body": [
       {
-        id: 1,
-        name: "John Doe"
+        "id": 1,
+        "name": "John Doe"
       },
       {
-        id: 2,
-        name: "Jane Doe"
+        "id": 2,
+        "name": "Jane Doe"
       }
     ]
   }
-};
-
-module.exports = {
-  getUsers
-};
+}
 ```
 
 ## Export a default behavior
 
-Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it:
+Create an "standard" behavior in the `mocks/behaviors.json` file, containing the recently created "users" fixture.
 
-```javascript
-//mocks/behaviors.js
-
-const { Behavior } = require("@mocks-server/main");
-
-const { getUsers } = require("./fixtures/users");
-
-const standard = new Behavior([
-  getUsers
-]);
-
-module.exports = {
-  standard
-};
+```json
+// mocks/behaviors.json
+{
+  "id": "standard",
+  "fixtures": ["get-users"]
+}
 ```
 
 ## Start the Mocks Server
@@ -94,46 +82,35 @@ Browse to [http://localhost:3100/api/users](http://localhost:3100/api/users) to 
 
 Now we have the mocked the response for the "users" collection. Let's add the fixture for getting an specific user:
 
-```javascript
-//mocks/fixtures/users.js
+Convert the object in `mocks/fixtures/users.json` into an array, and add the new "get-user" fixture to it:
 
-//...
-
-const getUser = {
-  url: "/api/users/:id",
-  method: "GET",
-  response: {
-    status: 200,
-    body: {
-      id: 1,
-      name: "John Doe"
+```json
+// mocks/fixtures/users.json
+[
+  // ...
+  {
+    "id": "get-user",
+    "url": "/api/users/:id",
+    "method": "GET",
+    "response": {
+      "status": 200,
+      "body": {
+        "id": 1,
+        "name": "John Doe"
+      }
     }
   }
-}
-
-module.exports = {
-  getUsers,
-  getUser
-};
+]
 ```
 
 Add the fixture to the "standard" behavior:
 
-```javascript
-//mocks/behaviors.js
-
-const { Behavior } = require("@mocks-server/main");
-
-const { getUsers, getUser } = require("./fixtures/users");
-
-const standard = new Behavior([
-  getUsers,
-  getUser
-]);
-
-module.exports = {
-  standard
-};
+```json
+// mocks/behaviors.json
+{
+  "id": "standard",
+  "fixtures": ["get-users", "get-user"]
+}
 ```
 
 > The Mocks Server is watching for file changes, so your fixtures should have been refreshed automatically.
@@ -156,51 +133,40 @@ Well, this is the expected behavior of a mock server, but you can add a new "beh
 
 Let's add another "GET user" fixture, but now it will be always responded with the second user:
 
-```javascript
-//mocks/fixtures/users.js
-
-//....
-
-const getUser2 = {
-  url: "/api/users/:id",
-  method: "GET",
-  response: {
-    status: 200,
-    body: {
-      id: 2,
-      name: "Jane Doe"
+```json
+// mocks/fixtures/users.json
+[
+  // ...
+  {
+    "id": "get-user-2",
+    "url": "/api/users/:id",
+    "method": "GET",
+    "response": {
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Jane Doe"
+      }
     }
   }
-}
-
-module.exports = {
-  getUsers,
-  getUser,
-  getUser2
-};
+]
 ```
 
 And let's add a new Behavior extending the standard one:
 
-```javascript
-//mocks/behaviors.js
-
-const { Behavior } = require("@mocks-server/main");
-
-const { getUsers, getUser, getUser2 } = require("./fixtures/users");
-
-const standard = new Behavior([
-  getUsers,
-  getUser
-]);
-
-// Extends the standard behavior adding "getUser2" fixture.
-const user2 = standard.extend([getUser2]);
-
-module.exports = {
-  standard,
-  user2
-};
+```json
+// mocks/behaviors.json
+[
+  {
+    "id": "standard",
+    "fixtures": ["get-users", "get-user"]
+  },
+  {
+    "id": "user2",
+    "from": "standard",
+    "fixtures": ["get-user-2"]
+  }
+]
 ```
 
 Now the Mocks Server CLI indicates that it has two behaviors available.
