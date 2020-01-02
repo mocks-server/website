@@ -26,3 +26,5 @@ This chapter describes all available options in the [@mocks-server/main package 
 Each plugin can add his own options when it is registered in the mocks-server. If you are starting the server programmatically using the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) without adding plugins, only "Main options" will be available.
 
 For another plugins options, please refer to their own documentation.
+
+To know how to add your own options when developing a plugin, please refer to the ["programmatic usage"](advanced-programmatic-usage) and ["developing plugins"](advanced-developing-plugins) sections.

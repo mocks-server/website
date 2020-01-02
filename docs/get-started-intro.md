@@ -30,8 +30,8 @@ You can simulate all the api behaviors you need for your local development or ac
 You can easily change the current behavior while the server is running, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
 
 For changing [settings](configuration-command-line-arguments.md) (such as current behavior, delay time, etc.) while it is running, it is distributed with two plugins:
-* an [interactive command line interface](configuration-interactive-cli.md), which is very useful in local environments.
-* a [REST API](configuration-rest-api.md) which is very useful to change behaviors from end-to-end tests, for example.
+* an [interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments.
+* a [REST API](plugins-admin-api.md) which is very useful to change behaviors from end-to-end tests, for example.
 
 ## Installation
 

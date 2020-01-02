@@ -77,6 +77,8 @@ class HomeSplash extends React.Component {
         Simple and easy out-of-the-box
         <br />
         Very powerful and customizable with plugins
+        <br />
+        Integrates with other development tools
       </h3>
     );
 
@@ -141,8 +143,9 @@ class Index extends React.Component {
             },
             {
               title: "Solid tests",
-              content:
-                "Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests with the real api in more advanced phases of integration."
+              content: `Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests with the real api in more advanced phases of integration, [learn how](${docUrl(
+                "integrations-cypress"
+              )}).`
             }
           ]}
           layout="fourColumn"
@@ -158,15 +161,15 @@ class Index extends React.Component {
           left={`
 Install it and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
 to add fixtures and you&apos;ll have a simulated api in few minutes.
-Use one of the included plugins, as the [interactive CLI](${docUrl(
-            "configuration-interactive-cli"
+Use one of the included plugins, as the [inquirer CLI](${docUrl(
+            "plugins-inquirer-cli"
           )}) or the [admin API REST](${docUrl(
-            "configuration-rest-api"
+            "plugins-admin-api"
           )}) for changing settings easily while it is running.
 `}
           right={`
 \`\`\` bash
-npm i --save-dev @mocks-server/core
+npm i --save-dev @mocks-server/main
 \`\`\`
 
 Add the script to the \`package.json\` file:
