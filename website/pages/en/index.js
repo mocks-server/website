@@ -204,10 +204,7 @@ and the rest of behaviors will inherit them.
 [
   {
     "id": "standard",
-    "fixtures": [
-      "get-user",
-      "update-user"
-    ]
+    "fixtures": ["get-user", "update-user"]
   },
   {
     "id": "update-user-error",
