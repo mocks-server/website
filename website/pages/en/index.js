@@ -161,6 +161,7 @@ class Index extends React.Component {
           left={`
 Install it and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
 to add fixtures and you&apos;ll have a simulated api in few minutes.
+
 Use one of the included plugins, as the [inquirer CLI](${docUrl(
             "plugins-inquirer-cli"
           )}) or the [admin API REST](${docUrl(
