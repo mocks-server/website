@@ -192,28 +192,29 @@ Add the script to the \`package.json\` file:
           background="lightBackground"
           title="Maintainable"
           left={`
-Maintain your [fixtures](${docUrl(
-            "get-started-fixtures"
-          )}) organized and group them in different [behaviors](${docUrl(
-            "get-started-behaviors"
-          )}).
+[Maintain your fixtures organized](${docUrl(
+            "guides-organizing-the-definitions"
+          )}) and group them in different [behaviors](${docUrl("get-started-behaviors")}).
+
 Behaviors can be created extending from another ones, so you can modify or add new fixtures to the main behavior,
 and the rest of behaviors will inherit them.
 `}
           right={`
-\`\`\`javascript
-const { Behavior } = require("@mocks-server/main");
-
-const {
-  userSuccess,
-  userAdminSuccess,
-  productsCatalog
-} = require("./fixtures");
-
-const main = new Behavior([userSuccess, productsCatalog]);
-const admin = main.extend([userAdminSuccess]);
-
-module.exports = { main, admin };
+\`\`\`json
+[
+  {
+    "id": "standard",
+    "fixtures": [
+      "get-user",
+      "update-user"
+    ]
+  },
+  {
+    "id": "update-user-error",
+    "from": "standard",
+    "fixtures": ["update-user-error"]
+  }
+]
 \`\`\`
 `}
         />
@@ -234,10 +235,41 @@ From [defining fixtures using express middlewares](${docUrl(
             "advanced-custom-fixtures-handlers"
           )}),
 the mocks-server is very adaptable to achieve any project requirements.
-
-There are also available packages for integrations. For example, [@mocks-server/cypress-commands](https://www.npmjs.com/package/@mocks-server/cypress-commands) allows to easily
-control the mock server from Cypress.
 `}
+          right={`
+\`\`\`javascript
+class Plugin {
+  constructor(core) {
+    core.addSetting({
+      name: "traceBehaviors",
+      type: "boolean",
+      description: "Trace behaviors changes",
+      default: true
+    });
+
+    this._core = core;
+    this._onChangeMocks = this._onChangeMocks.bind(this);
+    this._onChangeSettings = this._onChangeSettings.bind(this);
+  }
+  // ...
+}
+\`\`\`
+`}
+        />
+      );
+    };
+
+    const Integrations = () => {
+      return (
+        <CodeExampleSection
+          id="home-integrations"
+          title="Integrations"
+          background="lightBackground"
+          left={`There are available packages for integrating the Mocks Server with other development tools.
+
+For example, [@mocks-server/cypress-commands](https://www.npmjs.com/package/@mocks-server/cypress-commands) allows to easily control the mock server from Cypress. Read the [Cypress integration chapter for further info](${docUrl(
+            "integrations-cypress"
+          )})`}
           right={`
 \`\`\`javascript
 describe("user with admin role", () => {
@@ -258,7 +290,7 @@ describe("user with admin role", () => {
 
     const Roadmap = () => (
       <div
-        className="productShowcaseSection paddingBottom paddingTop lightBackground"
+        className="productShowcaseSection paddingBottom paddingTop"
         style={{ textAlign: "center" }}
       >
         <h2>Upcoming features</h2>
@@ -309,6 +341,7 @@ describe("user with admin role", () => {
           <Easy />
           <Maintainable />
           <Flexible />
+          <Integrations />
           <Roadmap />
           <Showcase />
         </div>

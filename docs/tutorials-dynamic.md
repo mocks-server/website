@@ -55,13 +55,13 @@ Add a fixture for `GET` `/api/users/:id` that will respond with the user with co
 //....
 
 const getUserReal = {
-  id: "get-user-real"
+  id: "get-user-real",
   url: "/api/users/:id",
   method: "GET",
   response: (req, res) => {
     const userId = req.params.id;
     const user = INITIAL_USERS.find(userData => userData.id === Number(userId));
-    if(user) {
+    if (user) {
       res.status(200);
       res.send(user);
     } else {
@@ -71,7 +71,7 @@ const getUserReal = {
       });
     }
   }
-}
+};
 
 module.exports = {
   getUsers,
