@@ -44,9 +44,9 @@ server
 
 * `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
   * `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
-* `start()`. Starts the mock server and the files watcher. Returns a promise.
-* `stop()`. Stops the mock server and the files watcher. Returns a promise.
-* `restart()`. Restarts the mock server.
+* `start()`. Starts the mock server and plugins. Returns a promise.
+* `stop()`. Stops the mock server and plugins. Returns a promise.
+* `restartServer()`. Restarts the mock server.
 
 ###### Event listeners methods
 
@@ -94,11 +94,12 @@ server
   * `all`. Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
   * `getValidOptionName(optionName)`. Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
     * `optionName`: `<String>` Option name to check.
-* `serverError`. If mock server throws an unexpected error, it is available at this getter.
+* `serverError`. If mock http server throws an unexpected error, it is available at this getter.
 * `behaviors`. Returns methods and getters related to currently available behaviors.
   * `count`. Getter returning total number of behaviors available.
-  * `names`. Getter returning an array with all behavior names.
+  * `ids`. Getter returning an array with all behavior ids.
   * `current`. Getter returning current active behavior.
+  * `currentId`. Getter returning id of the current active behavior.
   * `collection`. Collection of behaviors instances.
 * `fixtures`. Returns methods and getters related to currently available fixtures.
   * `count`. Getter returning total number of fixtures available.
