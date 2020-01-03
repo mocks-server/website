@@ -1,6 +1,7 @@
 ---
-id: get-started-intro
+id: version-1.7.0-get-started-intro
 title: Intro
+original_id: get-started-intro
 ---
 
 ## The project

@@ -1,6 +1,7 @@
 ---
-id: tutorials-dynamic
+id: version-1.7.0-tutorials-dynamic
 title: Using express middlewares
+original_id: tutorials-dynamic
 ---
 
 ## Preface

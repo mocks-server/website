@@ -1,6 +1,7 @@
 ---
-id: tutorials-static
+id: version-1.7.0-tutorials-static
 title: Definitions using javascript
+original_id: tutorials-static
 ---
 
 ## Preface

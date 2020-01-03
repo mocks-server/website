@@ -2,8 +2,10 @@
   "docs": {
     "Welcome": ["welcome-about-docs"],
     "Getting started": ["get-started-intro", "get-started-fixtures", "get-started-behaviors"],
-    "Tutorials": ["tutorials-static", "tutorials-dynamic"],
-    "Configuration": ["configuration-options", "configuration-command-line-arguments", "configuration-interactive-cli", "configuration-rest-api"],
-    "Customization": ["advanced-programmatic-usage", "advanced-developing-plugins", "advanced-custom-fixtures-handlers"]
+    "Guides": ["guides-defining-fixtures", "guides-organizing-the-definitions", "tutorials-static", "tutorials-dynamic"],
+    "Configuration": ["configuration-options", "configuration-command-line-arguments"],
+    "Plugins": ["plugins-inquirer-cli", "plugins-admin-api"],
+    "Integrations": ["integrations-cypress"],
+    "API": ["advanced-programmatic-usage", "advanced-developing-plugins", "advanced-custom-fixtures-handlers"]
   }
 }

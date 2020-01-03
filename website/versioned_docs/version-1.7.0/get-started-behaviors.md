@@ -1,6 +1,7 @@
 ---
-id: get-started-behaviors
+id: version-1.7.0-get-started-behaviors
 title: Behaviors
+original_id: get-started-behaviors
 ---
 
 ## Definition

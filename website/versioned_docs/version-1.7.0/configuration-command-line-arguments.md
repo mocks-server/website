@@ -1,6 +1,7 @@
 ---
-id: configuration-command-line-arguments
+id: version-1.7.0-configuration-command-line-arguments
 title: Command line arguments
+original_id: configuration-command-line-arguments
 ---
 
 ## How to define options using command line arguments

@@ -1,6 +1,7 @@
 ---
-id: configuration-options
+id: version-1.7.0-configuration-options
 title: Options
+original_id: configuration-options
 ---
 
 This chapter describes all available options in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main), which includes an NPM binary file and plugins for administrating the server using a REST API and an interactive CLI:

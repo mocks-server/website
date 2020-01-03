@@ -1,6 +1,7 @@
 ---
-id: get-started-fixtures
+id: version-1.7.0-get-started-fixtures
 title: Fixtures
+original_id: get-started-fixtures
 ---
 
 ## Definition
