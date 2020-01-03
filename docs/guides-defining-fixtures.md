@@ -197,4 +197,4 @@ Now you've seen what Mocks Server can do, you can add as much fixtures you need 
 
 You can __combine all your fixtures in as much behaviors as you need__, extending them or creating them from scratch.
 
-And, very important, you can easily change the current behavior using the [interactive CLI](plugins-inquirer-cli.md) or the [REST API](plugins-admin-api.md) while the server is running, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
+And, very important, you can easily change the current behavior using the [interactive CLI](plugins-inquirer-cli.md) or the [REST API](plugins-admin-api.md) while the server is running, which will make your __development or tests environments very much agile and flexible, and not api dependant.__

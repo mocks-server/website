@@ -5,12 +5,12 @@ title: Command line arguments
 
 ## How to define options using command line arguments
 
-Supossing you have a `mocks-server` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), then you can define options directly in the npm script using arguments:
+Supossing you have a `mocks` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), then you can define options directly in the npm script using arguments:
 
 ```json
 {
   "scripts": {
-    "mocks-server" : "mocks-server --path=./mocks --log=verbose --watch=false"
+    "mocks" : "mocks-server --path=./mocks --log=verbose --watch=false"
   }
 }
 ```
@@ -18,7 +18,7 @@ Supossing you have a `mocks-server` script added to your `package.json` file, as
 Or you can define options when calling to the npm command:
 
 ```bash
-npm run mocks-server -- --delay=300
+npm run mocks -- --delay=300
 ```
 
 > Note the usage of two double dashes. Anything after the first double dashes is not an option of npm, but a parameter for the script that npm executes.
@@ -28,7 +28,7 @@ npm run mocks-server -- --delay=300
 Options added by registered plugins can be defined also using command line arguments. Supossing you have registered a plugin which add a new option called "language", then you'll be able to run:
 
 ```bash
-npm run mocks-server -- --language=Es-es
+npm run mocks -- --language=Es-es
 ```
 
 ## Boolean options
@@ -36,5 +36,5 @@ npm run mocks-server -- --language=Es-es
 For `Boolean` options having a `true` default value, use the `--no-`. prefix for disabling them. (Read [commander documentation](https://www.npmjs.com/package/commander) for further info)
 
 ```bash
-npm run mocks-server -- --no-adminApiDeprecatedPaths
+npm run mocks -- --no-adminApiDeprecatedPaths
 ```

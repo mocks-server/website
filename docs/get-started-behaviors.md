@@ -5,64 +5,90 @@ title: Behaviors
 
 ## Definition
 
-Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests.
-
 The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve while the server is running.
 
+Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests. When a behavior contains multiple fixtures that should handle the same request _(same method and url)_, __the last one in the array will have priority over the first one__. This has to be taken into account when we are extending behaviors.
 
-## Creating a behavior
+## Defining behaviors using json
 
-For creating a behavior, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-fixtures.md) to it:
+Behaviors are defined with an object containing next properties:
+
+* `id`: `<String>` Used as reference for extending it, etc.
+* `from`: `<String>` Optional. Behavior id from which this behavior will extend.
+* `fixtures`: `<Array of String>` Fixtures ids.
+
+
+## Extending behaviors
+
+Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mock server and responses for all your api uris, and extend this behavior creating new ones that change only responses for certain uris. All extended behaviors are extensible as well.
+
+```json
+[
+  {
+    "id": "standard",
+    "fixtures": ["get-users", "get-user", "update-user", "create-user"]
+  },
+  {
+    "id": "update-user-error",
+    "from": "standard", // extends from standard behavior
+    "fixtures": ["update-user-error"]
+  }
+]
+```
+
+
+## Defining behaviors using javascript
+
+For creating a behavior using javascript, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-fixtures.md) or fixtures ids to it.
+
+`new Behavior(fixtures, options)`
+* `fixtures`: `<Array>` of fixtures or fixtures ids.
+* `options`: `<Object>`
+  * `id`: `<String>` Id for the behavior.
 
 _Read the ["fixtures" code example](get-started-fixtures.md#examples) to see how fixtures were defined first._
 
 ```javascript
 const { Behavior } = require("@mocks-server/main");
 
-const { getUsers, getUser, updateUser } = require("./fixtures/users");
+const { getUsers, updateUser } = require("./fixtures/users");
 
-const standard = new Behavior([
+module.exports = new Behavior([
   getUsers,
-  getUser,
+  "get-user", // A fixture id can be provided also.
   updateUser
-]);
-
-module.exports = {
-  standard
-};
+], {
+  id: "standard"
+});
 ```
 
-> __Save this file in the `mocks` folder__ in the root of your project.
+### Extending behaviors instances
 
-Now, when loaded, the server will have available an "standard" behavior, which contains three fixtures.
+Behaviors instances contain an `extend` method, which can be used to create a new behavior extending from it using javascript.
 
-
-## Extending behaviors
-
-Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mock server and responses for all your api uris, and modify this behavior creating new ones that change only responses for certain uris. All extended behaviors are extensible as well.
-
-You can add another one behavior extending the first one and changing only the response of the "getUsers" fixture, for example:
+You can add another one behavior extending the first one and changing only the response of the "updateUser" fixture, for example:
 
 ```javascript
 const { Behavior } = require("@mocks-server/main");
 
-const { getUsers, getUser, updateUser, updateUserError } = require("./fixtures/users");
+const { getUsers, updateUser, updateUserError } = require("./fixtures/users");
 
 const standard = new Behavior([
   getUsers,
-  getUser,
+  "get-user", // A fixture id can be provided also.
   updateUser
-]);
+], {
+  id: "standard"
+});
 
-const errorUpdatingUser = standard.extend([updateUserError]);
+const errorUpdatingUser = standard.extend([ updateUserError ], {
+  id: "update-user-error"
+});
 
-module.exports = {
-  standard,
-  errorUpdatingUser
-};
+module.exports = [ standard, errorUpdatingUser ];
 ```
 
-Now, the server will have available "standard" and "errorUpdatingUser" behaviors.
+Now, the server will have available "standard" and "update-user-error" behaviors.
 
-The "errorUpdatingUser" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "errorUpdatingUser" have the same value for the `url` and `method` properties)_.
+The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "updateUserError" fixtures have the same value for the `url` and `method` properties)_.
 

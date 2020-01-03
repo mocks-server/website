@@ -202,7 +202,7 @@ and the rest of behaviors will inherit them.
 `}
           right={`
 \`\`\`javascript
-const { Behavior } = require("@mocks-server/core");
+const { Behavior } = require("@mocks-server/main");
 
 const {
   userSuccess,

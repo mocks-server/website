@@ -25,7 +25,7 @@ As explained, the mocks-server can simulate multiple api behaviors and send diff
 
 As input, it needs ["fixtures"](get-started-fixtures.md), which are handlers for specific requests, and ["behaviors"](get-started-behaviors.md), which are sets of ["fixtures"](get-started-fixtures.md).
 
-You can simulate all the api behaviors you need for your local development or acceptance tests environments simply [extending behaviors](get-started-behaviors.md#extending-behaviors) to change the response of some specific uris, even when the received request is exactly the same.
+You can simulate all the api behaviors you need for your development or tests environments simply [extending behaviors](get-started-behaviors.md#extending-behaviors) to change the response of some specific uris, even when the received request is exactly the same.
 
 You can easily change the current behavior while the server is running, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
 
