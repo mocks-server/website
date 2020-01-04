@@ -26,5 +26,5 @@ npm run mocks-server
 
 [Inquirer][inquirer-url] is used for displaying the interactive CLI. You can [consult his OS Terminals support here][inquirer-support].
 
-[inquirer-url]: https://www.npmjs.com/package/inquirer#support-os-terminals
+[inquirer-url]: https://www.npmjs.com/package/inquirer
 [inquirer-support]: https://www.npmjs.com/package/inquirer#support-os-terminals
