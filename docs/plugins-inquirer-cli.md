@@ -9,7 +9,7 @@ The main distribution includes the [inquirer-cli plugin](https://www.npmjs.com/p
 
 ## Usage
 
-If you are using this plugin _(enabled by default)_, you don't need to provide all your desired options using [command line arguments](configuration-command-line-arguments.md) when starting the server. The CLI allows you to change settings while the server is running:
+If you are using this plugin _(enabled by default)_, you don't need to provide all your desired options using the [configuration file](configuration-file.md) or [command line arguments](configuration-command-line-arguments.md) when starting the server. The CLI allows you to change settings while the server is running:
 
 ```bash
 npm run mocks-server

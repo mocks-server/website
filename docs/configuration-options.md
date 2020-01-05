@@ -3,9 +3,30 @@ id: configuration-options
 title: Options
 ---
 
-This chapter describes all available options in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main), which includes an NPM binary file and plugins for administrating the server using a REST API and an interactive CLI:
+## Methods
+
+This chapter describes all available configuration properties and options. There are multiple methods for defining configuration and options.
+
+When same option is defined using multiple methods, the priority is _(from lower to higher)_:
+
+* [Core programmatic options](advanced-programmatic-usage.md)
+* [Configuration file](#configuration-file)
+* [Command line arguments](configuration-command-line-arguments.md)
+
+## Low level configuration
+
+This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmaticaly](advanced-programmatic-usage.md) _(if you are using directly the [@mocks-server/core](advanced-programmatic-usage.md) instead of the main distribution)_.
+
+* `plugins`: `<Array of Plugins>` Array of Plugins, defined as described in the [plugins chapter](#advanced-developing-plugins).
+* `addPlugins`: `<Array of Plugins>` Array of Plugins to be added. This option does not overwrite previously defined plugins.
+* `configFile`: `<String>` Custom path for configuration file. If relative, will be resolved from current working directory. Default is `mocks-server.config.js`
+* `onlyProgrammaticOptions`: `<Boolean>` If `true`, disables both [command line arguments](configuration-command-line-arguments.md) and [configuration file](configuration-file.md).
+* `disableCommandLineArguments`: `<Boolean>` If `true`, [command line arguments](configuration-command-line-arguments.md) defining options will be ignored.
+* `disableConfigFile`: `<Boolean>` If `true`, [configuration file](configuration-file.md) will be ignored.
 
 ## Main options
+
+This options can be defined using [command line arguments](configuration-command-line-arguments.md) and can be changed while the server is running using [the `settings` methods](advanced-programmatic-usage.md).
 
 * `path`: `Path as <String>` Path to the folder containing behaviors and fixtures to be used by the server. By default is `/mocks`
 * `port`: `<Number>` Por number for the Mocks Server to be listening. Default is 3100.
@@ -17,13 +38,15 @@ This chapter describes all available options in the [@mocks-server/main package 
 
 ## Plugins extra options
 
+Each plugin can add his own options when it is registered in the mocks-server. This options can also be defined using command line arguments and changed while the server is running.
+
 * `cli`: `<String>` Start interactive CLI. Default is `true`. Use `false` to disable it.
 * `adminApiPath`: `<String>` Path for the administration api. Default is "/admin". You should change it only in case there is any conflict with the api you are mocking.
 * `adminApiDeprecatedPaths` - `<Boolean>` Disables deprecated "/mocks" api path, which is still enabled by default. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments) for further info)
 
 > These extra options are added by the [@mocks-server/plugin-admin-api](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) and the [@mocks-server/plugin-inquirer-cli](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) plugins, which are included in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main).
 
-Each plugin can add his own options when it is registered in the mocks-server. If you are starting the server programmatically using the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) without adding plugins, only "Main options" will be available.
+_If you are starting the server programmatically using the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) without adding any plugin, only "Main options" will be available._
 
 For another plugins options, please refer to their own documentation.
 
