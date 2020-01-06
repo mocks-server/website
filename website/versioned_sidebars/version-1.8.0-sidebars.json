@@ -1,0 +1,36 @@
+{
+  "version-1.8.0-docs": {
+    "Welcome": [
+      "version-1.8.0-welcome-about-docs"
+    ],
+    "Getting started": [
+      "version-1.8.0-get-started-intro",
+      "version-1.8.0-get-started-fixtures",
+      "version-1.8.0-get-started-behaviors"
+    ],
+    "Guides": [
+      "version-1.8.0-guides-defining-fixtures",
+      "version-1.8.0-guides-organizing-the-definitions",
+      "version-1.8.0-tutorials-static",
+      "version-1.8.0-tutorials-dynamic"
+    ],
+    "Configuration": [
+      "version-1.8.0-configuration-options",
+      "version-1.8.0-configuration-file",
+      "version-1.8.0-configuration-command-line-arguments"
+    ],
+    "Plugins": [
+      "version-1.8.0-plugins-adding-plugins",
+      "version-1.8.0-plugins-inquirer-cli",
+      "version-1.8.0-plugins-admin-api",
+      "version-1.8.0-advanced-developing-plugins"
+    ],
+    "Integrations": [
+      "version-1.8.0-integrations-cypress"
+    ],
+    "API": [
+      "version-1.8.0-advanced-programmatic-usage",
+      "version-1.8.0-advanced-custom-fixtures-handlers"
+    ]
+  }
+}
