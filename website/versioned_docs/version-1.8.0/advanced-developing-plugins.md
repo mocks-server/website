@@ -72,8 +72,8 @@ class Plugin {
 
   init(core) {
     this._enabled = core.settings.get("traceMocks");
-    this._removeChangeMocksListener = core.onChangeMocks(this.onChangeMocks);
-    this._removeChangeSettingsListener = core.onChangeSettings(this.onChangeSettings);
+    this._removeChangeMocksListener = core.onChangeMocks(this._onChangeMocks);
+    this._removeChangeSettingsListener = core.onChangeSettings(this._onChangeSettings);
     core.tracer.debug(`traceMocks initial value is ${core.settings.get("traceMocks")}`);
   }
 
