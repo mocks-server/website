@@ -1,6 +1,7 @@
 ---
-id: advanced-custom-fixtures-handlers
+id: version-1.8.0-advanced-custom-fixtures-handlers
 title: Custom fixtures handlers
+original_id: advanced-custom-fixtures-handlers
 ---
 
 ## What is a "fixtures handler"?

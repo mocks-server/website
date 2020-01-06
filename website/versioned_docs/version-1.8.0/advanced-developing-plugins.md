@@ -1,6 +1,7 @@
 ---
-id: advanced-developing-plugins
+id: version-1.8.0-advanced-developing-plugins
 title: Developing plugins
+original_id: advanced-developing-plugins
 ---
 
 ## Plugins

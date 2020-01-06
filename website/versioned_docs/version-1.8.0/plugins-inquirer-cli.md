@@ -1,6 +1,7 @@
 ---
-id: plugins-inquirer-cli
+id: version-1.8.0-plugins-inquirer-cli
 title: Inquirer CLI
+original_id: plugins-inquirer-cli
 ---
 
 ## plugin-inquirer-cli

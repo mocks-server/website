@@ -98,7 +98,7 @@ const siteConfig = {
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
-  docsSideNavCollapsible: false,
+  docsSideNavCollapsible: true,
 
   // Show documentation's last contributor's name.
   enableUpdateBy: true,
@@ -130,7 +130,7 @@ const siteConfig = {
   codeOfConductUrl: `${repoUrl}/blob/master/.github/CODE_OF_CONDUCT.md`,
   contributingUrl: `${repoUrl}/blob/master/.github/CONTRIBUTING.md`,
   contributorCovenanceUrl: "https://www.contributor-covenant.org/",
-  nextVersion: "v1.8.0"
+  nextVersion: "v1.9.0"
 };
 
 module.exports = siteConfig;

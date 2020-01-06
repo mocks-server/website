@@ -1,6 +1,7 @@
 ---
-id: configuration-options
+id: version-1.8.0-configuration-options
 title: Options
+original_id: configuration-options
 ---
 
 ## Methods

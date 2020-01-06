@@ -1,6 +1,7 @@
 ---
-id: advanced-programmatic-usage
+id: version-1.8.0-advanced-programmatic-usage
 title: Programmatic usage
+original_id: advanced-programmatic-usage
 ---
 
 ## Server

@@ -139,7 +139,9 @@ class Index extends React.Component {
               title: "Multiple api behaviors",
               content: `Define [multiple api behaviors](${docUrl(
                 "get-started-behaviors"
-              )}) easily, including error cases. Ensure that your front-end application is ready for all cases. Change the behavior of the server using one of the available plugins.`
+              )}) easily, including error cases. Ensure that your front-end application is ready for all cases. Change the behavior of the server while it is running using one of the available [plugins](${docUrl(
+                "plugins-adding-plugins"
+              )}).`
             },
             {
               title: "Solid tests",
@@ -162,7 +164,11 @@ class Index extends React.Component {
 Install it and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
 to add fixtures and you&apos;ll have a simulated api in few minutes.
 
-Use one of the included plugins, as the [inquirer CLI](${docUrl(
+Create a [configuration file](${docUrl(
+            "configuration-file"
+          )}), or use one of the included [plugins](${docUrl(
+            "plugins-adding-plugins"
+          )}), as the [inquirer CLI](${docUrl(
             "plugins-inquirer-cli"
           )}) or the [admin API REST](${docUrl(
             "plugins-admin-api"
@@ -233,6 +239,10 @@ From [defining fixtures using express middlewares](${docUrl(
             "advanced-custom-fixtures-handlers"
           )}),
 the mocks-server is very adaptable to achieve any project requirements.
+
+Plugins from NPM or your own plugins can be added easily using the [configuration file](${docUrl(
+            "configuration-file"
+          )}).
 `}
           right={`
 \`\`\`javascript
@@ -293,8 +303,9 @@ describe("user with admin role", () => {
       >
         <h2>Upcoming features</h2>
         <p>
-          Administration web user interface, Chrome extension, configuration using a javascript
-          file, multiple sessions handling, proxy, etc. Check the{" "}
+          Administration web user interface, Chrome extension, Proxy fallback, Web Sockets, store
+          your fixtures in a remote host, etc. <br />
+          Check the{" "}
           <a href={githubProjectUrl} target="_blank" rel="noreferrer noopener">
             github project
           </a>{" "}
