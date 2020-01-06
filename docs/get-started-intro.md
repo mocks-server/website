@@ -5,7 +5,7 @@ title: Intro
 
 ## The project
 
-This project provides a mock server that can simulate multiple API behavior. It can be added as a dependency of your project, and started simply running an NPM command.
+This project provides a mock server that can simulate multiple API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
 
 It is simple and easy out-of-the-box, but very powerful and customizable using plugins.
 
@@ -70,5 +70,5 @@ For changing [settings](configuration-options.md) (such as current behavior, del
 The mocks-server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
 - [Start it programmatically](advanced-programmatic-usage) and use his multiple methods and events to manage it from your program.
-- Add new options and features [developing plugins](advanced-developing-plugins).
+- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
 - Add new [fixtures handlers](advanced-custom-fixtures-handlers), which allows to customize the format in which fixtures are defined.

@@ -4,8 +4,8 @@
     "Getting started": ["get-started-intro", "get-started-fixtures", "get-started-behaviors"],
     "Guides": ["guides-defining-fixtures", "guides-organizing-the-definitions", "tutorials-static", "tutorials-dynamic"],
     "Configuration": ["configuration-options", "configuration-file", "configuration-command-line-arguments"],
-    "Plugins": ["plugins-inquirer-cli", "plugins-admin-api"],
+    "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "advanced-developing-plugins"],
     "Integrations": ["integrations-cypress"],
-    "API": ["advanced-programmatic-usage", "advanced-developing-plugins", "advanced-custom-fixtures-handlers"]
+    "API": ["advanced-programmatic-usage", "advanced-custom-fixtures-handlers"]
   }
 }

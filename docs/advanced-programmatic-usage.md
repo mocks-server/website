@@ -30,20 +30,18 @@ server
 
 ## Core API
 
-#### `Core` (\[coreOptions\])
+#### `Core` (\[config\])
 
 ##### Arguments
 
-* `coreOptions`: `<Object>` Containing options reserved for the Core instantiation. (Do not define here any of all another options, which has to be defined in the `init` method)
-  * `onlyProgrammaticOptions`: `<Boolean>` If `true`, options defined through command line arguments will be ignored.
-  * `plugins`: `<Array> of Plugins`. Mocks Server Plugins to be used. Will be registered, initializated and started in same order defined here. Read the [Developing Plugins chapter to learn more about plugins](advanced-developing-plugins.md).
+* `config`: `<Object>` Containing configuration properties and options as described in the [options chapter](configuration-options.md). The object is expected to have the same format than the one described in the [configuration file chapter](configuration-file.md).
 
 ##### Returns a core instance containing:
 
 ###### Initialization methods
 
 * `init([options])`. Registers plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
-  * `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. If command line arguments are not disabled, their values, if present, will override the values defined here. Options are internally called "settings" once they are initialized.
+  * `options`: `<Object>` All [Mocks Server main options](configuration-options.md#main-options) or Plugins options. Command line arguments and configuration file options will override the values defined here. Options are internally called "settings" once they are initialized.
 * `start()`. Starts the mock server and plugins. Returns a promise.
 * `stop()`. Stops the mock server and plugins. Returns a promise.
 * `restartServer()`. Restarts the mock server.
@@ -97,11 +95,10 @@ server
 * `serverError`. If mock http server throws an unexpected error, it is available at this getter.
 * `behaviors`. Returns methods and getters related to currently available behaviors.
   * `count`. Getter returning total number of behaviors available.
-  * `ids`. Getter returning an array with all behavior ids.
-  * `current`. Getter returning current active behavior.
-  * `currentId`. Getter returning id of the current active behavior.
   * `collection`. Collection of behaviors instances.
+  * `ids`. Getter returning an array with all behaviors ids.
+  * `current`. Getter returning current active behavior.
+  * `currentId`. Getter returning the id of the current active behavior.
 * `fixtures`. Returns methods and getters related to currently available fixtures.
   * `count`. Getter returning total number of fixtures available.
   * `collection`. Collection of fixtures instances.
-
