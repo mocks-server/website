@@ -1,6 +1,6 @@
 # Mocks Server Documentation website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/389bc98a-a293-4f34-aebc-b3eaece3f011/deploy-status)](https://app.netlify.com/sites/mocks-server/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/389bc98a-a293-4f34-aebc-b3eaece3f011/deploy-status)](https://app.netlify.com/sites/mocks-server/deploys) [![Greenkeeper badge](https://badges.greenkeeper.io/mocks-server/website.svg)](https://greenkeeper.io/)
 
 Deployed at [https://www.mocks-server.org][website-url]
 
