@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "github>mocks-server/ci-cd"
+  ],
+  "node": {
+    "supportPolicy": ["lts_latest"]
+  }
+}
