@@ -54,7 +54,7 @@ function Versions(props) {
           <table className="versions">
             <tbody>
               <tr>
-                <th>master</th>
+                <th>release</th>
                 <td>
                   <a
                     href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
@@ -65,11 +65,7 @@ function Versions(props) {
                   </a>
                 </td>
                 <td>
-                  <a
-                    href={`${repoUrl}/tree/${siteConfig.nextVersion}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={`${repoUrl}/tree/release`} target="_blank" rel="noopener noreferrer">
                     Source Code
                   </a>
                 </td>
@@ -77,7 +73,7 @@ function Versions(props) {
             </tbody>
           </table>
           <p>
-            We are currently working in release {siteConfig.nextVersion}. Check the{" "}
+            Check the{" "}
             <a href={siteConfig.githubProjectUrl} target="_blank" rel="noreferrer noopener">
               Github project
             </a>{" "}
