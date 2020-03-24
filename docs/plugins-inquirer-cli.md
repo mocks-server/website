@@ -21,6 +21,12 @@ npm run mocks-server
 
 * `cli`: `<String>` Start interactive CLI or not. Default is `true`. Use `false` to disable it.
 
+## Caveats
+
+When the plugin is started, it silents all mocks-server traces until you explicitly select the "Display server logs" option. So, if an error is detected while the server is starting, it will not be displayed. 
+
+> Disable this plugin for a better debugging experience if you are facing some problem while loading fixtures or behaviors definitions. `npm run mocks-server -- --cli=false`
+
 ## Support
 
 [Inquirer][inquirer-url] is used for displaying the interactive CLI. You can [consult his OS Terminals support here][inquirer-support].
