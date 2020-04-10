@@ -46,7 +46,7 @@ CodeExampleSection.propTypes = {
   background: PropTypes.string,
   title: PropTypes.string,
   left: PropTypes.string,
-  right: PropTypes.string
+  right: PropTypes.string,
 };
 
 class HomeSplash extends React.Component {
@@ -55,9 +55,9 @@ class HomeSplash extends React.Component {
     const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
-    const SplashContainer = props => (
+    const SplashContainer = (props) => (
       <div className="homeContainer">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
@@ -82,7 +82,7 @@ class HomeSplash extends React.Component {
       </h3>
     );
 
-    const PromoSection = props => (
+    const PromoSection = (props) => (
       <div className="section promoSection">
         <div className="promoRow">
           <div className="pluginRowBlock">{props.children}</div>
@@ -90,7 +90,7 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const Button = props => (
+    const Button = (props) => (
       <div className="pluginWrapper buttonWrapper">
         <a className="button get-started" href={props.href} target={props.target}>
           {props.children}
@@ -114,7 +114,7 @@ class HomeSplash extends React.Component {
 
 HomeSplash.propTypes = {
   siteConfig: PropTypes.object,
-  language: PropTypes.string
+  language: PropTypes.string,
 };
 
 class Index extends React.Component {
@@ -123,7 +123,7 @@ class Index extends React.Component {
     const { baseUrl, githubProjectUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const Features = () => (
       <Container id="home-features" background="light">
@@ -133,7 +133,7 @@ class Index extends React.Component {
               title: "Isolated front-end development",
               content: `Define api contracts, add [mocks-server fixtures](${docUrl(
                 "get-started-fixtures"
-              )}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`
+              )}) and start front-end development. Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.`,
             },
             {
               title: "Multiple api behaviors",
@@ -141,14 +141,14 @@ class Index extends React.Component {
                 "get-started-behaviors"
               )}) easily, including error cases. Ensure that your front-end application is ready for all cases. Change the behavior of the server while it is running using one of the available [plugins](${docUrl(
                 "plugins-adding-plugins"
-              )}).`
+              )}).`,
             },
             {
               title: "Solid tests",
               content: `Test your front-end application configured for making requests to mocks-server. Same tests can be reused to run end to end tests with the real api in more advanced phases of integration, [learn how](${docUrl(
                 "integrations-cypress"
-              )}).`
-            }
+              )}).`,
+            },
           ]}
           layout="fourColumn"
         />
@@ -315,18 +315,18 @@ describe("user with admin role", () => {
     );
 
     const Showcase = () => {
-      const pinnedUsers = siteConfig.users ? siteConfig.users.filter(user => user.pinned) : [];
+      const pinnedUsers = siteConfig.users ? siteConfig.users.filter((user) => user.pinned) : [];
       if (pinnedUsers.length === 0) {
         return null;
       }
 
-      const showcase = pinnedUsers.map(user => (
+      const showcase = pinnedUsers.map((user) => (
         <a href={user.infoLink} key={user.infoLink}>
           <img src={user.image} alt={user.caption} title={user.caption} />
         </a>
       ));
 
-      const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
+      const pageUrl = (page) => baseUrl + (language ? `${language}/` : "") + page;
 
       return (
         <div className="productShowcaseSection paddingBottom">
@@ -361,7 +361,7 @@ describe("user with admin role", () => {
 
 Index.propTypes = {
   config: PropTypes.object,
-  language: PropTypes.string
+  language: PropTypes.string,
 };
 
 module.exports = Index;

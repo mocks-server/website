@@ -85,7 +85,7 @@ function Versions(props) {
           <table className="versions">
             <tbody>
               {versions.map(
-                version =>
+                (version) =>
                   version !== latestVersion && (
                     <tr key={version}>
                       <th>{version}</th>
@@ -129,7 +129,7 @@ function Versions(props) {
 
 Versions.propTypes = {
   config: PropTypes.object,
-  language: PropTypes.string
+  language: PropTypes.string,
 };
 
 module.exports = Versions;

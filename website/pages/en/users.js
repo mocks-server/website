@@ -13,7 +13,7 @@ class Users extends React.Component {
     }
 
     const editUrl = `${siteConfig.webSiteRepoUrl}/edit/master/website/users.js`;
-    const showcase = siteConfig.users.map(user => (
+    const showcase = siteConfig.users.map((user) => (
       <a href={user.infoLink} key={user.infoLink}>
         <img src={user.image} alt={user.caption} title={user.caption} />
       </a>
@@ -40,7 +40,7 @@ class Users extends React.Component {
 }
 
 Users.propTypes = {
-  config: PropTypes.object
+  config: PropTypes.object,
 };
 
 module.exports = Users;

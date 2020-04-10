@@ -17,27 +17,27 @@ function Help(props) {
     stackOverflowAskUrl,
     codeOfConductUrl,
     contributingUrl,
-    contributorCovenanceUrl
+    contributorCovenanceUrl,
   } = siteConfig;
   const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
   const langPart = `${language ? `${language}/` : ""}`;
-  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+  const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
   const supportLinks = [
     {
       content: `Learn more about using the [documentation on this site.](${docUrl(
         "get-started-intro"
       )})`,
-      title: "Browse Docs"
+      title: "Browse Docs",
     },
     {
       content: `Stack Overflow is a popular forum to ask code-level questions. Read through the [existing questions](${stackOverflowUrl}) tagged with mocks-server or [ask your own](${stackOverflowAskUrl}).`,
-      title: "Join the community"
+      title: "Join the community",
     },
     {
       content: `Find out what's new with this project in the [website blog](${blogUrl}) and in our [github project](${githubProjectUrl}).`,
-      title: "Stay up to date"
-    }
+      title: "Stay up to date",
+    },
   ];
 
   return (
@@ -75,7 +75,7 @@ function Help(props) {
 
 Help.propTypes = {
   config: PropTypes.object,
-  language: PropTypes.string
+  language: PropTypes.string,
 };
 
 module.exports = Help;
