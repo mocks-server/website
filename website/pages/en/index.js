@@ -161,7 +161,7 @@ class Index extends React.Component {
           id="home-easy-to-use"
           title="Easy to use"
           left={`
-Install it and start it in seconds. Follow the [tutorial](${docUrl("tutorials-static")})
+Install it and start it in seconds. Follow the [tutorial](${docUrl("guides-defining-fixtures")})
 to add fixtures and you&apos;ll have a simulated api in few minutes.
 
 Create a [configuration file](${docUrl(
@@ -192,11 +192,56 @@ Add the script to the \`package.json\` file:
       );
     };
 
+    const Flexible = () => {
+      return (
+        <CodeExampleSection
+          id="home-flexible"
+          background="lightBackground"
+          title="Flexible"
+          left={`
+Define fixtures for HTTP responses in \`JSON\` files, or as JavaScript objects.
+
+Using the built-in fixtures handler, responses can be defined using static properties, or using \`Express\` middlewares for more complex scenarios.
+
+If this is not enough, you can even [addd your own handlers](${docUrl(
+            "advanced-custom-fixtures-handlers"
+          )}) to change the format in which you define the responses fixtures.
+`}
+          right={`
+\`\`\` json
+{
+  "id": "get-users-empty",
+  "url": "/api/users",
+  "method": "GET",
+  "response": {
+    "status": 200,
+    "body": []
+  }
+}
+\`\`\`
+
+\`\`\` javascript
+const users = require("./db/users");
+
+module.exports = {
+  id: 'get-users',
+  url: '/api/users',
+  method: 'GET',
+  response: (req, res) => {
+    res.status(200);
+    res.send(users);
+  },
+}
+\`\`\`
+`}
+        />
+      );
+    };
+
     const Maintainable = () => {
       return (
         <CodeExampleSection
           id="home-maintainable"
-          background="lightBackground"
           title="Maintainable"
           left={`
 [Maintain your fixtures organized](${docUrl(
@@ -225,11 +270,31 @@ and the rest of behaviors will inherit them.
       );
     };
 
-    const Flexible = () => {
+    const Friendly = () => {
       return (
         <CodeExampleSection
-          id="home-flexible"
-          title="Flexible and customizable"
+          id="home-friendly"
+          background="lightBackground"
+          title="Friendly"
+          left={`
+The [main distribution of \`mocks-server\`](https://github.com/mocks-server/main) includes some plugins for making easy
+to control the server while it is running, allowing to change the current behavior, to change the delay, etc. From controlling
+it through an interactive CLI, to using a REST API, etc.
+
+It also includes hot-reloading, so the responses of the server will change while you change your fixtures files.
+`}
+          right={`
+![Interactive CLI](docs/assets/cli_animation.gif)
+`}
+        />
+      );
+    };
+
+    const Customizable = () => {
+      return (
+        <CodeExampleSection
+          id="home-customizable"
+          title="Customizable"
           left={`
 From [defining fixtures using express middlewares](${docUrl(
             "tutorials-dynamic"
@@ -348,8 +413,10 @@ describe("user with admin role", () => {
         <div className="mainContainer home">
           <Features />
           <Easy />
-          <Maintainable />
           <Flexible />
+          <Maintainable />
+          <Friendly />
+          <Customizable />
           <Integrations />
           <Roadmap />
           <Showcase />
