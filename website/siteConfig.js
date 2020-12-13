@@ -112,7 +112,9 @@ const siteConfig = {
   algolia: {
     apiKey: "04369502839c280ae1d3ff3e790b8e31",
     indexName: "mocks-server",
-    algoliaOptions: {}, // Optional, if provided by Algolia
+    algoliaOptions: {
+      // stop_urls: ["/docs/1.7.0/"],
+    }, // Optional, if provided by Algolia
   },
 
   // You may provide arbitrary config keys to be used as needed by your
