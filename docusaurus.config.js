@@ -5,12 +5,7 @@ module.exports = {
   baseUrl: "/",
   organizationName: "mocks-server",
   projectName: "mocks-server",
-  scripts: [
-    "https://buttons.github.io/buttons.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
-    "/js/code-block-buttons.js",
-  ],
-  stylesheets: ["/css/code-block-buttons.css"],
+  scripts: ["https://buttons.github.io/buttons.js"],
   favicon: "img/favicon.ico",
   customFields: {
     repoUrl: "https://github.com/mocks-server/main",
@@ -39,7 +34,7 @@ module.exports = {
           showLastUpdateTime: false,
           editUrl: "https://github.com/mocks-server/website/edit/master/docs/",
           path: "./docs",
-          sidebarPath: "../website/sidebars.json",
+          sidebarPath: require.resolve("./sidebars.json"),
         },
         theme: {
           customCss: [
