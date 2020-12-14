@@ -57,6 +57,7 @@ module.exports = {
       additionalLanguages: ["bash", "json"],
     },
     navbar: {
+      hideOnScroll: true,
       style: "dark",
       title: "Mocks Server",
       logo: {
