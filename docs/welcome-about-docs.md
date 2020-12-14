@@ -2,6 +2,11 @@
 id: welcome-about-docs
 title: About this documentation
 sidebar_label: About docs
+description: About Mocks Server docs
+keywords:
+  - mocks server
+  - documentation
+  - about
 ---
 
 Welcome to the Mocks Server documentation!
