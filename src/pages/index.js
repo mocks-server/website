@@ -231,7 +231,7 @@ function HeaderHero() {
     <Section background="dark" className="HeaderHero">
       <TwoColumns
         reverse
-        columnOne={<img alt="" src={useBaseUrl("img/logo-white.svg")} />}
+        columnOne={<img alt="Interactive CLI animation" src={useBaseUrl("img/logo-white.svg")} />}
         columnTwo={
           <>
             <h1 className="title">{siteConfig.title}</h1>
@@ -390,6 +390,7 @@ const Index = () => {
     <Layout wrapperClassName="homepage">
       <Head>
         <title>{siteConfig.title}</title>
+        <meta name="description" content="Node.js mock server" />
       </Head>
       <HeaderHero />
       <Benefits />
