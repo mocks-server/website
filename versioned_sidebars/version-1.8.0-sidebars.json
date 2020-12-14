@@ -1,0 +1,118 @@
+{
+  "version-1.8.0/docs": [
+    {
+      "type": "category",
+      "label": "Welcome",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/welcome-about-docs"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Getting started",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/get-started-intro"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/get-started-fixtures"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/get-started-behaviors"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Guides",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/guides-defining-fixtures"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/guides-organizing-the-definitions"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/tutorials-static"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/tutorials-dynamic"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Configuration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/configuration-options"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/configuration-file"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/configuration-command-line-arguments"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Plugins",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/plugins-adding-plugins"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/plugins-inquirer-cli"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/plugins-admin-api"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/advanced-developing-plugins"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/integrations-cypress"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.8.0/advanced-programmatic-usage"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.8.0/advanced-custom-fixtures-handlers"
+        }
+      ]
+    }
+  ]
+}
