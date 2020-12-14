@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "eslint website",
+    "lint": "eslint src *.js",
     "lint-staged": "lint-staged",
     "examples": "docusaurus-examples",
     "start": "docusaurus start",
@@ -33,11 +33,8 @@
     "react-github-btn": "1.2.0"
   },
   "lint-staged": {
-    "website/pages/**/*.js": "eslint",
-    "website/core/**/*.js": "eslint",
-    "website/i18n/**/*.js": "eslint",
-    "website/static/**/*.js": "eslint",
-    "website/siteConfig.js": "eslint"
+    "src/**/*.js": "eslint",
+    "*.js": "eslint"
   },
   "husky": {
     "hooks": {
