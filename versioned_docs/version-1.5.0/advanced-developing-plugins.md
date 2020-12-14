@@ -1,8 +1,8 @@
 ---
 id: advanced-developing-plugins
 title: Developing plugins
-original_id: advanced-developing-plugins
 ---
+
 ## Plugins
 
 You can develop your own plugins for the Mocks Server to provide more interfaces, add [more ways of defining fixtures](advanced-custom-fixtures-handlers), etc.
@@ -13,7 +13,7 @@ It is recommended that plugins are published with the "mocks-server-plugin-[name
 
 ## Plugins lifecycle
 
-Plugins should contain **three main methods**, which will receive the instance of the Mocks Server core. Please read the [programmatic usage chapter](advanced-programmatic-usage.md) to know how to interact with the core.
+Plugins should contain __three main methods__, which will receive the instance of the Mocks Server core. Please read the [programmatic usage chapter](advanced-programmatic-usage.md) to know how to interact with the core.
 
 #### `register(core)`
 
@@ -23,7 +23,7 @@ Here you should register your own custom `options` using the `core.addSetting` m
 
 You should never access here to the `core.settings` methods, are they are not still ready in this phase, which was defined with the intention of letting the plugins to add their own settings.
 
-&gt; If you define your plugin as a Class, the `constructor` will be equivalent to defining a `register` method. If you define your plugin as a function, it will be called during the plugins registration, so you could also omit the `register` method.
+> If you define your plugin as a Class, the `constructor` will be equivalent to defining a `register` method. If you define your plugin as a function, it will be called during the plugins registration, so you could also omit the `register` method.
 
 #### `init(core)`
 
@@ -38,7 +38,6 @@ When this method is called, the Mocks Server is already started and listening to
 Here you have an example of how a plugin is defined. Consult the [Mocks Server programmatic usage chapter](advanced-programmatic-usage.md) for further info:
 
 ```javascript
-
 const { Core } = require("@mocks-server/core");
 
 class Plugin {
@@ -92,7 +91,6 @@ server
     log: "debug"
   })
   .then(server.start);
-
 ```
 
 ## Plugins formats
@@ -104,7 +102,6 @@ Next examples show how each format should be defined:
 ### Plugin as a `Class`
 
 ```javascript
-
 export default class Plugin {
   constructor(core) {
     // Do your register stuff here
@@ -122,13 +119,11 @@ export default class Plugin {
     // Do your start stuff here
   }
 }
-
 ```
 
 ### Plugin as a `function`
 
 ```javascript
-
 const plugin = core => {
   // Do your register stuff here
   return {
@@ -145,13 +140,11 @@ const plugin = core => {
 };
 
 export default plugin;
-
 ```
 
 ### Plugin as an `object`
 
 ```javascript
-
 const plugin = {
   register: core => {
     // Do your register stuff here
@@ -165,7 +158,6 @@ const plugin = {
 };
 
 export default plugin;
-
 ```
 
-&gt; By the moment, plugins [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.
+> By the moment, plugins [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.

@@ -1,6 +1,6 @@
 module.exports = {
   title: "Mocks Server",
-  tagline: "node.js mock server",
+  tagline: "Node.js mock server",
   url: "https://www.mocks-server.org",
   baseUrl: "/",
   organizationName: "mocks-server",
@@ -14,23 +14,13 @@ module.exports = {
   favicon: "img/favicon.ico",
   customFields: {
     repoUrl: "https://github.com/mocks-server/main",
-    users: [
-      {
-        caption: "Domapic",
-        image: "https://domapic.com/assets/domapic-logo.png",
-        infoLink: "https://www.domapic.com",
-        pinned: false,
-      },
-    ],
+    users: [],
     gaGtag: true,
     organizationUrl: "https://github.com/mocks-server",
     webSiteRepoUrl: "https://github.com/mocks-server/website",
-    stackOverflowUrl: "https://stackoverflow.com/questions/tagged/mocks-server",
-    stackOverflowAskUrl: "https://stackoverflow.com/questions/ask?tags=mocks-server",
     githubProjectUrl: "https://github.com/orgs/mocks-server/projects/1",
     githubIssuesUrl: "https://github.com/mocks-server/core/issues",
     websiteIssuesUrl: "https://github.com/mocks-server/website/issues",
-    blogUrl: "/blog",
     npmUrl: "https://www.npmjs.com/package/@mocks-server/main",
     codeOfConductUrl:
       "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
@@ -38,32 +28,36 @@ module.exports = {
     contributorCovenanceUrl: "https://www.contributor-covenant.org/",
     nextVersion: "v1.9.0",
   },
-  onBrokenLinks: "log",
-  onBrokenMarkdownLinks: "log",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         docs: {
-          homePageId: "get-started-intro",
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
           editUrl: "https://github.com/mocks-server/website/edit/master/docs/",
           path: "./docs",
           sidebarPath: "../website/sidebars.json",
         },
-        blog: {
-          path: "blog",
-        },
         theme: {
-          customCss: "../src/css/custom.css",
+          customCss: [
+            require.resolve("./src/css/custom.css"),
+            require.resolve("./src/css/index.scss"),
+          ],
         },
       },
     ],
   ],
-  plugins: [],
+  plugins: ["docusaurus-plugin-sass"],
   themeConfig: {
+    prism: {
+      defaultLanguage: "javascript",
+      additionalLanguages: ["bash", "json"],
+    },
     navbar: {
+      style: "dark",
       title: "Mocks Server",
       logo: {
         src: "img/favicon.ico",
@@ -74,12 +68,6 @@ module.exports = {
           label: "Docs",
           position: "left",
         },
-        {
-          to: "/help",
-          label: "Help",
-          position: "left",
-        },
-        { to: "blog", label: "Blog", position: "left" },
         {
           label: "Version",
           to: "docs",
@@ -121,10 +109,69 @@ module.exports = {
     },
     image: "img/og_image.jpg",
     footer: {
-      links: [],
+      style: "dark",
+      links: [
+        {
+          title: "Docs",
+          items: [
+            {
+              label: "Getting Started",
+              to: "docs/get-started-intro",
+            },
+            {
+              label: "Guides",
+              to: "docs/guides-defining-fixtures",
+            },
+            {
+              label: "Configuration",
+              to: "docs/configuration-options",
+            },
+            {
+              label: "Plugins",
+              to: "docs/plugins-adding-plugins",
+            },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            {
+              label: "Contributors guidelines",
+              to: "https://github.com/mocks-server/main/blob/master/.github/CONTRIBUTING.md",
+            },
+            {
+              label: "Code of conduct",
+              to: "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
+            },
+            {
+              label: "Github project",
+              to: "https://github.com/orgs/mocks-server/projects/1",
+            },
+            {
+              label: "Issues",
+              to: "https://github.com/mocks-server/core/issues",
+            },
+          ],
+        },
+        {
+          title: "Find us",
+          items: [
+            {
+              label: "Github",
+              to: "https://github.com/mocks-server",
+            },
+            {
+              label: "NPM",
+              to: "https://www.npmjs.com/package/@mocks-server/main",
+            },
+          ],
+        },
+      ],
       copyright: "Copyright © 2020 Javier Brea",
       logo: {
+        alt: "Mocks Server logo",
         src: "img/logo-white.svg",
+        href: "https://www.mocks-server.org",
       },
     },
     algolia: {

@@ -1,8 +1,8 @@
 ---
 id: get-started-intro
 title: Intro
-original_id: get-started-intro
 ---
+
 ## The project
 
 This project provides a mock server that can simulate multiple API behavior. It can be added as a dependency of your project, and started simply running an NPM command.
@@ -27,33 +27,28 @@ As input, it needs ["fixtures"](get-started-fixtures.md), which are handlers for
 
 You can simulate all the api behaviors you need for your development or tests environments simply [extending behaviors](get-started-behaviors.md#extending-behaviors) to change the response of some specific uris, even when the received request is exactly the same.
 
-You can easily change the current behavior while the server is running, which will make your **development or acceptance tests environments very much agile and flexible, and not api dependant.**
+You can easily change the current behavior while the server is running, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
 
 For changing [settings](configuration-command-line-arguments.md) (such as current behavior, delay time, etc.) while it is running, it is distributed with two plugins:
-
--   an [interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments.
--   a [REST API](plugins-admin-api.md) which is very useful to change behaviors from end-to-end tests, for example.
+* an [interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments.
+* a [REST API](plugins-admin-api.md) which is very useful to change behaviors from end-to-end tests, for example.
 
 ## Installation
 
 Add it to your dependencies using NPM:
 
 ```bash
-
 npm i @mocks-server/main --save-dev
-
 ```
 
 Add next script to your `package.json` file:
 
 ```json
-
 {
   "scripts": {
     "mocks" : "mocks-server"
   }
 }
-
 ```
 
 ## Usage
@@ -61,17 +56,15 @@ Add next script to your `package.json` file:
 Now, you can start the Mocks Server with the command:
 
 ```bash
-
 npm run mocks
-
 ```
 
-![Interactive CLI](/img/cli_animation.gif)
+![Interactive CLI](assets/cli_animation.gif)
 
 ## Customization
 
 The mocks-server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
--   [Start it programmatically](advanced-programmatic-usage) and use his multiple methods and events to manage it from your program.
--   Add new options and features [developing plugins](advanced-developing-plugins).
--   Add new [fixtures handlers](advanced-custom-fixtures-handlers), which allows to customize the format in which fixtures are defined.
+- [Start it programmatically](advanced-programmatic-usage) and use his multiple methods and events to manage it from your program.
+- Add new options and features [developing plugins](advanced-developing-plugins).
+- Add new [fixtures handlers](advanced-custom-fixtures-handlers), which allows to customize the format in which fixtures are defined.

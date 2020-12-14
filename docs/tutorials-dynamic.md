@@ -2,13 +2,14 @@
 id: tutorials-dynamic
 title: Using express middlewares
 ---
+
 ## Preface
 
 This tutorial assumes that you have completed the ["Definitions using javascript" tutorial](tutorials-static.md).
 
 You have now static fixtures defined using javascript, but, what if you want your `/api/users/:id` api url to respond with the correspondant user without the need of changing the current behavior?
 
-This is **usually not recommended**, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
+This is __usually not recommended__, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
 
 Let's see how it can be done using [express middlewares](http://expressjs.com/en/guide/using-middleware.html).
 
@@ -17,7 +18,6 @@ Let's see how it can be done using [express middlewares](http://expressjs.com/en
 Extract the users collection response from your javascript "get-users" fixture, because it is going to be reused also by the new fixture:
 
 ```javascript
-
 //mocks/fixtures/users.js
 
 const INITIAL_USERS = [
@@ -43,7 +43,6 @@ const getUsers = {
 
 //...
 
-
 ```
 
 ## Add an express middleware fixture
@@ -51,7 +50,6 @@ const getUsers = {
 Add a fixture for `GET` `/api/users/:id` that will respond with the user with correspondant id, or a "not found" error if any user matches:
 
 ```javascript
-
 //mocks/fixtures/users.js
 
 //....
@@ -81,17 +79,15 @@ module.exports = {
   getUser2,
   getUserReal
 };
-
 ```
 
-&gt; Fixtures "response" functions are called with express "request", "response" and "next" methods. Read the [express documentation][express-url] to learn more about `req`, `res`, `next`.
+> Fixtures "response" functions are called with express "request", "response" and "next" methods. Read the [express documentation][express-url] to learn more about `req`, `res`, `next`.
 
 ## Add a new behavior
 
 Add a new behavior extending the "standard" one, and adding the "getUserReal" fixture:
 
 ```javascript
-
 // /mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");
@@ -114,45 +110,38 @@ const dynamic = standard.extend([ getUserReal ], {
 });
 
 module.exports = [ standard, user2, dynamic ];
-
 ```
 
 ## Change current behavior
 
 Now you'll have three behaviors available: "standard", "user2" and "dynamic". Use the CLI to select the "dynamic" one.
 
-![Available behaviors](/img/tutorials-dynamic-01.png)
+![Available behaviors](assets/tutorials-dynamic-01.png)
 
 ## Check the responses
 
-Browse to http:. You should see the first user:
+Browse to [http://localhost:3100/api/users/1](http://localhost:3100/api/users/1). You should see the first user:
 
 ```json
-
-
-
+{"id":1,"name":"John Doe"}
 ```
 
-Browse to . You should now see the second user:
+Browse to [http://localhost:3100/api/users/2](http://localhost:3100/api/users/2). You should now see the second user:
 
 ```json
-
-
-
+{"id":2,"name":"Jane Doe"}
 ```
 
-Browse to :
+Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3):
 
 ```json
-
-
-
+{"message":"User not found"}
 ```
 
 ## Persistence
 
-You could add also express middleware fixtures for deleting, updating, or creating users, simply modifiying the `` memory object from each correspondant response function.
+You could add also express middleware fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
 
-**Changes will be be persisted in memory** while the server is running.
+__Changes will be be persisted in memory__ while the server is running.
 
 [express-url]: https://expressjs.com/es/4x/api.html

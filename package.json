@@ -15,7 +15,11 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@docusaurus/core": "2.0.0-alpha.69",
+    "@docusaurus/preset-classic": "2.0.0-alpha.69",
     "babel-eslint": "10.1.0",
+    "clsx": "1.1.1",
+    "docusaurus-plugin-sass": "^0.1.11",
     "eslint": "7.15.0",
     "eslint-config-prettier": "7.0.0",
     "eslint-plugin-prettier": "3.2.0",
@@ -24,11 +28,9 @@
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
     "prop-types": "15.7.2",
-    "@docusaurus/core": "2.0.0-alpha.69",
-    "@docusaurus/preset-classic": "2.0.0-alpha.69",
-    "clsx": "1.1.1",
     "react": "16.10.2",
-    "react-dom": "16.10.2"
+    "react-dom": "16.10.2",
+    "react-github-btn": "^1.2.0"
   },
   "lint-staged": {
     "website/pages/**/*.js": "eslint",
@@ -43,7 +45,11 @@
     }
   },
   "browserslist": {
-    "production": [">0.5%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

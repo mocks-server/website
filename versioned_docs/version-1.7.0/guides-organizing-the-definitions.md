@@ -1,8 +1,8 @@
 ---
 id: guides-organizing-the-definitions
 title: Organizing the definitions
-original_id: guides-organizing-the-definitions
 ---
+
 ## Files structure
 
 Mocks server is very flexible and permissive with the files structure inside the `mocks` folder. It will load any fixture or behavior defined in any `.js` or `.json` file at any folder level.
@@ -20,18 +20,15 @@ You can define your fixtures or behaviors in json format, defining one per file,
 ### One definition per file
 
 ```json
-
 {
   "id": "foo-behavior",
   "fixtures": ["foo-fixture"]
 }
-
 ```
 
 ### Multiple definitions per file
 
 ```json
-
 [
   {
     "id": "foo-behavior",
@@ -42,8 +39,8 @@ You can define your fixtures or behaviors in json format, defining one per file,
     "fixtures": ["foo-fixture-2"]
   }
 ]
-
 ```
+
 
 ## Javascript exportation formats
 
@@ -54,7 +51,6 @@ Javascript files containing fixtures or behaviors can export them as:
 You can use an object to export your definitions. The Mock Server will search at the first level of exported objects and will load any fixture or behavior defined in it.
 
 ```javascript
-
 const myFixture = {
   //...
 };
@@ -67,7 +63,6 @@ module.exports = {
   myFixture,
   myFixture2
 }
-
 ```
 
 ### Array
@@ -75,7 +70,6 @@ module.exports = {
 The server accepts exports as arrays, and will load any fixture or behavior defined in it.
 
 ```javascript
-
 const myFixture = {
   //...
 };
@@ -85,21 +79,19 @@ const myFixture2 = {
 };
 
 module.exports = [myFixture, myFixture2];
-
 ```
 
 ### Single export
 
 You can also define one behavior or fixture per file, and export it directly:
 
-```javascript
 
+```javascript
 const myFixture = {
   //...
 };
 
 module.exports = myFixture;
-
 ```
 
 ## Good practices
@@ -111,7 +103,6 @@ As a good practice, for a better maintainability, we recommend to use `json` for
 To organize fixtures, a good approach can be to create a folder for each api "domain", containing a different `json` file with all fixtures of a same entity:
 
 ```
-
 /your/awesome/project
 |-- node_modules
 |-- src
@@ -123,7 +114,6 @@ To organize fixtures, a good approach can be to create a folder for each api "do
 |   |-- sales
 |       |-- products.json
 |-- package.json
-
 ```
 
 ### Descriptive ids
@@ -135,7 +125,6 @@ A goog pattern for assigning an id to a fixture can be `[method]-[entity]-[short
 For assigning id to behaviors, we recommend to maintain a base behavior named as `standard`, `base`, or `default`. The rest of behaviors should extend from it _(at least indirectly)_, and their ids should be a short description of the behavior itself, for example:
 
 ```json
-
 [
   {
     "id": "standard",
@@ -152,5 +141,5 @@ For assigning id to behaviors, we recommend to maintain a base behavior named as
     "fixtures": ["read-users-with-long-name", "read-user-with-long-name"]
   }
 ]
-
 ```
+

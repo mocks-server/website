@@ -1,20 +1,20 @@
 ---
 id: plugins-adding-plugins
 title: Adding plugins
-original_id: plugins-adding-plugins
 ---
+
 ## Plugins
 
 Plugins are a way of extending the functionality of Mocks Server.
 
 Some things that can be made with a plugin are:
 
--   Load "behaviors" or "fixtures".
--   Listen to Mocks Server events and act in consequence.
--   Add custom express routers to the server.
--   Add new options, accessible even through command line arguments.
--   Change settings while the server is running.
--   Add new formats of defining "fixtures". _(Using ["custom fixtures handlers"](advanced-custom-fixtures-handlers.md))_
+- Load "behaviors" or "fixtures".
+- Listen to Mocks Server events and act in consequence.
+- Add custom express routers to the server.
+- Add new options, accessible even through command line arguments.
+- Change settings while the server is running.
+- Add new formats of defining "fixtures". _(Using ["custom fixtures handlers"](advanced-custom-fixtures-handlers.md))_
 
 ## Find plugins
 
@@ -27,7 +27,6 @@ Use the "mocks-server-plugin" tag to [search Mocks Server plugins in NPM](https:
 Use the [configuration file](configuration-file.md) for adding plugins:
 
 ```javascript
-
 // mocks-server.config.js
 const FooPlugin = require("mocks-server-plugin-foo");
 
@@ -37,10 +36,9 @@ module.exports = {
     behavior: "foo-behavior"
   }
 };
-
 ```
 
-&gt; Note the usage of the `addPlugins` property, not the `plugins` one. This is because the main distribution of the Mocks Server _([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main))_ already includes some plugins to improve the user experience. If you use `plugins` instead of `addPlugins`, you will remove those ones added by default.
+> Note the usage of the `addPlugins` property, not the `plugins` one. This is because the main distribution of the Mocks Server _([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main))_ already includes some plugins to improve the user experience. If you use `plugins` instead of `addPlugins`, you will remove those ones added by default.
 
 ### Programmatically
 

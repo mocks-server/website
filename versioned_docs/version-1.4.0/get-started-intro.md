@@ -3,6 +3,7 @@ id: get-started-intro
 title: Intro
 original_id: get-started-intro
 ---
+
 ## The project
 
 This project provides a server that simulates API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
@@ -21,33 +22,28 @@ As input, it needs ["fixtures"](get-started-fixtures.md), which are responses fo
 
 You can simulate all the api behaviors you need for your local development or acceptance tests environments simply [extending behaviors](get-started-behaviors.md#extending-behaviors) to change the response of some specific uris.
 
-You can easily change the current behavior, which will make your **development or acceptance tests environments very much agile and flexible, and not api dependant.**
+You can easily change the current behavior, which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
 
 For changing [settings](configuration-command-line-arguments.md) (such as current behavior, delay time, etc.) while it is running, it provides:
-
--   an [interactive command line interface](configuration-interactive-cli.md), which is very useful in local environments.
--   a [REST API](configuration-rest-api.md) which is very useful to change behaviors from end-to-end tests, for example.
+* an [interactive command line interface](configuration-interactive-cli.md), which is very useful in local environments.
+* a [REST API](configuration-rest-api.md) which is very useful to change behaviors from end-to-end tests, for example.
 
 ## Installation
 
 Add it to your dependencies using NPM:
 
 ```bash
-
 npm i @mocks-server/main --save-dev
-
 ```
 
 Add next script to your `package.json` file:
 
 ```json
-
 {
   "scripts": {
     "mocks-server" : "mocks-server"
   }
 }
-
 ```
 
 ## Usage
@@ -55,9 +51,7 @@ Add next script to your `package.json` file:
 Now, you can start the Mocks Server CLI with the command:
 
 ```bash
-
 npm run mocks-server
-
 ```
 
-![Interactive CLI](/img/cli_animation.gif)
+![Interactive CLI](assets/cli_animation.gif)

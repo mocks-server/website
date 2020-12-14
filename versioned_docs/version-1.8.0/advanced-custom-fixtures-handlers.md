@@ -1,8 +1,8 @@
 ---
 id: advanced-custom-fixtures-handlers
 title: Custom fixtures handlers
-original_id: advanced-custom-fixtures-handlers
 ---
+
 ## What is a "fixtures handler"?
 
 "Fixtures handlers" are the pieces at charge of handling the fixtures declarations, discerning whether a request has to be handled by a fixture or not, and sending responses when appropriate.
@@ -63,7 +63,6 @@ This getter should return an "human friendly" response preview. This response ge
 Here you have an example of how a fixtures handler should be defined:
 
 ```javascript
-
 // ./CustomFixturesHandler.js
 class CustomFixturesHandler {
   static recognize(fixture) {
@@ -121,13 +120,11 @@ class CustomFixturesHandler {
 }
 
 module.exports = CustomFixturesHandler;
-
 ```
 
 Now, after adding this custom fixture handler with the `addFixturesHandler` method, Mocks Server will accept fixtures defined as:
 
 ```javascript
-
 // ./mocks/fixtures/users.js
 const getUsersSuccess = {
   at: "/api/users",
@@ -145,7 +142,6 @@ const getUsersSuccess = {
 module.exports = {
   getUsersSuccess
 };
-
 ```
 
-&gt; By the moment, custom fixtures handlers [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.
+> By the moment, custom fixtures handlers [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.

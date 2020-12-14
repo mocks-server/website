@@ -3,11 +3,13 @@ id: get-started-behaviors
 title: Behaviors
 original_id: get-started-behaviors
 ---
+
 ## Definition
 
 Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests.
 
 The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve while the server is running.
+
 
 ## Creating a behavior
 
@@ -16,7 +18,6 @@ For creating a behavior, you have to use the mocks-server `Behavior` class, prov
 _Read the ["fixtures" code example](get-started-fixtures.md#examples) to see how fixtures were defined first._
 
 ```javascript
-
 const { Behavior } = require("@mocks-server/main");
 
 const { getUsers, getUser, updateUser } = require("./fixtures/users");
@@ -30,12 +31,12 @@ const standard = new Behavior([
 module.exports = {
   standard
 };
-
 ```
 
-&gt; **Save this file in the `mocks` folder** in the root of your project.
+> __Save this file in the `mocks` folder__ in the root of your project.
 
 Now, when loaded, the server will have available an "standard" behavior, which contains three fixtures.
+
 
 ## Extending behaviors
 
@@ -44,7 +45,6 @@ Behaviors are extensibles, so, you can have an "standard" behavior, which define
 You can add another one behavior extending the first one and changing only the response of the "getUsers" fixture, for example:
 
 ```javascript
-
 const { Behavior } = require("@mocks-server/main");
 
 const { getUsers, getUser, updateUser, updateUserError } = require("./fixtures/users");
@@ -61,9 +61,9 @@ module.exports = {
   standard,
   errorUpdatingUser
 };
-
 ```
 
 Now, the server will have available "standard" and "errorUpdatingUser" behaviors.
 
 The "errorUpdatingUser" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "errorUpdatingUser" have the same value for the `url` and `method` properties)_.
+

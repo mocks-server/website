@@ -6,6 +6,11 @@
   --ifm-color-primary-light: #487b8d;
   --ifm-color-primary-lighter: #4b8193;
   --ifm-color-primary-lightest: #5492a6;
+  --dark: #282c34;
+  --deepdark: #20232a;
+  --brand: #5492a6;
 }
 
-
+.navbar__brand:hover {
+  color: var(--ifm-link-hover-color)
+}

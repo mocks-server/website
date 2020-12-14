@@ -2,8 +2,8 @@
 id: welcome-about-docs
 title: About this documentation
 sidebar_label: About docs
-original_id: welcome-about-docs
 ---
+
 Welcome to the Mocks Server documentation!
 
 ## Navigation
@@ -15,9 +15,7 @@ You can find different topics in the table of contents. On desktop, you should s
 If you have ideas for more “How To” recipes that should be on this page, [let us know][issues-url] or [contribute some][repo-docs-url]!
 
 ## Feedback
-
 We are always open to [your feedback][issues-url].
 
 [issues-url]: https://github.com/mocks-server/website/issues
-
 [repo-docs-url]: https://github.com/mocks-server/website/tree/master/docs/
