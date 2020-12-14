@@ -1,2 +1,0 @@
-# Redirect default Netlify subdomain to primary domain
-https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
