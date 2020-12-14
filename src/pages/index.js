@@ -325,7 +325,7 @@ function Friendly() {
 
 function Customizable() {
   return (
-    <Section className="Customizable codeExample" background="tilt">
+    <Section className="Customizable codeExample" background="tint">
       <TwoColumns
         columnOne={<TextColumn title="Customizable" text={useContent("customizable")} />}
         columnTwo={<CodeBlock language="javascript">{textContents.customizableCode}</CodeBlock>}
