@@ -1,6 +1,11 @@
 ---
 id: advanced-developing-plugins
 title: Developing plugins
+description: How to develop Mocks Server plugins
+keywords:
+  - mocks server
+  - customization
+  - plugins
 ---
 
 ## Plugins

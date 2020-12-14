@@ -1,6 +1,11 @@
 ---
 id: plugins-inquirer-cli
 title: Inquirer CLI
+description: How to administrate Mocks Server using the interactive CLI
+keywords:
+  - mocks server
+  - configuration
+  - administration
 ---
 
 ## plugin-inquirer-cli

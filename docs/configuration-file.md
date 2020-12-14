@@ -1,6 +1,11 @@
 ---
 id: configuration-file
 title: Configuration file
+description: Mocks Server configuration file
+keywords:
+  - mocks server
+  - configuration
+  - repository
 ---
 
 ## Options

@@ -1,6 +1,11 @@
 ---
 id: plugins-adding-plugins
 title: Adding plugins
+description: How to develop your own Mocks Server plugins
+keywords:
+  - mocks server
+  - customization
+  - plugin
 ---
 
 ## Plugins

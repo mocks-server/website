@@ -1,6 +1,11 @@
 ---
 id: advanced-programmatic-usage
 title: Programmatic usage
+description: Programmatic usage of Mocks Server
+keywords:
+  - mocks server
+  - programmatic
+  - api
 ---
 
 ## Server

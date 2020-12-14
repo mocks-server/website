@@ -1,6 +1,11 @@
 ---
 id: get-started-intro
 title: Intro
+slug: /
+description: Get started with Mocks Server
+keywords:
+  - mocks server
+  - intro
 ---
 
 ## The project

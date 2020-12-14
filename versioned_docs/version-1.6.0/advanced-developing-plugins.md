@@ -5,7 +5,7 @@ title: Developing plugins
 
 ## Plugins
 
-You can develop your own plugins for the mocks server to provide more interfaces, ~~add more ways of defining fixtures or behaviors~~ _(not yet available)_, etc.
+You can develop your own plugins for the Mocks Server to provide more interfaces, add [more ways of defining fixtures](advanced-custom-fixtures-handlers), etc.
 
 ### Naming plugins
 
@@ -19,7 +19,7 @@ Plugins should contain __three main methods__, which will receive the instance o
 
 This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized.
 
-Here you should register your own custom `options` using the `core.addCustomSetting` method, register your own custom express routers using the `core.addCustomRouter` method, etc.
+Here you should register your own custom `options` using the `core.addSetting` method, register your own custom express routers using the `core.addRouter` method, etc.
 
 You should never access here to the `core.settings` methods, are they are not still ready in this phase, which was defined with the intention of letting the plugins to add their own settings.
 
@@ -27,11 +27,11 @@ You should never access here to the `core.settings` methods, are they are not st
 
 #### `init(core)`
 
-This method will be called when mocks server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onLoadMocks`, etc.
+This method will be called when Mocks Server settings are ready. Here you already can access to the `core.settings` to get the user options, and act in consequence. Here you should also add your listeners to the core events, such as `core.onChangeSettings`, `core.onChangeMocks`, etc.
 
 #### `start(core)`
 
-When this method is called, the mocks server is already started and listening to requests, and the files watcher is observing for changes too.
+When this method is called, the Mocks Server is already started and listening to requests, and the files watcher is observing for changes too.
 
 ### Example
 
@@ -42,7 +42,7 @@ const { Core } = require("@mocks-server/core");
 
 class Plugin {
   constructor(core) {
-    core.addCustomSetting({
+    core.addSetting({
       name: "traceBehaviors",
       type: "boolean",
       description: "Trace behaviors changes",
@@ -50,14 +50,14 @@ class Plugin {
     });
 
     this._core = core;
-    this._onLoadMocks = this._onLoadMocks.bind(this);
+    this._onChangeMocks = this._onChangeMocks.bind(this);
     this._onChangeSettings = this._onChangeSettings.bind(this);
   }
 
   init(core) {
     this._enabled = core.settings.get("traceBehaviors");
-    this._removeLoadMocksListener = core.onLoadMocks(this.onLoadMocks);
-    this._removeChangeSettingsListener = core.onLoadMocks(this.onChangeSettings);
+    this._removeChangeMocksListener = core.onChangeMocks(this.onChangeMocks);
+    this._removeChangeSettingsListener = core.onChangeMocks(this.onChangeSettings);
     core.tracer.debug(`traceBehaviors initial value is ${core.settings.get("traceBehaviors")}`);
   }
 
@@ -72,7 +72,7 @@ class Plugin {
     }
   }
 
-  _onLoadMocks() {
+  _onChangeMocks() {
     if (this._enabled && this._started) {
       this._core.tracer.info(
         `Mocks have been reloaded, now are ${this._core.behaviors.count} available`
@@ -159,3 +159,5 @@ const plugin = {
 
 export default plugin;
 ```
+
+> By the moment, plugins [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.

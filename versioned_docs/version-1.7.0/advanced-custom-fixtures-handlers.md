@@ -1,11 +1,6 @@
 ---
 id: advanced-custom-fixtures-handlers
 title: Custom fixtures handlers
-description: How to add custom fixture handlers
-keywords:
-  - mocks server
-  - customization
-  - fixtures
 ---
 
 ## What is a "fixtures handler"?
@@ -30,9 +25,9 @@ This method should check the received object, and return `true` if it recognizes
 
 This static getter should return the name of the fixtures handler, which is useful for debugging purposes.
 
-#### `constructor(fixture, core)`
+#### `constructor(fixture, mocksServerInstance)`
 
-If the `recognize` static method returns `true`, then the constructor will be called passing again the fixture, and the mocks-server `core` instance, which contains methods described in the [programmatic usage chapter](advanced-programmatic-usage).
+If the `recognize` static method returns `true`, then the constructor will be called passing again the fixture, and the `mocksServerInstance` instance, which contains methods described in the [programmatic usage chapter](advanced-programmatic-usage).
 
 #### `requestMatch(req)`
 
@@ -53,15 +48,15 @@ This getter should return an unique id for the fixture, different to all other f
 
 #### `get requestMatchId()`
 
-This id should be unique from the point of view of the fixture properties that will make it match and response to an specific request and not to others. (For example, if your fixture format includes "url" and "method" properties, these should probably be used to calculate the `requestMatchId`). So, all fixtures at charge of responding to the same request should have the same `requestMatchId`.
+This getter should return an unique id for the fixture. This id should be unique from the point of view of the fixture properties that will make it match and response to an specific request and not to others. (For example, if your fixture format includes "url" and "method" properties, these should probably be used to calculate the `requestMatchId`)
 
 #### `get request()`
 
-This getter should return an object describing what makes this fixture handler to match a request or not. It should be like the `requestMatchId`, but more "human friendly".
+This getter should return an object which properties describe what makes this fixture handler to match a request or not.
 
 #### `get response()`
 
-This getter should return an "human friendly" response preview. This response getter is used only for debug and display purposes, as the real response should be sent by the `handleRequest` method.
+This getter should return a response preview. This response getter is used only for debug and display purposes, real response should be sent by the `handleRequest` method.
 
 ## Example
 
@@ -111,8 +106,8 @@ class CustomFixturesHandler {
 
   get request() {
     return {
-      url: this._at,
-      method: this._with
+      at: this._at,
+      with: this._with
     };
   }
 

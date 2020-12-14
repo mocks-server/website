@@ -1,6 +1,10 @@
 ---
 id: configuration-options
 title: Options
+description: Mocks Server options
+keywords:
+  - mocks server
+  - configuration
 ---
 
 ## Methods

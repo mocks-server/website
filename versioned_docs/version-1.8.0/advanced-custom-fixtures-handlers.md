@@ -1,6 +1,11 @@
 ---
 id: advanced-custom-fixtures-handlers
 title: Custom fixtures handlers
+description: How to add custom fixture handlers
+keywords:
+  - mocks server
+  - customization
+  - fixtures
 ---
 
 ## What is a "fixtures handler"?

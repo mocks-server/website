@@ -1,26 +1,21 @@
 ---
 id: tutorials-dynamic
-title: Using express middlewares
-description: How to define Mocks Server fixtures using Express middlewares
-keywords:
-  - mocks server
-  - tutorial
-  - guidelines
+title: Adding dynamic fixtures
 ---
 
 ## Preface
 
-This tutorial assumes that you have completed the ["Definitions using javascript" tutorial](tutorials-static.md).
+This tutorial assumes that you have completed the ["Adding static fixtures tutorial"](tutorials-static.md).
 
-You have now static fixtures defined using javascript, but, what if you want your `/api/users/:id` api url to respond with the correspondant user without the need of changing the current behavior?
+You have now all your static fixtures defined, but, what if you want your `/api/users/:id` api url to respond with the correspondant user without the need of changing the current behavior?
 
 This is __usually not recommended__, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
 
-Let's see how it can be done using [express middlewares](http://expressjs.com/en/guide/using-middleware.html).
+Let's see how:
 
 ## Define the initial users collection
 
-Extract the users collection response from your javascript "get-users" fixture, because it is going to be reused also by the new fixture:
+Extract the users collection response from your static fixture, because it is going to be reused also by the dynamic fixture:
 
 ```javascript
 //mocks/fixtures/users.js
@@ -37,7 +32,6 @@ const INITIAL_USERS = [
 ];
 
 const getUsers = {
-  id: "get-users",
   url: "/api/users",
   method: "GET",
   response: {
@@ -50,23 +44,22 @@ const getUsers = {
 
 ```
 
-## Add an express middleware fixture
+## Add a dynamic fixture
 
-Add a fixture for `GET` `/api/users/:id` that will respond with the user with correspondant id, or a "not found" error if any user matches:
+Add a dynamic fixture for `GET` `/api/users/:id` that will respond with the user with correspondant id, or a "not found" error if any user matches:
 
 ```javascript
 //mocks/fixtures/users.js
 
 //....
 
-const getUserReal = {
-  id: "get-user-real",
+const getRealUser = {
   url: "/api/users/:id",
   method: "GET",
   response: (req, res) => {
     const userId = req.params.id;
     const user = INITIAL_USERS.find(userData => userData.id === Number(userId));
-    if (user) {
+    if(user) {
       res.status(200);
       res.send(user);
     } else {
@@ -76,45 +69,46 @@ const getUserReal = {
       });
     }
   }
-};
+}
 
 module.exports = {
   getUsers,
   getUser,
   getUser2,
-  getUserReal
+  getRealUser
 };
 ```
 
-> Fixtures "response" functions are called with express "request", "response" and "next" methods. Read the [express documentation][express-url] to learn more about `req`, `res`, `next`.
+> Dynamic fixtures functions are called with express "request", "response" and "next". Read the [express documentation][express-url] to learn more about `req`, `res`, `next`.
 
 ## Add a new behavior
 
-Add a new behavior extending the "standard" one, and adding the "getUserReal" fixture:
+Add a new behavior extending the "standard" one, and adding the "getRealUser" fixture:
 
 ```javascript
 // /mocks/behaviors.js
 
 const { Behavior } = require("@mocks-server/main");
 
-const { getUsers, getUser2 } = require("./fixtures/users");
+const { getUsers, getUser, getUser2, getRealUser } = require("./fixtures/users");
 
 const standard = new Behavior([
   getUsers,
-  "get-user"
-], {
-  id: "standard"
-});
+  getUser
+]);
 
-const user2 = standard.extend([ getUser2 ], {
-  id: "user2"
-});
+// Extends the standard behavior adding "getUser2" fixture.
+const user2 = standard.extend([getUser2]);
 
-const dynamic = standard.extend([ getUserReal ], {
-  id: "dynamic"
-});
+// Extends the standard behavior adding "getRealUser" dynamic fixture.
+const dynamic = standard.extend([getRealUser]);
 
-module.exports = [ standard, user2, dynamic ];
+module.exports = {
+  standard,
+  user2,
+  dynamic
+};
+
 ```
 
 ## Change current behavior
@@ -145,8 +139,8 @@ Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3)
 
 ## Persistence
 
-You could add also express middleware fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
+You could add also dynamic fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
 
-__Changes will be be persisted in memory__ while the server is running.
+Changes would be be persisted in memory while the server is running.
 
 [express-url]: https://expressjs.com/es/4x/api.html

@@ -1,7 +1,6 @@
 ---
 id: tutorials-static
 title: Adding static fixtures
-original_id: tutorials-static
 ---
 
 ## Installation
