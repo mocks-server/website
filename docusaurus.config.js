@@ -43,7 +43,7 @@ module.exports = {
         },
         theme: {
           customCss: [
-            require.resolve("./src/css/custom.css"),
+            require.resolve("./src/css/custom.scss"),
             require.resolve("./src/css/index.scss"),
           ],
         },
@@ -67,44 +67,18 @@ module.exports = {
         {
           to: "docs/",
           label: "Docs",
-          position: "left",
+          position: "right",
         },
         {
-          label: "Version",
-          to: "docs",
+          href: "https://github.com/mocks-server/main",
+          "aria-label": "GitHub repository",
           position: "right",
-          items: [
-            {
-              label: "1.8.0",
-              to: "docs/",
-              activeBaseRegex: "docs/(?!1.3.0|1.4.0|1.5.0|1.6.0|1.7.0|1.8.0|next)",
-            },
-            {
-              label: "1.7.0",
-              to: "docs/1.7.0/",
-            },
-            {
-              label: "1.6.0",
-              to: "docs/1.6.0/",
-            },
-            {
-              label: "1.5.0",
-              to: "docs/1.5.0/",
-            },
-            {
-              label: "1.4.0",
-              to: "docs/1.4.0/",
-            },
-            {
-              label: "1.3.0",
-              to: "docs/1.3.0/",
-            },
-            {
-              label: "Master/Unreleased",
-              to: "docs/next/",
-              activeBaseRegex: "docs/next/(?!support|team|resources)",
-            },
-          ],
+          className: "navbar-github-link",
+        },
+        {
+          type: "docsVersionDropdown",
+          position: "left",
+          dropdownActiveClassDisabled: true,
         },
       ],
     },
