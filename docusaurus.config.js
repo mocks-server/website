@@ -116,7 +116,7 @@ module.exports = {
           items: [
             {
               label: "Getting Started",
-              to: "docs/get-started-intro",
+              to: "docs/",
             },
             {
               label: "Guides",
