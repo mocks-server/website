@@ -7,7 +7,7 @@ import Head from "@docusaurus/Head";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { useText } from "@theme/hooks";
+import useText from "@theme/custom-hooks/useText";
 
 const textContents = {
   benefitsIsolated: `
@@ -172,7 +172,7 @@ function TextColumn({ title, text, moreContent }) {
 function HomeCallToAction() {
   return (
     <>
-      <ActionButton type="primary" href={useBaseUrl("docs/")} target="_self">
+      <ActionButton type="primary" href={useBaseUrl("docs/get-started-intro")} target="_self">
         Get started
       </ActionButton>
       <ActionButton

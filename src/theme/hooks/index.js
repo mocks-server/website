@@ -1,1 +1,0 @@
-export { useText } from "./useText";
