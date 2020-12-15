@@ -1,7 +1,6 @@
 ---
 id: get-started-intro
 title: Intro
-slug: /
 ---
 
 ## The project
