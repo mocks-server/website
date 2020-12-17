@@ -36,7 +36,7 @@ server
 
 * `coreOptions`: `<Object>` Containing options reserved for the Core instantiation. (Do not define here any of all another options, which has to be defined in the `init` method)
 	* `onlyProgrammaticOptions`: `<Boolean>` If `true`, options defined through command line arguments will be ignored.
-	* `plugins`: `<Array> of Plugins`. Mocks Server Plugins to be used. Will be registered, initializated and started in same order defined here. Read the [Developing Plugins chapter to learn more about plugins](advanced-developing-plugins.md).
+	* `plugins`: `<Array> of Plugins`. Mocks Server Plugins to be used. Will be registered, initialized and started in same order defined here. Read the [Developing Plugins chapter to learn more about plugins](advanced-developing-plugins.md).
 
 ##### Returns a core instance containing:
 
@@ -47,19 +47,19 @@ server
 * `start()`. Starts the mocks server and the files watcher. Returns a promise.
 * `stop()`. Stops the mocks server and the files watcher. Returns a promise.
 * `restart()`. Restarts the mocks server.
-* `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded. Returns a function for removing the added calback.
+* `onLoadFiles(callback)`. Adds a callback to be executed when mocks files are loaded. Returns a function for removing the added callback.
 	* `callback([loadedFiles])`: `<Function>`
 		* `loadedFiles`: `<Object>` Information about loaded files. Still not processed as "mocks" objects.
-* `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded. Returns a function for removing the added calback.
+* `onLoadMocks(callback)`. Adds a callback to be executed when mocks are loaded. Returns a function for removing the added callback.
 	* `callback([loadedMocks])`: `<Function>`
 		* `loadedMocks`: `<Object>` Information about loaded mocks. Already processed as "mocks" objects, ready to be served by the mocks server.
-* `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
+* `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added callback.
 	* `callback([changedSettings])`: `<Function>`
 		* `changedSettings`: `<Object>` Settings properties that have changed, with new values.
 * `addCustomSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
 	* `customSetting`: `<Object>` containing next properties:
 		* `name`: `<String>`. Name of the new option.
-		* `type`: `<String>`. One of "string", "number", "boolean". Defines the type of the new option.
+		* `type`: `<String>`. One of `string`, `number`, `boolean`. Defines the type of the new option.
 		* `description`: `<String>` Used for giving help to the user in command line arguments, for example.
 		* `default`: `<Any>` Default value for the new option.
 		* `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.

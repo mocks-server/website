@@ -10,7 +10,7 @@ keywords:
 
 ## How to define options using command line arguments
 
-Supossing you have a `mocks` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), then you can define options directly in the npm script using arguments:
+Supposing you have a `mocks` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), then you can define options directly in the npm script using arguments:
 
 ```json
 {
@@ -30,7 +30,7 @@ npm run mocks -- --delay=300
 
 ## Plugins options
 
-Options added by registered plugins can be defined also using command line arguments. Supossing you have registered a plugin which add a new option called "language", then you'll be able to run:
+Options added by registered plugins can be defined also using command line arguments. Supposing you have registered a plugin which add a new option called "language", then you'll be able to run:
 
 ```bash
 npm run mocks -- --language=Es-es

@@ -5,7 +5,7 @@ title: Behaviors
 
 ## Definition
 
-The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve while the server is running.
+The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenience while the server is running.
 
 Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests. When a behavior contains multiple fixtures that should handle the same request _(same method and url)_, __the last one in the array will have priority over the first one__. This has to be taken into account when we are extending behaviors.
 
@@ -66,7 +66,7 @@ module.exports = new Behavior([
 
 Behaviors instances contain an `extend` method, which can be used to create a new behavior extending from it using javascript.
 
-You can add another one behavior extending the first one and changing only the response of the "updateUser" fixture, for example:
+You can add another one behavior extending the first one and changing only the response of the `updateUser` fixture, for example:
 
 ```javascript
 const { Behavior } = require("@mocks-server/main");
@@ -90,5 +90,5 @@ module.exports = [ standard, errorUpdatingUser ];
 
 Now, the server will have available "standard" and "update-user-error" behaviors.
 
-The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "updateUserError" fixtures have the same value for the `url` and `method` properties)_.
+The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that `updateUser` and `updateUserError` fixtures have the same value for the `url` and `method` properties)_.
 

@@ -41,7 +41,7 @@ Available getters are:
 
 - `behaviors`. Returns loaded behaviors object.
 - `watchEnabled`. Current state of the behaviors files watcher.
-- `error`. When server has returned an error, or an error ocurred loading behaviors, it is available in this property.
+- `error`. When server has returned an error, or an error occurred loading behaviors, it is available in this property.
 - `events`. Returns server events object. A "watch-reload" event is emitted when the files watcher detects changes in any behaviors or fixtures file, and restarts the server.
 
 ## CLI
@@ -73,8 +73,8 @@ First argument defines the server options, please [read the options](configurati
 Available methods of an instance are:
 
 - `start`()
-Inits the server in case it was stopped, adds the watch listeners, and renders main menu.
+Starts the server in case it was stopped, adds the watch listeners, and renders main menu.
 - `initServer`()
-Inits the server in case it was stopped, adds the watch listeners.
+Starts the server in case it was stopped, adds the watch listeners.
 - `stopListeningServerWatch`()
 When files watcher is active, the main menu will be displayed always on file changes. This behavior can be deactivated using this method. This is useful when this the CLI is loaded as a submenu of another CLI, for example.

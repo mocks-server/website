@@ -53,9 +53,9 @@ server
 
 ###### Event listeners methods
 
-* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collections (fixtures or behaviors) changes. Returns a function for removing the added calback.
+* `onChangeMocks(callback)`. Adds a callback to be executed when mocks collections (fixtures or behaviors) changes. Returns a function for removing the added callback.
   * `callback()`: `<Function>`
-* `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added calback.
+* `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added callback.
   * `callback([changedSettings])`: `<Function>`
     * `changedSettings`: `<Object>` Settings properties that have changed, with new values.
 
@@ -64,7 +64,7 @@ server
 * `addSetting(customSetting)` Registers a new setting (which will be available also as an "option" during initialization). Has to be called before the `core.init` method is called. (It should be usually used by Plugins in their `register` method)
   * `customSetting`: `<Object>` containing next properties:
     * `name`: `<String>`. Name of the new option.
-    * `type`: `<String>`. One of "string", "number", "boolean". Defines the type of the new option.
+    * `type`: `<String>`. One of "string", "number", `boolean`. Defines the type of the new option.
     * `description`: `<String>` Used for giving help to the user in command line arguments, for example.
     * `default`: `<Any>` Default value for the new option.
     * `parse`: `<Function>` Custom parser for the option when it is defined using command line arguments.

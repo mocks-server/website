@@ -43,7 +43,7 @@ Here you have a proposal about how to reuse your tests and run them in two diffe
 
 We will use a `MOCKS_DISABLED` environment variable to skip tests that can be executed only when the application is requesting to the mocks server.
 
-Create a "onlyMocks" utility in the `cypress/support/utils.js` file:
+Create a `onlyMocks` utility in the `cypress/support/utils.js` file:
 
 ```
 export const onlyMocks = fn => {
@@ -53,7 +53,7 @@ export const onlyMocks = fn => {
 };
 ```
 
-Now, wrap your mock-server dependent tests definitions using the "onlyMocks" method:
+Now, wrap your mock-server dependent tests definitions using the `onlyMocks` method:
 
 ```javascript
 import { onlyMocks } from "../support/utils";

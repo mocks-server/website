@@ -127,7 +127,7 @@ To organize fixtures, a good approach can be to create a folder for each api "do
 
 We strongly encourage to assign very descriptive ids to the "fixtures" and "behaviors", as they will be used afterwards in the CLI, the Api, and all other possible Mocks Server interaction methods.
 
-A goog pattern for assigning an id to a fixture can be `[method]-[entity]-[short-description]`, as in `read-user-success`, `read-user-error`, or `read-user-with-long-name`.
+A good pattern for assigning an id to a fixture can be `[method]-[entity]-[short-description]`, as in `read-user-success`, `read-user-error`, or `read-user-with-long-name`.
 
 For assigning id to behaviors, we recommend to maintain a base behavior named as `standard`, `base`, or `default`. The rest of behaviors should extend from it _(at least indirectly)_, and their ids should be a short description of the behavior itself, for example:
 

@@ -47,4 +47,4 @@ module.exports = {
 
 ### Programmatically
 
-If you are using the _[@mocks-server/core package](https://www.npmjs.com/package/@mocks-server/core)_ to initializate the mocks-server programmatically, you can define the plugins to use as described in the [programmatic usage chapter](advanced-programmatic-usage.md).
+If you are using the _[@mocks-server/core package](https://www.npmjs.com/package/@mocks-server/core)_ to initialize the mocks-server programmatically, you can define the plugins to use as described in the [programmatic usage chapter](advanced-programmatic-usage.md).
