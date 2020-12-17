@@ -27,6 +27,7 @@ json
 lifecycle
 localhost
 middleware
+middlewares
 namespace
 Netlify
 overwritable
@@ -38,6 +39,7 @@ README
 md
 redux
 reusability
+subfolders
 submenu
 url
 uri

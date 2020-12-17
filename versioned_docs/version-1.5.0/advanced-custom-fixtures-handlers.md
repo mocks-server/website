@@ -38,7 +38,7 @@ The method should return `true` if the fixture is at charge of handling the requ
 
 If the `requestMatch` method returns `true`, then this method will be called passing the `express` middlewares `request`, `response` and `next` methods.
 
-Then, this method should send the correspondant response based on the fixture properties. [Check the `express` documentation](http://expressjs.com/en/guide/using-middleware.html) to know how if you are not already familiared with it.
+Then, this method should send the correspondent response based on the fixture properties. [Check the `express` documentation](http://expressjs.com/en/guide/using-middleware.html) to know how if you are not already familiared with it.
 
 _This project works well with [`@hapi/boom`](https://www.npmjs.com/package/@hapi/boom), so you can use it for responding http errors (simply call `next(Boom.badRequest())`, for example)_
 

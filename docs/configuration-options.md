@@ -31,7 +31,7 @@ This options can be defined using [command line arguments](configuration-command
 
 ## Low level configuration
 
-This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmaticaly](advanced-programmatic-usage.md) _(if you are using directly the [@mocks-server/core](advanced-programmatic-usage.md) instead of the main distribution)_.
+This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmatically](advanced-programmatic-usage.md) _(if you are using directly the [@mocks-server/core](advanced-programmatic-usage.md) instead of the main distribution)_.
 
 * `plugins`: `<Array of Plugins>` Array of Plugins, defined as described in the [plugins chapter](#advanced-developing-plugins).
 * `addPlugins`: `<Array of Plugins>` Array of Plugins to be added. This option does not overwrite previously defined plugins.

@@ -90,5 +90,5 @@ module.exports = [ standard, errorUpdatingUser ];
 
 Now, the server will have available "standard" and "update-user-error" behaviors.
 
-The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that `updateUser` and "updateUserError" fixtures have the same value for the `url` and `method` properties)_.
+The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that `updateUser` and `updateUserError` fixtures have the same value for the `url` and `method` properties)_.
 

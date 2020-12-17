@@ -7,7 +7,7 @@ title: Using express middlewares
 
 This tutorial assumes that you have completed the ["Definitions using javascript" tutorial](tutorials-static.md).
 
-You have now static fixtures defined using javascript, but, what if you want your `/api/users/:id` api url to respond with the correspondant user without the need of changing the current behavior?
+You have now static fixtures defined using javascript, but, what if you want your `/api/users/:id` api url to respond with the correspondent user without the need of changing the current behavior?
 
 This is __usually not recommended__, because you are going to implement almost a "real api", and maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it.
 
@@ -47,7 +47,7 @@ const getUsers = {
 
 ## Add an express middleware fixture
 
-Add a fixture for `GET` `/api/users/:id` that will respond with the user with correspondant id, or a "not found" error if any user matches:
+Add a fixture for `GET` `/api/users/:id` that will respond with the user with correspondent id, or a "not found" error if any user matches:
 
 ```javascript
 //mocks/fixtures/users.js
@@ -85,7 +85,7 @@ module.exports = {
 
 ## Add a new behavior
 
-Add a new behavior extending the "standard" one, and adding the "getUserReal" fixture:
+Add a new behavior extending the "standard" one, and adding the `getUserReal` fixture:
 
 ```javascript
 // /mocks/behaviors.js
@@ -140,7 +140,7 @@ Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3)
 
 ## Persistence
 
-You could add also express middleware fixtures for deleting, updating, or creating users, simply modifying the `INITIAL_USERS` memory object from each correspondant response function.
+You could add also express middleware fixtures for deleting, updating, or creating users, simply modifying the `INITIAL_USERS` memory object from each correspondent response function.
 
 __Changes will be be persisted in memory__ while the server is running.
 
