@@ -97,3 +97,30 @@ Now, the server will have available "standard" and "update-user-error" behaviors
 
 The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "updateUserError" fixtures have the same value for the `url` and `method` properties)_.
 
+## Changing current behavior
+
+For controlling the current behavior, you can use the [configuration](configuration-options.md) when starting the server:
+
+```bash
+npm run mocks -- --behavior=update-user-error
+```
+
+You can also use one of the plugins included in the `@mocks-server/main` distribution to change it while the server is running:
+
+* Use the interactive CLI provided by `@mocks-server/plugin-inquirer-cli`:
+
+![Interactive CLI](assets/cli_animation.gif)
+
+* Make a request to the REST API provided by `@mocks-server/plugin-admin-api`:
+
+```bash
+curl -X PATCH -d behavior=update-user-error http://localhost:3100/admin/settings
+```
+
+Or install by yourself and use one plugin providing integration with another tools:
+
+* Use the [Cypress](https://www.cypress.io/) command provided by `@mocks-server/cypress-commands`:
+
+```javascript
+cy.mocksServerSetBehavior("update-user-error");
+```
