@@ -145,7 +145,7 @@ Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3)
 
 ## Persistence
 
-You could add also express middleware fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
+You could add also express middleware fixtures for deleting, updating, or creating users, simply modifying the `INITIAL_USERS` memory object from each correspondant response function.
 
 __Changes will be be persisted in memory__ while the server is running.
 

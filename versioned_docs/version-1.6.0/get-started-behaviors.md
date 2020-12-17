@@ -64,5 +64,5 @@ module.exports = {
 
 Now, the server will have available "standard" and `errorUpdatingUser` behaviors.
 
-The `errorUpdatingUser` behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that "updateUser" and `errorUpdatingUser` have the same value for the `url` and `method` properties)_.
+The `errorUpdatingUser` behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that `updateUser` and `errorUpdatingUser` have the same value for the `url` and `method` properties)_.
 

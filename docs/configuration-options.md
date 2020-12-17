@@ -22,7 +22,7 @@ When same option is defined using multiple methods, the priority is _(from lower
 This options can be defined using [command line arguments](configuration-command-line-arguments.md) and can be changed while the server is running using [the `settings` methods](advanced-programmatic-usage.md).
 
 * `path`: `Path as <String>` Path to the folder containing behaviors and fixtures to be used by the server. By default is `/mocks`
-* `port`: `<Number>` Por number for the Mocks Server to be listening. Default is 3100.
+* `port`: `<Number>` Port number for the Mocks Server to be listening. Default is 3100.
 * `host`: `<String>` Host for the server. Default is "0.0.0.0" (Listen to any local host).
 * `log`: `<String>` Logs level. Can be one of "silly", "debug", "verbose", "info", "warn", "error".
 * `watch`: `<String>` Watch behaviors folder and restart server on changes. Default is `true`.  Use `false` to disable it.
