@@ -8,7 +8,7 @@ This chapter describes all available options in the [@mocks-server/main package 
 ## Main options
 
 * `path`: `Path as <String>` Path to the folder containing behaviors and fixtures to be used by the server. By default is `/mocks`
-* `port`: `<Number>` Por number for the Mocks Server to be listening. Default is 3100.
+* `port`: `<Number>` Port number for the Mocks Server to be listening. Default is 3100.
 * `host`: `<String>` Host for the server. Default is "0.0.0.0" (Listen to any local host).
 * `log`: `<String>` Logs level. Can be one of "silly", "debug", "verbose", "info", "warn", "error".
 * `watch`: `<Boolean>` Watch behaviors folder and restart server on changes. Default is `true`.

@@ -7,7 +7,7 @@ title: Behaviors
 
 Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are server responses for specific uris.
 
-The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenienve just in a second.
+The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenience just in a second.
 
 
 ## Creating a behavior
@@ -62,7 +62,7 @@ module.exports = {
 };
 ```
 
-Now, server will have available "standard" and "errorUpdatingUser" behaviors.
+Now, server will have available "standard" and `errorUpdatingUser` behaviors.
 
-The "errorUpdatingUser" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supossing that "updateUser" and "errorUpdatingUser" have the same value for the `url` property)_.
+The `errorUpdatingUser` behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that "updateUser" and `errorUpdatingUser` have the same value for the `url` property)_.
 

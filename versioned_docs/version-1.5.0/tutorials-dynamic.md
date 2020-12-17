@@ -83,7 +83,7 @@ module.exports = {
 
 ## Add a new behavior
 
-Add a new behavior extending the "standard" one, and adding the "getRealUser" fixture:
+Add a new behavior extending the "standard" one, and adding the `getRealUser` fixture:
 
 ```javascript
 // /mocks/behaviors.js
@@ -100,7 +100,7 @@ const standard = new Behavior([
 // Extends the standard behavior adding "getUser2" fixture.
 const user2 = standard.extend([getUser2]);
 
-// Extends the standard behavior adding "getRealUser" dynamic fixture.
+// Extends the standard behavior adding `getRealUser` dynamic fixture.
 const dynamic = standard.extend([getRealUser]);
 
 module.exports = {
@@ -139,7 +139,7 @@ Browse to [http://localhost:3100/api/users/3](http://localhost:3100/api/users/3)
 
 ## Persistence
 
-You could add also dynamic fixtures for deleting, updating, or creating users, simply modifiying the `INITIAL_USERS` memory object from each correspondant response function.
+You could add also dynamic fixtures for deleting, updating, or creating users, simply modifying the `INITIAL_USERS` memory object from each correspondant response function.
 
 Changes would be be persisted in memory while the server is running.
 

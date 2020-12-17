@@ -5,7 +5,7 @@ title: Command line arguments
 
 ## Options
 
-* `port`: `<Number>` Por number for the Mocks Server to be listening.
+* `port`: `<Number>` Port number for the Mocks Server to be listening.
 * `host`: `<String>` Host for the server. Default is "0.0.0.0" (Listen to any local host).
 * `log`: `<String>` Logs level. Can be one of "silly", "debug", "verbose", "info", "warn", "error".
 * `watch`: `<Boolean>` Watch behaviors folder and restart server on changes. Default is `true`.
@@ -17,7 +17,7 @@ title: Command line arguments
 
 ## How to define options
 
-Supossing you have a `mocks-server` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), you can define options directly in the npm script:
+Supposing you have a `mocks-server` script added to your `package.json` file, as seen in the [get started chapter](get-started-intro.md#installation), you can define options directly in the npm script:
 
 ```json
 {
