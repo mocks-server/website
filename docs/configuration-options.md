@@ -33,7 +33,7 @@ This options can be defined using [command line arguments](configuration-command
 
 This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmatically](advanced-programmatic-usage.md) _(if you are using directly the [@mocks-server/core](advanced-programmatic-usage.md) instead of the main distribution)_.
 
-* `plugins`: `<Array of Plugins>` Array of Plugins, defined as described in the [plugins chapter](#advanced-developing-plugins).
+* `plugins`: `<Array of Plugins>` Array of Plugins, defined as described in the [plugins chapter](advanced-developing-plugins.md).
 * `addPlugins`: `<Array of Plugins>` Array of Plugins to be added. This option does not overwrite previously defined plugins.
 * `configFile`: `<String>` Custom path for configuration file. If relative, will be resolved from current working directory. Default is `mocks-server.config.js`
 * `onlyProgrammaticOptions`: `<Boolean>` If `true`, disables both [command line arguments](configuration-command-line-arguments.md) and [configuration file](configuration-file.md).
@@ -46,7 +46,7 @@ Each plugin can add his own options when it is registered in the mocks-server. T
 
 * `cli`: `<String>` Start interactive CLI. Default is `true`. Use `false` to disable it.
 * `adminApiPath`: `<String>` Path for the administration api. Default is "/admin". You should change it only in case there is any conflict with the api you are mocking.
-* `adminApiDeprecatedPaths` - `<Boolean>` Disables deprecated "/mocks" api path, which is still enabled by default. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments) for further info)
+* `adminApiDeprecatedPaths` - `<Boolean>` Disables deprecated "/mocks" api path, which is still enabled by default. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments.md) for further info)
 
 > These extra options are added by the [@mocks-server/plugin-admin-api](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) and the [@mocks-server/plugin-inquirer-cli](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) plugins, which are included in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main).
 
@@ -54,4 +54,4 @@ _If you are starting the server programmatically using the [@mocks-server/core](
 
 For another plugins options, please refer to their own documentation.
 
-To know how to add your own options when developing a plugin, please refer to the ["programmatic usage"](advanced-programmatic-usage) and ["developing plugins"](advanced-developing-plugins) sections.
+To know how to add your own options when developing a plugin, please refer to the ["programmatic usage"](advanced-programmatic-usage.md) and ["developing plugins"](advanced-developing-plugins.md) sections.

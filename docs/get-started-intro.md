@@ -15,7 +15,7 @@ This project provides a mock server that can simulate and store multiple API beh
 
 * __Multiple api behaviors__: It allows to define different responses for the same route, and group them into different behaviors.
 * __Multiple formats__: Responses can be defined using `json` files or Javascript files. Definitions can be plain objects, and even Express middlewares can be used to send dynamic responses.
-* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli) or the [admin REST API](plugins-admin-api). The CLI is perfect for development, and the API can be used in other scenarios, as the [Cypress plugin does.](integrations-cypress)
+* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api). The CLI is perfect for development, and the API can be used in other scenarios, as the [Cypress plugin does.](integrations-cypress.md)
 
 ## Installation
 
@@ -51,7 +51,7 @@ Configure the server simply [creating a file at the root folder of your project]
 
 For changing [settings](configuration-options.md) (such as current behavior, delay time, etc.) while it is running, you can use:
 * [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
-* [REST API](plugins-admin-api.md) which is very useful to change behaviors from E2E tests, for example, as the [Cypress plugin does.](integrations-cypress)
+* [REST API](plugins-admin-api.md) which is very useful to change behaviors from E2E tests, for example, as the [Cypress plugin does.](integrations-cypress.md)
 
 ## How does it work?
 
@@ -77,6 +77,6 @@ As explained, the mocks-server can simulate multiple api behaviors and send diff
 
 The mocks-server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
-- [Start it programmatically](advanced-programmatic-usage) and use his multiple methods and events to manage it from your program.
+- [Start it programmatically](advanced-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
 - Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
-- Add new [fixtures handlers](advanced-custom-fixtures-handlers), which allows to customize the format in which fixtures are defined.
+- Add new [fixtures handlers](advanced-custom-fixtures-handlers.md), which allows to customize the format in which fixtures are defined.

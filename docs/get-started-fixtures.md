@@ -22,7 +22,7 @@ The standard format for defining a fixture is to declare an object containing ne
   * `body`: `<Object>` Object to send as body in the response.
 * `response`: `<Function>` In case the fixture is defined using javascript, the response can be an [express middleware](http://expressjs.com/en/guide/using-middleware.html) too. The function will receive the [express](http://expressjs.com/es/api.html) `request`, `response` and `next` arguments, so you will be free to handle the request at your convenience.
 
-> This is the standard format of defining fixtures, but more formats can be added [using the `addFixturesHandler` method](advanced-custom-fixtures-handlers).
+> This is the standard format of defining fixtures, but more formats can be added [using the `addFixturesHandler` method](advanced-custom-fixtures-handlers.md).
 
 ## Examples
 

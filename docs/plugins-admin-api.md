@@ -19,7 +19,7 @@ A __client for the administration api__ is also distributed as a separated packa
 ## Options
 
 * `adminApiPath`: `<String>` Path for the administration api. Default is "/admin". You should change it only in case there is any conflict with the api you are mocking.
-* `adminApiDeprecatedPaths` - `<Boolean>` Disables the deprecated "/mocks" api path, which is still enabled by default due to backward compatibility. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments) for further info)
+* `adminApiDeprecatedPaths` - `<Boolean>` Disables the deprecated "/mocks" api path, which is still enabled by default due to backward compatibility. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments.md) for further info)
 
 ## Api resources
 

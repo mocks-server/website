@@ -12,9 +12,9 @@ keywords:
 
 "Fixtures handlers" are the pieces at charge of handling the fixtures declarations, discerning whether a request has to be handled by a fixture or not, and sending responses when appropriate.
 
-The mocks-server includes only one fixtures parser by default, which accepts fixtures declared in the [format described in the "fixtures" chapter](get-started-fixtures), but **you can add your own fixtures declarations formats.**
+The mocks-server includes only one fixtures parser by default, which accepts fixtures declared in the [format described in the "fixtures" chapter](get-started-fixtures.md), but **you can add your own fixtures declarations formats.**
 
-This feature, combined with the [plugins development](advanced-developing-plugins), gives you the possibility of extend the mocks-server with almost every new feature you want.
+This feature, combined with the [plugins development](advanced-developing-plugins.md), gives you the possibility of extend the mocks-server with almost every new feature you want.
 
 ## Fixtures handler development
 
@@ -32,7 +32,7 @@ This static getter should return the name of the fixtures handler, which is usef
 
 #### `constructor(fixture, core)`
 
-If the `recognize` static method returns `true`, then the constructor will be called passing again the fixture, and the mocks-server `core` instance, which contains methods described in the [programmatic usage chapter](advanced-programmatic-usage).
+If the `recognize` static method returns `true`, then the constructor will be called passing again the fixture, and the mocks-server `core` instance, which contains methods described in the [programmatic usage chapter](advanced-programmatic-usage.md).
 
 #### `requestMatch(req)`
 
@@ -149,4 +149,4 @@ module.exports = {
 };
 ```
 
-> By the moment, custom fixtures handlers [can be added to the server only programmatically](advanced-programmatic-usage). In next releases this can be done easier through a configuration file in the root folder of the project.
+> By the moment, custom fixtures handlers [can be added to the server only programmatically](advanced-programmatic-usage.md). In next releases this can be done easier through a configuration file in the root folder of the project.

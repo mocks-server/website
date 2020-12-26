@@ -12,7 +12,7 @@ keywords:
 
 As mentioned, fixtures and behaviors can be also defined using javascript, which gives the possibility of reuse portions of them, or even create them programmatically.
 
-In this chapter we are going to repeat the same steps than in the ["Defining fixtures and behaviors"](guides-defining-fixtures) guide, but now we are going to create all using javascript instead of `json` files.
+In this chapter we are going to repeat the same steps than in the ["Defining fixtures and behaviors"](guides-defining-fixtures.md) guide, but now we are going to create all using javascript instead of `json` files.
 
 > Remember that you can combine `json` definitions with `javascript` definitions at your convenience in the `mocks` folder.
 
@@ -31,7 +31,7 @@ Create a `/mocks` folder in your project root, containing a `behaviors.js` file,
 |-- package.json
 ```
 
-> Each file will export many fixtures and behaviors. Read more about the [exportation of fixtures and behaviors in javascript here](guides-organizing-the-definitions).
+> Each file will export many fixtures and behaviors. Read more about the [exportation of fixtures and behaviors in javascript here](guides-organizing-the-definitions.md).
 
 ## Create an users fixture
 
@@ -66,7 +66,7 @@ module.exports = {
 
 ## Export a default behavior
 
-Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it. Read more about [how behaviors are defined using javascript here](get-started-behaviors).
+Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it. Read more about [how behaviors are defined using javascript here](get-started-behaviors.md).
 
 ```javascript
 //mocks/behaviors.js

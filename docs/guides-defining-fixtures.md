@@ -55,7 +55,7 @@ Now we are going to add a fixture to the `/mocks/fixtures/users.json` file, whic
 }
 ```
 :::info Fixtures format
-Read the [get started with fixtures chapter](get-started-fixtures) to know all possible fixtures properties.
+Read the [get started with fixtures chapter](get-started-fixtures.md) to know all possible fixtures properties.
 :::
 
 ## Export a default behavior
@@ -71,7 +71,7 @@ Create an "standard" behavior in the `mocks/behaviors.json` file, containing the
 ```
 
 :::info Fixtures format
-Read the [get started with behaviors chapter](get-started-behaviors) to know all possible behaviors properties.
+Read the [get started with behaviors chapter](get-started-behaviors.md) to know all possible behaviors properties.
 :::
 
 ## Start the Mocks Server

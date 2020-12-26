@@ -18,7 +18,7 @@ You can have your fixtures and behaviors definitions separated and organized in 
 
 ## Formats
 
-As read in the [fixtures](get-started-fixtures) and [behaviors](get-started-behaviors) chapters, fixtures and behaviors can be defined also using javascript. You can combine both formats, adding some of your definitions using javascript, while other are defined as plain `json` objects.
+As read in the [fixtures](get-started-fixtures.md) and [behaviors](get-started-behaviors.md) chapters, fixtures and behaviors can be defined also using javascript. You can combine both formats, adding some of your definitions using javascript, while other are defined as plain `json` objects.
 
 ## Definitions in json files
 
