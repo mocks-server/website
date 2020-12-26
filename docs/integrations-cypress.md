@@ -11,9 +11,33 @@ keywords:
 
 ## Cypress commands
 
-The Mock Server integrates with [Cypress](https://www.cypress.io/) tests very well.
+`mocks-server` integrates with [Cypress](https://www.cypress.io/) tests very well.
 
 Using the Cypress commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current behavior of the server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real api__, because you will control in every moment the responses that the api will return to your web page.
+
+### Commands
+
+Set current behavior:
+
+```js
+cy.mocksServerSetBehavior("admin-user");
+```
+
+Set delay time:
+
+```js
+cy.mocksServerSetDelay(2000);
+```
+
+Set any setting:
+
+```js
+cy.mocksServerSetSettings({
+  watch: false,
+  delay: 0,
+  behavior: "catalog-error"
+});
+```
 
 You'll be able to develop Cypress tests for error cases, slow requests _(using the `cy.mocksServerSetDelay` command)_ and many other cases that are very hard to reproduce with a real api, with the advantage that you will also reuse the same mocks while you are developing the application.
 

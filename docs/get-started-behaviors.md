@@ -109,7 +109,7 @@ You can also use one of the plugins included in the `@mocks-server/main` distrib
 
 * Use the interactive CLI provided by `@mocks-server/plugin-inquirer-cli`:
 
-![Interactive CLI](assets/cli_animation.gif)
+![Interactive CLI](assets/interactive-cli-animation.gif)
 
 * Make a request to the REST API provided by `@mocks-server/plugin-admin-api`:
 
@@ -117,7 +117,7 @@ You can also use one of the plugins included in the `@mocks-server/main` distrib
 curl -X PATCH -d behavior=update-user-error http://localhost:3100/admin/settings
 ```
 
-Or install by yourself and use one plugin providing integration with another tools:
+Or install by yourself and use one plugin providing integration with other tools:
 
 * Use the [Cypress](https://www.cypress.io/) command provided by `@mocks-server/cypress-commands`:
 

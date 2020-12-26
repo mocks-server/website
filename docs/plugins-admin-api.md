@@ -10,7 +10,7 @@ keywords:
 
 ## plugin-admin-api
 
-The main distribution includes the [plugin-admin-api plugin](https://www.npmjs.com/package/@mocks-server/plugin-admin-api), which provides a REST API that allows to change dynamically the current behavior, change delay time, and another [Mocks Server options](configuration-options.md) .
+The main distribution includes the [plugin-admin-api plugin](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) preinstalled, which provides a REST API that allows to change dynamically the current behavior, change delay time, and another [Mocks Server options](configuration-options.md) .
 
 This is __very useful when running acceptance tests, as you can change the behavior of the api__ simply with a request in your tests `before` method, for example.
 
@@ -35,5 +35,7 @@ Available api resources are:
   * Response body example: `{ "delay": 0, behavior: "foo-behavior", path: "mocks" }`
 * `PATCH` `/admin/settings` Changes current server settings.
   * Request body example: `{ "delay": 3000 }`
+* `GET` `/admin/alerts` Returns current alerts.
+* `GET` `/admin/alerts/:id` Returns an specific alert. The alert `id` is equivalent to the alert `context`.
 
 > Deprecated api resources under "/mocks" api path are also still available.
