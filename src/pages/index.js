@@ -10,23 +10,26 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useText from "@theme/custom-hooks/useText";
 
 const textContents = {
-  benefitsIsolated: `
+  benefitsInterfaces: `
     Define api contracts, add [mocks-server fixtures](docs/get-started-fixtures) and start front-end development.
     Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.
   `,
-  benefitsBehaviors: `
-    Define [multiple api behaviors](docs/get-started-behaviors) easily, including error cases.
-    Ensure that your front-end application is ready for all cases.
-    Change the behavior of the server while it is running using one of the available [plugins](/docs/plugins-adding-plugins).
+  benefitsInterfaces: `
+    Change the current behavior of the server and other settings while it is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api).
+    The CLI is perfect for development, and the API can be used in other scenarios, as the [Cypress plugin does.](docs/integrations-cypress)
   `,
-  benefitsTests: `
-    Test your front-end application configured for making requests to mocks-server.
-    Same tests can be reused to run end to end tests with the real api in more advanced phases of integration, [learn how](docs/integrations-cypress).
+  benefitsBehaviors: `
+    Define different responses for the same route ([fixtures](docs/get-started-fixtures)), and group them into different [behaviors](docs/get-started-behaviors).
+    Ensure that your API client is ready to handle all cases. Storing the different behaviors allows to use <code>mocks-server</code> both for development and testing phases.
+  `,
+  benefitsMultipleFormats: `
+    Define fixtures and behaviors using <code>json</code> files or JavaScript files. 
+    Define responses using plain objects, or even Express middlewares. Hot reload changes the responses in real time once files are changed.
   `,
   easyToUse: `
     Install it and start it in seconds. Follow the [tutorial](docs/get-started-fixtures) to add fixtures and you'll have a simulated api in few minutes.
     <br/><br/>
-    Create a [configuration file](docs/configuration-file), or use one of the included [plugins](docs/plugins-adding-plugins), as the [inquirer CLI](docs/plugins-inquirer-cli) or the [admin API REST](docs/plugins-admin-api) for changing settings easily while it is running.
+    Create a [configuration file](docs/configuration-file), start it, and use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
   `,
   easyToUseInstallCode: `
 npm i --save-dev @mocks-server/main
@@ -90,9 +93,10 @@ module.exports = {
 ]
   `,
   friendly: `
-    The main distribution of <code>mocks-server</code> includes some plugins for making easy
-    to control the server while it is running, allowing to change the current behavior, to change the delay, etc. From controlling
-    it through an interactive CLI, to using a REST API, etc.
+    The main distribution of <code>mocks-server</code> includes some preinstalled plugins for making easy
+    to control the server while it is running, allowing to change the current behavior, to change the delay, etc.
+    <br/><br/>
+    Settings can be changed using an interactive CLI or using a REST API. This allows to use <code>mocks-server</code> both for development and testing phases easily.
     <br/><br/>
     It also includes hot-reloading, so the responses of the server will change while you change your fixtures files.
   `,
@@ -252,21 +256,40 @@ function Benefits() {
       <ThreeColumns
         reverse
         columnOne={
-          <TextColumn title="Isolated development" text={useContent("benefitsIsolated")} />
-        }
-        columnTwo={
           <TextColumn title="Multiple api behaviors" text={useContent("benefitsBehaviors")} />
         }
-        columnThree={<TextColumn title="Solid tests" text={useContent("benefitsTests")} />}
+        columnTwo={
+          <TextColumn title="Multiple formats" text={useContent("benefitsMultipleFormats")} />
+        }
+        columnThree={
+          <TextColumn title="Multiple interfaces" text={useContent("benefitsInterfaces")} />
+        }
       />
     </Section>
   );
 }
 
-function EasyToUse() {
+function Friendly({ reverse, background }) {
   return (
-    <Section className="EasyToUse codeExample" background="tint">
+    <Section className="Friendly" background={background}>
       <TwoColumns
+        reverse={reverse}
+        columnOne={<TextColumn title="Developer friendly" text={useContent("friendly")} />}
+        columnTwo={
+          <div className="cliImageContainer">
+            <img src={useBaseUrl("img/interactive-cli-animation.gif")} />
+          </div>
+        }
+      />
+    </Section>
+  );
+}
+
+function EasyToUse({ reverse, background }) {
+  return (
+    <Section className="EasyToUse codeExample" background={background}>
+      <TwoColumns
+        reverse={reverse}
         columnOne={<TextColumn title="Easy to use" text={useContent("easyToUse")} />}
         columnTwo={
           <>
@@ -279,11 +302,11 @@ function EasyToUse() {
   );
 }
 
-function Flexible() {
+function Flexible({ reverse, background }) {
   return (
-    <Section className="Flexible codeExample" background="light">
+    <Section className="Flexible codeExample" background={background}>
       <TwoColumns
-        reverse
+        reverse={reverse}
         columnOne={<TextColumn title="Flexible" text={useContent("flexible")} />}
         columnTwo={
           <>
@@ -296,10 +319,11 @@ function Flexible() {
   );
 }
 
-function Maintainable() {
+function Maintainable({ reverse, background }) {
   return (
-    <Section className="Maintainable codeExample" background="tint">
+    <Section className="Maintainable codeExample" background={background}>
       <TwoColumns
+        reverse={reverse}
         columnOne={<TextColumn title="Maintainable" text={useContent("maintainable")} />}
         columnTwo={<CodeBlock language="json">{textContents.maintainableCode}</CodeBlock>}
       />
@@ -307,38 +331,11 @@ function Maintainable() {
   );
 }
 
-function Friendly() {
+function Integrations({ reverse, background }) {
   return (
-    <Section className="Friendly" background="light">
+    <Section className="Integrations codeExample" background={background}>
       <TwoColumns
-        reverse
-        columnOne={<TextColumn title="Friendly" text={useContent("friendly")} />}
-        columnTwo={
-          <div className="cliImageContainer">
-            <img src={useBaseUrl("img/cli_animation.gif")} />
-          </div>
-        }
-      />
-    </Section>
-  );
-}
-
-function Customizable() {
-  return (
-    <Section className="Customizable codeExample" background="tint">
-      <TwoColumns
-        columnOne={<TextColumn title="Customizable" text={useContent("customizable")} />}
-        columnTwo={<CodeBlock language="javascript">{textContents.customizableCode}</CodeBlock>}
-      />
-    </Section>
-  );
-}
-
-function Integrations() {
-  return (
-    <Section className="Integrations codeExample" background="light">
-      <TwoColumns
-        reverse
+        reverse={reverse}
         columnOne={<TextColumn title="Integrations" text={useContent("integrations")} />}
         columnTwo={<CodeBlock language="javascript">{textContents.integrationsCode}</CodeBlock>}
       />
@@ -346,13 +343,26 @@ function Integrations() {
   );
 }
 
-function Upcoming() {
+function Customizable({ reverse, background }) {
+  return (
+    <Section className="Customizable codeExample" background={background}>
+      <TwoColumns
+        reverse={reverse}
+        columnOne={<TextColumn title="Customizable" text={useContent("customizable")} />}
+        columnTwo={<CodeBlock language="javascript">{textContents.customizableCode}</CodeBlock>}
+      />
+    </Section>
+  );
+}
+
+function Upcoming({ reverse, background }) {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Section className="Upcoming" background="light">
+    <Section className="Upcoming" background={background}>
       <div className="content">
         <Heading text="Upcoming features" />
         <TwoColumns
+          reverse={reverse}
           columnOne={<p>{useContent("upcoming")}</p>}
           columnTwo={
             <p>
@@ -390,17 +400,24 @@ const Index = () => {
     <Layout wrapperClassName="homepage">
       <Head>
         <title>{siteConfig.title}</title>
-        <meta name="description" content="Node.js mock server" />
+        <meta
+          name="description"
+          content="Node.js mock server. Responses can be defined in json, JavaScript plain objects or Express middlewares. Supports defining different responses for the same route, and group them into different behaviors. Includes multiple interfaces, as an interactive CLI and a REST API."
+        />
+        <meta
+          name="keywords"
+          content="Node.js, mock server, simulated api, interactive, command line interface, api client, http, simulated response, REST API, api behaviors, developer friendly, hot reloading, testing, plugins, pluggable, Cypress"
+        />
       </Head>
       <HeaderHero />
       <Benefits />
+      <Friendly reverse background="tint" />
       <EasyToUse />
-      <Flexible />
+      <Flexible reverse background="tint" />
       <Maintainable />
-      <Friendly />
+      <Integrations reverse background="tint" />
       <Customizable />
-      <Integrations />
-      <Upcoming />
+      <Upcoming background="tint" />
       <Star />
     </Layout>
   );
