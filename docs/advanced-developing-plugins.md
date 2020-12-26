@@ -50,6 +50,9 @@ Apart of the `core` instance containing all methods and getters described in the
 
 * `loadMocks(definitions)` - Loads "behaviors" and "fixtures" definitions. Each time this method is called, __all previously loaded behaviors and fixtures will be replaced by the new ones, but only those added by this plugin. Definitions loaded by the core or by other plugins will remain__.
   * definitions - `<Array>` Array containing fixtures or behaviors defined as described in the ["fixtures"](get-started-fixtures) and ["behaviors"](get-started-behaviors) chapters.
+* `addAlert(context, message, error)` - Adds an alert, so `mocks-server` and other plugins can know about it. Use alerts to inform the user about deprecated methods or other warning messages, or about current errors. For example, when an error happens loading files, `mocks-server` adds automatically an alert in order to let the user know about the error.
+  * context - `<String>` Use context to inform about different alerts contexts. Alerts are unique for each different context, so if you add another alert using the same context, the previous one will be removed. You can define different context levels _(it is recommended to separate levels using `:`)_, as in `deprecated:method`, which is useful when using the `removeAlerts` method.
+* `removeAlerts([context])` - Removes alerts. All alerts starting by the provided context will be removed, so you can use `context` when adding alerts to define different levels that can be handled together. If no `context` is provided all alerts previously added by the plugin will be removed.
 
 ### Example
 

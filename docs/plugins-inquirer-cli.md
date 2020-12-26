@@ -20,17 +20,21 @@ If you are using this plugin _(enabled by default)_, you don't need to provide a
 npm run mocks-server
 ```
 
-![Interactive CLI](assets/cli_animation.gif)
+![Interactive CLI](assets/interactive-cli-animation.gif)
 
 ## Options
 
 * `cli`: `<String>` Start interactive CLI or not. Default is `true`. Use `false` to disable it.
 
-## Caveats
+## Alerts
 
-When the plugin is started, it silents all mocks-server traces until you explicitly select the "Display server logs" option. So, if an error is detected while the server is starting, it will not be displayed. 
+The plugin will display `mocks-server` alerts on the top of the screen. This is very useful when you are changing fixtures or behaviors definitions, and they can't be loaded because some file contains a JavaScript error, for example.
 
-> Disable this plugin for a better debugging experience if you are facing some problem while loading fixtures or behaviors definitions. `npm run mocks-server -- --cli=false`
+Current alerts will be displayed as:
+
+![Interactive CLI alerts](assets/interactive-cli-alerts.png)
+
+> As `mocks-server` includes hot reloading, the alert will automatically disappear when the error is fixed.
 
 ## Support
 

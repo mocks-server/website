@@ -58,6 +58,9 @@ server
 * `onChangeSettings(callback)`. Adds a callback to be executed when settings are changed. Returns a function for removing the added callback.
   * `callback([changedSettings])`: `<Function>`
     * `changedSettings`: `<Object>` Settings properties that have changed, with new values.
+* `onChangeAlerts(callback)`. Adds a callback to be executed when alerts change. Returns a function for removing the added callback.
+  * `callback([currentAlerts])`: `<Function>`
+    * `currentAlerts`: `<Array>` Current alerts.
 
 ###### Customization methods
 
@@ -107,3 +110,4 @@ server
 * `fixtures`. Returns methods and getters related to currently available fixtures.
   * `count`. Getter returning total number of fixtures available.
   * `collection`. Collection of fixtures instances.
+* `alerts`. Returns an array of current alerts.
