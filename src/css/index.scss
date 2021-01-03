@@ -243,6 +243,12 @@
   }
 }
 
+@media only screen and (max-width: 960px) {
+  .codeExample .prism-code {
+    max-width: calc(100vw - 8rem);
+  }
+}
+
 /* Heading */
 
 .Heading {
@@ -280,14 +286,6 @@
 
 .Section.dark {
   background-color: var(--dark);
-}
-
-.Section p a {
-  @extend %link-style;
-}
-
-html[data-theme="dark"] .Section p a {
-  @extend %link-style-dark;
 }
 
 /* Two columns */
@@ -402,6 +400,10 @@ html[data-theme="dark"] .Section p a {
 
   .ThreeColumns .column {
     padding: 0 4rem;
+  }
+
+  .ThreeColumns .column.center, .ThreeColumns .column.last {
+    margin-top:2rem;
   }
 }
 
