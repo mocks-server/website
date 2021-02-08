@@ -78,7 +78,7 @@ server
     * `path`: `<String>` Api path of the custom router to be removed.
     * `expressRouter`: `<Express Router>` Instance of the express router to be removed.
 * `addFixturesHandler(FixturesHandler)` Adds a custom fixtures handler. This allows to add new formats or methods of defining fixtures.
-    * `FixturesHandler`: `<Class>` Custom fixtures handler. Read the [adding custom fixtures handlers chapter](advanced-custom-fixtures-handlers.md) for further info.
+    * `FixturesHandler`: `<Class>` Custom fixtures handler. Read the [adding custom fixtures handlers chapter](advanced-custom-route-handlers.md) for further info.
 
 ###### Getters
 

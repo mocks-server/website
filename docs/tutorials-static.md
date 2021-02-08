@@ -66,7 +66,7 @@ module.exports = {
 
 ## Export a default behavior
 
-Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it. Read more about [how behaviors are defined using javascript here](get-started-behaviors.md).
+Import your recently created `getUsers` fixture in the `/mocks/behaviors.js` file and create an "standard" behavior containing it. Read more about [how behaviors are defined using javascript here](get-started-mocks.md).
 
 ```javascript
 //mocks/behaviors.js

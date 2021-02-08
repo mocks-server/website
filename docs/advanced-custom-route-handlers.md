@@ -1,7 +1,7 @@
 ---
-id: advanced-custom-fixtures-handlers
-title: Custom fixtures handlers
-description: How to add custom fixture handlers
+id: advanced-custom-route-handlers
+title: Custom route handlers
+description: How to add custom route handlers
 keywords:
   - mocks server
   - customization
@@ -12,7 +12,7 @@ keywords:
 
 "Fixtures handlers" are the pieces at charge of handling the fixtures declarations, discerning whether a request has to be handled by a fixture or not, and sending responses when appropriate.
 
-The mocks-server includes only one fixtures parser by default, which accepts fixtures declared in the [format described in the "fixtures" chapter](get-started-fixtures.md), but **you can add your own fixtures declarations formats.**
+The mocks-server includes only one fixtures parser by default, which accepts fixtures declared in the [format described in the "fixtures" chapter](get-started-routes.md), but **you can add your own fixtures declarations formats.**
 
 This feature, combined with the [plugins development](advanced-developing-plugins.md), gives you the possibility of extend the mocks-server with almost every new feature you want.
 

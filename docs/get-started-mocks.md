@@ -1,10 +1,12 @@
 ---
-id: get-started-behaviors
-title: Behaviors
-description: Get started with Mocks Server behaviors
+id: get-started-mocks
+title: Mocks
+description: Get started with Mocks Server mocks
 keywords:
   - mocks server
-  - behavior
+  - mock
+  - presets
+  - first steps
   - intro
 ---
 
@@ -12,7 +14,7 @@ keywords:
 
 The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenience while the server is running.
 
-Each behavior consists in a set of ["fixtures"](get-started-fixtures.md), which are handlers for specific requests. When a behavior contains multiple fixtures that should handle the same request _(same method and url)_, __the last one in the array will have priority over the first one__. This has to be taken into account when we are extending behaviors.
+Each behavior consists in a set of ["fixtures"](get-started-routes.md), which are handlers for specific requests. When a behavior contains multiple fixtures that should handle the same request _(same method and url)_, __the last one in the array will have priority over the first one__. This has to be taken into account when we are extending behaviors.
 
 ## Defining behaviors using json
 
@@ -44,14 +46,14 @@ Behaviors are extensibles, so, you can have an "standard" behavior, which define
 
 ## Defining behaviors using javascript
 
-For creating a behavior using javascript, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-fixtures.md) or fixtures ids to it.
+For creating a behavior using javascript, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-routes.md) or fixtures ids to it.
 
 `new Behavior(fixtures, options)`
 * `fixtures`: `<Array>` of fixtures or fixtures ids.
 * `options`: `<Object>`
   * `id`: `<String>` Id for the behavior.
 
-_Read the ["fixtures" code example](get-started-fixtures.md#examples) to see how fixtures were defined first._
+_Read the ["fixtures" code example](get-started-routes.md#examples) to see how fixtures were defined first._
 
 ```javascript
 const { Behavior } = require("@mocks-server/main");

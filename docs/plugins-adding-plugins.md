@@ -19,7 +19,7 @@ Some things that can be made with a plugin are:
 - Add custom express routers to the server.
 - Add new options, accessible even through command line arguments.
 - Change settings while the server is running.
-- Add new formats of defining "fixtures". _(Using ["custom fixtures handlers"](advanced-custom-fixtures-handlers.md))_
+- Add new formats of defining "fixtures". _(Using ["custom fixtures handlers"](advanced-custom-route-handlers.md))_
 
 ## Find plugins
 
