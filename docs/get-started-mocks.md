@@ -1,7 +1,7 @@
 ---
 id: get-started-mocks
 title: Mocks
-description: Get started with Mocks Server mocks
+description: What is a Mocks Server mock, and how it should be defined
 keywords:
   - mocks server
   - mock
@@ -10,119 +10,100 @@ keywords:
   - intro
 ---
 
-## Definition
+## Intro
 
-The Mocks Server can handle multiple behaviors, so you can change the API responses at your convenience while the server is running.
+* A __mock__ defines a set of ["route variants"](get-started-routes.md)
+* Mocks can extend from another mock, so you can "copy" an existant one, and change only one "route variant", for example.
+* Mocks must be defined in the `mocks/mocks.(json|js)` file of your project. The file must export an array of mocks.
 
-Each behavior consists in a set of ["fixtures"](get-started-routes.md), which are handlers for specific requests. When a behavior contains multiple fixtures that should handle the same request _(same method and url)_, __the last one in the array will have priority over the first one__. This has to be taken into account when we are extending behaviors.
+## API
 
-## Defining behaviors using json
+A __mock__ is an object containing:
 
-Behaviors are defined with an object containing next properties:
-
-* `id`: `<String>` Used as reference for extending it, etc.
-* `from`: `<String>` Optional. Behavior id from which this behavior will extend.
-* `fixtures`: `<Array of String>` Fixtures ids.
-
-
-## Extending behaviors
-
-Behaviors are extensibles, so, you can have an "standard" behavior, which defines the default behavior of the mock server and responses for all your api uris, and extend this behavior creating new ones that change only responses for certain uris. All extended behaviors are extensible as well.
+* __`id`__ _(String)_: Identifier for the mock.
+* __`from`__ _(String)_: Optional. Mock id from which this mock extends.
+* __`routeVariants`__ _(Array of Strings)_: Route variants ids, expressed as `"[routeId]:[variantId]"`
 
 ```json
+// file mocks/mocks.json
 [
   {
-    "id": "standard",
-    "fixtures": ["get-users", "get-user", "update-user", "create-user"]
+    "id": "base", //id of the mock
+    "routeVariants": ["get-users:success", "get-user:success"] //route variants to use
   },
   {
-    "id": "update-user-error",
-    "from": "standard", // extends from standard behavior
-    "fixtures": ["update-user-error"]
+    "id": "user-real", //id of the mock
+    "from": "base", //inherits the route variants of "base" mock
+    "routeVariants": ["get-user:real"] //get-user route uses another variant
   }
 ]
 ```
 
+:::note
+We recommend to always define a base mock containing one variant of all your routes. If you extend all other mocks from this one (or from another extending from this one), when you add new routes or middlewares, you'll only have to add them to the base mock.
+:::
 
-## Defining behaviors using javascript
+## Defining mocks using JavaScript
 
-For creating a behavior using javascript, you have to use the mocks-server `Behavior` class, providing an array of ["fixtures"](get-started-routes.md) or fixtures ids to it.
+Mocks can also be defined using a JavaScript file. Simply rename the file `mocks/mocks.json` into `mocks/mocks.js` and export the mocks array:
 
-`new Behavior(fixtures, options)`
-* `fixtures`: `<Array>` of fixtures or fixtures ids.
-* `options`: `<Object>`
-  * `id`: `<String>` Id for the behavior.
-
-_Read the ["fixtures" code example](get-started-routes.md#examples) to see how fixtures were defined first._
-
-```javascript
-const { Behavior } = require("@mocks-server/main");
-
-const { getUsers, updateUser } = require("./fixtures/users");
-
-module.exports = new Behavior([
-  getUsers,
-  "get-user", // A fixture id can be provided also.
-  updateUser
-], {
-  id: "standard"
-});
+```js
+// file mocks/mocks.js
+module.exports = [
+  {
+    id: "base", //id of the mock
+    routeVariants: ["get-users:success", "get-user:success"] //route variants to use
+  },
+  {
+    id: "user-real", //id of the mock
+    from: "base", //inherits the route variants of "base" mock
+    routeVariants: ["get-user:real"] //get-user route uses another variant
+  }
+];
 ```
 
-### Extending behaviors instances
+## How to change current mock
 
-Behaviors instances contain an `extend` method, which can be used to create a new behavior extending from it using javascript.
+### Using command line arguments
 
-You can add another one behavior extending the first one and changing only the response of the `updateUser` fixture, for example:
-
-```javascript
-const { Behavior } = require("@mocks-server/main");
-
-const { getUsers, updateUser, updateUserError } = require("./fixtures/users");
-
-const standard = new Behavior([
-  getUsers,
-  "get-user", // A fixture id can be provided also.
-  updateUser
-], {
-  id: "standard"
-});
-
-const errorUpdatingUser = standard.extend([ updateUserError ], {
-  id: "update-user-error"
-});
-
-module.exports = [ standard, errorUpdatingUser ];
-```
-
-Now, the server will have available "standard" and "update-user-error" behaviors.
-
-The "update-user-error" behavior will send a different response only for the `/api/users/:id` uri with `PUT` method _(supposing that `updateUser` and `updateUserError` fixtures have the same value for the `url` and `method` properties)_.
-
-## Changing current behavior
-
-For controlling the current behavior, you can use the [configuration](configuration-options.md) when starting the server:
+For defining the current mock, you can use [command line arguments](configuration-command-line-arguments.md) when starting the server:
 
 ```bash
-npm run mocks -- --behavior=update-user-error
+npm run mocks -- --mock=user-real
 ```
 
-You can also use one of the plugins included in the `@mocks-server/main` distribution to change it while the server is running:
+### Using the interactive CLI
 
-* Use the interactive CLI provided by `@mocks-server/plugin-inquirer-cli`:
+You can also change the current mock using the interactive CLI:
 
 ![Interactive CLI](assets/interactive-cli-animation.gif)
 
-* Make a request to the REST API provided by `@mocks-server/plugin-admin-api`:
+### Using the admin API REST
+
+Make a request to the Mocks Server administration REST API provided by `@mocks-server/plugin-admin-api` (included in the main distribution):
 
 ```bash
-curl -X PATCH -d behavior=update-user-error http://localhost:3100/admin/settings
+curl -X PATCH -d mock=user-real http://localhost:3100/admin/settings
 ```
+
+### Integrations
 
 Or install by yourself and use one plugin providing integration with other tools:
 
 * Use the [Cypress](https://www.cypress.io/) command provided by `@mocks-server/cypress-commands`:
 
 ```javascript
-cy.mocksServerSetBehavior("update-user-error");
+cy.mocksServerSetMock("user-real");
 ```
+
+## The order matters
+
+Note that __the order in which route variants are added to the array may be important__. As seen in the previous chapter, route variants responses can be defined as `express` middlewares, so maybe some routes are not going to send a response, and should be added in an specific order.
+
+The order in which Mocks Server register express middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
+
+When extending from another mock, the new route variant will replace the old one in the same position it was originally defined.
+
+Read the ["using express middlewares" guide](guides-using-express-middlewares.md) for further info.
+
+<!-- In the next example, all of the variants `trace:enabled`, `trace:disabled` and `trace:debug` are middlewares of the url `*`, so they will be always executed. Note how it is added in first place in the `base` mock, in order to execute it in first place. -->

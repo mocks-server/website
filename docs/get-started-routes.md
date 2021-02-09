@@ -1,7 +1,7 @@
 ---
 id: get-started-routes
 title: Routes
-description: Get started with Mocks Server routes
+description: What is a Mocks Server route, and how it should be defined
 keywords:
   - mocks server
   - routes
@@ -40,8 +40,9 @@ The standard format for defining a route is to declare an object containing:
       * __`next`__ Express middleware `next` method.
       * __`mocksServer`__ Mocks server core methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](advanced-programmatic-usage.md) about available methods.
 
-
-> The format of variants describe here is the default one, but more formats can be added [using custom route handlers](advanced-custom-route-handlers.md).
+:::note
+The format of variants describe here is the default one, but more formats can be added [using custom route handlers](advanced-custom-route-handlers.md).
+:::
 
 ## Examples
 
@@ -128,7 +129,7 @@ module.exports = [
     method: "GET", // HTTP method
     variants: [
       {
-        id: "static", // id of the variant
+        id: "success", // id of the variant
         response: {
           status: 200, // status to send
           body: USERS[0], // body to send
@@ -155,7 +156,35 @@ module.exports = [
 ]
 ```
 
-## Usage
+## How to change current route variant
 
-Read the [next chapter to know how group different route variants in `mocks`](get-started-mocks.md), and change all of the responses of your mocked API at a time.
+### Adding it to a mock
 
+Read the [next chapter to know how group different route variants into `mocks`](get-started-mocks.md), and change all of the responses of your mocked API at a time changing the current `mock`.
+
+### Using the interactive CLI
+
+You can define custom route variants to be used by the current mock using the interactive CLI. When you add a route variant, it is like adding it to the `mock` definition, so the route will use this variant instead of the one defined in the `mock`.
+
+![Interactive CLI](assets/interactive-cli-animation.gif)
+
+### Using the admin API REST
+
+Make a request to the Mocks Server administration REST API:
+```bash
+curl -X POST -d routeVariant=get-user:real http://localhost:3100/admin/custom-route-variants
+```
+
+### Integrations
+
+Or install by yourself and use one plugin providing integration with other tools:
+
+* Use the [Cypress](https://www.cypress.io/) command provided by `@mocks-server/cypress-commands`:
+
+```javascript
+cy.mocksServerUseRouteVariant("get-user:real");
+```
+
+:::note
+When the current mock is changed, all custom route variants defined using the methods described here will be lost. If you want to persist changes, you should define a mock as it is described in the next chapter.
+:::

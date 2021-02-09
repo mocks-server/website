@@ -75,9 +75,11 @@ For changing [settings](configuration-options.md) (such as current mock, delay t
 
 ## How does it work?
 
-As input, it needs ["routes"](get-started-routes.md), which are handlers for specific requests, and ["mocks"](get-started-mocks.md), which are sets of ["route variants"](get-started-routes.md).
+It loads all files in the ["routes"](get-started-routes.md) folder, which are handlers for specific requests, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
 
-You can easily [change the responses of the API while the server is running](#configuration) changing the current mock, or defining specific route variants. This will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
+The server will respond to the requests with the route variants defined in the current mock.
+
+Then, you can easily [change the responses of the API while the server is running](#configuration) changing the current mock, or defining specific route variants. This can make your __development or acceptance tests environments very much agile and flexible__, as you can define different ["mocks"](get-started-mocks.md) for every different case you want to simulate.
 
 ## Why a mock server?
 
@@ -89,7 +91,7 @@ Working with Node.js, it integrates better in front-end projects as any other NP
 
 ## Why "Mocks" in plural?
 
-As explained, the Mocks Server can store different mocks, which are sets of different route variants. So it simulates multiple api behaviors and send different responses to the same request, so it is like having different mock servers that can be changed while running at our convenience.
+As explained, the Mocks Server can store different mocks, which are sets of different route variants. So it simulates multiple api behaviors and send different responses to the same request at your convenience, so it is like having different mock servers that can be changed while running.
 
 ## Customization
 

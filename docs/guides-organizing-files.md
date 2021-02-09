@@ -1,13 +1,17 @@
 ---
-id: guides-organizing-the-definitions
-title: Organizing the definitions
-description: How to organize Mocks Server definitions
+id: guides-organizing-files
+title: Organizing files
+description: How to organize Mocks Server files
 keywords:
   - mocks server
   - guides
   - tutorial
   - guidelines
   - good practices
+  - files
+  - files structure
+  - mocks
+  - routes
 ---
 
 ## Files structure

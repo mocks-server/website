@@ -1,5 +1,5 @@
 ---
-id: tutorials-dynamic
+id: guides-using-express-middlewares
 title: Using express middlewares
 description: How to define Mocks Server fixtures using Express middlewares
 keywords:
@@ -9,8 +9,6 @@ keywords:
 ---
 
 ## Preface
-
-This tutorial assumes that you have completed the ["Definitions using javascript" tutorial](tutorials-static.md).
 
 You have now static fixtures defined using javascript, but, what if you want your `/api/users/:id` api url to respond with the correspondent user without the need of changing the current behavior?
 

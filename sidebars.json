@@ -2,7 +2,7 @@
   "docs": {
     "Welcome": ["welcome-about-docs"],
     "Getting started": ["get-started-intro", "get-started-routes", "get-started-mocks"],
-    "Guides": ["guides-defining-fixtures", "guides-organizing-the-definitions", "tutorials-static", "tutorials-dynamic"],
+    "Guides": ["guides-organizing-files", "guides-using-express-middlewares"],
     "Configuration": ["configuration-options", "configuration-file", "configuration-command-line-arguments"],
     "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "advanced-developing-plugins"],
     "Integrations": ["integrations-cypress"],
