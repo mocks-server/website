@@ -1,5 +1,5 @@
 ---
-id: advanced-programmatic-usage
+id: api-programmatic-usage
 title: Programmatic usage
 description: Programmatic usage of Mocks Server
 keywords:

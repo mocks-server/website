@@ -38,7 +38,7 @@ The standard format for defining a route is to declare an object containing:
       * __`req`__ Express middleware `req` object.
       * __`res`__ Express middleware `res` methods.
       * __`next`__ Express middleware `next` method.
-      * __`mocksServer`__ Mocks server core methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](advanced-programmatic-usage.md) about available methods.
+      * __`mocksServer`__ Mocks server core methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](api-core-api.md) about available methods.
 
 :::note
 The format of variants describe here is the default one, but more formats can be added [using custom route handlers](advanced-custom-route-handlers.md).

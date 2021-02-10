@@ -5,7 +5,6 @@ description: How to organize Mocks Server files
 keywords:
   - mocks server
   - guides
-  - tutorial
   - guidelines
   - good practices
   - files
@@ -16,140 +15,140 @@ keywords:
 
 ## Files structure
 
-Mocks server is very flexible and permissive with the files structure inside the `mocks` folder. It will load any fixture or behavior defined in any `.js` or `.json` file at any folder level.
+When started for the first time, Mocks Server will create a config file and a scaffold folder named `mocks` in your project, containing next files and folders:
 
-You can have your fixtures and behaviors definitions separated and organized in as many files and folders as you want.
-
-## Formats
-
-As read in the [fixtures](get-started-routes.md) and [behaviors](get-started-mocks.md) chapters, fixtures and behaviors can be defined also using javascript. You can combine both formats, adding some of your definitions using javascript, while other are defined as plain `json` objects.
-
-## Definitions in json files
-
-You can define your fixtures or behaviors in json format, defining one per file, or in an array containing multiple of them, or even all of them _(fixtures and behaviors can also be defined in the same file)_
-
-### One definition per file
-
-```json
-{
-  "id": "foo-behavior",
-  "fixtures": ["foo-fixture"]
-}
+```
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   └── users.js
+│   └── mocks.json
+└── mocks.config.json
 ```
 
-### Multiple definitions per file
+This scaffold contains some examples from this documentation that may help you to better understand how `routes` and `mocks` should be defined, how to use `express` middlewares, etc.
 
-```json
-[
+:::note
+The name of the mocks folder can be changed using the path option. Read [options](configuration-options.md) for further info.
+:::
+
+## /routes
+
+All files inside the `/routes` folder will be loaded, including subfolders, so you can organize routes in the way you want. As a suggestion, you can create a different file for each API entity, and a different folder for each API domain. This will help to maintain your routes organized. For example:
+
+```
+routes/
+├── customers/
+│   ├── addresses.js
+│   └── users.js
+└── sales/
+    ├── orders.js
+    └── products.js
+```
+
+:::info
+Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](get-started-routes.md).
+:::
+
+## /mocks.json
+
+This file contains the [definitions of `mocks`](get-started-mocks.md), and its name can't be changed _(you can also use a `.js` extension if you want)_. It must export an array of [Mocks Server `mocks`](get-started-mocks.md).
+
+## Other files and folders
+
+You can create other files and folders inside the `mocks` folder, Mocks Server will simply ignore them. So, for example, if you want to maintain the data you use in your `routes` separated from the definition of the `routes` theirself, you could create a `data` folder, and import it from the route files.
+
+```
+project-root/
+├── mocks/
+│   ├── data/
+│   │   └── users.js
+│   ├── routes/
+│   │   └── users.js
+│   └── mocks.json
+└── mocks.config.json
+```
+
+```js
+// mocks/data/users.js
+module.exports = [
   {
-    "id": "foo-behavior",
-    "fixtures": ["foo-fixture"]
+    id: 1,
+    name: "John Doe"
   },
   {
-    "id": "foo-behavior-2",
-    "fixtures": ["foo-fixture-2"]
+    id: 2,
+    name: "Jane Doe"
   }
-]
+];
 ```
 
+```js
+// mocks/routes/users.js
+const users = require("../data/users");
 
-## Javascript exportation formats
-
-Javascript files containing fixtures or behaviors can export them as:
-
-### Object
-
-You can use an object to export your definitions. The Mock Server will search at the first level of exported objects and will load any fixture or behavior defined in it.
-
-```javascript
-const myFixture = {
-  //...
-};
-
-const myFixture2 = {
-  //...
-};
-
-module.exports = {
-  myFixture,
-  myFixture2
-}
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users"
+    method: "GET",
+    variants: [
+      {
+        id: "all",
+        response: {
+          status: 200,
+          body: users
+        }
+      },
+      {
+        id: "one",
+        response: {
+          status: 200,
+          body: [users[0]]
+        }
+      }
+    ]
+  },
+];
 ```
 
-### Array
+## Hot reloading
 
-The server accepts exports as arrays, and will load any fixture or behavior defined in it.
+Every time a file in the `mocks` folder is changed _(including custom files and folders outside the `routes` folder)_, Mocks Server will reload everything automatically.
 
-```javascript
-const myFixture = {
-  //...
-};
+If any file contains an error, Mocks Server will add an alert, and you will see the error in the interactive CLI, for example:
 
-const myFixture2 = {
-  //...
-};
+TODO, add image.
 
-module.exports = [myFixture, myFixture2];
-```
+The alert will be removed automatically when the file containing the error is fixed and saved again:
 
-### Single export
-
-You can also define one behavior or fixture per file, and export it directly:
-
-
-```javascript
-const myFixture = {
-  //...
-};
-
-module.exports = myFixture;
-```
+TODO, add image.
 
 ## Good practices
 
-### Files structure
+### Use descriptive ids
 
-As a good practice, for a better maintainability, we recommend to use `json` for the definitions while it is possible _(for complex or programmatic definitions you'll prefer to use javascript)_, and maintain all your behavior definitions inside a `behaviors.json` file in the root of the `mocks` folder.
+We strongly recommend to assign very descriptive ids to the "routes", "variants" and "mocks", as they will be used afterwards in the CLI, the REST API, and all other possible Mocks Server interaction tools.
 
-To organize fixtures, a good approach can be to create a folder for each api "domain", containing a different `json` file with all fixtures of a same entity:
+A good pattern for assigning an id to a `route` can be `[method]-[entity]`, as in `get-users`, `get-user`, etc.
 
-```
-/your/awesome/project
-|-- node_modules
-|-- src
-|-- mocks
-|   |-- behaviors.json
-|   |-- customers
-|   |   |-- users.json
-|   |   |-- tokens.json
-|   |-- sales
-|       |-- products.json
-|-- package.json
-```
-
-### Descriptive ids
-
-We strongly encourage to assign very descriptive ids to the "fixtures" and "behaviors", as they will be used afterwards in the CLI, the Api, and all other possible Mocks Server interaction methods.
-
-A good pattern for assigning an id to a fixture can be `[method]-[entity]-[short-description]`, as in `read-user-success`, `read-user-error`, or `read-user-with-long-name`.
-
-For assigning id to behaviors, we recommend to maintain a base behavior named as `standard`, `base`, or `default`. The rest of behaviors should extend from it _(at least indirectly)_, and their ids should be a short description of the behavior itself, for example:
+For assigning id to mocks, we recommend to maintain a base `mock` named as `standard`, `base`, or `default`. The rest of mocks should extend from it _(at least indirectly)_, and their ids should be a short description of the mock itself, for example:
 
 ```json
 [
   {
-    "id": "standard",
-    "fixtures": ["read-users-success", "read-user-success", "create-user-success", "delete-user-success"]
+    "id": "base",
+    "routeVariants": ["get-users:all", "get-user:success", "create-user:success"]
   },
   {
     "id": "error-creating-user",
-    "from": "standard",
-    "fixtures": ["create-user-error"]
+    "from": "base",
+    "routeVariants": ["create-user:error"]
   },
   {
     "id": "users-with-long-name",
-    "from": "standard",
-    "fixtures": ["read-users-with-long-name", "read-user-with-long-name"]
+    "from": "base",
+    "routeVariants": ["get-users:long-names", "get-user:long-name"]
   }
 ]
 ```

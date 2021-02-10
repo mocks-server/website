@@ -25,7 +25,7 @@ A __mock__ is an object containing:
 * __`routeVariants`__ _(Array of Strings)_: Route variants ids, expressed as `"[routeId]:[variantId]"`
 
 ```json
-// file mocks/mocks.json
+// mocks/mocks.json
 [
   {
     "id": "base", //id of the mock
@@ -48,7 +48,7 @@ We recommend to always define a base mock containing one variant of all your rou
 Mocks can also be defined using a JavaScript file. Simply rename the file `mocks/mocks.json` into `mocks/mocks.js` and export the mocks array:
 
 ```js
-// file mocks/mocks.js
+// mocks/mocks.js
 module.exports = [
   {
     id: "base", //id of the mock
@@ -102,8 +102,8 @@ Note that __the order in which route variants are added to the array may be impo
 
 The order in which Mocks Server register express middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
 
-When extending from another mock, the new route variant will replace the old one in the same position it was originally defined.
+When extending from another mock, the new route variant will replace the old one in the same position that it was originally defined.
 
-Read the ["using express middlewares" guide](guides-using-express-middlewares.md) for further info.
+Read the ["using middlewares" guide](guides-using-middlewares.md) for further info and examples.
 
 <!-- In the next example, all of the variants `trace:enabled`, `trace:disabled` and `trace:debug` are middlewares of the url `*`, so they will be always executed. Note how it is added in first place in the `base` mock, in order to execute it in first place. -->

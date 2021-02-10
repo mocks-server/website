@@ -52,13 +52,15 @@ Now, you can start the Mocks Server with the command:
 npm run mocks
 ```
 
-When started for first time, it will create a scaffold folder named `mocks` in your project, containing next files:
+When started for the first time, it will create a scaffold folder named `mocks` in your project, containing next files and folders:
 
 ```
-mocks/
-├── routes/
-│   └── users.js
-└── mocks.json
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   └── users.js
+│   └── mocks.json
+└── mocks.config.json
 ```
 
 It contains examples from this documentation providing a simple API with two different mocks and some route variants. You can use the interactive CLI that is also started to change the server settings and see how you can change the responses of the API changing the current mock, changing route variants, etc.
@@ -67,7 +69,7 @@ It contains examples from this documentation providing a simple API with two dif
 
 ## Configuration
 
-Configure the server simply [creating a `mocks-server.config.js` file at the root folder of your project](configuration-file.md).
+Configure the server simply [creating a `mocks.config.js` file at the root folder of your project](configuration-file.md).
 
 For changing [settings](configuration-options.md) (such as current mock, delay time, etc.) while it is running, you can use:
 * [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
@@ -97,6 +99,6 @@ As explained, the Mocks Server can store different mocks, which are sets of diff
 
 Mocks Server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
-- [Start it programmatically](advanced-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
+- [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
 - Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
 - Add new [route handlers](advanced-custom-route-handlers.md), which allows to customize the format in which route variants are defined.

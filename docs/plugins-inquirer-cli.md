@@ -6,18 +6,23 @@ keywords:
   - mocks server
   - configuration
   - administration
+  - plugin
+  - command line interface
+  - inquirer
+  - settings
+  - options
 ---
 
 ## plugin-inquirer-cli
 
-The main distribution includes the [inquirer-cli plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli), which provides an interactive CLI that allows to change the server settings while it is running.
+The Mocks Server main distribution includes the [inquirer-cli plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) preinstalled. It provides an interactive CLI that allows to change the server settings while it is running, displays server logs, etc.
 
 ## Usage
 
-If you are using this plugin _(enabled by default)_, you don't need to provide all your desired options using the [configuration file](configuration-file.md) or [command line arguments](configuration-command-line-arguments.md) when starting the server. The CLI allows you to change settings while the server is running:
+If you are using this plugin _(enabled by default)_, you don't need to provide all your desired options using the [configuration file](configuration-file.md) or [command line arguments](configuration-command-line-arguments.md) when starting the server. The CLI allows to change settings while the server is running.
 
 ```bash
-npm run mocks-server
+npm run mocks
 ```
 
 ![Interactive CLI](assets/interactive-cli-animation.gif)
@@ -28,17 +33,19 @@ npm run mocks-server
 
 ## Alerts
 
-The plugin will display `mocks-server` alerts on the top of the screen. This is very useful when you are changing fixtures or behaviors definitions, and they can't be loaded because some file contains a JavaScript error, for example.
+The plugin will display `mocks-server` alerts on the top of the screen. This is very useful when you are changing [`routes`](get-started-routes.md) or [`mocks`](get-started-mocks.md) files and any file contains an error.
 
-Current alerts will be displayed as:
+Alerts are displayed as:
 
 ![Interactive CLI alerts](assets/interactive-cli-alerts.png)
 
-> As `mocks-server` includes hot reloading, the alert will automatically disappear when the error is fixed.
+:::info
+As Mocks Server includes hot reloading, the alert will automatically disappear when the error is fixed.
+:::
 
 ## Support
 
-[Inquirer][inquirer-url] is used for displaying the interactive CLI. You can [consult his OS Terminals support here][inquirer-support].
+The [Inquirer][inquirer-url] library is used for displaying the interactive CLI. You can [consult its OS Terminals support here][inquirer-support].
 
 [inquirer-url]: https://www.npmjs.com/package/inquirer
 [inquirer-support]: https://www.npmjs.com/package/inquirer#support-os-terminals

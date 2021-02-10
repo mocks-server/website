@@ -5,53 +5,53 @@ description: Mocks Server options
 keywords:
   - mocks server
   - configuration
+  - options
+  - settings
+  - configure
 ---
 
 ## Methods
 
 This chapter describes all available configuration properties and options. There are multiple methods for defining configuration and options.
 
-When same option is defined using multiple methods, the priority is _(from lower to higher)_:
+When the same option is defined using multiple methods, the priority is _(from lower to higher)_:
 
-* [Core programmatic options](advanced-programmatic-usage.md)
-* [Configuration file](configuration-file.md)
-* [Command line arguments](configuration-command-line-arguments.md)
+* [Defining options programmatically](api-programmatic-usage.md)
+* [Using configuration file](configuration-file.md)
+* [Using command line arguments](configuration-command-line-arguments.md)
 
 ## Main options
 
-This options can be defined using [command line arguments](configuration-command-line-arguments.md) and can be changed while the server is running using [the `settings` methods](advanced-programmatic-usage.md).
+These options can be defined using [command line arguments](configuration-command-line-arguments.md), the [configuration file](configuration-file.md), and can be changed while the server is running using [the `settings` methods](api-core-api.md).
 
-* `path`: `Path as <String>` Path to the folder containing behaviors and fixtures to be used by the server. By default is `/mocks`
-* `port`: `<Number>` Port number for the Mocks Server to be listening. Default is 3100.
-* `host`: `<String>` Host for the server. Default is "0.0.0.0" (Listen to any local host).
-* `log`: `<String>` Logs level. Can be one of "silly", "debug", "verbose", "info", "warn", "error".
-* `watch`: `<String>` Watch behaviors folder and restart server on changes. Default is `true`.  Use `false` to disable it.
-* `behavior`: `<String>` Default selected behavior when server is started.
-* `delay`: `<Number>` Responses delay time in milliseconds.
-
-## Low level configuration
-
-This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmatically](advanced-programmatic-usage.md) _(if you are using directly the [@mocks-server/core](advanced-programmatic-usage.md) instead of the main distribution)_.
-
-* `plugins`: `<Array of Plugins>` Array of Plugins, defined as described in the [plugins chapter](advanced-developing-plugins.md).
-* `addPlugins`: `<Array of Plugins>` Array of Plugins to be added. This option does not overwrite previously defined plugins.
-* `configFile`: `<String>` Custom path for configuration file. If relative, will be resolved from current working directory. Default is `mocks-server.config.js`
-* `onlyProgrammaticOptions`: `<Boolean>` If `true`, disables both [command line arguments](configuration-command-line-arguments.md) and [configuration file](configuration-file.md).
-* `disableCommandLineArguments`: `<Boolean>` If `true`, [command line arguments](configuration-command-line-arguments.md) defining options will be ignored.
-* `disableConfigFile`: `<Boolean>` If `true`, [configuration file](configuration-file.md) will be ignored.
+* __`path`__ _(String)_: Path to the folder containing mocks and routes to be used by the server. Default is `/mocks`
+* __`port`__ _(Number)_: Port number for Mocks Server to be listening at. Default is `3100`.
+* __`host`__ _(String)_: Host for the server. Default is `0.0.0.0` (Listen to any local host).
+* __`log`__ _(String)_: Logs level. Can be one of `silly`, `debug`, `verbose`, `info`, `warn` or `error`.
+* __`watch`__ _(String)_: Watch mocks folder and restart server on changes. Default is `true`.  Use `false` to disable it.
+* __`mock`__ _(String)_: Mock to use when the server is started.
+* __`delay`__ _(Number)_: Responses delay time in milliseconds.
 
 ## Plugins extra options
 
-Each plugin can add his own options when it is registered in the mocks-server. This options can also be defined using command line arguments and changed while the server is running.
+Each plugin can add its own options when it is installed. These options can also be defined and changed using the same methods as the main options.
 
-* `cli`: `<String>` Start interactive CLI. Default is `true`. Use `false` to disable it.
-* `adminApiPath`: `<String>` Path for the administration api. Default is "/admin". You should change it only in case there is any conflict with the api you are mocking.
-* `adminApiDeprecatedPaths` - `<Boolean>` Disables deprecated "/mocks" api path, which is still enabled by default. Used as command line argument, you can disable it using `--no-adminApiDeprecatedPaths` (Read the [command-line-arguments chapter](configuration-command-line-arguments.md) for further info)
+* __`cli`__ _(String)_: Start interactive CLI. Default is `true`. Use `false` to disable it.
+* __`adminApiPath`__ _(String)_: Path for the administration REST API. Default is `/admin`. You should change it only in case there is any conflict with the api you are mocking.
 
-> These extra options are added by the [@mocks-server/plugin-admin-api](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) and the [@mocks-server/plugin-inquirer-cli](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) plugins, which are included in the [@mocks-server/main package distribution](https://www.npmjs.com/package/@mocks-server/main).
-
-_If you are starting the server programmatically using the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) without adding any plugin, only "Main options" will be available._
+:::note
+These extra options are added by the [@mocks-server/plugin-admin-api](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) and the [@mocks-server/plugin-inquirer-cli](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) plugins, which are both included in the Mocks Server main distribution.
 
 For another plugins options, please refer to their own documentation.
+:::
 
-To know how to add your own options when developing a plugin, please refer to the ["programmatic usage"](advanced-programmatic-usage.md) and ["developing plugins"](advanced-developing-plugins.md) sections.
+## Low level configuration
+
+This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmatically](api-programmatic-usage.md).
+
+* __`plugins`__ _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins-developing-plugins.md).
+* __`addPlugins`__ _(Array of `Plugin`)_: Array of Plugins to be added. This option does not overwrite previously defined plugins.
+* __`configFile`__ _(String)_: Custom path for the configuration file. If relative, it will be resolved from current working directory. Default is `mocks.config.js`.
+* __`onlyProgrammaticOptions`__ _(Boolean)_: If `true`, it disables both [command line arguments](configuration-command-line-arguments.md) and [configuration file](configuration-file.md).
+* __`disableCommandLineArguments`__ _(Boolean)_ If `true`, all [command line arguments](configuration-command-line-arguments.md) defining options will be ignored.
+* __`disableConfigFile`__ _(Boolean)_: If `true`, the [configuration file](configuration-file.md) will be ignored.

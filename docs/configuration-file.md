@@ -5,16 +5,20 @@ description: Mocks Server configuration file
 keywords:
   - mocks server
   - configuration
-  - repository
+  - file
+  - options
+  - settings
+  - configure
+  - plugins
 ---
 
 ## Options
 
-[Configuration and options](configuration-options.md) can be defined creating a `mocks-server.config.js` file in the root folder of your project _(a custom file path can be defined using the `configFile` low level configuration property)_.
+[Low level configuration](configuration-options.md#low-level-configuration) and [options](configuration-options.md#main-options) can be defined creating a `mocks.config.js` file in the root folder of your project _(a custom file path can be defined using the `configFile` low level configuration property)_.
 
 The first level properties returned by this configuration file will be interpreted as __[low level configuration properties](configuration-options.md#low-level-configuration)__.
 
-Properties returned inside the `options` object will be considered as __[main options](configuration-options.md#main-options)__ or __[plugin extra options](configuration-options.md#plugin-extra-options)__.
+Properties returned inside the `options` object will be considered as __[main options](configuration-options.md#main-options)__ or __[plugins extra options](configuration-options.md#plugins-extra-options)__.
 
 ## Formats
 
@@ -23,7 +27,7 @@ Properties returned inside the `options` object will be considered as __[main op
 The configuration file can export an object containing configuration and options:
 
 ```javascript
-// mocks-server.config.js
+// mocks.config.js
 const FooPlugin = require("mocks-server-plugin-foo");
 
 module.exports = {
@@ -31,7 +35,7 @@ module.exports = {
   options: {
     path: "custom-mocks-folder",
     port: 3200,
-    behavior: "foo-behavior",
+    mock: "foo-mock",
     cli: false
   }
 };
@@ -42,10 +46,10 @@ module.exports = {
 The configuration file can export a function. The function receives previously defined configuration _(from [previous config methods](configuration-options.md))_ that can be modified.
 
 ```javascript
-// mocks-server.config.js
+// mocks.config.js
 const FooPlugin = require("mocks-server-plugin-foo");
 
-module.exports = config => {
+module.exports = (config) => {
   config.plugins.push(FooPlugin);
   config.options.behavior = "foo-behavior";
   return config;
@@ -57,25 +61,24 @@ module.exports = config => {
 The configuration file can also export an async function, or a function returning a Promise:
 
 ```javascript
-// mocks-server.config.js
-const getAsyncBehavior = require("./getAsyncBehavior");
+// mocks.config.js
+const getMockAsyncMethod = require("./getMockAsync");
 
-module.exports = async config => {
-  const behavior = await getAsyncBehavior();
-  config.options.behavior = behavior;
+module.exports = async (config) => {
+  config.options.mock = await getMockAsyncMethod();
   return config;
 };
 ```
 
 ```javascript
-// mocks-server.config.js
+// mocks.config.js
 const getAsyncConfig = require("./getAsyncConfig");
 
 module.exports = () => {
   return getAsyncConfig()
     .then(config => {
       console.log(config);
-      return Promise.resolve(config);
+      return config;
     });
 };
 ```

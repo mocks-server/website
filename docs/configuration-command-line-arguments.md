@@ -6,6 +6,10 @@ keywords:
   - mocks server
   - configuration
   - options
+  - settings
+  - configure
+  - arguments
+  - command line arguments
 ---
 
 ## How to define options using command line arguments
@@ -30,10 +34,10 @@ npm run mocks -- --delay=300
 
 ## Plugins options
 
-Options added by registered plugins can be defined also using command line arguments. Supposing you have registered a plugin which add a new option called "language", then you'll be able to run:
+Options added by registered plugins can be defined also using command line arguments. Supposing you have installed a plugin which adds a new option named `language`, then you'll be able to run:
 
 ```bash
-npm run mocks -- --language=Es-es
+npm run mocks -- --language=es
 ```
 
 ## Boolean options
@@ -41,5 +45,5 @@ npm run mocks -- --language=Es-es
 For `Boolean` options having a `true` default value, use the `--no-`. prefix for disabling them. (Read [commander documentation](https://www.npmjs.com/package/commander) for further info)
 
 ```bash
-npm run mocks -- --no-adminApiDeprecatedPaths
+npm run mocks -- --no-watch --no-cli
 ```
