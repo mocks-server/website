@@ -52,7 +52,7 @@ Now, you can start the Mocks Server with the command:
 npm run mocks
 ```
 
-When started for the first time, it will create a scaffold folder named `mocks` in your project, containing next files and folders:
+When started for the first time, __it creates a scaffold folder__ named `mocks` in your project, containing next files and folders:
 
 ```
 project-root/
@@ -63,9 +63,61 @@ project-root/
 └── mocks.config.json
 ```
 
-It contains examples from this documentation providing a simple API with two different mocks and some route variants. You can use the interactive CLI that is also started to change the server settings and see how you can change the responses of the API changing the current mock, changing route variants, etc.
+The folder contains examples from this documentation providing a simple API with two different mocks and some route variants. You can use the interactive CLI that is also started to change the server settings and see how you can change the responses of the API changing the current mock, changing route variants, etc.
 
-![Interactive CLI](assets/interactive-cli-animation.gif)
+![Interactive CLI](assets/inquirer-cli.gif)
+
+## How does it work?
+
+It loads all files in the ["routes"](get-started-routes.md) folder, containining handlers for routes, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
+
+```js
+// mocks/routes/users.js
+module.exports = [
+  {
+    id: "get-users", // id of the route
+    url: "/api/users", // url in express format
+    method: "GET", // HTTP method
+    variants: [
+      {
+        id: "empty", // id of the variant
+        response: {
+          status: 200, // status to send
+          body: [] // body to send
+        }
+      },
+      {
+        id: "error", // id of the variant
+        response: {
+          status: 400, // status to send
+          body: { // body to send
+            message: "Error"
+          }
+        }
+      }
+    ]
+  }
+]
+```
+
+The server will respond to the requests with the route variants defined in the current mock.
+
+```json
+// mocks/mocks.json
+[
+  {
+    "id": "base", //id of the mock
+    "routeVariants": ["get-users:empty", "get-user:success"] //route variants to use
+  },
+  {
+    "id": "users-error", //id of the mock
+    "from": "base", //inherits the route variants of "base" mock
+    "routeVariants": ["get-users:error"] //get-users route uses another variant
+  }
+]
+```
+
+Then, you can easily [change the responses of the API while the server is running](#configuration) changing the current mock, or defining specific route variants. This can make your __development or acceptance tests environments very much agile and flexible__, as you can define different ["mocks"](get-started-mocks.md) for every different case you want to simulate.
 
 ## Configuration
 
@@ -74,14 +126,6 @@ Configure the server simply [creating a `mocks.config.js` file at the root folde
 For changing [settings](configuration-options.md) (such as current mock, delay time, etc.) while it is running, you can use:
 * [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
 * [REST API](plugins-admin-api.md) which is very useful to change mock or route variants from E2E tests, for example, as the [Cypress plugin does.](integrations-cypress.md)
-
-## How does it work?
-
-It loads all files in the ["routes"](get-started-routes.md) folder, which are handlers for specific requests, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
-
-The server will respond to the requests with the route variants defined in the current mock.
-
-Then, you can easily [change the responses of the API while the server is running](#configuration) changing the current mock, or defining specific route variants. This can make your __development or acceptance tests environments very much agile and flexible__, as you can define different ["mocks"](get-started-mocks.md) for every different case you want to simulate.
 
 ## Why a mock server?
 
@@ -101,4 +145,4 @@ Mocks Server is very customizable, and gives you the possibility of extend it wi
 
 - [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
 - Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
-- Add new [route handlers](advanced-custom-route-handlers.md), which allows to customize the format in which route variants are defined.
+- Add new [routes handler](api-routes-handler.md), which allows to customize the format in which route variants are defined.

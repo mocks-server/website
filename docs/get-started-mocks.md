@@ -76,7 +76,7 @@ npm run mocks -- --mock=user-real
 
 You can also change the current mock using the interactive CLI:
 
-![Interactive CLI](assets/interactive-cli-animation.gif)
+![Interactive CLI](assets/inquirer-cli.gif)
 
 ### Using the admin API REST
 

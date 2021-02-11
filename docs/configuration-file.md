@@ -29,9 +29,11 @@ The configuration file can export an object containing configuration and options
 ```javascript
 // mocks.config.js
 const FooPlugin = require("mocks-server-plugin-foo");
+const FooRoutesHandler = require("mocks-server-routes-handler-foo");
 
 module.exports = {
   addPlugins: [FooPlugin],
+  addRoutesHandlers: [FooRoutesHandler],
   options: {
     path: "custom-mocks-folder",
     port: 3200,

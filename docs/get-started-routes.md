@@ -38,10 +38,10 @@ The standard format for defining a route is to declare an object containing:
       * __`req`__ Express middleware `req` object.
       * __`res`__ Express middleware `res` methods.
       * __`next`__ Express middleware `next` method.
-      * __`mocksServer`__ Mocks server core methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](api-core-api.md) about available methods.
+      * __`mocksServer`__ Mocks Server instance methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](api-mocks-server-api.md) about available methods.
 
 :::note
-The format of variants describe here is the default one, but more formats can be added [using custom route handlers](advanced-custom-route-handlers.md).
+The format of variants describe here is the default one, but more formats can be added [using custom routes handlers](api-routes-handler.md).
 :::
 
 ## Examples
@@ -166,7 +166,7 @@ Read the [next chapter to know how group different route variants into `mocks`](
 
 You can define custom route variants to be used by the current mock using the interactive CLI. When you add a route variant, it is like adding it to the `mock` definition, so the route will use this variant instead of the one defined in the `mock`.
 
-![Interactive CLI](assets/interactive-cli-animation.gif)
+![Interactive CLI](assets/inquirer-cli.gif)
 
 ### Using the admin API REST
 

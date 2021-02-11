@@ -16,12 +16,12 @@ Plugins are a way of extending the functionality of Mocks Server.
 
 Some things that can be made with a plugin are:
 
-- Load "behaviors" or "fixtures".
+- Load [`mocks`](get-started-mocks.md) or [`routes`](get-started-routes.md).
 - Listen to Mocks Server events and act in consequence.
 - Add custom express routers to the server.
 - Add new options, accessible even through command line arguments.
 - Change settings while the server is running.
-- Add new formats of defining "fixtures". _(Using ["custom fixtures handlers"](advanced-custom-route-handlers.md))_
+- Add new formats of defining `route variants`. _(Using [custom routes handlers](api-routes-handler.md))_
 
 ## How to install plugins
 
@@ -36,7 +36,7 @@ const FooPlugin = require("mocks-server-plugin-foo");
 module.exports = {
   addPlugins: [FooPlugin],
   options: {
-    behavior: "foo-behavior"
+    mock: "foo-mock"
   }
 };
 ```

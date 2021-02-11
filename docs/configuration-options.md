@@ -22,7 +22,7 @@ When the same option is defined using multiple methods, the priority is _(from l
 
 ## Main options
 
-These options can be defined using [command line arguments](configuration-command-line-arguments.md), the [configuration file](configuration-file.md), and can be changed while the server is running using [the `settings` methods](api-core-api.md).
+These options can be defined using [command line arguments](configuration-command-line-arguments.md), the [configuration file](configuration-file.md), and can be changed while the server is running using [the `settings` methods](api-mocks-server-api.md).
 
 * __`path`__ _(String)_: Path to the folder containing mocks and routes to be used by the server. Default is `/mocks`
 * __`port`__ _(Number)_: Port number for Mocks Server to be listening at. Default is `3100`.
@@ -51,6 +51,7 @@ This options can't be modified while the server is running, and can be defined o
 
 * __`plugins`__ _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins-developing-plugins.md).
 * __`addPlugins`__ _(Array of `Plugin`)_: Array of Plugins to be added. This option does not overwrite previously defined plugins.
+* __`addRoutesHandlers`__ _(Array of `RouteHandler`)_: Array of [`RouteHandler`](api-routes-handler.md) to be added. This option does not overwrite previously defined plugins.
 * __`configFile`__ _(String)_: Custom path for the configuration file. If relative, it will be resolved from current working directory. Default is `mocks.config.js`.
 * __`onlyProgrammaticOptions`__ _(Boolean)_: If `true`, it disables both [command line arguments](configuration-command-line-arguments.md) and [configuration file](configuration-file.md).
 * __`disableCommandLineArguments`__ _(Boolean)_ If `true`, all [command line arguments](configuration-command-line-arguments.md) defining options will be ignored.

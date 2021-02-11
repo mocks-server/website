@@ -2,10 +2,10 @@
   "docs": {
     "Welcome": ["welcome-about-docs"],
     "Getting started": ["get-started-intro", "get-started-routes", "get-started-mocks"],
-    "Guides": ["guides-organizing-files", "guides-using-middlewares"],
+    "Guides": ["guides-organizing-files", "guides-using-middlewares", "guides-migrating-from-v1"],
     "Configuration": ["configuration-options", "configuration-file", "configuration-command-line-arguments"],
     "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "plugins-developing-plugins"],
     "Integrations": ["integrations-cypress"],
-    "API": ["api-core-api", "api-programmatic-usage", "advanced-custom-route-handlers"]
+    "API": ["api-mocks-server-api", "api-programmatic-usage", "api-routes-handler"]
   }
 }

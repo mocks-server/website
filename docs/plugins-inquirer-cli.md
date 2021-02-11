@@ -25,7 +25,7 @@ If you are using this plugin _(enabled by default)_, you don't need to provide a
 npm run mocks
 ```
 
-![Interactive CLI](assets/interactive-cli-animation.gif)
+![Interactive CLI](assets/inquirer-cli.gif)
 
 ## Options
 
@@ -37,7 +37,7 @@ The plugin will display `mocks-server` alerts on the top of the screen. This is 
 
 Alerts are displayed as:
 
-![Interactive CLI alerts](assets/interactive-cli-alerts.png)
+![Interactive CLI alerts](assets/inquirer-cli-alerts.png)
 
 :::info
 As Mocks Server includes hot reloading, the alert will automatically disappear when the error is fixed.

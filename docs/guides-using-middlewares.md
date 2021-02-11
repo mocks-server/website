@@ -1,7 +1,7 @@
 ---
 id: guides-using-middlewares
 title: Using middlewares
-description: How to define Mocks Server fixtures using Express middlewares
+description: How to use express middlewares in Mocks Server route variants
 keywords:
   - mocks server
   - tutorial
@@ -177,7 +177,7 @@ In the example, a `PUT` request to `/api/users/1` with a `body` like `{ name: "M
 
 ## Using the Mocks Server API in middlewares
 
-As seen, Mocks Server route variants declaring `response` as functions will receive same arguments as `express` middlewares, but they also receive an extra argument containing [the whole Mocks Server Core API](api-core-api.md).
+As seen, Mocks Server route variants declaring `response` as functions will receive same arguments as `express` middlewares, but they also receive an extra argument containing [the whole `mocksServer` API](api-mocks-server-api.md).
 
 This means that it is possible to change the Mocks Server settings from a middleware, for example, so you could set a new global `delay` when a request is received, or change the current mock, or an specific route variant, etc.
 
@@ -205,7 +205,8 @@ module.exports = [
               name: "Jane Doe"
             }
           ]);
-          mocksServer.mocks.useRouteVariant("get-users:error");
+          // Next time the mock will use another route variant!!
+          mocksServer.mocks.useRouteVariant("get-users:error"); 
         }
       },
       {

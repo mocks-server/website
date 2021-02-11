@@ -116,13 +116,13 @@ module.exports = [
 
 Every time a file in the `mocks` folder is changed _(including custom files and folders outside the `routes` folder)_, Mocks Server will reload everything automatically.
 
-If any file contains an error, Mocks Server will add an alert, and you will see the error in the interactive CLI, for example:
+If any file contains an error, Mocks Server will add an alert, and you will see the error in the interactive CLI:
 
-TODO, add image.
+![Interactive CLI alerts](assets/inquirer-cli-alerts.png)
 
 The alert will be removed automatically when the file containing the error is fixed and saved again:
 
-TODO, add image.
+![Interactive CLI](assets/inquirer-cli.gif)
 
 ## Good practices
 

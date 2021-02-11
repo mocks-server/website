@@ -125,6 +125,8 @@
 .Section.HeaderHero {
   padding-top: 80px;
   padding-bottom: 80px;
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(1,57,65,1) 83%, rgba(1,69,78,1) 100%);
 }
 
 .HeaderHero .TwoColumns .column {
