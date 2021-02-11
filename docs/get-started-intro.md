@@ -144,5 +144,5 @@ As explained, the Mocks Server can store different mocks, which are sets of diff
 Mocks Server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
 - [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
-- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
+- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
 - Add new [routes handler](api-routes-handler.md), which allows to customize the format in which route variants are defined.
