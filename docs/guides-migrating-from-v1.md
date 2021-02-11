@@ -17,7 +17,7 @@ keywords:
 
 Mocks Server v2.x introduced the concept of ["route variants"](get-started-intro.md), and made more restrictive the way for organizing mocks and routes files. It also introduced other improvements, as the possibility of [using express middlewares](guides-using-middlewares.md), made simpler the [mocksServer API](api-mocks-server-api.md), etc.
 
-All of these changes made very difficult to handle old v1 `behaviors` and `fixtures` toguether with the new format of `routes`, so, in order to maintain backward compatibility, Mocks Server v2 can handle two folders at a time, one containing v1.x `fixtures` and `behaviors`, and another one containing v2.x [`mocks`](get-started-mocks.md) and [`routes`](get-started-routes.md).
+All of these changes made very difficult to handle old v1 `behaviors` and `fixtures` together with the new format of `routes`, so, in order to maintain backward compatibility, Mocks Server v2 can handle two folders at a time, one containing v1.x `fixtures` and `behaviors`, and another one containing v2.x [`mocks`](get-started-mocks.md) and [`routes`](get-started-routes.md).
 
 This was made with the intention of allowing users to migrate progressively from v1.x format to v2.x format. You can convert old `fixtures` and `behaviors` into new `mocks` and `routes` and move them from one folder to other, until you have no more legacy code, and you can deactivate the legacy folder.
 
@@ -31,7 +31,7 @@ When the same route is defined in v2.x "routes" and v1.x "fixtures", the "fixtur
 
 * First of all, rename your old `mocks` folder into `mocks-legacy`
 * Install the v2.x version of Mocks Server. `npm i --save-dev @mocks-server/main@2.x`
-* Start Mocks Server. `npm run mocks` _(we suposse you have already your `mocks` script configured in the `package.json`)_. Now you would have a folders structure like:
+* Start Mocks Server. `npm run mocks` _(we supposse you have already your `mocks` script configured in the `package.json`)_. Now you would have a folders structure like:
 
 ```
 project-root/
@@ -71,7 +71,7 @@ Now, when the interactive CLI is started, settings and actions related with lega
 
 ### Migrating fixtures
 
-After reading the v2.x [`routes`](get-started-routes.md) and [`mocks`](get-started-mocks.md) documentation, you would have noticed that old fixtures having the same "path" can be esaily migrated to a new `route`.
+After reading the v2.x [`routes`](get-started-routes.md) and [`mocks`](get-started-mocks.md) documentation, you would have noticed that old fixtures having the same "path" can be easily migrated to a new `route`.
 
 For example, old fixtures like:
 
@@ -223,7 +223,7 @@ Some options and methods that were already deprecated in v1.x have been definiti
 
 * __`addSetting(customSetting)`__ The method is still valid, but `type` property in `customSetting` does not accept `booleanString` as value any more. Now `boolean` type should be used instead.
 * __`onLoadMocks(callback)`__. Removed. `onChangeMocks` should be used instead (or `onChangeLegacyMocks` to listen for changes in legacy `behaviors` or `fixtures`).
-* __`onLoadFiles`__. Removed.  There is no alternative, as it is an internal event of the files-loader plugin and it should't be used by other external pieces.
+* __`onLoadFiles`__. Removed.  There is no alternative, as it is an internal event of the files-loader plugin and it shouldn't be used by other external pieces.
 * __`addCustomRouter`__. Removed. `addRouter` should be used instead.
 * __`addCustomSetting`__. Removed. `addSetting` should be used instead.
 * __`serverError`__. Removed. `alerts` should be used instead, because the server now adds an alert when there is an unexpected error.

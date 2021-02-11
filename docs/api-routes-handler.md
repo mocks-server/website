@@ -13,7 +13,7 @@ keywords:
 
 ## What is a Routes Handler?
 
-A "Routes handler" is the element at charge of handling the [routes variants declarations](get-started-routes.md), and sending the appropiate response.
+A "Routes handler" is the element at charge of handling the [routes variants declarations](get-started-routes.md), and sending the appropriate response.
 
 Mocks Server includes only one Routes Handler by default, which accepts routes variants declared in the [format described in the `routes` chapter](get-started-routes.md), but __you can add your own route variants formats__.
 
@@ -38,7 +38,7 @@ This is the middleware that will be called when the route url matches and the sp
 
 #### `get plainResponsePreview()`
 
-This getter should return a plain object containing an approched preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server interfaces.
+This getter should return a plain object containing an approached preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server interfaces.
 
 ## Example
 

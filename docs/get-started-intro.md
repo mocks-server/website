@@ -69,7 +69,7 @@ The folder contains examples from this documentation providing a simple API with
 
 ## How does it work?
 
-It loads all files in the ["routes"](get-started-routes.md) folder, containining handlers for routes, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
+It loads all files in the ["routes"](get-started-routes.md) folder, containing handlers for routes, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
 
 ```js
 // mocks/routes/users.js

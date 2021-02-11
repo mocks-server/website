@@ -56,7 +56,7 @@ This file contains the [definitions of `mocks`](get-started-mocks.md), and its n
 
 ## Other files and folders
 
-You can create other files and folders inside the `mocks` folder, Mocks Server will simply ignore them. So, for example, if you want to maintain the data you use in your `routes` separated from the definition of the `routes` theirself, you could create a `data` folder, and import it from the route files.
+You can create other files and folders inside the `mocks` folder, Mocks Server will simply ignore them. So, for example, if you want to maintain the data you use in your `routes` separated from the definition of the `routes`, you could create a `data` folder, and import it from the route files.
 
 ```
 project-root/
