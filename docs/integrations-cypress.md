@@ -13,7 +13,7 @@ keywords:
 
 Mocks Server integrates with [Cypress](https://www.cypress.io/) tests very well.
 
-Using the Cypress commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of the server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real api__, because you will control in every moment the responses that the api will return to your web page.
+Using the Cypress commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of the server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you will control in every moment the responses that the api will return to your web page.
 
 ### Commands
 
@@ -71,7 +71,7 @@ Now, when running `npm run test:mocked`, Mocks Server will be started without th
 
 ## Reusing tests for e2e and mocks
 
-Running tests only using a mock server is not enough, for sure that you want to run your tests also using the real api, but only a subgroup of them, as not every tests will be valid for the real api (error cases, etc.).
+Running tests only using a mock server is not enough, for sure that you want to run your tests also using the real API, but only a subgroup of them, as not every tests will be valid for the real API (error cases, etc.).
 
 Here you have a proposal about how to reuse your tests and run them in two different ways:
 
@@ -83,7 +83,7 @@ Create a `onlyMocks` utility in the `cypress/support/utils.js` file:
 
 ```
 export const onlyMocks = fn => {
-  if (!Cypress.env("MOCKS_SERVER_URL")) {
+  if (!!Cypress.env("MOCKS_SERVER_URL")) {
     fn();
   }
 };
@@ -101,9 +101,9 @@ onlyMocks(() => {
 });
 ```
 
-### Start the application with the real api and Cypress
+### Start the application with the real API and Cypress
 
-Based on the previous example, now we can add a command to start the application configured to make requests to the real api and run Cypress at a time:
+Based on the previous example, now we can add a command to start the application configured to make requests to the real API and run Cypress at a time:
 
 ```json
 {
@@ -119,4 +119,4 @@ Based on the previous example, now we can add a command to start the application
 }
 ```
 
-Now, when running `npm run test:api` the application will be started configured to make requests to the real api, and then the Cypress tests will be executed skipping mock-dependent tests.
+Now, when running `npm run test:api` the application will be started configured to make requests to the real API, and then the Cypress tests will be executed skipping mock-dependent tests.

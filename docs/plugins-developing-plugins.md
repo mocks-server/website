@@ -26,9 +26,9 @@ Plugins should contain __four main methods__, which will receive the instance of
 
 This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized.
 
-Here you should register your own custom `options` using the `mocksServer.addSetting` method, register your own custom express routers using the `mocksServer.addRouter` method, etc.
+Here you should register your own custom `options` using the `mocksServer.addSetting` method, register your own custom express routers using the `mocksServer.addRouter` method, add custom Route Handlers using `mocksServer.addRoutesHandler`, etc.
 
-You should never use here to the `mocksServer.settings` methods, are they are not still ready in this phase, which was designed with the intention of letting the plugins to add their own settings.
+You should never use here the `mocksServer.settings` method, are they are not still ready in this phase, which was designed with the intention of letting the plugins to add their own settings.
 
 > If you define your plugin as a Class, the `constructor` will be equivalent to defining a `register` method. If you define your plugin as a function, it will be called during the plugins registration, so you could also omit the `register` method.
 

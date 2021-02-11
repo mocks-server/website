@@ -60,7 +60,7 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-└── mocks.config.json
+└── mocks.config.js
 ```
 
 The folder contains examples from this documentation providing a simple API with two different mocks and some route variants. You can use the interactive CLI that is also started to change the server settings and see how you can change the responses of the API changing the current mock, changing route variants, etc.

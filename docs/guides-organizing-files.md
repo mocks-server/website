@@ -23,7 +23,7 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-└── mocks.config.json
+└── mocks.config.js
 ```
 
 This scaffold contains some examples from this documentation that may help you to better understand how `routes` and `mocks` should be defined, how to use `express` middlewares, etc.
@@ -66,7 +66,7 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-└── mocks.config.json
+└── mocks.config.js
 ```
 
 ```js

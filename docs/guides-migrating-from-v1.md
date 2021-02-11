@@ -19,7 +19,7 @@ Mocks Server v2.x introduced the concept of ["route variants"](get-started-intro
 
 All of these changes made very difficult to handle old v1 `behaviors` and `fixtures` together with the new format of `routes`, so, in order to maintain backward compatibility, Mocks Server v2 can handle two folders at a time, one containing v1.x `fixtures` and `behaviors`, and another one containing v2.x [`mocks`](get-started-mocks.md) and [`routes`](get-started-routes.md).
 
-This was made with the intention of allowing users to migrate progressively from v1.x format to v2.x format. You can convert old `fixtures` and `behaviors` into new `mocks` and `routes` and move them from one folder to other, until you have no more legacy code, and you can deactivate the legacy folder.
+This was made with the intention of allowing users to migrate progressively from v1.x format to v2.x format. You can convert old `fixtures` and `behaviors` into new `mocks` and `routes` and move them from one folder to another, until you have no more legacy code, and you can deactivate the legacy folder.
 
 :::info
 When the same route is defined in v2.x "routes" and v1.x "fixtures", the "fixture" will be ignored, and the "route" will handle the request.
@@ -41,8 +41,8 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-├── mocks-server.config.json
-└── mocks.config.json
+├── mocks-server.config.js
+└── mocks.config.js
 ```
 
 * Migrate your old options from the `mocks-server.config.js` file to `mocks.config.js` (See [legacy options](#legacy-options) below to check the options correspondence). Once done, you can delete the `mocks-server.config.js` file.
@@ -212,6 +212,10 @@ Next [`mocksServer`](api-mocks-server-api.md) methods and getters are provided o
 ## Breaking changes
 
 Some options and methods that were already deprecated in v1.x have been definitively removed in v2.x.
+
+### Misc
+
+* __`config file`__: Config file has been renamed from `mocks-server.config.js` to `mocks.config.js`
 
 ### Options
 
