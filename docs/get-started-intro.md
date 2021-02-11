@@ -3,19 +3,28 @@ id: get-started-intro
 title: Intro
 description: Get started with Mocks Server
 keywords:
+  - mock
+  - introduction
+  - first steps
   - mocks server
   - intro
 ---
 
 ## The project
 
-This project provides a mock server that can simulate and store multiple API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
+This project provides a mock server that can store and simulate multiple API behaviors. It can be added as a dependency of your project, and started simply running an NPM command.
+
+Providing an interactive command line user interface and a REST API for changing the responses of the API, it is easy to use both for development and testing.
 
 ### Main features
 
-* __Multiple api behaviors__: It allows to define different responses for the same route, and group them into different behaviors.
-* __Multiple formats__: Responses can be defined using `json` files or Javascript files. Definitions can be plain objects, and even Express middlewares can be used to send dynamic responses.
-* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api). The CLI is perfect for development, and the API can be used in other scenarios, as the [Cypress plugin does.](integrations-cypress.md)
+* __Route variants__: Define many responses for a same route.
+* __Multiple mocks__: Group different route variants into different mocks. Change the used mock while the server is running using the interactive command line interface or the API.
+* __Multiple formats__: Responses can be defined using `json` files or Javascript files.
+* __Express middlewares__: Route variants can be defined as `express` middlewares.
+* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api). The CLI is perfect for development, and the API can be used from tests, for example.
+* __Integrations__: Integrations with other tools are available, as the [Cypress plugin](integrations-cypress.md).
+* __Customizable__: You can develop your own plugins, or even route handlers, that allows you to customize the format in which route variants are defined.
 
 ## Installation
 
@@ -43,23 +52,80 @@ Now, you can start the Mocks Server with the command:
 npm run mocks
 ```
 
-![Interactive CLI](assets/interactive-cli-animation.gif)
+When started for the first time, __it creates a scaffold folder__ named `mocks` in your project, containing next files and folders:
 
-## Configuration
+```
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   └── users.js
+│   └── mocks.json
+└── mocks.config.json
+```
 
-Configure the server simply [creating a file at the root folder of your project](configuration-file.md).
+The folder contains examples from this documentation providing a simple API with two different mocks and some route variants. You can use the interactive CLI that is also started to change the server settings and see how you can change the responses of the API changing the current mock, changing route variants, etc.
 
-For changing [settings](configuration-options.md) (such as current behavior, delay time, etc.) while it is running, you can use:
-* [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
-* [REST API](plugins-admin-api.md) which is very useful to change behaviors from E2E tests, for example, as the [Cypress plugin does.](integrations-cypress.md)
+![Interactive CLI](assets/inquirer-cli.gif)
 
 ## How does it work?
 
-As input, it needs ["fixtures"](get-started-fixtures.md), which are handlers for specific requests, and ["behaviors"](get-started-behaviors.md), which are sets of ["fixtures"](get-started-fixtures.md).
+It loads all files in the ["routes"](get-started-routes.md) folder, containing handlers for routes, and the ["mocks"](get-started-mocks.md) file, which defines sets of ["route variants"](get-started-routes.md).
 
-You can simulate all the api behaviors you need for your development or tests environments simply [extending behaviors](get-started-behaviors.md#extending-behaviors) to change the response of some specific uris, even when the received request is exactly the same.
+```js
+// mocks/routes/users.js
+module.exports = [
+  {
+    id: "get-users", // id of the route
+    url: "/api/users", // url in express format
+    method: "GET", // HTTP method
+    variants: [
+      {
+        id: "empty", // id of the variant
+        response: {
+          status: 200, // status to send
+          body: [] // body to send
+        }
+      },
+      {
+        id: "error", // id of the variant
+        response: {
+          status: 400, // status to send
+          body: { // body to send
+            message: "Error"
+          }
+        }
+      }
+    ]
+  }
+]
+```
 
-You can easily [change the current behavior while the server is running](#configuration), which will make your __development or acceptance tests environments very much agile and flexible, and not api dependant.__
+The server will respond to the requests with the route variants defined in the current mock.
+
+```json
+// mocks/mocks.json
+[
+  {
+    "id": "base", //id of the mock
+    "routeVariants": ["get-users:empty", "get-user:success"] //route variants to use
+  },
+  {
+    "id": "users-error", //id of the mock
+    "from": "base", //inherits the route variants of "base" mock
+    "routeVariants": ["get-users:error"] //get-users route uses another variant
+  }
+]
+```
+
+Then, you can easily [change the responses of the API while the server is running](#configuration) changing the current mock, or defining specific route variants. This can make your __development or acceptance tests environments very much agile and flexible__, as you can define different ["mocks"](get-started-mocks.md) for every different case you want to simulate.
+
+## Configuration
+
+Configure the server simply [creating a `mocks.config.js` file at the root folder of your project](configuration-file.md).
+
+For changing [settings](configuration-options.md) (such as current mock, delay time, etc.) while it is running, you can use:
+* [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
+* [REST API](plugins-admin-api.md) which is very useful to change mock or route variants from E2E tests, for example, as the [Cypress plugin does.](integrations-cypress.md)
 
 ## Why a mock server?
 
@@ -71,12 +137,12 @@ Working with Node.js, it integrates better in front-end projects as any other NP
 
 ## Why "Mocks" in plural?
 
-As explained, the mocks-server can simulate multiple api behaviors and send different responses to the same request, so it is like we have different mock servers that we can change while running at our convenience.
+As explained, the Mocks Server can store different mocks, which are sets of different route variants. So it simulates multiple api behaviors and send different responses to the same request at your convenience, so it is like having different mock servers that can be changed while running.
 
 ## Customization
 
-The mocks-server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
+Mocks Server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
-- [Start it programmatically](advanced-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
-- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](advanced-developing-plugins).
-- Add new [fixtures handlers](advanced-custom-fixtures-handlers.md), which allows to customize the format in which fixtures are defined.
+- [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
+- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
+- Add new [routes handler](api-routes-handler.md), which allows to customize the format in which route variants are defined.
