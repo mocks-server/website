@@ -31,7 +31,7 @@ When the same route is defined in v2.x "routes" and v1.x "fixtures", the "fixtur
 
 * First of all, rename your old `mocks` folder into `mocks-legacy`
 * Install the v2.x version of Mocks Server. `npm i --save-dev @mocks-server/main@2.x`
-* Start Mocks Server. `npm run mocks` _(we supposse you have already your `mocks` script configured in the `package.json`)_. Now you would have a folders structure like:
+* Start Mocks Server. `npm run mocks` _(we suppose you have already your `mocks` script configured in the `package.json`)_. Now you would have a folders structure like:
 
 ```
 project-root/
