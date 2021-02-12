@@ -107,12 +107,12 @@ The server will respond to the requests with the route variants defined in the c
 [
   {
     "id": "base", //id of the mock
-    "routeVariants": ["get-users:empty", "get-user:success"] //route variants to use
+    "routesVariants": ["get-users:empty", "get-user:success"] //routes variants to use
   },
   {
     "id": "users-error", //id of the mock
     "from": "base", //inherits the route variants of "base" mock
-    "routeVariants": ["get-users:error"] //get-users route uses another variant
+    "routesVariants": ["get-users:error"] //get-users route uses another variant
   }
 ]
 ```
@@ -145,4 +145,4 @@ Mocks Server is very customizable, and gives you the possibility of extend it wi
 
 - [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
 - Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
-- Add new [routes handler](api-routes-handler.md), which allows to customize the format in which route variants are defined.
+- Add new [routes handlers](api-routes-handler.md), which allows to customize the format in which route variants are defined.

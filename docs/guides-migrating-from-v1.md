@@ -165,12 +165,12 @@ You can define a mock like:
 [
   {
     "id": "base",
-    "routeVariants": ["get-user:success"]
+    "routesVariants": ["get-user:success"]
   },
   {
     "id": "user-error",
     "from": "base",
-    "routeVariants": ["get-user:error"]
+    "routesVariants": ["get-user:error"]
   }
 ]
 ```
