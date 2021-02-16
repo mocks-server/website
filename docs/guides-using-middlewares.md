@@ -74,17 +74,17 @@ Now, let's add the `add-headers` route to the `base` mock, so all others will in
 [
   {
     "id": "base",
-    "routeVariants": ["add-headers:enabled", "get-users:success", "get-user:success"]
+    "routesVariants": ["add-headers:enabled", "get-users:success", "get-user:success"]
   },
   {
     "id": "user-real",
     "from": "base", // this mock will also have headers enabled in all requests
-    "routeVariants": ["get-user:real"]
+    "routesVariants": ["get-user:real"]
   },
   {
     "id": "no-headers",
     "from": "base", 
-    "routeVariants": ["add-headers:disabled"] // this mock will not set headers
+    "routesVariants": ["add-headers:disabled"] // this mock will not set headers
   }
 ]
 ```

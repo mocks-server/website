@@ -22,19 +22,19 @@ A __mock__ is an object containing:
 
 * __`id`__ _(String)_: Identifier for the mock.
 * __`from`__ _(String)_: Optional. Mock id from which this mock extends.
-* __`routeVariants`__ _(Array of Strings)_: Route variants ids, expressed as `"[routeId]:[variantId]"`
+* __`routesVariants`__ _(Array of Strings)_: Routes variants ids, expressed as `"[routeId]:[variantId]"`
 
 ```json
 // mocks/mocks.json
 [
   {
     "id": "base", //id of the mock
-    "routeVariants": ["get-users:success", "get-user:success"] //route variants to use
+    "routesVariants": ["get-users:success", "get-user:success"] //route variants to use
   },
   {
     "id": "user-real", //id of the mock
     "from": "base", //inherits the route variants of "base" mock
-    "routeVariants": ["get-user:real"] //get-user route uses another variant
+    "routesVariants": ["get-user:real"] //get-user route uses another variant
   }
 ]
 ```
@@ -52,12 +52,12 @@ Mocks can also be defined using a JavaScript file. Simply rename the file `mocks
 module.exports = [
   {
     id: "base", //id of the mock
-    routeVariants: ["get-users:success", "get-user:success"] //route variants to use
+    routesVariants: ["get-users:success", "get-user:success"] //route variants to use
   },
   {
     id: "user-real", //id of the mock
     from: "base", //inherits the route variants of "base" mock
-    routeVariants: ["get-user:real"] //get-user route uses another variant
+    routesVariants: ["get-user:real"] //get-user route uses another variant
   }
 ];
 ```

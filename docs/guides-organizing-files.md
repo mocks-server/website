@@ -23,7 +23,7 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-└── mocks.config.json
+└── mocks.config.js
 ```
 
 This scaffold contains some examples from this documentation that may help you to better understand how `routes` and `mocks` should be defined, how to use `express` middlewares, etc.
@@ -66,7 +66,7 @@ project-root/
 │   ├── routes/
 │   │   └── users.js
 │   └── mocks.json
-└── mocks.config.json
+└── mocks.config.js
 ```
 
 ```js
@@ -138,17 +138,17 @@ For assigning id to mocks, we recommend to maintain a base `mock` named as `stan
 [
   {
     "id": "base",
-    "routeVariants": ["get-users:all", "get-user:success", "create-user:success"]
+    "routesVariants": ["get-users:all", "get-user:success", "create-user:success"]
   },
   {
     "id": "error-creating-user",
     "from": "base",
-    "routeVariants": ["create-user:error"]
+    "routesVariants": ["create-user:error"]
   },
   {
     "id": "users-with-long-name",
     "from": "base",
-    "routeVariants": ["get-users:long-names", "get-user:long-name"]
+    "routesVariants": ["get-users:long-names", "get-user:long-name"]
   }
 ]
 ```

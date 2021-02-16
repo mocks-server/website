@@ -75,7 +75,7 @@ class CustomRoutesHandler {
 module.exports = CustomRoutesHandler;
 ```
 
-Then you could add your custom Routes Handler using the `mocks.config.js` file:
+Then you can add your custom Routes Handler using the `mocks.config.js` file:
 
 ```javascript
 // mocks.config.js
@@ -91,6 +91,10 @@ module.exports = {
   }
 };
 ```
+
+:::note
+You can also add Route Handlers programmatically using the [`mocksServer.addRoutesHandler` method](api-mocks-server-api.md) (useful to be used from [plugins](plugins-developing-plugins.md), for example)
+:::
 
 And now, you can use the custom handler when defining route variants:
 

@@ -24,7 +24,7 @@ const textContents = {
   easyToUse: `
     Install and start it in seconds. Read [get started](docs/get-started-intro) to know how it works and you will be adding your own routes in minutes.
     <br/><br/>
-    Create a [configuration file](docs/configuration-file), or use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
+    Modify the [configuration file](docs/configuration-file), or use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
     <br/><br/>
     There are also available packages for integrating the Mocks Server with other development tools. <code>@mocks-server/cypress-commands</code> allows to easily control the mock server from Cypress.
     Read the [Cypress integration chapter for further info](docs/integrations-cypress)
