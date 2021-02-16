@@ -85,8 +85,10 @@ You could also create your own `mocksServer` instance programmatically. Read the
 * __`mocks`__: Returns methods and getters related to currently available mocks and routes.
   * __`useRouteVariant(variantId)`__: Define a route variant to be used by the current mock. Route variants are restored whenever the current mock changes.
     * `variantId` _(String)_: Route variant id, with the format `"[routeId]:[variantId]"`.
-  * __`restoreRouteVariants()`__: Restore current mock route variants. It removes all variants defined with the `useRouteVariant` method.
+  * __`restoreRoutesVariants()`__: Restore current mock route variants. It removes all variants defined with the `useRouteVariant` method.
+  * __`customRoutesVariants`__: Getter returning array of currently used routes variants ids.
   * __`current`__: Getter returning current `mock` id.
+  * __`ids`__: Getter returning an array with all mocks ids.
   * __`plainMocks`__: Returns an array with current mocks in plain format.
   * __`plainRoutes`__: Returns an array with current routes in plain format.
   * __`plainRoutesVariants`__: Returns an array with current routes variants in plain format.

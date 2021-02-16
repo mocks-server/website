@@ -23,11 +23,11 @@ A __client for the administration api__ is also distributed as a separated packa
 
 ## Options
 
-* `adminApiPath`: `<String>` Path for the administration api. Default is `/admin`. You should change it only in case there is any conflict with the api you are mocking.
+* __`adminApiPath`__ _(String)_: Path for the administration api. Default is `/admin`. You should change it only in case there is any conflict with the api you are mocking.
 
-## Api resources
+## API resources
 
-Available api resources are:
+Available API resources are:
 
 * `GET` `/admin/about` Returns "plugin-admin-api" information.
   * Response body example: `{ "version": "1.2.0" }`
@@ -37,12 +37,16 @@ Available api resources are:
 * `GET` `/admin/routes/:id` Returns a specific route.
 * `GET` `/admin/routes-variants` Returns routes variants collection.
 * `GET` `/admin/routes-variants/:id` Returns a specific route variant.
+* `GET` `/admin/mock-custom-routes-variants` Returns an array of currently custom routes variants ids.
+* `POST` `/admin/mock-custom-routes-variants` Defines a route variant to be used by current mock.
+  * Request body example: `{ "id": "users:error" }`
+* `DELETE` `/admin/mock-custom-routes-variants` Restore routes variants to those defined in current mock.
 * `GET` `/admin/settings` Returns current server settings.
   * Response body example: `{ "delay": 0, mock: "foo-mock", path: "mocks" }`
 * `PATCH` `/admin/settings` Changes current server settings.
   * Request body example: `{ "delay": 3000 }`
 * `GET` `/admin/alerts` Returns current alerts.
-* `GET` `/admin/alerts/:id` Returns an specific alert. The alert `id` is equivalent to the alert `context` _(read the [developing plugins chapter](plugins-developing-plugins.md) for further info about alerts)_.
+* `GET` `/admin/alerts/:id` Returns a specific alert. The alert `id` is equivalent to the alert `context` _(read the [developing plugins chapter](plugins-developing-plugins.md) for further info about alerts)_.
 
 :::note
 v1.x deprecated api resources are also still available under the `/legacy` path.

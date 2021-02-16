@@ -14,7 +14,7 @@ keywords:
 
 ## Options
 
-[Low level configuration](configuration-options.md#low-level-configuration) and [options](configuration-options.md#main-options) can be defined creating a `mocks.config.js` file in the root folder of your project _(a custom file path can be defined using the `configFile` low level configuration property)_.
+[Low level configuration](configuration-options.md#low-level-configuration) and [options](configuration-options.md#main-options) can be defined modifying the `mocks.config.js` file in the root folder of your project _(a custom file path can be defined using the `configFile` low level configuration property)_.
 
 The first level properties returned by this configuration file will be interpreted as __[low level configuration properties](configuration-options.md#low-level-configuration)__.
 

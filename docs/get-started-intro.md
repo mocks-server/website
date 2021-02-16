@@ -18,13 +18,13 @@ Providing an interactive command line user interface and a REST API for changing
 
 ### Main features
 
-* __Route variants__: Define many responses for a same route.
-* __Multiple mocks__: Group different route variants into different mocks. Change the used mock while the server is running using the interactive command line interface or the API.
-* __Multiple formats__: Responses can be defined using `json` files or Javascript files.
-* __Express middlewares__: Route variants can be defined as `express` middlewares.
-* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api). The CLI is perfect for development, and the API can be used from tests, for example.
+* __Route variants__: Define many responses for a same [route](get-started-routes.md).
+* __Multiple mocks__: Group different [route variants](get-started-routes.md) into different [mocks](get-started-mocks.md). Change the current mock while the server is running using the [interactive command line interface](plugins-inquirer-cli.md) or the [REST API](plugins-admin-api.md).
+* __Multiple formats__: Responses can be defined [using `json` or JavaScript files](guides-organizing-files.md).
+* __Express middlewares__: Route variants [can be defined as `express` middlewares](guides-using-middlewares.md).
+* __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api.md). The CLI is perfect for development, and the API can be used from tests, for example.
 * __Integrations__: Integrations with other tools are available, as the [Cypress plugin](integrations-cypress.md).
-* __Customizable__: You can develop your own plugins, or even route handlers, that allows you to customize the format in which route variants are defined.
+* __Customizable__: You can [develop your own plugins](plugins-developing-plugins.md), or even [routes handlers](api-routes-handler.md), that allows to customize the format in which route variants are defined.
 
 ## Installation
 
@@ -58,6 +58,7 @@ When started for the first time, __it creates a scaffold folder__ named `mocks` 
 project-root/
 ├── mocks/
 │   ├── routes/
+│   │   ├── middlewares.js
 │   │   └── users.js
 │   └── mocks.json
 └── mocks.config.js
@@ -121,7 +122,7 @@ Then, you can easily [change the responses of the API while the server is runnin
 
 ## Configuration
 
-Configure the server simply [creating a `mocks.config.js` file at the root folder of your project](configuration-file.md).
+Configure the server simply [modifying the `mocks.config.js` file at the root folder of your project](configuration-file.md).
 
 For changing [settings](configuration-options.md) (such as current mock, delay time, etc.) while it is running, you can use:
 * [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.
@@ -144,5 +145,5 @@ As explained, the Mocks Server can store different mocks, which are sets of diff
 Mocks Server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
 - [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
-- Add new options and features [adding plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
+- Add new options and features [installing plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
 - Add new [routes handlers](api-routes-handler.md), which allows to customize the format in which route variants are defined.
