@@ -6,8 +6,10 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 /docs/advanced-custom-fixtures-handlers /docs/api-routes-handler
 /docs/advanced-developing-plugins /docs/plugins-developing-plugins
 /docs/advanced-programmatic-usage /docs/api-programmatic-usage
-/docs/configuration-interactive-cli /docs/plugin-inquirer-cli
-/docs/next/configuration-interactive-cli /docs/next/plugin-inquirer-cli
+/docs/configuration-interactive-cli /docs/plugins-inquirer-cli
+/docs/plugin-inquirer-cli /docs/plugins-inquirer-cli
+/docs/next/configuration-interactive-cli /docs/next/plugins-inquirer-cli
+/docs/next/plugin-inquirer-cli /docs/next/plugins-inquirer-cli
 /docs/get-started-behaviors /docs/get-started-mocks
 /docs/get-started-fixtures /docs/get-started-routes
 /docs/guides-defining-fixtures /docs/guides-organizing-files
