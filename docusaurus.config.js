@@ -100,7 +100,7 @@ module.exports = {
             },
             {
               label: "Guides",
-              to: "docs/guides-defining-fixtures",
+              to: "docs/guides-organizing-files",
             },
             {
               label: "Configuration",
