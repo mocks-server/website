@@ -3,3 +3,14 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 
 # Redirect from docs home to intro
 /docs /docs/get-started-intro
+/docs/advanced-custom-fixtures-handlers /docs/api-routes-handler
+/docs/advanced-developing-plugins /docs/plugins-developing-plugins
+/docs/advanced-programmatic-usage /docs/api-programmatic-usage
+/docs/configuration-interactive-cli /docs/plugin-inquirer-cli
+/docs/next/configuration-interactive-cli /docs/next/plugin-inquirer-cli
+/docs/get-started-behaviors /docs/get-started-mocks
+/docs/get-started-fixtures /docs/get-started-routes
+/docs/guides-defining-fixtures /docs/guides-organizing-files
+/docs/guides-organizing-the-definitions /docs/guides-organizing-files
+/docs/tutorials-dynamic /docs/guides-using-middlewares
+/docs/tutorials-static /docs/get-started-routes

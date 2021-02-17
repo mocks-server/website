@@ -10,54 +10,85 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useText from "@theme/custom-hooks/useText";
 
 const textContents = {
-  benefitsInterfaces: `
-    Define api contracts, add [mocks-server fixtures](docs/get-started-fixtures) and start front-end development.
-    Don't wait for the api to be ready. Front-end and back-end teams can work in parallel, avoiding delays.
+  benefitsEasyToUse: `
+    Change the current mock and other settings while the server is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api). [Integrations with other tools](docs/integrations-cypress) are also available.
   `,
-  benefitsInterfaces: `
-    Change the current behavior of the server and other settings while it is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api).
-    The CLI is perfect for development, and the API can be used in other scenarios, as the [Cypress plugin does.](docs/integrations-cypress)
-  `,
-  benefitsBehaviors: `
-    Define different responses for the same route ([fixtures](docs/get-started-fixtures)), and group them into different [behaviors](docs/get-started-behaviors).
-    Ensure that your API client is ready to handle all cases. Storing the different behaviors allows to use <code>mocks-server</code> both for development and testing phases.
+  benefitsRouteVariants: `
+    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks).
+    Ensure that your API client is ready to handle all cases both in development and testing phases.
   `,
   benefitsMultipleFormats: `
-    Define fixtures and behaviors using <code>json</code> files or JavaScript files. 
+    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. 
     Define responses using plain objects, or even Express middlewares. Hot reload changes the responses in real time once files are changed.
   `,
   easyToUse: `
-    Install it and start it in seconds. Follow the [tutorial](docs/get-started-fixtures) to add fixtures and you'll have a simulated api in few minutes.
+    Install and start it in seconds. Read [get started](docs/get-started-intro) to know how it works and you will be adding your own routes in minutes.
     <br/><br/>
-    Create a [configuration file](docs/configuration-file), start it, and use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
+    Modify the [configuration file](docs/configuration-file), or use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
+    <br/><br/>
+    There are also available packages for integrating the Mocks Server with other development tools. <code>@mocks-server/cypress-commands</code> allows to easily control the mock server from Cypress.
+    Read the [Cypress integration chapter for further info](docs/integrations-cypress)
   `,
-  easyToUseInstallCode: `
-npm i --save-dev @mocks-server/main
- `,
-  easyToUsePackageCode: `
-// package.json
-{
-  "scripts": {
-    "mocks": "mocks-server"
-  }
-}
- `,
   flexible: `
-    Define fixtures for HTTP responses in JSON files, or as JavaScript objects.
+    Define route variants for HTTP responses in JSON files, or as JavaScript objects.
     <br/><br/>
-    Using the built-in fixtures handler, responses can be defined using static properties, or using Express middlewares for more complex scenarios.
+    [Express middlewares](docs/guides-using-middlewares) can be also used for more complex scenarios.
     <br/><br/>
-    If this is not enough, you can even [add your own handlers](docs/advanced-custom-fixtures-handlers) to change the format in which you define the responses fixtures.
+    Group route variants into different [mocks](docs/get-started-mocks).
+    <br/>
+    Mocks can be created extending from another ones, so you can modify or add new routes to the main mock,
+    and the rest of mocks will inherit them.
+    <br/><br/>
+    If this is not enough, you can even [add your own route handlers](docs/api-routes-handler) to add more formats for defining route variants.
   `,
   flexibleJsonCode: `
-{
-  "id": "get-users-empty",
-  "url": "/api/users",
-  "method": "GET",
-  "response": {
-    "status": 200,
-    "body": []
+// mocks/routes/users.json
+[
+  {
+    "id": "get-user",
+    "url": "/api/user/:id",
+    "method": "GET",
+    "variants": [
+      {
+        "id": "success",
+        "response": {
+          "status": 200,
+          "body": { "id": 1, "name": "John Doe"}
+        }
+      },
+      {
+        "id": "not-found",
+        "response": {
+          "status": 404
+        }
+      }
+    ]
   }
+]
+  `,
+  customizable: `
+    Plugins can be easily [installed from NPM](docs/plugins-adding-plugins) or [developed](docs/plugins-developing-plugins).
+    <br/>
+    <br/>
+    Plugins can do a lot of things in Mocks Server. Even some very important built-in internal pieces are, in fact, plugins.
+    So, you could use plugins to provide more interfaces, add [more routes handlers](docs/api-routes-handler), add <code>express</code> routers to the server, etc.
+    <br/>
+    <br/>
+    Read also the [programmatic usage chapter](docs/api-programmatic-usage) to learn how to use Mocks Server from your own program.
+  `,
+  customizableCode: `
+class MyPlugin {
+  constructor(mocksServer) {
+    mocksServer.addSetting({
+      name: "traceMocks",
+      type: "boolean",
+      description: "Trace mocks changes",
+      default: true
+    });
+
+    mocksServer.onChangeMocks(this._onChangeMocks.bind(this))
+  }
+  // ...
 }
   `,
   flexibleJsCode: `
@@ -73,77 +104,8 @@ module.exports = {
   },
 }
   `,
-  maintainable: `
-    [Maintain your fixtures organized](docs/guides-organizing-the-definitions) and group them in different [behaviors](docs/get-started-behaviors).
-    <br/><br/>
-    Behaviors can be created extending from another ones, so you can modify or add new fixtures to the main behavior,
-    and the rest of behaviors will inherit them.
-  `,
-  maintainableCode: `
-[
-  {
-    "id": "standard",
-    "fixtures": ["get-user", "update-user"]
-  },
-  {
-    "id": "update-user-error",
-    "from": "standard",
-    "fixtures": ["update-user-error"]
-  }
-]
-  `,
-  friendly: `
-    The main distribution of <code>mocks-server</code> includes some preinstalled plugins for making easy
-    to control the server while it is running, allowing to change the current behavior, to change the delay, etc.
-    <br/><br/>
-    Settings can be changed using an interactive CLI or using a REST API. This allows to use <code>mocks-server</code> both for development and testing phases easily.
-    <br/><br/>
-    It also includes hot-reloading, so the responses of the server will change while you change your fixtures files.
-  `,
   upcoming: `
-    Administration web user interface, Chrome extension, Proxy fallback, Web Sockets, store your fixtures in a remote host, etc.
-  `,
-  customizable: `
-    From [defining fixtures using express middlewares](docs/tutorials-dynamic) to
-    [developing your own plugins](docs/advanced-developing-plugins) or even [adding new fixtures handlers](docs/advanced-custom-fixtures-handlers),
-    the mocks-server is very adaptable to achieve any project requirements.
-    <br/><br/>
-    Plugins from NPM or your own plugins can be added easily using the [configuration file](docs/configuration-file)
-  `,
-  customizableCode: `
-class Plugin {
-  constructor(core) {
-    core.addSetting({
-      name: "traceBehaviors",
-      type: "boolean",
-      description: "Trace behaviors changes",
-      default: true
-    });
-
-    this._core = core;
-    this._onChangeMocks = this._onChangeMocks.bind(this);
-    this._onChangeSettings = this._onChangeSettings.bind(this);
-  }
-  // ...
-}
-  `,
-  integrations: `
-    There are available packages for integrating the Mocks Server with other development tools.
-    <br/><br/>
-    For example, <code>@mocks-server/cypress-commands</code> allows to easily control the mock server from Cypress.
-    Read the [Cypress integration chapter for further info](docs/integrations-cypress)
-  `,
-  integrationsCode: `
-describe("user with admin role", () => {
-  before(() => {
-    cy.mocksServerSetBehavior("admin-user");
-    cy.visit("/");
-  });
-
-  it("should see the users section link", () => {
-    cy.get("#users-section-link").should("be.visible");
-  });
-});
+    Administration web user interface, Chrome extension, Proxy fallback, Web Sockets, etc.
   `,
 };
 
@@ -179,11 +141,7 @@ function HomeCallToAction() {
       <ActionButton type="primary" href={useBaseUrl("docs/get-started-intro")} target="_self">
         Get started
       </ActionButton>
-      <ActionButton
-        type="secondary"
-        href={useBaseUrl("docs/guides-defining-fixtures")}
-        target="_self"
-      >
+      <ActionButton type="secondary" href={useBaseUrl("docs/get-started-routes")} target="_self">
         Learn basics
       </ActionButton>
     </>
@@ -256,14 +214,12 @@ function Benefits() {
       <ThreeColumns
         reverse
         columnOne={
-          <TextColumn title="Multiple api behaviors" text={useContent("benefitsBehaviors")} />
+          <TextColumn title="Route variants" text={useContent("benefitsRouteVariants")} />
         }
         columnTwo={
           <TextColumn title="Multiple formats" text={useContent("benefitsMultipleFormats")} />
         }
-        columnThree={
-          <TextColumn title="Multiple interfaces" text={useContent("benefitsInterfaces")} />
-        }
+        columnThree={<TextColumn title="Easy to use" text={useContent("benefitsEasyToUse")} />}
       />
     </Section>
   );
@@ -274,28 +230,11 @@ function Friendly({ reverse, background }) {
     <Section className="Friendly" background={background}>
       <TwoColumns
         reverse={reverse}
-        columnOne={<TextColumn title="Developer friendly" text={useContent("friendly")} />}
+        columnOne={<TextColumn title="Friendly" text={useContent("easyToUse")} />}
         columnTwo={
           <div className="cliImageContainer">
-            <img src={useBaseUrl("img/interactive-cli-animation.gif")} />
+            <img src={useBaseUrl("img/inquirer-cli.gif")} />
           </div>
-        }
-      />
-    </Section>
-  );
-}
-
-function EasyToUse({ reverse, background }) {
-  return (
-    <Section className="EasyToUse codeExample" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Easy to use" text={useContent("easyToUse")} />}
-        columnTwo={
-          <>
-            <CodeBlock language="bash">{textContents.easyToUseInstallCode}</CodeBlock>
-            <CodeBlock language="json">{textContents.easyToUsePackageCode}</CodeBlock>
-          </>
         }
       />
     </Section>
@@ -307,37 +246,8 @@ function Flexible({ reverse, background }) {
     <Section className="Flexible codeExample" background={background}>
       <TwoColumns
         reverse={reverse}
-        columnOne={<TextColumn title="Flexible" text={useContent("flexible")} />}
-        columnTwo={
-          <>
-            <CodeBlock language="json">{textContents.flexibleJsonCode}</CodeBlock>
-            <CodeBlock language="javascript">{textContents.flexibleJsCode}</CodeBlock>
-          </>
-        }
-      />
-    </Section>
-  );
-}
-
-function Maintainable({ reverse, background }) {
-  return (
-    <Section className="Maintainable codeExample" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Maintainable" text={useContent("maintainable")} />}
-        columnTwo={<CodeBlock language="json">{textContents.maintainableCode}</CodeBlock>}
-      />
-    </Section>
-  );
-}
-
-function Integrations({ reverse, background }) {
-  return (
-    <Section className="Integrations codeExample" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Integrations" text={useContent("integrations")} />}
-        columnTwo={<CodeBlock language="javascript">{textContents.integrationsCode}</CodeBlock>}
+        columnOne={<TextColumn title="Flexible and maintainable" text={useContent("flexible")} />}
+        columnTwo={<CodeBlock language="json">{textContents.flexibleJsonCode}</CodeBlock>}
       />
     </Section>
   );
@@ -348,7 +258,7 @@ function Customizable({ reverse, background }) {
     <Section className="Customizable codeExample" background={background}>
       <TwoColumns
         reverse={reverse}
-        columnOne={<TextColumn title="Customizable" text={useContent("customizable")} />}
+        columnOne={<TextColumn title="Pluggable" text={useContent("customizable")} />}
         columnTwo={<CodeBlock language="javascript">{textContents.customizableCode}</CodeBlock>}
       />
     </Section>
@@ -406,18 +316,15 @@ const Index = () => {
         />
         <meta
           name="keywords"
-          content="Node.js, mock server, simulated api, interactive, command line interface, api client, http, simulated response, REST API, api behaviors, developer friendly, hot reloading, testing, plugins, pluggable, Cypress"
+          content="Node.js, mock server, simulated api, interactive, command line interface, api client, http, simulated response, REST API, api mock, developer friendly, hot reloading, testing, plugins, pluggable, route variants, Cypress, middlewares"
         />
       </Head>
       <HeaderHero />
       <Benefits />
       <Friendly reverse background="tint" />
-      <EasyToUse />
-      <Flexible reverse background="tint" />
-      <Maintainable />
-      <Integrations reverse background="tint" />
-      <Customizable />
-      <Upcoming background="tint" />
+      <Flexible />
+      <Customizable reverse background="tint" />
+      <Upcoming />
       <Star />
     </Layout>
   );

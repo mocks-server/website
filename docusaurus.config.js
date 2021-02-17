@@ -61,7 +61,17 @@ module.exports = {
       items: [
         {
           to: "docs/get-started-intro",
-          label: "Docs",
+          label: "Get started",
+          position: "right",
+        },
+        {
+          to: "docs/configuration-options",
+          label: "Configuration",
+          position: "right",
+        },
+        {
+          to: "docs/api-mocks-server-api",
+          label: "API",
           position: "right",
         },
         {
@@ -90,7 +100,7 @@ module.exports = {
             },
             {
               label: "Guides",
-              to: "docs/guides-defining-fixtures",
+              to: "docs/guides-organizing-files",
             },
             {
               label: "Configuration",
