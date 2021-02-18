@@ -312,11 +312,11 @@ const Index = () => {
         <title>{siteConfig.title}</title>
         <meta
           name="description"
-          content="Node.js mock server. Responses can be defined in json, JavaScript plain objects or Express middlewares. Supports defining different responses for the same route, and group them into different behaviors. Includes multiple interfaces, as an interactive CLI and a REST API."
+          content="Node.js mock server supporting route variants and multiple mocks"
         />
         <meta
           name="keywords"
-          content="Node.js, mock server, simulated api, interactive, command line interface, api client, http, simulated response, REST API, api mock, developer friendly, hot reloading, testing, plugins, pluggable, route variants, Cypress, middlewares"
+          content="Node.js, mock server, simulated api, interactive, command line interface, testing tools, http, simulated response, REST API, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares"
         />
       </Head>
       <HeaderHero />
