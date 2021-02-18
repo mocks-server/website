@@ -8,6 +8,9 @@ keywords:
   - first steps
   - mocks server
   - intro
+  - first steps
+  - intro
+  - overview
 ---
 
 ## The project
@@ -46,7 +49,7 @@ Add next script to your `package.json` file:
 
 ## Usage
 
-Now, you can start the Mocks Server with the command:
+Now, you can start Mocks Server with the command:
 
 ```bash
 npm run mocks
@@ -138,12 +141,12 @@ Working with Node.js, it integrates better in front-end projects as any other NP
 
 ## Why "Mocks" in plural?
 
-As explained, the Mocks Server can store different mocks, which are sets of different route variants. So it simulates multiple api behaviors and send different responses to the same request at your convenience, so it is like having different mock servers that can be changed while running.
+As explained, Mocks Server can store different mocks, which are sets of different route variants. So it simulates multiple api behaviors and send different responses to the same request at your convenience, so it is like having different mock servers that can be changed while running.
 
 ## Customization
 
 Mocks Server is very customizable, and gives you the possibility of extend it with every new amazing feature you want:
 
-- [Start it programmatically](api-programmatic-usage.md) and use his multiple methods and events to manage it from your program.
+- [Start it programmatically](api-programmatic-usage.md) and use its multiple methods and events to manage it from your program.
 - Add new options and features [installing plugins](plugins-adding-plugins.md), or [developing your owns](plugins-developing-plugins.md).
 - Add new [routes handlers](api-routes-handler.md), which allows to customize the format in which route variants are defined.

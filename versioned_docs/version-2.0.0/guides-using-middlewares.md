@@ -101,7 +101,7 @@ When extending from another mock, the new route variant will replace the old one
 
 This is __usually not recommended__, because doing it, you will be almost implementing a "real api", so maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it. So, let's see how it can be done.
 
-While the Mocks Server is running, the modifications made to any JavaScript object in the `routes` folder will be kept in memory, so you could take advantage of this to persist some data while the server is running _(note that modifications will be lost when the files are modified and reloaded, for example)_
+While Mocks Server is running, the modifications made to any JavaScript object in the `routes` folder will be kept in memory, so you could take advantage of this to persist some data while the server is running _(note that modifications will be lost when the files are modified and reloaded, for example)_
 
 Example:
 

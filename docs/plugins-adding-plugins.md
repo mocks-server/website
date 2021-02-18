@@ -8,6 +8,8 @@ keywords:
   - plugin
   - install
   - register
+  - addons
+  - configuration
 ---
 
 ## Plugins
@@ -42,12 +44,12 @@ module.exports = {
 ```
 
 :::note
-Note the usage of the `addPlugins` property, not the `plugins` one. This is because the main distribution of the Mocks Server _([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main))_ already includes some plugins to improve the user experience. If you use `plugins` instead of `addPlugins`, all other plugins would be removed.
+Note the usage of the `addPlugins` property, not the `plugins` one. This is because the main distribution of Mocks Server _([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main))_ already includes some plugins to improve the user experience. If you use `plugins` instead of `addPlugins`, all other plugins would be removed.
 :::
 
 ### Programmatically
 
-If you are using the _[@mocks-server/core package](https://www.npmjs.com/package/@mocks-server/core)_ to initialize the mocks-server programmatically, you can define the plugins to use as described in the [programmatic usage chapter](api-programmatic-usage.md).
+If you are using the _[@mocks-server/core package](https://www.npmjs.com/package/@mocks-server/core)_ to start Mocks Server programmatically, you can define the plugins to use as described in the [programmatic usage chapter](api-programmatic-usage.md).
 
 ## Find plugins
 

@@ -62,7 +62,7 @@ cy.mocksConfig({
 
 ## Start the application, Mocks Server and Cypress
 
-For running tests, you'll need to start your application configured to make requests to the Mocks Server url, start the Mocks server, and only then, start the execution of Cypress.
+For running tests, you'll need to start your application configured to make requests to the Mocks Server url, start Mocks server, and only then, start the execution of Cypress.
 
 We recommend the usage of the [`start-server-and-test`](https://github.com/bahmutov/start-server-and-test) package to start all needed dependencies before running tests.
 
