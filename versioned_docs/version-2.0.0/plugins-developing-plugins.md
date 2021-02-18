@@ -38,7 +38,7 @@ This method will be called when Mocks Server settings are ready. Here you can al
 
 #### `start(mocksServer, pluginMethods)`
 
-When this method is called, the Mocks Server is already started and listening to requests, and the files watcher is observing for changes too. Here you should start the plugin processes in case there are.
+When this method is called, Mocks Server is already started and listening to requests, and the files watcher is observing for changes too. Here you should start the plugin processes in case there are.
 
 #### `stop(mocksServer, pluginMethods)`
 

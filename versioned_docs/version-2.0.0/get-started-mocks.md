@@ -8,6 +8,7 @@ keywords:
   - presets
   - first steps
   - intro
+  - get started
 ---
 
 ## Intro
