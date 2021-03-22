@@ -35,7 +35,7 @@ routes/
 └── users.js
 ```
 
-Now, let's create a [`route`](get-started-routes.md) with a wildcard url, so it will be executed in all requests. We will add also a `variant` named "enabled", containing the middleware that adds the headers, and another one name "disabled", that basically does nothing.
+Now, let's create a [`route`](get-started-routes.md) with a wildcard url, and an array containing all methods in which the middleware should be executed. We will add also a `variant` named "enabled", containing the middleware that adds the headers, and another one name "disabled", that basically does nothing.
 
 ```js
 // mocks/routes/middlewares.js
@@ -44,6 +44,7 @@ module.exports = [
   {
     id: "add-headers",
     url: "*",
+    method: ["GET", "POST", "PUT", "PATCH"],
     variants: [
       {
         id: "enabled",
