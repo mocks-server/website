@@ -10,11 +10,13 @@ keywords:
   - first steps
   - intro
   - get started
+  - cors
+  - http methods
 ---
 
 ## Intro
 
-* A __route__ defines the handler for an specific request and the response to be sent.
+* A __route__ defines the handler for an specific __request__ _(url and method)_ and the response to be sent.
 * Routes can contain many __variants__, which are different responses for the same route.
 * Routes must be defined in the `mocks/routes` folder of your project. Every file in that folder should export an array of routes, so you can organize them at your convenience.
 
@@ -24,7 +26,7 @@ The standard format for defining a route is to declare an object containing:
 
 * __`id`__ _(String)_: Used as a reference for grouping routes in different "mocks", etc.
 * __`url`__ _(String|Regexp)_: Path of the route. Mocks Server uses `express` under the hood, so [you can read its docs](https://expressjs.com/en/guide/routing.html) or the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) documentation for further info about how to use routing.
-* __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. Valid values are http request methods, such as "GET", "POST", "PUT", etc. It can be also defined as an array of methods, then the route will response to all of them.
+* __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](#how-to-use-the-options-method))_.
 * __`delay`__ Milliseconds of delay for all variants of this route. This option will overwrite the value of the `delay` global setting. It can be overwritten by the `delay` defined in variant.
 * __`variants`__ _(Array)_: of variants containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
@@ -189,3 +191,14 @@ cy.mocksServerUseRouteVariant("get-user:real");
 :::note
 When the current mock is changed, all custom route variants defined using the methods described here will be lost. If you want to persist changes, you should define a mock as it is described in the next chapter.
 :::
+
+## How to use the OPTIONS method
+
+The usage of the `OPTIONS` method in routes requires some additional configuration due to the built-in CORS middleware.
+
+Mocks Server adds by default a middleware to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) automatically in all routes. It also enables CORS pre-flight responses, so it will respond with a 204 status to all requests using the `OPTIONS` method to any route. This means that the `OPTIONS` method can't be used in `routes` until this middleware is disabled, because the built-in CORS pre-flight middleware will send the response first.
+
+So, if you want to handle `OPTIONS` requests by yourself, you should disable the `corsPreFlight` option using the configuration file or the command line argument `--no-corsPreFlight` (read the [configuration chapter](configuration-options.md) for further info).
+
+Mocks Server uses the [`cors` npm package](https://www.npmjs.com/package/cors) under the hood to enable CORS, so you could still enable it only for your desired routes using the same package if you disable it globally. Read [how to add Mocks Server middlewares](guides-using-middlewares.md) for further info.
+

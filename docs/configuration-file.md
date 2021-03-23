@@ -38,7 +38,9 @@ module.exports = {
     path: "custom-mocks-folder",
     port: 3200,
     mock: "foo-mock",
-    cli: false
+    cli: false,
+    cors: true,
+    corsPreFlight: false,
   }
 };
 ```
