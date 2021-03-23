@@ -8,6 +8,8 @@ behaviorsFolder
 bundler
 cli
 coreOptions
+cors
+CORS
 customizable
 dependant
 Docusaurus
@@ -32,6 +34,7 @@ namespace
 Netlify
 overwritable
 orchestrator
+pre
 presentational
 precompiled
 programmatically
