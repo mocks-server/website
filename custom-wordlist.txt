@@ -13,6 +13,8 @@ CORS
 customizable
 dependant
 Docusaurus
+ecmascript
+esm
 ESM
 extensibles
 familiared
