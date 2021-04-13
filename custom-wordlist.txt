@@ -13,6 +13,7 @@ CORS
 customizable
 dependant
 Docusaurus
+ESM
 extensibles
 familiared
 getter
@@ -44,6 +45,7 @@ redux
 reusability
 subfolders
 submenu
+TypeScript
 url
 uri
 uris

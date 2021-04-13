@@ -9,13 +9,15 @@ keywords:
   - babel
   - typescript
   - ecmascript
+  - esm
   - compiler
+  - syntax
   - compatibility
 ---
 
 ## Preface
 
-From Mocks Server v2.2.0 it is posible to use [Babel compiler](https://babeljs.io/) when loading mocks and routes files. This means that Mocks Server is able to load JavasScript files using new syntax and even TypeScript files.
+From Mocks Server v2.2.0 it is possible to use [Babel compiler](https://babeljs.io/) when loading mocks and routes files. This means that Mocks Server is able to load JavaScript files using new syntax and even TypeScript files.
 
 ## Babel Configuration
 
