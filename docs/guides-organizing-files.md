@@ -52,7 +52,7 @@ Remember that every file inside the `/routes` folder must export an array contai
 
 ## /mocks.json
 
-This file contains the [definitions of `mocks`](get-started-mocks.md), and its name can't be changed _(you can also use a `.js` extension if you want)_. It must export an array of [Mocks Server `mocks`](get-started-mocks.md).
+This file contains the [definitions of `mocks`](get-started-mocks.md), and its name can't be changed _(you can also use a `.js` extension if you want, or even any other extension if you are [using Babel](guides-using-babel.md))_. It must export an array of [Mocks Server `mocks`](get-started-mocks.md).
 
 ## Other files and folders
 

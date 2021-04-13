@@ -23,7 +23,7 @@ Providing an interactive command line user interface and a REST API for changing
 
 * __Route variants__: Define many responses for a same [route](get-started-routes.md).
 * __Multiple mocks__: Group different [route variants](get-started-routes.md) into different [mocks](get-started-mocks.md). Change the current mock while the server is running using the [interactive command line interface](plugins-inquirer-cli.md) or the [REST API](plugins-admin-api.md).
-* __Multiple formats__: Responses can be defined [using `json` or JavaScript files](guides-organizing-files.md).
+* __Multiple formats__: Responses can be defined [using `json` or JavaScript files](guides-organizing-files.md). [Babel](https://babeljs.io/) is also supported, so [ESM modules and TypeScript can also be used](guides-using-babel.md).
 * __Express middlewares__: Route variants [can be defined as `express` middlewares](guides-using-middlewares.md).
 * __Multiple interfaces__: Settings can be changed using the [interactive CLI](plugins-inquirer-cli.md) or the [admin REST API](plugins-admin-api.md). The CLI is perfect for development, and the API can be used from tests, for example.
 * __Integrations__: Integrations with other tools are available, as the [Cypress plugin](integrations-cypress.md).

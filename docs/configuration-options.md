@@ -15,6 +15,8 @@ keywords:
   - log level
   - files watch
   - delay
+  - babel
+  - typescript
 ---
 
 ## Methods
@@ -58,6 +60,8 @@ For another plugins options, please refer to their own documentation.
 
 This options can't be modified while the server is running, and can be defined only using the [configuration file](configuration-file.md) or [programmatically](api-programmatic-usage.md).
 
+* __`babelRegister`__ _(Boolean)_: Enables [Babel compilation](guides-using-babel.md) for files inside the mocks folder.
+* __`babelRegisterOptions`__ _(Object)_: Options for [`@babel/register`](https://babeljs.io/docs/en/babel-register) when `babelRegister` is enabled. Properties in this object are passed directly to `@babel/register` as options, so refer to [its documentation](https://babeljs.io/docs/en/babel-register) for further info. You can also see some usage examples in the ["using Babel"](guides-using-babel.md) section of this docs.
 * __`plugins`__ _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins-developing-plugins.md).
 * __`addPlugins`__ _(Array of `Plugin`)_: Array of Plugins to be added. This option does not overwrite previously defined plugins.
 * __`addRoutesHandlers`__ _(Array of `RouteHandler`)_: Array of [`RouteHandler`](api-routes-handler.md) to be added. This option does not overwrite previously defined plugins.

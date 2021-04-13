@@ -32,6 +32,7 @@ const FooPlugin = require("mocks-server-plugin-foo");
 const FooRoutesHandler = require("mocks-server-routes-handler-foo");
 
 module.exports = {
+  babelRegister: true,
   addPlugins: [FooPlugin],
   addRoutesHandlers: [FooRoutesHandler],
   options: {
