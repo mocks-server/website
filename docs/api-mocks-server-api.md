@@ -82,6 +82,7 @@ You could also create your own `mocksServer` instance programmatically. Read the
   * __`all`__: Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
   * __`getValidOptionName(optionName)`__: Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
     * `optionName` _(String)_: Option name to check.
+* __`lowLevelConfig`__: Returns current low level configuration properties.
 * __`mocks`__: Returns methods and getters related to currently available mocks and routes.
   * __`useRouteVariant(variantId)`__: Define a route variant to be used by the current mock. Route variants are restored whenever the current mock changes.
     * `variantId` _(String)_: Route variant id, with the format `"[routeId]:[variantId]"`.
@@ -92,5 +93,4 @@ You could also create your own `mocksServer` instance programmatically. Read the
   * __`plainMocks`__: Returns an array with current mocks in plain format.
   * __`plainRoutes`__: Returns an array with current routes in plain format.
   * __`plainRoutesVariants`__: Returns an array with current routes variants in plain format.
-  
 * __`alerts`__: Returns an array of current alerts.

@@ -15,7 +15,7 @@ keywords:
 
 * A __mock__ defines a set of ["route variants"](get-started-routes.md)
 * Mocks can extend from another mock, so you can "copy" an existent one, and change only one "route variant", for example.
-* Mocks must be defined in the `mocks/mocks.(json|js)` file of your project. The file must export an array of mocks.
+* Mocks must be defined in the `mocks/mocks.(json|js)` file of your project _(or any other compatible extension if you are [using Babel](guides-using-babel.md))_. The file must export an array of mocks.
 
 ## API
 
