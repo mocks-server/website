@@ -18,7 +18,7 @@ const textContents = {
     Ensure that your API client is ready to handle all cases both in development and testing phases.
   `,
   benefitsMultipleFormats: `
-    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. 
+    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is also supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel).
     Define responses using plain objects, or even Express middlewares. Hot reload changes the responses in real time once files are changed.
   `,
   easyToUse: `
@@ -316,7 +316,7 @@ const Index = () => {
         />
         <meta
           name="keywords"
-          content="Node.js, mock server, simulated api, interactive, command line interface, testing tools, http, simulated response, REST API, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares"
+          content="Node.js, mock server, REST API, javascript, typescript, simulated api, interactive, command line interface, testing tools, http, simulated response, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares"
         />
       </Head>
       <HeaderHero />
