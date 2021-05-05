@@ -34,7 +34,7 @@ The name of the mocks folder can be changed using the path option. Read [options
 
 ## /routes
 
-All files inside the `/routes` folder will be loaded, including subfolders, so you can organize routes in the way you want. As a suggestion, you can create a different file for each API entity, and a different folder for each API domain. This will help to maintain your routes organized. For example:
+All files inside the `/routes` folder will be loaded, __including subfolders__, so you can organize the files in the way you want. As a suggestion, you can create a different file for each API entity, and a different folder for each API domain. This will help to maintain your routes organized. For example:
 
 ```
 routes/
@@ -141,9 +141,9 @@ For assigning id to mocks, we recommend to maintain a base `mock` named as `stan
     "routesVariants": ["get-users:all", "get-user:success", "create-user:success"]
   },
   {
-    "id": "error-creating-user",
+    "id": "users-errors",
     "from": "base",
-    "routesVariants": ["create-user:error"]
+    "routesVariants": ["create-user:error", "get-users:error"]
   },
   {
     "id": "users-with-long-name",
@@ -152,4 +152,10 @@ For assigning id to mocks, we recommend to maintain a base `mock` named as `stan
   }
 ]
 ```
+
+### Don't create unnecessary mocks
+
+Sometimes you'll need to change the response of only one specific route. Instead of creating a new mock for that, remember that it is also possible to change the current variant of one route using the `useRouteVariant` method, and to restore the original mock routes variants using the `restoreRoutesVariants` method _([read API for further info](api-mocks-server-api.md))_.
+These methods are also available through the [`plugin-inquirer-cli`](plugins-inquirer-cli.md), [`plugin-admin-api`](plugins-admin-api.md) and [`@mocks-server/cypress-commands`](integrations-cypress.md) plugins.
+
 
