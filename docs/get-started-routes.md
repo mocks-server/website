@@ -18,7 +18,7 @@ keywords:
 
 * A __route__ defines the handler for an specific __request__ _(url and method)_ and the response to be sent.
 * Routes can contain many __variants__, which are different responses for the same route.
-* Routes must be defined in the `mocks/routes` folder of your project. Every file in that folder should export an array of routes, so you can organize them at your convenience.
+* Routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](guides-organizing-files.md), even creating subfolders, the only rule is that every file should export an array of routes.
 
 ## API
 
@@ -27,11 +27,11 @@ The standard format for defining a route is to declare an object containing:
 * __`id`__ _(String)_: Used as a reference for grouping routes in different "mocks", etc.
 * __`url`__ _(String|Regexp)_: Path of the route. Mocks Server uses `express` under the hood, so [you can read its docs](https://expressjs.com/en/guide/routing.html) or the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) documentation for further info about how to use routing.
 * __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](#how-to-use-the-options-method))_.
-* __`delay`__ Milliseconds of delay for all variants of this route. This option will overwrite the value of the `delay` global setting. It can be overwritten by the `delay` defined in variant.
+* __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `delay` global setting. It can be overriden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: of variants containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
   * __`handler`__ _(String)_: Id of the handler to use for the variant (default is the built-in one).
-  * __`delay`__ _(Number)_: Milliseconds of delay for this variant. It would overwrite the route `delay` if it were defined and the `delay` global setting.
+  * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it were defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
   * __`response`__ _(Object|Function)_: Defines the response that the server will send to the request. It can be defined as a plain object, or as an `express` middleware.
     * `Object`
       * __`headers`__ _(Object)_: Object containing headers to set in the response.
