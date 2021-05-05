@@ -27,7 +27,7 @@ The standard format for defining a route is to declare an object containing:
 * __`id`__ _(String)_: Used as a reference for grouping routes in different "mocks", etc.
 * __`url`__ _(String|Regexp)_: Path of the route. Mocks Server uses `express` under the hood, so [you can read its docs](https://expressjs.com/en/guide/routing.html) or the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) documentation for further info about how to use routing.
 * __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](#how-to-use-the-options-method))_.
-* __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `delay` global setting. It can be overriden by the `delay` defined in a variant.
+* __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `delay` global setting. It can be overridden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: of variants containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
   * __`handler`__ _(String)_: Id of the handler to use for the variant (default is the built-in one).
