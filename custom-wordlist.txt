@@ -3,6 +3,7 @@ API
 APIs
 addon
 addons
+ajv-errors
 async
 behaviorsFolder
 bundler
@@ -37,6 +38,7 @@ namespace
 Netlify
 overwritable
 orchestrator
+peerDependencies
 pre
 presentational
 precompiled
