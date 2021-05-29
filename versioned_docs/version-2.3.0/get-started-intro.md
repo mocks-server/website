@@ -47,6 +47,10 @@ Add next script to your `package.json` file:
 }
 ```
 
+:::note
+Mocks Server relies on `ajv` and `ajv-errors` for making validations. This may produce a bug in some projects when using npm 6.x due to a wrong installation of `peerDependencies`. In that case, Mocks Server will still work, but validations will be disabled. The installation can be fixed following [these instructions](how-to-fix-ajv-errors-installation.md).
+:::
+
 ## Usage
 
 Now, you can start Mocks Server with the command:
