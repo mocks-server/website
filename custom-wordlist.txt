@@ -3,6 +3,7 @@ API
 APIs
 addon
 addons
+ajv
 ajv-errors
 async
 behaviorsFolder
