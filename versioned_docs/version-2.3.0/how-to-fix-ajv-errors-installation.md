@@ -16,7 +16,7 @@ keywords:
 
 Mocks Server relies on `ajv` and `ajv-errors` for making validations. This may produce a bug in some projects when using npm 6.x due to a wrong installation of `peerDependencies`. In that case, Mocks Server will still work, but validations will be disabled.
 
-The error is produced because `ajv-errors@3.x` has a `peerDependency` with `ajv@8.x`, and doesn't work with lower `ajv` versions. Well, `mocks-server` declares both dependencies, but `npm` sometimes don't take this into account and provides wrong versions of the packages to `mocks-server`, which produces an error. This is an [npm issue](https://github.com/npm/npm/issues/19877) in versions lower than `7.x`.
+The error is produced because `ajv-errors@3.x` has a `peerDependency` with `ajv@8.x`, and it doesn't work with lower `ajv` versions. Well, `mocks-server` declares both dependencies, but `npm` sometimes doesn't take this into account and provides wrong versions of the packages to `mocks-server`, which produces an error. This is an [npm issue](https://github.com/npm/npm/issues/19877) in versions lower than `7.x`.
 
 ## Workarounds
 
