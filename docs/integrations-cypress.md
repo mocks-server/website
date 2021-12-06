@@ -9,13 +9,24 @@ keywords:
   - tutorial
 ---
 
-## Cypress commands
+## Preface
 
-Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of the server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the api will return to your web page.
+Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of Mocks Server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the api will return to your web page.
 
 __You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real api__, with the advantage that you could reuse the same mocks while you are developing the application.
 
-### Commands
+## Installation
+
+```bash
+npm i --save-dev @mocks-server/cypress-commands
+```
+
+Add this line to your project's `cypress/support/commands.js` file:
+
+```js
+import "@mocks-server/cypress-commands"
+```
+## Cypress Commands
 
 Set current [mock](get-started-mocks.md):
 
@@ -60,7 +71,7 @@ cy.mocksConfig({
 })
 ```
 
-### Example
+## Example
 
 ```js
 describe("books page", () => {
