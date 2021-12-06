@@ -9,13 +9,24 @@ keywords:
   - tutorial
 ---
 
-## Cypress commands
+## Preface
 
-Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of the server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you will control in every moment the responses that the api will return to your web page.
+Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of Mocks Server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the api will return to your web page.
 
-You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real api, with the advantage that you could reuse the same mocks while you are developing the application.
+__You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real api__, with the advantage that you could reuse the same mocks while you are developing the application.
 
-### Commands
+## Installation
+
+```bash
+npm i --save-dev @mocks-server/cypress-commands
+```
+
+Add this line to your project's `cypress/support/commands.js` file:
+
+```js
+import "@mocks-server/cypress-commands"
+```
+## Cypress Commands
 
 Set current [mock](get-started-mocks.md):
 
@@ -58,6 +69,58 @@ cy.mocksConfig({
   adminApiPath: "/foo",
   baseUrl: "http://localhost:3000"
 })
+```
+
+## Example
+
+```js
+describe("books page", () => {
+  describe("when there are two books", () => {
+    before(() => {
+      cy.mocksSetMock("two-books"); // Use "two-books" mock
+      cy.visit("/");
+    });
+
+    it("should display two books", () => {
+      cy.get("#books li").should("have.length", 2);
+    });
+  });
+
+  describe("when there is an error loading data", () => {
+    before(() => {
+      cy.mocksUseRouteVariant("get-books:error"); // Use "get-books:error" route variant
+      cy.visit("/");
+    });
+
+    after(() => {
+      cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
+    });
+
+    it("should display error message", () => {
+      cy.get("#books .error").should("exist");
+    });
+  });
+
+  describe("when the API is slow", () => {
+    before(() => {
+      cy.mocksSetDelay(3000); // Set a delay of 3 seconds in API responses
+      cy.visit("/");
+    });
+
+    after(() => {
+      cy.mocksSetDelay(0); // Restore the delay to 0
+    });
+
+    it("should display loading", () => {
+      cy.get("#books .loading").should("exist");
+    });
+
+    it("should display two books", () => {
+      cy.get("#books li").should("have.length", 2);
+    });
+  });
+});
+
 ```
 
 ## Start the application, Mocks Server and Cypress

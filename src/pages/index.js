@@ -14,11 +14,11 @@ const textContents = {
     Change the current mock and other settings while the server is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api). [Integrations with other tools](docs/integrations-cypress) are also available.
   `,
   benefitsRouteVariants: `
-    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks).
+    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks). Route variants can even proxy requests to another host, and even modify its response.
     Ensure that your API client is ready to handle all cases both in development and testing phases.
   `,
   benefitsMultipleFormats: `
-    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is also supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel).
+    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel).
     Define responses using plain objects, or even Express middlewares. Hot reload changes the responses in real time once files are changed.
   `,
   easyToUse: `
@@ -31,6 +31,8 @@ const textContents = {
   `,
   flexible: `
     Define route variants for HTTP responses in JSON files, or as JavaScript objects.
+    <br/><br/>
+    Route variants can proxy requests to another host, and even modify its response.
     <br/><br/>
     [Express middlewares](docs/guides-using-middlewares) can be also used for more complex scenarios.
     <br/><br/>
@@ -61,6 +63,11 @@ const textContents = {
         "response": {
           "status": 404
         }
+      },
+      {
+        "id": "proxied",
+        "handler": "proxy"
+        "host": "https://jsonplaceholder.typicode.com/users/1"
       }
     ]
   }
@@ -105,7 +112,7 @@ module.exports = {
 }
   `,
   upcoming: `
-    Administration web user interface, Chrome extension, Proxy fallback, Web Sockets, etc.
+    Administration web user interface, Chrome extension, Web Sockets, etc.
   `,
 };
 
