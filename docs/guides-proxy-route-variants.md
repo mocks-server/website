@@ -76,7 +76,7 @@ module.exports = [
         host: "http://127.0.0.1:8080", // proxy host
       },
       {
-        id: "disabled", // This middleware does nothing, so we can esily disable the proxy and let other routes to handle the request
+        id: "disabled", // This middleware does nothing, so we can easily disable the proxy and let other routes to handle the request
         response: (req, res, next) => next(), 
       },
     ],
@@ -103,7 +103,7 @@ module.exports = [
 ];
 ```
 
-Note that __the order in which the _routes_ are added to a _mock_ matters__, so, if you add this route at the beggining of a mock, every request will be proxied, but if you add it to the end of the mock, only requests not matching with other routes will be proxied:
+Note that __the order in which the _routes_ are added to a _mock_ matters__, so, if you add this route at the beginning of a mock, every request will be proxied, but if you add it to the end of the mock, only requests not matching with other routes will be proxied:
 
 ```json
 // mocks/mocks.json
@@ -116,7 +116,7 @@ Note that __the order in which the _routes_ are added to a _mock_ matters__, so,
 ]
 ```
 
-> In this example, the `get-users:one` route variant will never be used, as the `proxy-all` route matches every route. Everything will be proxied by default. That's why the example contains a `disabled` middleware variant that does nothing, so we can esily disable the proxy and let other routes to handle the request using the `proxy-all:disabled` route variant.
+> In this example, the `get-users:one` route variant will never be used, as the `proxy-all` route matches every route. Everything will be proxied by default. That's why the example contains a `disabled` middleware variant that does nothing, so we can easily disable the proxy and let other routes to handle the request using the `proxy-all:disabled` route variant.
 
 ### Proxy as a fallback
 
