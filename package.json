@@ -1,4 +1,8 @@
 {
+  "name": "mocks-server-docs",
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/mocks-server/website",
   "scripts": {
     "lint": "eslint src *.js",
     "lint-staged": "lint-staged",
@@ -14,9 +18,10 @@
     "docusaurus": "docusaurus"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "7.16.3",
+    "@babel/preset-react": "^7.16.0",
     "@docusaurus/core": "2.0.0-beta.9",
     "@docusaurus/preset-classic": "2.0.0-beta.9",
-    "babel-eslint": "10.1.0",
     "clsx": "1.1.1",
     "docusaurus-plugin-sass": "0.2.1",
     "eslint": "8.4.0",
