@@ -1,0 +1,148 @@
+{
+  "version-2.6.0/docs": [
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Welcome",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/welcome-about-docs"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Getting started",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/get-started-intro"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/get-started-routes"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/get-started-mocks"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Guides",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/guides-organizing-files"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/guides-using-babel"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/guides-proxy-route-variants"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/guides-using-middlewares"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/guides-migrating-from-v1"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Configuration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/configuration-options"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/configuration-file"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/configuration-command-line-arguments"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Plugins",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/plugins-adding-plugins"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/plugins-inquirer-cli"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/plugins-admin-api"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/plugins-proxy"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/plugins-developing-plugins"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "Integrations",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/integrations-cypress"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "collapsible": true,
+      "label": "API",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.6.0/api-routes-and-mocks"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/api-mocks-server-api"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/api-programmatic-usage"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.6.0/api-routes-handler"
+        }
+      ]
+    }
+  ]
+}

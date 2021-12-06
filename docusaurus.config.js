@@ -21,7 +21,7 @@ module.exports = {
       "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
     contributingUrl: "https://github.com/mocks-server/main/blob/master/.github/CONTRIBUTING.md",
     contributorCovenanceUrl: "https://www.contributor-covenant.org/",
-    nextVersion: "v1.9.0",
+    nextVersion: "v2.7.0",
   },
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
