@@ -61,7 +61,7 @@ module.exports = [
 
 ### Proxy all requests
 
-Use the `*` wildcard in the `url` propery and define all methods to proxy every request.
+Use the `*` wildcard in the `url` property and define all methods to proxy every request.
 
 ```js
 module.exports = [

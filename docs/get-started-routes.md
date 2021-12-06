@@ -47,8 +47,8 @@ The format for defining a route is to declare an object containing:
     * _`handler:"proxy"`_ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution. The variant can contain next extra properties:
       * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
       * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:
-        * __filter__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
-        * __userResDecorator__ _(Function)_: [`userResDecorator` option](https://github.com/villadora/express-http-proxy#userresdecorator-was-intercept-supports-promise) for `express-http-proxy`.
+        * __`filter`__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
+        * __`userResDecorator`__ _(Function)_: [`userResDecorator` option](https://github.com/villadora/express-http-proxy#userresdecorator-was-intercept-supports-promise) for `express-http-proxy`.
         * __...__ all other [`express-http-proxy` options](https://github.com/villadora/express-http-proxy#options) are also supported.
 
 :::note

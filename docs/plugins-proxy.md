@@ -1,7 +1,7 @@
 ---
 id: plugins-proxy
 title: Proxy
-description: Plugin for proxying requests to another host and pass response back
+description: Plugin that allows to proxy requests to another host and pass response back
 keywords:
   - mocks server
   - configuration
@@ -30,8 +30,8 @@ Mocks server common properties to all variants are in _cursive_. Specific proper
 * _`delay`_ _(Number|null)_: Milliseconds of delay for this variant.
 * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
 * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:
-  * __filter__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
-  * __userResDecorator__ _(Function)_: [`userResDecorator` option](https://github.com/villadora/express-http-proxy#userresdecorator-was-intercept-supports-promise) for `express-http-proxy`.
+  * __`filter`__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
+  * __`userResDecorator`__ _(Function)_: [`userResDecorator` option](https://github.com/villadora/express-http-proxy#userresdecorator-was-intercept-supports-promise) for `express-http-proxy`.
   * __...__ all other [`express-http-proxy` options](https://github.com/villadora/express-http-proxy#options) are also supported.
 
 > Tip: Note that the `delay` option is still valid, so you can use it to simulate that host responses are slow.
