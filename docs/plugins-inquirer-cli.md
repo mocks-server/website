@@ -15,7 +15,7 @@ keywords:
 
 ## plugin-inquirer-cli
 
-The Mocks Server main distribution includes the [inquirer-cli plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) preinstalled. It provides an interactive CLI that allows to change the server settings while it is running, displays server logs, etc.
+__The Mocks Server main distribution includes the [inquirer-cli plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) preinstalled__. It provides an interactive CLI that allows to change the server settings while it is running, displays server logs, etc.
 
 ## Usage
 

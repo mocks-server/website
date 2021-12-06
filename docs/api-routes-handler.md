@@ -49,25 +49,29 @@ Here you have an example of how a custom Routes Handler should be defined:
 
 class CustomRoutesHandler {
   static get id() {
-    return "custom";
+    return "error";
   }
 
-  constructor(route, mocksServer) {
-    this._response = route.response;
-    this._variantId = route.variantId;
+  constructor(routeVariant, mocksServer) {
+    this._error = routeVariant.error;
+    this._variantId = routeVariant.variantId;
     this._mocksServer = mocksServer;
   }
 
   middleware(req, res, next) {
     this._mocksServer.tracer.info(`Sending route variant "${this._variantId}"`);
-    res.status(this._response.status);
-    res.send(this._response.body);
+    res.status(this._error.code);
+    res.send({
+      message: this._error.message
+    });
   }
 
   get plainResponsePreview() {
     return {
-      body: this._response.body,
-      status: this._response.status,
+      body: {
+        message: this._error.message
+      },
+      status: this._error.code,
     };
   }
 }
@@ -108,22 +112,21 @@ module.exports = [
     method: "GET",
     variants: [
       {
+        id: "error-400",
+        handler: "error", // id of the handler to be used
+        error: {
+          code: 400,
+          message: "Error message",
+        }
+      }
+      {
+        // This one will use the "default" handler
         id: "empty",
-        handler: "custom", // id of the handler to be used
         response: {
           status: 200,
           body: []
         }
       },
-      {
-        id: "error", 
-        response: {
-          status: 400,
-          body: {
-            message: "Error"
-          }
-        }
-      }
     ]
   }
 ]

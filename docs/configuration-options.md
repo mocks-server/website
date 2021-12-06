@@ -39,7 +39,7 @@ These options can be defined using [command line arguments](configuration-comman
 * __`log`__ _(String)_: Logs level. Can be one of `silly`, `debug`, `verbose`, `info`, `warn` or `error`.
 * __`watch`__ _(String)_: Watch mocks folder and restart server on changes. Default is `true`.  Use `false` to disable it.
 * __`mock`__ _(String)_: Mock to use when the server is started.
-* __`delay`__ _(Number)_: Responses delay time in milliseconds.
+* __`delay`__ _(Number)_: Responses delay time in milliseconds. This is a global setting that can be overriden for specific routes or route variants using [their options](get-started-routes.md).
 * __`cors`__ _(Boolean)_: Built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. Default is `true`.  Use `false` to disable it.
 * __`corsPreFlight`__ _(Boolean)_: Built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) pre-flight middleware. If enabled, Mocks Server will respond to all `OPTIONS` requests with a 204 status and correspondent CORS headers. It requires the `cors` option to be enabled also. Default is `true`.  Use `false` to disable it _(if you want to [handle OPTIONS requests by yourself](get-started-routes.md#how-to-use-the-options-method), for example)_.
 

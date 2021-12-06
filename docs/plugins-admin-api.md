@@ -15,7 +15,7 @@ keywords:
 
 ## plugin-admin-api
 
-The main distribution includes the [plugin-admin-api plugin](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) preinstalled. It provides a REST API that allows to change the server settings while it is running, etc.
+__The main distribution includes the [plugin-admin-api plugin](https://www.npmjs.com/package/@mocks-server/plugin-admin-api) preinstalled__. It provides a REST API that allows to change the server settings while it is running, etc.
 
 This is __very useful when running acceptance tests, as you can change the current mock__ simply with a HTTP request in the `before` method of your tests, for example.
 
