@@ -32,8 +32,8 @@ The format for defining a route is to declare an object containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
   * __`handler`__ _(String)_: Id of the [Routes Handler](api-routes-handler.md) to use for the variant (default is `default`). In the "main" distribution of Mocks Server, the [`proxy` handler](plugins-proxy.md) is also available. _Read [Routes Handler](api-routes-handler.md) to know how to add custom handlers_.
   * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it were defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
-  * __`...variant handler properties`__ Depending of the value of the `handler` property, a variant can contain different extra properties:
-    * __`handler:"default"`__ The default handler. The variant can contain next extra properties:
+  * _`...variant handler properties`_ Depending of the value of the `handler` property, a variant can contain different extra properties:
+    * _`handler:"default"`_ The default handler. The variant can contain next extra properties:
       * __`response`__ _(Object|Function)_: Defines the response that the server will send to the request. It can be defined as a plain object, or as an `express` middleware.
         * `Object`
           * __`headers`__ _(Object)_: Object containing headers to set in the response.
@@ -44,7 +44,7 @@ The format for defining a route is to declare an object containing:
           * __`res`__ Express middleware `res` methods.
           * __`next`__ Express middleware `next` method.
           * __`mocksServer`__ Mocks Server instance methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](api-mocks-server-api.md) about available methods.
-    * __`handler:"proxy"`__ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution. The variant can contain next extra properties:
+    * _`handler:"proxy"`_ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution. The variant can contain next extra properties:
       * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
       * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:
         * __filter__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
