@@ -155,7 +155,7 @@ module.exports = {
       },
     },
     algolia: {
-      appId: '3RB482WII9',
+      appId: "3RB482WII9",
       apiKey: "1eda94213e49ee050c59779a025bc554",
       indexName: "mocks-server",
       contextualSearch: true,
