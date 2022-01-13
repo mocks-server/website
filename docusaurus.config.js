@@ -42,6 +42,10 @@ module.exports = {
             require.resolve("./src/css/index.scss"),
           ],
         },
+        gtag: {
+          trackingID: "UA-151983197-1",
+          anonymizeIP: true,
+        },
       },
     ],
   ],
@@ -159,9 +163,6 @@ module.exports = {
       apiKey: "1eda94213e49ee050c59779a025bc554",
       indexName: "mocks-server",
       contextualSearch: true,
-    },
-    gtag: {
-      trackingID: "UA-151983197-1",
     },
   },
 };
