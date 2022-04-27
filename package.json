@@ -18,24 +18,24 @@
     "docusaurus": "docusaurus"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.16.5",
+    "@babel/eslint-parser": "7.17.0",
     "@babel/preset-react": "7.16.7",
-    "@docusaurus/core": "2.0.0-beta.14",
-    "@docusaurus/preset-classic": "2.0.0-beta.14",
+    "@docusaurus/core": "2.0.0-beta.16",
+    "@docusaurus/preset-classic": "2.0.0-beta.16",
     "clsx": "1.1.1",
-    "docusaurus-plugin-sass": "0.2.1",
-    "eslint": "8.6.0",
-    "eslint-config-prettier": "8.3.0",
+    "docusaurus-plugin-sass": "0.2.2",
+    "eslint": "8.10.0",
+    "eslint-config-prettier": "8.4.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react": "7.29.2",
     "husky": "7.0.4",
-    "lint-staged": "12.1.7",
+    "lint-staged": "12.3.4",
     "prettier": "2.5.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-github-btn": "1.2.1",
-    "sass": "1.47.0"
+    "sass": "1.49.9"
   },
   "lint-staged": {
     "src/**/*.js": "eslint",
