@@ -151,7 +151,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: "Copyright © 2021 Javier Brea",
+      copyright: `Copyright © ${new Date().getFullYear()}  Javier Brea`,
       logo: {
         alt: "Mocks Server logo",
         src: "img/logo-white.svg",
