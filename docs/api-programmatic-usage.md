@@ -19,7 +19,7 @@ You can also register your own or another existing plugins, so you could even cr
 ### Example
 
 ```javascript
-const { Core } = require("@mocks-server/core");
+const Core = require("@mocks-server/core");
 const AdminApi = require("@mocks-server/plugin-admin-api");
 const InquirerCli = require("@mocks-server/plugin-inquirer-cli");
 

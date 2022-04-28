@@ -56,7 +56,7 @@ const FooPlugin = require("mocks-server-plugin-foo");
 
 module.exports = (config) => {
   config.plugins.push(FooPlugin);
-  config.options.behavior = "foo-behavior";
+  config.options.mock = "foo-mock";
   return config;
 };
 ```

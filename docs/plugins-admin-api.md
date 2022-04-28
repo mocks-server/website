@@ -47,7 +47,3 @@ Available API resources are:
   * Request body example: `{ "delay": 3000 }`
 * `GET` `/admin/alerts` Returns current alerts.
 * `GET` `/admin/alerts/:id` Returns a specific alert. The alert `id` is equivalent to the alert `context` _(read the [developing plugins chapter](plugins-developing-plugins.md) for further info about alerts)_.
-
-:::note
-v1.x deprecated api resources are also still available under the `/legacy` path.
-:::
