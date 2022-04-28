@@ -15,22 +15,24 @@
     "rename-version": "docusaurus-rename-version",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
-    "docusaurus": "docusaurus"
+    "docusaurus": "docusaurus",
+    "prepare": "is-ci || husky install"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.17.0",
     "@babel/preset-react": "7.16.7",
-    "@docusaurus/core": "2.0.0-beta.16",
-    "@docusaurus/preset-classic": "2.0.0-beta.16",
+    "@docusaurus/core": "2.0.0-beta.18",
+    "@docusaurus/preset-classic": "2.0.0-beta.18",
     "clsx": "1.1.1",
     "docusaurus-plugin-sass": "0.2.2",
-    "eslint": "8.10.0",
-    "eslint-config-prettier": "8.4.0",
+    "eslint": "8.12.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.29.2",
+    "eslint-plugin-react": "7.29.4",
     "husky": "7.0.4",
-    "lint-staged": "12.3.4",
-    "prettier": "2.5.1",
+    "is-ci": "3.0.1",
+    "lint-staged": "12.3.7",
+    "prettier": "2.6.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -40,11 +42,6 @@
   "lint-staged": {
     "src/**/*.js": "eslint",
     "*.js": "eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
   },
   "browserslist": {
     "production": [
