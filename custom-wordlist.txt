@@ -16,6 +16,7 @@ customizable
 dependant
 Docusaurus
 ecmascript
+env
 esm
 ESM
 extensibles
@@ -35,6 +36,9 @@ lifecycle
 localhost
 middleware
 middlewares
+Namespaces
+namespaces
+Namespace
 namespace
 Netlify
 overwritable
@@ -51,6 +55,7 @@ redux
 reusability
 subfolders
 submenu
+theirself
 TypeScript
 url
 uri
