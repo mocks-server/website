@@ -16,9 +16,9 @@ keywords:
 
 ## Intro
 
-* A __route__ defines the handler for an specific __request__ _(url and method)_ and the response to be sent.
+* A __route__ defines the handler for an specific __request__ _(url and method)_ and the different responses that can be sent.
 * Routes can contain many __variants__, which are different responses for the same route.
-* Routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](guides-organizing-files.md), even creating subfolders, the only rule is that every file should export an array of routes.
+* Routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](guides-organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
 
 ## API
 
@@ -31,7 +31,7 @@ The format for defining a route is to declare an object containing:
 * __`variants`__ _(Array)_: of variants containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
   * __`handler`__ _(String)_: Id of the [Routes Handler](api-routes-handler.md) to use for the variant (default is `default`). In the "main" distribution of Mocks Server, the [`proxy` handler](plugins-proxy.md) is also available. _Read [Routes Handler](api-routes-handler.md) to know how to add custom handlers_.
-  * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it were defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
+  * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
   * _`...variant handler properties`_ Depending of the value of the `handler` property, a variant can contain different extra properties:
     * _`handler:"default"`_ The default handler. The variant can contain next extra properties:
       * __`response`__ _(Object|Function)_: Defines the response that the server will send to the request. It can be defined as a plain object, or as an `express` middleware.
@@ -225,7 +225,7 @@ The usage of the `OPTIONS` method in routes requires some additional configurati
 
 Mocks Server adds by default a middleware to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) automatically in all routes. It also enables CORS pre-flight responses, so it will respond with a 204 status to all requests using the `OPTIONS` method to any route. This means that the `OPTIONS` method can't be used in `routes` until this middleware is disabled, because the built-in CORS pre-flight middleware will send the response first.
 
-So, if you want to handle `OPTIONS` requests by yourself, you should disable the `corsPreFlight` option using the configuration file or the command line argument `--no-corsPreFlight` (read the [configuration chapter](configuration-options.md) for further info).
+So, if you want to handle `OPTIONS` requests by yourself, you should disable the `preflightContinue` option of the `cors` middleware. Read the [configuration chapter](configuration-options.md) for further info.
 
 Mocks Server uses the [`cors` npm package](https://www.npmjs.com/package/cors) under the hood to enable CORS, so you could still enable it only for your desired routes using the same package if you disabled it globally. Read [how to add Mocks Server middlewares](guides-using-middlewares.md) for further info.
 

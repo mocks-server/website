@@ -26,10 +26,10 @@ project-root/
 └── mocks.config.js
 ```
 
-This scaffold contains some examples from this documentation that may help you to better understand how `routes` and `mocks` should be defined, how to use `express` middlewares, etc.
+This scaffold contains some examples from this documentation that may help you to better understand how `routes` and `mocks` should be defined, how to use `Express` middlewares, etc.
 
 :::note
-The name of the mocks folder can be changed using the path option. Read [options](configuration-options.md) for further info.
+The name of the mocks folder can be changed using the `files.path` option. Read [options](configuration-options.md) for further info.
 :::
 
 ## /routes
@@ -46,7 +46,7 @@ routes/
     └── products.js
 ```
 
-:::info
+:::warning
 Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](get-started-routes.md).
 :::
 
@@ -132,7 +132,7 @@ We strongly recommend to assign very descriptive ids to the "routes", "variants"
 
 A good pattern for assigning an id to a `route` can be `[method]-[entity]`, as in `get-users`, `get-user`, etc.
 
-For assigning id to mocks, we recommend to maintain a base `mock` named as `standard`, `base`, or `default`. The rest of mocks should extend from it _(at least indirectly)_, and their ids should be a short description of the mock itself, for example:
+For assigning an id to mocks, we recommend to maintain a base `mock` named as `standard`, `base`, or `default`. The rest of mocks should extend from it _(at least indirectly)_, and their ids should be a short description of the mock itself, for example:
 
 ```json
 [
@@ -153,7 +153,7 @@ For assigning id to mocks, we recommend to maintain a base `mock` named as `stan
 ]
 ```
 
-### Don't create unnecessary mocks
+### Tip: Don't create unnecessary mocks
 
 Sometimes you'll need to change the response of only one specific route. Instead of creating a new mock for that, remember that it is also possible to change the current variant of one route using the `useRouteVariant` method, and to restore the original mock routes variants using the `restoreRoutesVariants` method _([read API for further info](api-mocks-server-api.md))_.
 These methods are also available through the [`plugin-inquirer-cli`](plugins-inquirer-cli.md), [`plugin-admin-api`](plugins-admin-api.md) and [`@mocks-server/cypress-commands`](integrations-cypress.md) plugins.

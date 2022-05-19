@@ -13,8 +13,8 @@ keywords:
 
 ## Intro
 
-* A __mock__ defines a set of ["route variants"](get-started-routes.md)
-* Mocks can extend from another mock, so you can "copy" an existent one, and change only one "route variant", for example.
+* A __mock defines a collection of ["route variants"](get-started-routes.md)__. So you can create different "mocks" to store __different states of your mocked API__, and change between them easily while you are developing or while running tests.
+* Mocks can extend from another mock. It is like "copying" an existent one, and changing only one "route variant", or many.
 * Mocks must be defined in the `mocks/mocks.(json|js)` file of your project _(or any other compatible extension if you are [using Babel](guides-using-babel.md))_. The file must export an array of mocks.
 
 ## API
@@ -65,12 +65,16 @@ module.exports = [
 
 ## How to change current mock
 
+:::info
+The currently selected mock can be defined using the configuration. Read the [configuration chapter](configuration-options.md) for further info. Here you have some examples of how to use configuration for changing the current mock.
+:::
+
 ### Using command line arguments
 
 For defining the current mock, you can use [command line arguments](configuration-command-line-arguments.md) when starting the server:
 
 ```bash
-npm run mocks -- --mock=user-real
+npm run mocks -- --mocks.selected=user-real
 ```
 
 ### Using the interactive CLI
@@ -84,7 +88,7 @@ You can also change the current mock using the interactive CLI:
 Make a request to the Mocks Server administration REST API provided by `@mocks-server/plugin-admin-api` (included in the main distribution):
 
 ```bash
-curl -X PATCH -d mock=user-real http://localhost:3100/admin/settings
+curl -X PATCH -d '{"mocks":{"selected":"user-real"}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
 ```
 
 ### Integrations
@@ -99,12 +103,10 @@ cy.mocksServerSetMock("user-real");
 
 ## The order matters
 
-Note that __the order in which route variants are added to the array may be important__. As seen in the previous chapter, route variants responses can be defined as `express` middlewares, so maybe some routes are not going to send a response, and should be added in an specific order.
+Note that __the order in which route variants are added to the array may be important__. As seen in the previous chapter, route variants responses can be defined as `Express` middlewares, so maybe some routes are not going to send a response, and should be added in a specific order.
 
 The order in which Mocks Server register express middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
 
 When extending from another mock, the new route variant will replace the old one in the same position that it was originally defined.
 
 Read the ["using middlewares" guide](guides-using-middlewares.md) for further info and examples.
-
-<!-- In the next example, all of the variants `trace:enabled`, `trace:disabled` and `trace:debug` are middlewares of the url `*`, so they will be always executed. Note how it is added in first place in the `base` mock, in order to execute it in first place. -->

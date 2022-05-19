@@ -103,7 +103,9 @@ module.exports = [
 ];
 ```
 
+:::info
 Note that __the order in which the _routes_ are added to a _mock_ matters__, so, if you add this route at the beginning of a mock, every request will be proxied, but if you add it to the end of the mock, only requests not matching with other routes will be proxied:
+:::
 
 ```json
 // mocks/mocks.json
@@ -161,7 +163,7 @@ module.exports = [
 ];
 ```
 
-> This example could also be achieved adding a `GET` route with url `/users/2` before the `proxy-all` one, so it would handle the request. Depending of your requirements, it is in your hand to decide whether to use `filter`, the order of route variants, or a combination of all.
+> This example could also be achieved adding a `GET` route with url `/users/2` before the `proxy-all` one, so it would handle the request. Depending of your requirements, it is in your hand to decide whether to use `filter`, the order of route variants, or a combination of all of them.
 
 ### Modifying the host response
 

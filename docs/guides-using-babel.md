@@ -17,23 +17,28 @@ keywords:
 
 ## Preface
 
-From Mocks Server v2.2.0 it is possible to use [Babel compiler](https://babeljs.io/) when loading mocks and routes files. This means that Mocks Server is able to load JavaScript files using new syntax and even TypeScript files.
+From Mocks Server v2.2.0 it is possible to use [Babel compiler](https://babeljs.io/) when loading mocks and routes files. This means that Mocks Server is able to load JavaScript files using new Js syntax and even TypeScript files.
 
 ## Babel Configuration
 
-Use the [low level configuration option](configuration-options.md) `babelRegister` to enable Babel compilation in the [`mocks.config.js` file](configuration-file.md):
+Use the [configuration option](configuration-options.md) `files.babelRegister.enabled` to enable Babel compilation:
 
 ```js
 module.exports = {
-  options: {
-    mock: "base",
+  mocks: {
+    selected: "base",
   },
-  // low level config
-  babelRegister: true,
+  {
+    files: {
+      babelRegister: {
+        enabled: true
+      },
+    },
+  },
 };
 ```
 
-Note that enabling Babel only enables Babel registration, but its configuration still depends on you. Babel  will read the `babel.config.js` file from your project's directory, and Babel presets and other dependencies should be installed by yourself, for example:
+Note that enabling Babel only enables Babel registration, but its configuration still depends on you. Babel  will read the `babel.config.js` file from your project's directory, and Babel presets and other dependencies must be installed by yourself. You could also use the `files.babelRegister.options` configuration property to configure Babel without a `babel.config.js` file.
 
 ### Basic example
 
@@ -69,7 +74,7 @@ If you import any file located outside of the `mocks` folder, Babel will not com
 
 ### Advanced configuration
 
-Use the [low level configuration option](configuration-options.md) `babelRegisterOptions` to configure [`@babel/register`](https://babeljs.io/docs/en/babel-register), which is used under the hood to compile files. All properties in this option are passed to Babel as options, so [you can refer to its documentation](https://babeljs.io/docs/en/babel-register), but here are some examples that might be useful.
+Use the [configuration option](configuration-options.md) `files.babelRegister.options` to configure [`@babel/register`](https://babeljs.io/docs/en/babel-register), which is used under the hood to compile files. All properties in this option are passed to Babel as options, so [you can refer to its documentation](https://babeljs.io/docs/en/babel-register), but here are some examples that might be useful.
 
 #### Custom file extensions
 
@@ -77,14 +82,17 @@ You can define your own supported file extensions, for example. When custom exte
 
 ```js
 module.exports = {
-  options: {
-    mock: "base",
+  mocks: {
+    selected: "base",
   },
-  // low level config
-  babelRegister: true,
-  babelRegisterOptions: {
-    extensions: [".ts"]
-  }
+  files: {
+    babelRegister: {
+      enabled: true,
+      options: {
+        extensions: [".ts"],
+      },
+    },
+  },
 };
 ```
 
@@ -94,16 +102,19 @@ By default, Mocks Server configures Babel to compile only files inside the `mock
 
 ```js
 module.exports = {
-  options: {
-    mock: "base",
+  mocks: {
+    selected: "base",
   },
-  // low level config
-  babelRegister: true,
-  babelRegisterOptions: {
-    only: (filePath) => {
-      return filePath.includes("/mocks/") || filePath.includes("/my-folder-to-include/");
-    }
-  }
+  files: {
+    babelRegister: {
+      enabled: true,
+      options: {
+        only: (filePath) => {
+          return filePath.includes("/mocks/") || filePath.includes("/my-folder-to-include/");
+        },
+      },
+    },
+  },
 };
 ```
 
@@ -111,15 +122,18 @@ module.exports = {
 
 Here is an example of how to configure Babel to compile [TypeScript](https://www.typescriptlang.org/) files in the mocks folder.
 
-Enable the `babelRegister` option in the [`mocks-server.config.js` file](configuration-file.md):
+Enable the `files.babelRegister.enabled` option in the [`mocks.config.js` file](configuration-file.md):
 
 ```js
 module.exports = {
-  options: {
-    mock: "base",
+  mocks: {
+    selected: "base",
   },
-  // low level config
-  babelRegister: true,
+  files: {
+    babelRegister: {
+      enabled: true,
+    },
+  },
 };
 ```
 

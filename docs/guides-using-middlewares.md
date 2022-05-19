@@ -17,13 +17,13 @@ keywords:
 
 ## Preface
 
-Mocks Server uses `express` under the hood, and [route variants' `response`](get-started-routes.md) can be defined as an [`express` middleware](https://expressjs.com/en/guide/using-middleware.html). This means that you can use them for several purposes, as persisting data modifications, add common headers to all your routes, trace data from all requests, etc.
+Mocks Server uses `Express` under the hood, and [route variants' `response` property](get-started-routes.md) can be defined as an [`Express` middleware](https://expressjs.com/en/guide/using-middleware.html). This means that you can use them for several purposes, as persisting data modifications, add common headers to all your routes, trace data from all requests, etc.
 
 In this chapter we are going to see two usual examples of how middlewares may be used, and a more advanced one, showing how the Mocks Server programmatic API can be used inside middlewares.
 
 ## Adding common headers to all requests
 
-Your mocked API would usually add some headers to all responses, and it wouldn't be a good idea to redefine the same headers in all your Mocks Server route variants. No problem, here comes the `middlewares` to the rescue.
+Your mocked API would usually add some headers to all responses, and it wouldn't be a good idea to redefine the same headers in all your Mocks Server route variants. No problem, here come the `middlewares` to the rescue.
 
 ### Creating the route
 
@@ -96,7 +96,7 @@ As mentioned in the [`mocks` docs](get-started-mocks.md), the order matters when
 
 The order in which Mocks Server register express middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
 
-When extending from another mock, the new route variant will replace the old one in the same position that it was originally defined. This means that, in the previous `mocks` example, the `no-headers` mock will keep the `add-headers` route in the first position, as it was originally defined in the `base` mock, so it will work properly.
+When extending from another mock, the new route variant will replace the old one in the same position that the same route was originally defined. This means that, in the previous `mocks` example, the `no-headers` mock will keep the `add-headers` route in the first position, as it was originally defined in the `base` mock, so it will work properly.
 
 ## Persisting data modifications
 
@@ -182,7 +182,7 @@ As seen, Mocks Server route variants declaring `response` as functions will rece
 
 This means that it is possible to change the Mocks Server settings from a middleware, for example, so you could set a new global `delay` when a request is received, or change the current mock, or an specific route variant, etc.
 
-In the next example, when requesting `/api/users` the first time, the server will return the users collection, and then will change the `get-users` route variant to `error`, so the next time it is called it will return a 400 status code.
+In the next example, when requesting `/api/users` the first time, the server will return the users collection, and then it will change the `get-users` route variant to `error`, so the next time it is called it will return a 400 status code.
 
 ```js
 const USERS = ;
@@ -206,7 +206,7 @@ module.exports = [
               name: "Jane Doe"
             }
           ]);
-          // Next time the mock will use another route variant!!
+          // In the next request the mock will use another route variant!!
           mocksServer.mocks.useRouteVariant("get-users:error"); 
         }
       },
