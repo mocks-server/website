@@ -14,14 +14,13 @@ module.exports = {
     organizationUrl: "https://github.com/mocks-server",
     webSiteRepoUrl: "https://github.com/mocks-server/website",
     githubProjectUrl: "https://github.com/orgs/mocks-server/projects/1",
-    githubIssuesUrl: "https://github.com/mocks-server/core/issues",
+    githubIssuesUrl: "https://github.com/mocks-server/main/issues",
     websiteIssuesUrl: "https://github.com/mocks-server/website/issues",
     npmUrl: "https://www.npmjs.com/package/@mocks-server/main",
     codeOfConductUrl:
       "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
     contributingUrl: "https://github.com/mocks-server/main/blob/master/.github/CONTRIBUTING.md",
     contributorCovenanceUrl: "https://www.contributor-covenant.org/",
-    nextVersion: "v2.7.0",
   },
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -133,7 +132,7 @@ module.exports = {
             },
             {
               label: "Issues",
-              to: "https://github.com/mocks-server/core/issues",
+              to: "https://github.com/mocks-server/main/issues",
             },
           ],
         },
@@ -142,7 +141,7 @@ module.exports = {
           items: [
             {
               label: "Github",
-              to: "https://github.com/mocks-server",
+              to: "https://github.com/mocks-server/main",
             },
             {
               label: "NPM",

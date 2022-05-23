@@ -108,7 +108,7 @@ module.exports = {
 }
   `,
   upcoming: `
-    Administration web user interface, Chrome extension, Web Sockets, etc.
+    Administration web user interface, Mocking Web Sockets, documentation improvements, etc.
   `,
 };
 
