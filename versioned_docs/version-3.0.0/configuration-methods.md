@@ -174,7 +174,7 @@ npm run mocks -- --server.cors.options='{"preflightContinue":false}'
 
 ### Arrays
 
-Values for options of type `Array` can be defined using multiple arguments. A Commander variadic option is created under the hood to get the values, so array items have to be defined in separated arguments. Read the [Commander docs for further info](https://github.com/tj/commander.js/#variadic-option).
+Values for options of type `Array` can be defined using multiple arguments. A Commander `variadic` option is created under the hood to get the values, so array items have to be defined in separated arguments. Read the [Commander docs for further info](https://github.com/tj/commander.js/#variadic-option).
 
 ```sh
 #Provide values for option `config.fileSearchPlaces`
