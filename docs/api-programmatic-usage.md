@@ -24,14 +24,24 @@ const AdminApi = require("@mocks-server/plugin-admin-api");
 const InquirerCli = require("@mocks-server/plugin-inquirer-cli");
 
 const mocksServer = new Core({
-  onlyProgrammaticOptions: false,
-  plugins: [AdminApi, InquirerCli]
+  config: {
+    readFile: false,
+    readEnvironment: false,
+    readArguments: false,
+  },
+  plugins: {
+    register: [AdminApi, InquirerCli]
+  },
 });
 
 mocksServer
   .init({
-    port: 3500,
-    delay: 1000,
+    server: {
+      port: 3500
+    },
+    mocks: {
+      delay: 1000
+    },
     log: "debug"
   })
   .then(server.start);

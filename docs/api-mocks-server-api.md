@@ -1,7 +1,7 @@
 ---
 id: api-mocks-server-api
 title: mocksServer API
-description: mocksServer API
+description: mocksServer core API
 keywords:
   - mocks server
   - programmatic
@@ -16,16 +16,16 @@ keywords:
 
 ## Preface
 
-Mocks Server provides the `mocksServer` instance to plugins, middlewares and other system pieces. The `mocksServer` instance is the Mocks Server core itself, and it contains methods allowing to configure, start or stop it, getters returning information, etc.
+Mocks Server provides the `mocksServer` `core` instance to plugins, middlewares and other system pieces. The `core` instance is the Mocks Server core itself, and it contains methods allowing to configure, start or stop it, getters returning information, etc.
 
-You could also create your own `mocksServer` instance programmatically. Read the [programmatic usage chapter](api-programmatic-usage.md) for further info.
+You could also create your own `core` instance programmatically. Read the [programmatic usage chapter](api-programmatic-usage.md) for further info.
 
 ## API
 
 ### Initialization methods
 
 * __`init([programmaticOptions])`__: Register plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
-  * `programmaticOptions` _(Object)_: All [Mocks Server main options](configuration-options.md#main-options) or [plugins options](configuration-options.md#plugins-options). Command line arguments and configuration file options will override the values defined here. Options are internally called `settings` once they are initialized.
+  * `programmaticOptions` _(Object)_: All [Mocks Server main options](configuration-options.md#main-options) or [plugins options](configuration-options.md#plugins-options). Command line arguments, environment variables and configuration file options will override the values defined here. Options are internally available using the `config` API once they are initialized.
 * __`start()`__: Start the server and plugins. Returns a promise.
 * __`stop()`__: Stop the server and plugins. Returns a promise.
 * __`restartServer()`__: Restart the server.
@@ -34,22 +34,12 @@ You could also create your own `mocksServer` instance programmatically. Read the
 
 * __`onChangeMocks(callback)`__: Add a callback to be executed when mocks or routes changes. Returns a function for removing the added callback.
   * `callback()` (Function): Function to be executed on change mocks.
-* __`onChangeSettings(callback)`__: Add a callback to be executed when settings are changed. Returns a function for removing the added callback.
-  * `callback([changedSettings])` (Function): Function to be executed on change settings.
-    * `changedSettings` _(Object)_: Settings properties that have changed, with new values.
 * __`onChangeAlerts(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback.
   * `callback([currentAlerts])` (Function): Function to be executed on change alerts.
     * `currentAlerts` _(Array)_: Current alerts.
 
 ### Customization methods
 
-* __`addSetting(customSetting)`__: Register a new setting (which will be available also as an `option` during initialization). Has to be called before the `mocksServer.init` method is called. (It should be usually used by Plugins in their `register` method)
-  * `customSetting` _(Object)_: containing next properties:
-    * `name` _(String)_: Name of the new option.
-    * `type` _(String)_: One of `string`, `number`, `boolean`. Defines the type of the new option.
-    * `description` _(String)_: Used for giving help to the user in command line arguments, for example.
-    * `default`_(Any)_: Default value for the new option.
-    * `parse` _(Function)_ Custom parser for the option when it is defined using command line arguments.
 * __`addRouter(path, expressRouter)`__: Add a custom [express router](https://expressjs.com/es/guide/routing.html) to the server. Custom routers will be added just before the middleware that serves the routes, so if a custom router path matches with a route path, the first one will have priority.
     * `path` _(String)_: Api path for the custom router
     * `expressRouter` _(Express Router)_: Instance of an [`express` router](https://expressjs.com/es/guide/routing.html).
@@ -73,16 +63,7 @@ You could also create your own `mocksServer` instance programmatically. Read the
     * `transport` _(String)_: The tracer transport in which the level has to be set. Can be one of `console`, `store`. Default is `console`.
   * __`store`__: Returns an array with logs _(only last 1000 are stored)_. The level of logs stored can be changed using `tracer.set(level, "store")`.
   * __`deprecationWarn(oldMethodName, newMethodName)`__ Call to `tracer.warn` for giving feedback about a method that is going to be deprecated.
-* __`settings`__: Contains methods for interacting with the Mocks Server settings. Settings are equivalent to `options`, but another name is used because they are already initialized and contains definitive values, taking into account command line arguments or other configuration methods. Available methods are:
-  * __`set(key, value)`__: Changes the value of a setting.
-    * `key` _(String)_: The name of the setting to be changed. Equivalent to [option](configuration-options.md#main-options) name.
-    * `value` _(Any)_: New value for the specific setting to be set.
-  * __`get(key)`__: Returns current value of an specific setting.
-    * `key` _(String)_: The name of the setting to be returned. Equivalent to [option](configuration-options.md#main-options) name.
-  * __`all`__: Getter returning all current settings. Never modify returned object if you want to change settings, as it will have no effect. Use the `settings.set` method instead.
-  * __`getValidOptionName(optionName)`__: Returns valid option name if it exists, or new option name if it is deprecated but is still supported, and `null` if it does not exist.
-    * `optionName` _(String)_: Option name to check.
-* __`lowLevelConfig`__: Returns current low level configuration properties.
+* __`config`__: Returns the core `config` instance. Read [`config`](#config) for further info.
 * __`mocks`__: Returns methods and getters related to currently available mocks and routes.
   * __`useRouteVariant(variantId)`__: Define a route variant to be used by the current mock. Route variants are restored whenever the current mock changes.
     * `variantId` _(String)_: Route variant id, with the format `"[routeId]:[variantId]"`.
@@ -94,3 +75,61 @@ You could also create your own `mocksServer` instance programmatically. Read the
   * __`plainRoutes`__: Returns an array with current routes in plain format.
   * __`plainRoutesVariants`__: Returns an array with current routes variants in plain format.
 * __`alerts`__: Returns an array of current alerts.
+
+### Config methods
+
+The core exposes a getter named `config` which returns an instance of the `config` object. Here you have described its API partially. For further information about this object, please [read the `@mocks-server/config` docs](https://github.com/mocks-server/main/tree/master/packages/config/README.md).
+
+* __`addNamespace(name)`__: Add namespace to the root. Returns a [namespace instance](#config-namespace-instance).
+  * `name` _(String)_: Name for the namespace.
+* __`addOption(optionProperties)`__: Equivalent to the `addOption` method in namespaces, but it add the option to the root. Returns an [option instance](#config-option-instance).
+  * `optionProperties` _(Object)_: Properties defining the option. See the `addOption` method in namespaces for further info.
+* __`addOptions(optionsProperties)`__: Add many options. Returns an array of [option instances](#config-option-instance).
+  * `optionsProperties` _(Array)_: Array of `optionProperties`.
+* __`namespace(name)`__: Returns the [namespace instance](#config-namespace-instance) in the root config with name equal to `name`.
+* __`option(optionName)`__: Returns the [option instances](#config-option-instance) in the root config with name equal to `optionName`.
+* __`set(configuration)`__: Set configuration properties to each correspondent namespace and options.
+  * `configuration` _(Object)_: Object with programmatic configuration. Levels in the object correspond to namespaces names, and last level keys correspond to option names.
+* __`validate(configuration, options)`__: Allows to prevalidate a configuration before setting it, for example. It returns an object with `valid` and `errors` properties. See [AJV docs for further info](https://ajv.js.org/guide/getting-started.html#basic-data-validation).
+  * `configuration` _(Object)_: Object with configuration. Levels in the object correspond to namespaces names, and last level keys correspond to option names.
+  * `options` _(Object)_: Object with extra options for validation:
+    * `allowAdditionalProperties` _(Boolean)_: _Default `false`_. If true, additional properties in the configuration would not produce validation errors.
+* __`value`__: Getter returning the current values from all namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method, with default options.
+* __`loadedFile`__: Getter returning the file path of the loaded configuration file. It returns `null` if no configuration file was loaded.
+* __`namespaces`__: Getter returning array with all root namespaces.
+* __`options`__: Getter returning array with all root options.
+
+#### Config namespace instance
+
+* __`addNamespace(name)`__: Add another namespace to the current namespace. Returns a [namespace instance](#config-namespace-instance).
+  * `name` _(String)_: Name for the namespace.
+* __`addOption(optionProperties)`__: Adds an option to the namespace. Returns an [option instance](#config-option-instance).
+  * `optionProperties` _(Object)_: Properties defining the option.
+    * __`name`__ _(String)_: Name for the option.
+    * __`description`__ _(String)_: _Optional_. Used in help, traces, etc.
+    * __`type`__  _(String)_. One of _`string`_, _`boolean`_, _`number`_, _`array`_ or _`object`_. Used to apply type validation when loading configuration and in `option.value` setter.
+    * __`itemsType`__ _(String)_. Can be defined only when `type` is `array`. It must be one of _`string`_, _`boolean`_, _`number`_ or _`object`_.
+    * __`default`__ - _Optional_. Default value. Its type depends on the `type` option.
+    * __`extraData`__ - _(Object)_. _Optional_. Useful to store any extra data you want in the option. For example, Mocks Server uses it to define wheter an option must be written when creating the configuration scaffold or not.
+* __`addOptions(optionsProperties)`__: Add many options. Returns an array of [option instances](#config-option-instance).
+  * `optionsProperties` _(Array)_: Array of `optionProperties`.
+* __`namespace(name)`__: Returns the [namespace instance](#config-namespace-instance) in this namespace with name equal to `name`.
+* __`option(optionName)`__: Returns the [option instances](#config-option-instance) in this namespace with name equal to `optionName`.
+* __`name`__: Getter returning the namespace name.
+* __`namespaces`__: Getter returning an array with children namespaces.
+* __`options`__: Getter returning an array object with children options.
+* __`set(configuration)`__: Set configuration properties to each correspondent child namespace and options.
+  * `configuration` _(Object)_: Object with configuration. Levels in the object correspond to child namespaces names, and last level keys correspond to option names.
+* __`value`__: Getter returning the current values from all child namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method, with default options.
+
+#### Config option instance
+
+* __`value`__: Getter of the current value. It can be also used as setter as an alias of the `set` method, with default options..
+* __`set(value)`__: Set value.
+* __`onChange(callback)`__: Allows to add a listener that will be executed whenever the value changes. It only emit events after calling to the `config.start` method. __It returns a function that removes the listener once executed__.
+  * `callback(value)` _(Function)_: Callback to be executed whenever the option value changes. It receives the new value as first argument.
+* __`name`__: Getter returning the option name.
+* __`type`__: Getter returning the option type.
+* __`description`__: Getter returning the option description.
+* __`extraData`__: Getter returning the option extra data.
+* __`default`__: Getter returning the option default value.

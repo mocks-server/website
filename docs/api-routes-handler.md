@@ -79,7 +79,7 @@ class CustomRoutesHandler {
 module.exports = CustomRoutesHandler;
 ```
 
-Then you can add your custom Routes Handler using the `mocks.config.js` file:
+Then you can add your custom Routes Handler using the configuration file:
 
 ```javascript
 // mocks.config.js
@@ -87,12 +87,13 @@ Then you can add your custom Routes Handler using the `mocks.config.js` file:
 const CustomRoutesHandler = require("./CustomRoutesHandler");
 
 module.exports = {
-  addRoutesHandlers: [CustomRoutesHandler],
-  options: {
+  routesHandlers: [CustomRoutesHandler],
+  server: {
     port: 3100,
-    mock: "base",
-    cli: true
-  }
+  },
+  mocks: {
+    selected: "base",
+  },
 };
 ```
 
