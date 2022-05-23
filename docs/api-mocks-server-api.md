@@ -90,7 +90,7 @@ The core exposes a getter named `config` which returns an instance of the `confi
 * __`option(optionName)`__: Returns the [option instances](#config-option-instance) in the root config with name equal to `optionName`.
 * __`set(configuration)`__: Set configuration properties to each correspondent namespace and options.
   * `configuration` _(Object)_: Object with programmatic configuration. Levels in the object correspond to namespaces names, and last level keys correspond to option names.
-* __`validate(configuration, options)`__: Allows to prevalidate a configuration before setting it, for example. It returns an object with `valid` and `errors` properties. See [AJV docs for further info](https://ajv.js.org/guide/getting-started.html#basic-data-validation).
+* __`validate(configuration, options)`__: Allows to pre-validate a configuration before setting it, for example. It returns an object with `valid` and `errors` properties. See [AJV docs for further info](https://ajv.js.org/guide/getting-started.html#basic-data-validation).
   * `configuration` _(Object)_: Object with configuration. Levels in the object correspond to namespaces names, and last level keys correspond to option names.
   * `options` _(Object)_: Object with extra options for validation:
     * `allowAdditionalProperties` _(Boolean)_: _Default `false`_. If true, additional properties in the configuration would not produce validation errors.
