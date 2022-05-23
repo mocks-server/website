@@ -9,6 +9,7 @@ async
 behaviorsFolder
 bundler
 cli
+CommonJS
 coreOptions
 cors
 CORS
@@ -16,6 +17,7 @@ customizable
 dependant
 Docusaurus
 ecmascript
+env
 esm
 ESM
 extensibles
@@ -31,10 +33,14 @@ integrations
 javascript
 jQuery
 json
+JSONs
 lifecycle
 localhost
 middleware
 middlewares
+Namespaces
+namespaces
+Namespace
 namespace
 Netlify
 overwritable
@@ -49,8 +55,10 @@ README
 md
 redux
 reusability
+stringified
 subfolders
 submenu
+theirself
 TypeScript
 url
 uri

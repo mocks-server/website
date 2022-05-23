@@ -14,17 +14,16 @@ const textContents = {
     Change the current mock and other settings while the server is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api). [Integrations with other tools](docs/integrations-cypress) are also available.
   `,
   benefitsRouteVariants: `
-    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks). Route variants can even proxy requests to another host, and even modify its response.
+    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks). Define responses using plain objects, Express middlewares, or even proxy the requests.
     Ensure that your API client is ready to handle all cases both in development and testing phases.
   `,
   benefitsMultipleFormats: `
-    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel).
-    Define responses using plain objects, or even Express middlewares. Hot reload changes the responses in real time once files are changed.
+    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel). Hot reload changes the responses in real time once files are changed.
   `,
   easyToUse: `
     Install and start it in seconds. Read [get started](docs/get-started-intro) to know how it works and you will be adding your own routes in minutes.
     <br/><br/>
-    Modify the [configuration file](docs/configuration-file), or use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
+    Configure it using a [configuration file, process arguments or environment variables](docs/configuration-methods). Use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
     <br/><br/>
     There are also available packages for integrating the Mocks Server with other development tools. <code>@mocks-server/cypress-commands</code> allows to easily control the mock server from Cypress.
     Read the [Cypress integration chapter for further info](docs/integrations-cypress)
@@ -32,9 +31,7 @@ const textContents = {
   flexible: `
     Define route variants for HTTP responses in JSON files, or as JavaScript objects.
     <br/><br/>
-    Route variants can proxy requests to another host, and even modify its response.
-    <br/><br/>
-    [Express middlewares](docs/guides-using-middlewares) can be also used for more complex scenarios.
+    Route variants can be plain objects, [Express middlewares](docs/guides-using-middlewares), or can proxy requests to another host, and even modify its response.
     <br/><br/>
     Group route variants into different [mocks](docs/get-started-mocks).
     <br/>
@@ -77,8 +74,7 @@ const textContents = {
     Plugins can be easily [installed from NPM](docs/plugins-adding-plugins) or [developed](docs/plugins-developing-plugins).
     <br/>
     <br/>
-    Plugins can do a lot of things in Mocks Server. Even some very important built-in internal pieces are, in fact, plugins.
-    So, you could use plugins to provide more interfaces, add [more routes handlers](docs/api-routes-handler), add <code>express</code> routers to the server, etc.
+    Plugins can do a lot of things in Mocks Server. You could use plugins to provide more interfaces, add [more routes handlers](docs/api-routes-handler), add your own Express routers to the server, etc.
     <br/>
     <br/>
     Read also the [programmatic usage chapter](docs/api-programmatic-usage) to learn how to use Mocks Server from your own program.
@@ -112,7 +108,7 @@ module.exports = {
 }
   `,
   upcoming: `
-    Administration web user interface, Chrome extension, Web Sockets, etc.
+    Administration web user interface, Mocking Web Sockets, documentation improvements, etc.
   `,
 };
 
@@ -311,7 +307,7 @@ function Star() {
   );
 }
 
-const Index = () => {
+const Version3 = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout wrapperClassName="homepage">
@@ -337,4 +333,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Version3;

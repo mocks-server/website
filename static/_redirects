@@ -16,3 +16,5 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 /docs/guides-organizing-the-definitions /docs/guides-organizing-files
 /docs/tutorials-dynamic /docs/guides-using-middlewares
 /docs/tutorials-static /docs/get-started-routes
+/docs/configuration-file /docs/configuration-methods
+/docs/configuration-command-line-arguments /docs/configuration-methods
