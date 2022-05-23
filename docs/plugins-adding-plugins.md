@@ -29,18 +29,16 @@ Some things that can be made with a plugin are:
 
 ### Configuration file
 
-Use the [configuration file](configuration-methods.md) for installing plugins. Note that you should extend the already defined programmatic configuration, otherwise other plugins previously added would be removed:
+Use the [configuration file](configuration-methods.md) for installing plugins.
 
 ```js
 const FooPlugin = require("mocks-server-plugin-foo");
 
-module.exports = (config) => {
-  return {
-    ...config,
-    plugins: {
-      register: [...config.plugins.register, FooPlugin],
-    }
-  };
+module.exports = {
+  ...config,
+  plugins: {
+    register: [FooPlugin],
+  }
 };
 ```
 

@@ -24,6 +24,9 @@ There are multiple methods for defining Mocks Server configuration. When the sam
 * [Environment variables](#environment-variables)
 * [Command line arguments](#command-line-arguments)
 
+
+The final configuration applied will be the result of extending all configuration properties received by any method, with the mentioned priority. Note that, when an option is of type `Object` or `Array`, the result will be also the extension of all different properties when they are defined in different sources.
+
 :::info
 Most of configuration properties can be changed also while the server is running using [the programmatic API](api-mocks-server-api.md), [the REST API](plugins-admin-api.md), etc.
 :::
@@ -68,17 +71,15 @@ module.exports = {
 };
 ```
 
-Configuration files can also export a function. In that case, the programmatic configuration will be received as first argument, so you can modify it and return the new one:
+Configuration files can also export a function. In that case, the programmatic configuration will be received as first argument, so you can modify it and return the new one. Note that it is not required to return the whole configuration, because the core itself extends the configuration received from all sources (programmatic, file, arguments, etc.)
 
 ```js
 const FooPlugin = require("mocks-server-plugin-foo");
 
 module.exports = (config) => {
+  console.log(config);
   return {
-    ...config,
-    plugins: {
-      register: [...config.plugins.register, FooPlugin],
-    }
+    log: "verbose";
   };
 };
 ```
@@ -173,12 +174,12 @@ npm run mocks -- --server.cors.options='{"preflightContinue":false}'
 
 ### Arrays
 
-Values for options of type `Array` can be defined using stringified JSONs: 
+Values for options of type `Array` can be defined using multiple arguments. A Commander variadic option is created under the hood to get the values, so array items have to be defined in separated arguments. Read the [Commander docs for further info](https://github.com/tj/commander.js/#variadic-option).
 
 ```sh
-#Provide value for option `config.fileSearchPlaces`
+#Provide values for option `config.fileSearchPlaces`
 
-npm run mocks -- --config.fileSearchPlaces='["myConfigFile.js","myConfigFile.json"]'
+npm run mocks -- --config.fileSearchPlaces myConfigFile.js myConfigFile2.js 
 ```
 
 ---

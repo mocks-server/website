@@ -77,7 +77,7 @@ __In order to adapt your current v2.x configuration to v3.x, here you have an eq
 | `babelRegister` | `files.babelRegister.enabled` | - | `--files.babelRegister.enabled` | `MOCKS_FILES_BABEL_REGISTER_ENABLED` |
 | `babelRegisterOptions` | `files.babelRegister.options` | - | `--files.babelRegister.options` | `MOCKS_FILES_BABEL_REGISTER_OPTIONS` |
 | `plugins` | `plugins.register` | - | - | - |
-| `addPlugins`* | `plugins.register` | - | - | - |
+| `addPlugins` | `plugins.register` | - | - | - |
 | `addRouteHandlers` | `routeHandlers` | - | - | - |
 | `configFile` | `config.fileSearchPlaces` _(Array)_ | - | `--config.fileSearchPlaces` | `MOCKS_CONFIG_FILE_SEARCH_PLACES` |
 | `onlyProgrammaticOptions` | - | - | - | - |
@@ -87,7 +87,6 @@ __In order to adapt your current v2.x configuration to v3.x, here you have an eq
 
 :::note
 * The `corsPreFlight` option now has to be defined directly as an option for the `cors` middleware, which can be an object with any option to it. So, now it becomes: `server: { cors: { options : { preflightContinue: true }}}`, or `--server.cors.options='{"corsPreFlight":true}'` in command line arguments.
-* The `addPlugins` option has been deprecated. Now, if you want to add plugins to those defined programmatically (as the `main` package does), you should convert your `export` into a function. See the example below.
 :::
 
 ### Examples
@@ -118,24 +117,6 @@ module.exports = {
   server: {
     port: 3200,
   },
-};
-```
-
-If you were using the `addPlugins` method to register your own plugins in the `main` distribution, now you should do it like in:
-
-```js
-module.exports = (config) => {
-  return {
-    mocks: {
-      selected: "base",
-    },
-    plugins: {
-      register: [...config.plugins.register, CustomPlugin1, CustomPlugin2]
-    },
-    server: {
-      port: 3200,
-    },
-  };
 };
 ```
 
