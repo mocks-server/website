@@ -73,7 +73,7 @@ Apart of the `core` instance containing all methods and getters described in the
       * __`type`__  _(String)_. One of _`string`_, _`boolean`_, _`number`_, _`array`_ or _`object`_. Used to apply type validation when loading configuration and in `option.value` setter.
       * __`itemsType`__ _(String)_. Can be defined only when `type` is `array`. It must be one of _`string`_, _`boolean`_, _`number`_ or _`object`_.
       * __`default`__ - _Optional_. Default value. Its type depends on the `type` option.
-      * __`extraData`__ - _(Object)_. _Optional_. Useful to store any extra data you want in the option. For example, Mocks Server uses it to define wheter an option must be written when creating the configuration scaffold or not.
+      * __`extraData`__ - _(Object)_. _Optional_. Useful to store any extra data you want in the option. For example, Mocks Server uses it to define whether an option must be written when creating the configuration scaffold or not.
   * __`addOptions(optionsProperties)`__: Add many options. Returns an array of configuration [option instances](https://github.com/mocks-server/main/tree/master/packages/config/README.md#option-instance).
     * `optionsProperties` _(Array)_: Array of `optionProperties`.
   * __`value`__: Getter returning the current values from all child namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method, with default options.

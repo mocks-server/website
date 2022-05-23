@@ -15,7 +15,7 @@ keywords:
 
 ## plugin-inquirer-cli
 
-__The Mocks Server main distribution includes the [inquirerCli plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) preinstalled__. It provides an interactive CLI that allows to change the server settings while it is running, displays server logs, etc.
+__The Mocks Server main distribution includes the [`inquirerCli` plugin](https://www.npmjs.com/package/@mocks-server/plugin-inquirer-cli) preinstalled__. It provides an interactive CLI that allows to change the server settings while it is running, displays server logs, etc.
 
 ## Usage
 
@@ -30,7 +30,7 @@ npm run mocks
 ## Options
 
 * __`plugins.inquirerCli.enabled`__ _(Boolean)_: Start the interactive CLI or not. Default is `true`.
-* __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines wheter the inquirer CLI uses emojis or not. Default is `true`.
+* __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines whether the inquirer CLI uses emojis or not. Default is `true`.
 
 ## Alerts
 

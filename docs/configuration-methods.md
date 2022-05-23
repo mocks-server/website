@@ -48,7 +48,7 @@ new MocksServer({
 
 ## Configuration file
 
-Mocks Server searches for configuration files in `process.cwd()`. [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next files formats:
+Mocks Server searches for configuration files in `process.cwd()`. [`Cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next files formats:
   * A `mocks` property in a `package.json` file
   * A `.mocksrc file with JSON or YAML syntax.`
   * A `.mocksrc.json`, `.mocksrc.yaml`, `.mocks.yml`, `.mocksrc.js`, or `.mocksrc.cjs` file.

@@ -32,6 +32,7 @@ integrations
 javascript
 jQuery
 json
+JSONs
 lifecycle
 localhost
 middleware
@@ -53,6 +54,7 @@ README
 md
 redux
 reusability
+stringified
 subfolders
 submenu
 theirself

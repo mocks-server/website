@@ -51,7 +51,7 @@ Here are described the Mocks Server core options. To know how to define them usi
 Each plugin can add its own options when it is installed. These options can also be defined and changed using [the same methods as the core options](configuration-methods.md). Note that all plugins options must be defined under the `plugins` namespace, and each plugin options must be defined under its own plugin id namespace (`plugins.[plugin-id].[option]`)
 
 * __`plugins.inquirerCli.enabled`__ _(Boolean)_: Start interactive CLI plugin or not. Default is `true`.
-* __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines wheter the inquirer CLI uses emojis or not. Default is `true`.
+* __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines whether the inquirer CLI uses emojis or not. Default is `true`.
 * __`plugins.adminApi.path`__ _(String)_: Path for the administration REST API. Default is `/admin`. You should change it only in case there is any conflict with the API you are mocking.
 
 :::note
