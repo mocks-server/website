@@ -43,7 +43,7 @@ mocksServer
 
 ##### Arguments
 
-* `config` _(Object)_: Object containing configuration properties and options as described in the [configuration file chapter](configuration-file.md).
+* `config` _(Object)_: Object containing configuration properties and options as described in the [configuration chapter](configuration-options.md).
 
 ## Core instance API
 

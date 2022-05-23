@@ -126,7 +126,7 @@ Then, you can easily [change the responses of the API while the server is runnin
 
 ## Configuration
 
-Configure the server simply [modifying the configuration file at the root folder of your project](configuration-file.md), or use command line arguments, or even environment variables.
+Configure the server simply [modifying the configuration file at the root folder of your project, or use command line arguments, or even environment variables](configuration-methods.md).
 
 For changing [settings](configuration-options.md) (such as current mock, delay time, etc.) while it is running, you can use:
 * [Interactive command line interface](plugins-inquirer-cli.md), which is very useful in local environments for development.

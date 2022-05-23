@@ -11,7 +11,7 @@ keywords:
 
 ## Preface
 
-Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of Mocks Server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the api will return to your web page.
+Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`mock`](get-started-mocks.md) of Mocks Server simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the API will return to your web page.
 
 __You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real api__, with the advantage that you could reuse the same mocks while you are developing the application.
 
@@ -62,7 +62,7 @@ cy.mocksSetSettings({
 });
 ```
 
-Configures the [Mocks Server administration API client](https://github.com/mocks-server/admin-api-client), used under the hood:
+Configures the [Mocks Server administration API client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client/README.md), used under the hood:
 
 ```js
 cy.mocksConfig({
@@ -134,7 +134,7 @@ The next example is based on a `create-react-app` application which is using the
 ```json
 {
   "scripts": {
-    "mocks:ci": "mocks-server --no-cli",
+    "mocks:ci": "mocks-server --no-plugins.inquirerCli.enabled",
     "start:mocked": "REACT_APP_BASE_API=http://localhost:3100 react-scripts start",
     "mocks:ci-and-start:mocked": "start-server-and-test mocks:ci tcp:3100 start:mocked",
     "cypress:run": "cypress run",
@@ -194,7 +194,7 @@ Based on the previous example, now we can add a command to start the application
 ```json
 {
   "scripts": {
-    "mocks:ci": "mocks-server --no-cli",
+    "mocks:ci": "mocks-server --no-plugins.inquirerCli.enabled",
     "start:mocked": "REACT_APP_BASE_API=http://localhost:3100 react-scripts start",
     "start:api": "REACT_APP_BASE_API=http://foo-api.com react-scripts start",
     "mocks:ci-and-start:mocked": "start-server-and-test mocks:ci tcp:3100 start:mocked",

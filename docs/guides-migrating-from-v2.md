@@ -53,7 +53,7 @@ Support for Node.js version 12.x has been removed. From now, packages tests are 
 
 ## Configuration
 
-As mentioned, the configuration structure have been completely changed. You can read the [updated configuration docs for further info](#configuration-options). Now options can be defined using different file names and formats, process arguments and even environment variables.
+As mentioned, the configuration structure have been completely changed. You can read the [updated configuration docs for further info](#configuration-methods). Now options can be defined using different file names and formats, process arguments and even environment variables.
 
 :::tip
 TIP: You can rename your current `mocks.config.js` file into `old_mocks.config.js` file. Then start the server and a new configuration scaffold file will be created, then it will be easier to move your current values to the new configuration file.

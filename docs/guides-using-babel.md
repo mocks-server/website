@@ -122,7 +122,7 @@ module.exports = {
 
 Here is an example of how to configure Babel to compile [TypeScript](https://www.typescriptlang.org/) files in the mocks folder.
 
-Enable the `files.babelRegister.enabled` option in the [`mocks.config.js` file](configuration-file.md):
+Enable the `files.babelRegister.enabled` option in the [`mocks.config.js` file](configuration-methods.md):
 
 ```js
 module.exports = {

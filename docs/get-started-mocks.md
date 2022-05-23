@@ -71,10 +71,31 @@ The currently selected mock can be defined using the configuration. Read the [co
 
 ### Using command line arguments
 
-For defining the current mock, you can use [command line arguments](configuration-command-line-arguments.md) when starting the server:
+For defining the current mock, you can use [command line arguments](configuration-methods.md) when starting the server:
 
 ```bash
 npm run mocks -- --mocks.selected=user-real
+```
+
+### Using environment variables
+
+You can use [environment variables](configuration-methods.md):
+
+```bash
+MOCKS_MOCKS_SELECTED=user-real npm run mocks
+```
+
+### Using the configuration file
+
+You can use [the configuration file](configuration-methods.md):
+
+```js
+//mocks.config.js
+module.exports = {
+  mocks: {
+    selected: "user-real"
+  }
+}
 ```
 
 ### Using the interactive CLI

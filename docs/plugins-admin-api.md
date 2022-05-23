@@ -23,7 +23,7 @@ A __client for the administration api__ is also distributed as a separated packa
 
 ## Options
 
-* __`adminApiPath`__ _(String)_: Path for the administration api. Default is `/admin`. You should change it only in case there is any conflict with the api you are mocking.
+* __`plugins.adminApi.path`__ _(String)_: Path for the administration REST API. Default is `/admin`. You should change it only in case there is any conflict with the API you are mocking.
 
 ## API resources
 
@@ -42,8 +42,8 @@ Available API resources are:
   * Request body example: `{ "id": "users:error" }`
 * `DELETE` `/admin/mock-custom-routes-variants` Restore routes variants to those defined in current mock.
 * `GET` `/admin/settings` Returns current server settings.
-  * Response body example: `{ "delay": 0, mock: "foo-mock", path: "mocks" }`
+  * Response body example: `{ "server": { "delay": 0 }, "mocks": { "selected": "foo-mock" } }`
 * `PATCH` `/admin/settings` Changes current server settings.
-  * Request body example: `{ "delay": 3000 }`
+  * Request body example: `{ "server": { "delay": 3000 } }`
 * `GET` `/admin/alerts` Returns current alerts.
 * `GET` `/admin/alerts/:id` Returns a specific alert. The alert `id` is equivalent to the alert `context` _(read the [developing plugins chapter](plugins-developing-plugins.md) for further info about alerts)_.

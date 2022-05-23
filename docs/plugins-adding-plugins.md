@@ -21,36 +21,33 @@ Some things that can be made with a plugin are:
 - Load [`mocks`](get-started-mocks.md) or [`routes`](get-started-routes.md).
 - Listen to Mocks Server events and act in consequence.
 - Add custom express routers to the server.
-- Add new options, accessible even through command line arguments.
-- Change settings while the server is running.
+- Add new options, accessible to the users even through command line arguments, environment variables, or any other [configuration method](configuration-methods.md).
+- Change configuration while the server is running.
 - Add new formats of defining `route variants`. _(Using [custom routes handlers](api-routes-handler.md))_
 
 ## How to install plugins
 
 ### Configuration file
 
-Use the [configuration file](configuration-file.md) for installing plugins:
+Use the [configuration file](configuration-methods.md) for installing plugins. Note that you should extend the already defined programmatic configuration, otherwise other plugins previously added would be removed:
 
-```javascript
-// mocks.config.js
+```js
 const FooPlugin = require("mocks-server-plugin-foo");
 
-module.exports = {
-  addPlugins: [FooPlugin],
-  options: {
-    mock: "foo-mock"
-  }
+module.exports = (config) => {
+  return {
+    ...config,
+    plugins: {
+      register: [...config.plugins.register, FooPlugin],
+    }
+  };
 };
 ```
-
-:::note
-Note the usage of the `addPlugins` property, not the `plugins` one. This is because the main distribution of Mocks Server _([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main))_ already includes some plugins to improve the user experience. If you use `plugins` instead of `addPlugins`, all other plugins would be removed.
-:::
 
 ### Programmatically
 
 If you are using the _[@mocks-server/core package](https://www.npmjs.com/package/@mocks-server/core)_ to start Mocks Server programmatically, you can define the plugins to use as described in the [programmatic usage chapter](api-programmatic-usage.md).
 
-## Find plugins
+## Searching plugins
 
 Use the "mocks-server-plugin" tag to [search Mocks Server plugins in NPM](https://www.npmjs.com/search?q=mocks-server-plugin).
