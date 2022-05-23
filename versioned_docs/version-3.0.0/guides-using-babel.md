@@ -28,11 +28,9 @@ module.exports = {
   mocks: {
     selected: "base",
   },
-  {
-    files: {
-      babelRegister: {
-        enabled: true
-      },
+  files: {
+    babelRegister: {
+      enabled: true
     },
   },
 };
