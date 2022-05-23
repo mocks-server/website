@@ -32,7 +32,7 @@ This static getter will be used to recognize the Routes Handler. When defining a
 This static getter must return a JSON schema defining the specific properties required by the handler. It will be used by the core to validate the route variants of this type. `ajv` is used under the hood to perform validations. Take into account next points when defining the json schema:
 
 * You must only define those properties added by the route handler to the variant definition. Those that are common to all route variant types must not be defined. So, you shouldn't use `additionalProperties:false` at the root level of the schema. Otherwise, the properties that are common to all route variants would be considered invalid.
-* Mocks Server supports a special JSON schema keyword named `instanceof`. You can use it to indicate that a property must be an instance of a "function", or a "RegExp" for example.
+* Mocks Server supports a special JSON schema keyword named `instanceof`. You can use it to indicate that a property must be an instance of a `function`, or a `RegExp` for example.
 
 #### `constructor(route, mocksServer)`
 
