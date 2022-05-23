@@ -27,6 +27,13 @@ A Routes Handler should be defined as a `Class` containing:
 
 This static getter will be used to recognize the Routes Handler. When defining a route variant, the handler to be used can be defined using the `handler` property. That property in route variants should be the `id` of the Route Handler to be used.
 
+#### `static get validationSchema()`
+
+This static getter must return a JSON schema defining the specific properties required by the handler. It will be used by the core to validate the route variants of this type. `ajv` is used under the hood to perform validations. Take into account next points when defining the json schema:
+
+* You must only define those properties added by the route handler to the variant definition. Those that are common to all route variant types must not be defined. So, you shouldn't use `additionalProperties:false` at the root level of the schema. Otherwise, the properties that are common to all route variants would be considered invalid.
+* Mocks Server supports a special JSON schema keyword named "instanceof". You can use it to indicate that a property must be an instance of a "function", or a "RegExp" for example.
+
 #### `constructor(route, mocksServer)`
 
 * `route`: All route and route variants properties from the `route` definition _(`method`, `url`, `variantId`, and all other properties defined in the route variant object)_.
@@ -34,7 +41,7 @@ This static getter will be used to recognize the Routes Handler. When defining a
 
 #### `middleware(req, res, next)`
 
-This is the middleware that will be called when the route url matches and the specific variant should be used.
+This is the middleware that will be called when the route url matches and the specific variant type corresponds to this route handler (it is equal to the route handler id).
 
 #### `get plainResponsePreview()`
 
