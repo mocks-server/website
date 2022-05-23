@@ -81,15 +81,15 @@ const textContents = {
   `,
   customizableCode: `
 class MyPlugin {
-  constructor(mocksServer) {
-    mocksServer.addSetting({
+  constructor({ core, config }) {
+    this._option = config.addOption({
       name: "traceMocks",
       type: "boolean",
       description: "Trace mocks changes",
       default: true
     });
 
-    mocksServer.onChangeMocks(this._onChangeMocks.bind(this))
+    core.onChangeMocks(this._onChangeMocks.bind(this))
   }
   // ...
 }
