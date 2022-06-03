@@ -261,7 +261,7 @@ And remember, from now, the user must define the options for your plugin under t
 The `Core` object in the `@mocks-server/core` package now is exported as `default`. So, if you were importing v2.x as in:
 
 ```js
-const { Core } = require("@mocks-server/core"); // Will fail in v3.x
+const { Core } = require("@mocks-server/core"); // Error in v3.x
 ```
 
 Now you should import it like:
