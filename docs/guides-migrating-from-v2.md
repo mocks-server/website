@@ -128,7 +128,7 @@ Note that the configuration structure has changed also in all of the plugins, so
 
 In order to make compatible your plugins with the v3 version, you have to:
 
-* Add an `id` property to them (an static property in the case of Class plugins). This allows the core to create an appropriate namespace for the plugins and pass to them the correspondent `config` object.
+* Add an `id` property to them (an static property in the case of Class plugins). This allows the core to create an appropriate namespace for the plugins and pass to them the correspondent `config` and `alerts` objects.
 * Change the Core API deprecated methods for creating and reading settings if you were using them by the new ones. Read the [configuration API section bellow for further info](#configuration-api).
 * Change the arguments that they receive in the `constructor`, `register`, `init`, `start` and `stop` methods. Now they will receive a single argument as an object containing all needed methods and properties. Previously, the `core` API was received as first argument, and from now it is received as a `{ core }` property in the first argument. So a plugin that in V2 was defined as:
 
@@ -168,27 +168,31 @@ class Plugin {
     return "myPlugin";
   }
 
-  constructor({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  constructor({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  register({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  register({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  init({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  init({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  start({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  start({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  stop({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  stop({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 }
 ```
+
+:::note
+The old `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](plugins-developing-plugins.md) for further info about how to use them.
+:::
 
 ## Configuration API
 
@@ -257,7 +261,7 @@ And remember, from now, the user must define the options for your plugin under t
 The `Core` object in the `@mocks-server/core` package now is exported as `default`. So, if you were importing v2.x as in:
 
 ```js
-const { Core } = require("@mocks-server/core"); // Will fail in v3.x
+const { Core } = require("@mocks-server/core"); // Error in v3.x
 ```
 
 Now you should import it like:

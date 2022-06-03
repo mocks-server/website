@@ -45,7 +45,7 @@ When this method is called, Mocks Server is already started and listening to req
 This method will be called when the Mocks Server `stop` method is called. Here you should stop all the plugin processes.
 
 :::warning
-Plugins must also contain an `id` property, which will be used by Mocks Server for providing to them a namespaced configuration API and for information purposes. In the case of plugins defined as classes, it must be an static property. It is recommended to use `camelCase` when defining the plugin id.
+Plugins must also contain an `id` property (usually the plugin name), which will be used by Mocks Server for providing to them namespaced configuration and alerts APIs and for information purposes. In the case of plugins defined as classes, it must be an static property. It is recommended to use `camelCase` when defining the plugin id.
 :::
 
 ## Plugins API
@@ -57,12 +57,15 @@ Apart of the `core` instance containing all methods and getters described in the
   * __mocks__ _(Array)_: Array containing mocks defined as described in the [`mocks`](get-started-mocks.md) chapter.
 * __`loadRoutes(routes)`__: Load `routes` definitions. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added by this plugin__. Routes loaded by the core or by other plugins will remain.
   * __routes__ _(Array)_: Array containing routes defined as described in the [`routes`](get-started-routes.md) chapter.
-* __`addAlert(context, message, error)`__: Add an alert, so Mocks Server and other plugins can know about it. Use alerts to inform the user about deprecated methods or other warning messages, or about current errors. For example, when an error happens loading files, `mocks-server` adds automatically an alert in order to let the user know about the error.
-  * __`context`__ _(String)_: Use context to inform about different alerts contexts. Alerts are unique for each different context, so if you add another alert using the same context, the previous one will be removed. You can define different context levels _(it is recommended to separate levels using `:`)_, as in `deprecated:method`, which is useful when using the `removeAlerts` method.
-  * __`message`__ _(String)_: Message for the alert.
-  * __`error`__ _(Error)_: Optional. Error causing the alert.
-* __`removeAlerts([context])`__: Remove alerts previously added by the plugin.
-  * __`context`__ _(String)_: Optional. All alerts starting by this context will be removed. If no `context` is provided all alerts previously added by the plugin will be removed.
+* __`alerts`__: Object containing methods allowing to add alerts, so Mocks Server and other plugins can know about them. Use alerts to inform the user about deprecated methods or other warning messages, or about current errors. For example, when an error happens loading files, `mocks-server` adds automatically an alert in order to let the user know about the error. Here are described only some methods of the `alerts` API, for further info please read the [`@mocks-server/nested-collections` docs](https://github.com/mocks-server/main/tree/master/packages/nested-collections/README.md), but note that in this case the `set` method is extended and requires different arguments:
+  * __`set(id, message, error)`__: Adds an alert or modify it.
+    * __`id`__ _(String)_: The id for the alert to be added or modified in case it already exists.
+    * __`message`__ _(String)_: Message for the alert.
+    * __`error`__ _(Error)_: Optional. Error causing the alert.
+  * __`remove(id)`__: Removes an alert.
+    * __`id`__ _(String)_: Id of the alert to be removed.
+  * __`clean`__: Removes all alerts, including descendant collections.
+  * __`collection(id)`__: Allows to create a new collection of alerts or returns an already existent one. The returned collection will have all of the same methods described for `alerts`. It is useful to group alerts by its type. The `context` of the alerts created in a child collection will include all parent collections ids joined with `:`, so the user can also know about the alerts "group".
 * __`config`__: A configuration namespace created specifically for the plugin, using its `id`. You can read the [`@mocks-server/config`](https://github.com/mocks-server/main/tree/master/packages/config/README.md) docs to know more about the configuration API. Here you have a summary:
   * __`addNamespace(name)`__: Add another namespace to the current namespace. Returns a configuration [namespace instance](https://github.com/mocks-server/main/tree/master/packages/config/README.md#namespace-instance).
     * `name` _(String)_: Name for the namespace.
@@ -76,7 +79,7 @@ Apart of the `core` instance containing all methods and getters described in the
       * __`extraData`__ - _(Object)_. _Optional_. Useful to store any extra data you want in the option. For example, Mocks Server uses it to define whether an option must be written when creating the configuration scaffold or not.
   * __`addOptions(optionsProperties)`__: Add many options. Returns an array of configuration [option instances](https://github.com/mocks-server/main/tree/master/packages/config/README.md#option-instance).
     * `optionsProperties` _(Array)_: Array of `optionProperties`.
-  * __`value`__: Getter returning the current values from all child namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method, with default options.
+  * __`value`__: Getter returning the current values from all child namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method.
 
 ### Example
 
@@ -172,6 +175,10 @@ export default class Plugin {
 }
 ```
 
+:::warning
+If the plugin has not an `id` static property, it will not receive the `config` and `alerts` API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions.
+:::
+
 ### Plugin as a `function`
 
 ```javascript
@@ -196,6 +203,10 @@ const plugin = (pluginApi) => {
 
 export default plugin;
 ```
+
+:::warning
+When defined as functions, the `alerts` and `config` API properties are received only in the `register`, `init`, `start` and `stop` methods, once Mocks Server knows the plugin `id`.
+:::
 
 ### Plugin as an `object`
 
