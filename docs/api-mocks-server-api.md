@@ -35,8 +35,7 @@ You could also create your own `core` instance programmatically. Read the [progr
 * __`onChangeMocks(callback)`__: Add a callback to be executed when mocks or routes changes. Returns a function for removing the added callback.
   * `callback()` (Function): Function to be executed on change mocks.
 * __`onChangeAlerts(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback.
-  * `callback([currentAlerts])` (Function): Function to be executed on change alerts.
-    * `currentAlerts` _(Array)_: Current alerts.
+  * `callback()` (Function): Function to be executed on change alerts.
 
 ### Customization methods
 

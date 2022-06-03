@@ -168,27 +168,31 @@ class Plugin {
     return "myPlugin";
   }
 
-  constructor({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  constructor({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  register({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  register({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  init({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  init({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  start({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  start({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 
-  stop({ core, loadMocks, loadRoutes, addAlert, removeAlerts, config }) {
+  stop({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
 }
 ```
+
+:::note
+The `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](plugins-developing-plugins.md) for further info about how to use them.
+:::
 
 ## Configuration API
 
