@@ -65,7 +65,7 @@ Apart of the `core` instance containing all methods and getters described in the
   * __`remove(id)`__: Removes an alert.
     * __`id`__ _(String)_: Id of the alert to be removed.
   * __`clean`__: Removes all alerts, including descendant collections.
-  * __`collection(id)`__: Allows to create a new collection of alerts or returns an already existant one. The returned collection will have all of the same methods described for `alerts`. It is useful to group alerts by its type. The `context` of the alerts created in a child collection will include all parent collections ids concated with `:`, so the user can also know about the alerts "group".
+  * __`collection(id)`__: Allows to create a new collection of alerts or returns an already existent one. The returned collection will have all of the same methods described for `alerts`. It is useful to group alerts by its type. The `context` of the alerts created in a child collection will include all parent collections ids joined with `:`, so the user can also know about the alerts "group".
 * __`config`__: A configuration namespace created specifically for the plugin, using its `id`. You can read the [`@mocks-server/config`](https://github.com/mocks-server/main/tree/master/packages/config/README.md) docs to know more about the configuration API. Here you have a summary:
   * __`addNamespace(name)`__: Add another namespace to the current namespace. Returns a configuration [namespace instance](https://github.com/mocks-server/main/tree/master/packages/config/README.md#namespace-instance).
     * `name` _(String)_: Name for the namespace.
