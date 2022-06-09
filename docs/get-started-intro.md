@@ -17,7 +17,7 @@ keywords:
 
 This project provides a mock server that can __simulate and store multiple API responses for each different route__. It can be added as a dependency of your project, and started simply running an NPM command.
 
-Providing an interactive command line user interface and a REST API for __changing the responses of the API while it is running, it is easy to use both for development and testing__.
+Providing an interactive command line user interface and a REST API for __changing the responses of the mocked API while it is running, it is easy to use both for development and testing__.
 
 ### Main features
 

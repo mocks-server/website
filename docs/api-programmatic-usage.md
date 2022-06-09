@@ -23,7 +23,7 @@ const Core = require("@mocks-server/core");
 const AdminApi = require("@mocks-server/plugin-admin-api");
 const InquirerCli = require("@mocks-server/plugin-inquirer-cli");
 
-const mocksServer = new Core({
+const core = new Core({
   config: {
     readFile: false,
     readEnvironment: false,
@@ -34,8 +34,7 @@ const mocksServer = new Core({
   },
 });
 
-mocksServer
-  .init({
+core.init({
     server: {
       port: 3500
     },
@@ -44,7 +43,7 @@ mocksServer
     },
     log: "debug"
   })
-  .then(server.start);
+  .then(core.start);
 ```
 
 ## Core API
@@ -57,4 +56,4 @@ mocksServer
 
 ## Core instance API
 
-Please read the `mocksServer` API chapter to know all available methods and getters in the `mocksServer` instance that the `Core` class returns.
+Please read the [`core` API chapter](api-mocks-server-api.md) to know all available methods and getters in the `core` instance that the `Core` class returns.

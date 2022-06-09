@@ -15,7 +15,7 @@ keywords:
 
 ## Preface
 
-Mocks Server v2.x introduced the concept of ["route variants"](get-started-intro.md), and made more restrictive the way for organizing mocks and routes files. It also introduced other improvements, as the possibility of [using express middlewares](guides-using-middlewares.md), made simpler the [mocksServer API](api-mocks-server-api.md), etc.
+Mocks Server v2.x introduced the concept of ["route variants"](get-started-intro.md), and made more restrictive the way for organizing mocks and routes files. It also introduced other improvements, as the possibility of [using express middlewares](guides-using-middlewares.md), made simpler the [core API](api-mocks-server-api.md), etc.
 
 All of these changes made very difficult to handle old v1 `behaviors` and `fixtures` together with the new format of `routes`, so, in order to maintain backward compatibility, Mocks Server v2 can handle two folders at a time, one containing v1.x `fixtures` and `behaviors`, and another one containing v2.x [`mocks`](get-started-mocks.md) and [`routes`](get-started-routes.md).
 

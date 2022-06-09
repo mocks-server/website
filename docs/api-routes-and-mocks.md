@@ -1,7 +1,7 @@
 ---
 id: api-routes-and-mocks
 title: Routes and Mocks
-description: mocksServer API
+description: Routes and Mocks API
 keywords:
   - mocks server
   - api

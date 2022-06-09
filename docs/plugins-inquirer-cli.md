@@ -34,7 +34,7 @@ npm run mocks
 
 ## Alerts
 
-The plugin will display `mocks-server` alerts on the top of the screen. This is very useful when you are changing [`routes`](get-started-routes.md) or [`mocks`](get-started-mocks.md) files and any file contains an error.
+The plugin will display `mocks-server` alerts on the top of the screen. This is very useful when you are changing [`routes`](get-started-routes.md) or [`mocks`](get-started-mocks.md) files and any file contains an error, for example.
 
 Alerts are displayed as:
 
