@@ -49,22 +49,33 @@ You could also create your own `core` instance programmatically. Read the [progr
 
 ### Logger
 
-The `core.logger` getter returns the root built-in Mocks Server logger instance. It allows to create namespaces, so each log provides information about the namespace id, each namespace log level can be set separately and each one contains also a separated logs store. It is important to mention that, __when the core API is passed to a plugin or to route handlers, they will receive a `logger` namespace instead of the root instance.__
+The `core.logger` getter returns the root built-in Mocks Server logger instance. It allows to create namespaces, so each log provides information about the namespace label. Each namespace log level can be set separately and each one contains also a separated logs store. It is important to mention that, __when the core API is passed to a plugin or to route handlers, they will receive a `logger` namespace instead of the root instance.__
 
-* __`core.logger.error(message)`__: The message will be logged always except if the current `log` option is `silent`.
-* __`core.logger.warn(message)`__: The message will be logged always except if the current `log` option is `error` or `silent`.
-* __`core.logger.info(message`__: The message will be logged whenever the current `log` option is not `error`, `warn` or `silent`.
-* __`core.logger.verbose(message)`__: The message will be logged whenever the current `log` option is upper or equal than `verbose`.
-* __`core.logger.debug(message)`__: The message will be logged whenever the current `log` option is upper or equal than `debug`.
-* __`core.logger.silly(message)`__: The message will be logged whenever the current `log` option is upper or equal than `silly`.
+* __`core.logger.error(message)`__: The message will be logged always except if the current `level` is `silent`.
+* __`core.logger.warn(message)`__: The message will be logged always except if the current `level` is `error` or `silent`.
+* __`core.logger.info(message`__: The message will be logged whenever the current `level` is not `error`, `warn` or `silent`.
+* __`core.logger.verbose(message)`__: The message will be logged whenever the current `level` is upper or equal than `verbose`.
+* __`core.logger.debug(message)`__: The message will be logged whenever the current `level` is upper or equal than `debug`.
+* __`core.logger.silly(message)`__: The message will be logged whenever the current `level` is upper or equal than `silly`.
 * __`core.logger.setLevel(level, [options])`__: Sets the logger current log level for the current namespace and all children namespaces recursively. It should not be used directly until you know well what you are doing. Use `core.config.option("log").value="x"` instead.
   * `level` _(String)_: Level can be one of `silent`, `error`, `warn`, `info`, `verbose`, `debug` or `silly`.
-    * `options` _(Object)_: Options for setting level.
-      * `transport` _(String)_: The tracer transport in which the level has to be set. Can be one of `console` or `store`. Default is `console`.
-* __`core.logger.store`__: Returns an array with logs stored in the current logger namespace _(only last 1000 are stored)_. The level of stored logs can be changed using `logger.set(level, { transport: "store" })`.
-* __`core.logger.globalStore`__: Returns an array with logs stored in all logger namespaces, including the parents _(only last 1000 are stored)_. The level of globally stored logs can be changed only from the root logger.
-* __`core.logger.namespace(id)`__: Creates and returns a new child namespace or returns an already existent one when the id already exists. The returned namespace has all of the same `logger` methods described here.
-  * `id` _(String)_: Id for the new namespace. It will be displayed as part of the log `[context]` when logs are displayed.
+  * `options` _(Object)_:
+    * `transport` _(String)_: The `Winston` transport in which the level has to be set. Can be one of `console` or `store`. If not provided, the level is set to all transports. In the root logger, changes in the `store` transport will be applied also to the `globalStore` transport.
+    * `propagate` _(Boolean)_: Propagates the level change to all children namespaces recursively or not. Default is `true`.
+    * `pinned` _(Boolean)_: When `true`, next level changes coming from propagations will be ignored and the transport/transports will keep the defined `level`. Default is `false`.
+    * `forcePropagation` _(Boolean)_: When `true`, the propagation will ignore `pinned` levels and will always override them.
+* __`core.logger.namespace(label)`__: Creates and returns a new child namespace or returns an already existent one when the `label` already exists. The returned namespace has the same `Logger` methods described here. The created namespace will inherit the current namespace level.
+  * `label` _(String)_: Label for the new namespace. It will be displayed as part of the log `[label]`, appended to parent namespaces labels.
+* __`core.logger.cleanStore()`__ Empties the namespace store array.
+* __`core.logger.onChangeStore(callback)`__: Allows to add a listener that will be executed whenever a log is added to the current namespace store. __It returns a function that removes the listener once executed__.
+  * `callback()` _(Function)_: Callback to be executed.
+* __`core.logger.onChangeGlobalStore(callback)`__: Allows to add a listener that will be executed whenever a log is added to the global store. __It returns a function that removes the listener once executed__.
+  * `callback()` _(Function)_: Callback to be executed.
+* __`core.logger.store`__: Returns an array with logs stored in the current namespace.
+* __`core.logger.globalStore`__: Returns an array with logs stored in all namespaces, including those from the ancestors. There is only one global namespace for each `Logger` instance, no matter the amount of namespaces it has.
+* __`core.logger.label`__: Getter returning the namespace label.
+* __`core.logger.level`__: Getter returning the current namespace level.
+* __`core.logger.root`__: Getter returning the root logger instance.
 
 :::info
 For further information about the whole logger API, please [read the `@mocks-server/logger` docs](https://github.com/mocks-server/main/tree/master/packages/logger/README.md).
