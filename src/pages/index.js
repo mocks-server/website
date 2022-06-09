@@ -80,19 +80,21 @@ const textContents = {
     Read also the [programmatic usage chapter](docs/api-programmatic-usage) to learn how to use Mocks Server from your own program.
   `,
   customizableCode: `
-class MyPlugin {
-  constructor({ core, config }) {
-    this._option = config.addOption({
-      name: "traceMocks",
-      type: "boolean",
-      description: "Trace mocks changes",
-      default: true
-    });
-
-    core.onChangeMocks(this._onChangeMocks.bind(this))
+  class MyPlugin {
+    static id = "mocksLogger"
+  
+    constructor({ config, onChangeMocks }) {
+      this._option = config.addOption({
+        name: "enabled",
+        type: "boolean",
+        description: "Log mocks changes or not",
+        default: true
+      });
+  
+      onChangeMocks(this._onChangeMocks.bind(this))
+    }
+    // ...
   }
-  // ...
-}
   `,
   flexibleJsCode: `
 const users = require("./db/users");

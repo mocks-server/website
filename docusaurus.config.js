@@ -107,7 +107,7 @@ module.exports = {
             },
             {
               label: "Configuration",
-              to: "docs/configuration-options",
+              to: "docs/configuration-methods",
             },
             {
               label: "Plugins",

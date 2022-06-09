@@ -3,7 +3,7 @@
     "Welcome": ["welcome-about-docs"],
     "Getting started": ["get-started-intro", "get-started-routes", "get-started-mocks"],
     "Guides": ["guides-organizing-files", "guides-using-babel", "guides-proxy-route-variants", "guides-using-middlewares"],
-    "Releases": ["guides-migrating-from-v2", "guides-migrating-from-v1"],
+    "Releases": ["guides-migrating-from-v3", "guides-migrating-from-v2", "guides-migrating-from-v1"],
     "Configuration": ["configuration-methods", "configuration-options"],
     "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "plugins-proxy", "plugins-developing-plugins"],
     "Integrations": ["integrations-cypress"],
