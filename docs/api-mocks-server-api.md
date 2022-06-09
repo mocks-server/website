@@ -178,7 +178,7 @@ Due to backward compatibility reasons, in `core` instances created programmatica
   * __`id`__ _(String)_: Id of the alert to be removed.
 * __`core.alertsApi.clean`__: Removes all alerts, including descendant collections.
 * __`core.alertsApi.collection(id)`__: Allows to create a new subcollection of alerts or returns an already existent one. The returned collection will have all of the same methods described for `alerts`. It is useful to group alerts by its type. The `context` of the alerts created in a child collection will include all parent collections ids joined with `:`, so the user can also know about the alerts "group".
-* __`core.alertsApi.flat`__: Returns all collection items and descendent collection items in a flat array. It adds a `collection` id to each item. For nested collections, the `id` is built with all parents ids and self id concated by `:`.
+* __`core.alertsApi.flat`__: Returns all collection items and descendent collection items in a flat array. It adds a `collection` id to each item. For nested collections, the `id` is built with all parents ids and self id joined with `:`.
 * __`core.alertsApi.root`__: Getter returning the root `alerts` object. It is useful when trying to access to the root Mocks Server alerts from a plugin, but use it with caution because you will be accessing to all of the elements alerts, not only to the plugin's one.
 
 :::info

@@ -21,7 +21,7 @@ If you are already using Mocks Server v2.x you should [migrate first from v2.x t
 
 Even when v4 release is still not published, we are deprecating some things in v3 that will be removed in v4. While v4 is not released, every change in v3.x will be completely backward compatible, but __users upgrading to next minor versions would probably receive alerts about usage of deprecated methods, etc__.
 
-So, everytime you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, and then you'll be able to upgrade to it progressivelly without breaking changes.
+So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
 
 ## Changes summary
@@ -39,7 +39,7 @@ The main breaking changes in v4.x will be:
 ## Alerts
 
 * The __`core.alerts`__ getter in the core when created programmatically was different to the `core.alerts` property received in the plugins from v3.2 due to backward compatibility reasons. In v4 it will return an `alerts` instance in the first case too. In the first case, it was returning a plain alerts collection. So, if you are using a programmatic root core, you should start using `core.alertsApi.customFlat` to get the same values, because that alias will be maintained in v4. Note that, in the case of plugins, you should continue using the `alerts` property, which will not change in v4.
-* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins were receiving an `alerts` property in the core to be used instead, which was also avaible in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](api-mocks-server-api.md#alerts) for further info.
+* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins were receiving an `alerts` property in the core to be used instead, which was also available in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](api-mocks-server-api.md#alerts) for further info.
 
 
 ## Plugins
