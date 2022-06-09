@@ -130,7 +130,11 @@ In order to make compatible your plugins with the v3 version, you have to:
 
 * Add an `id` property to them (an static property in the case of Class plugins). This allows the core to create an appropriate namespace for the plugins and pass to them the correspondent `config` and `alerts` objects.
 * Change the Core API deprecated methods for creating and reading settings if you were using them by the new ones. Read the [configuration API section bellow for further info](#configuration-api).
-* Change the arguments that they receive in the `constructor`, `register`, `init`, `start` and `stop` methods. Now they will receive a single argument as an object containing all needed methods and properties. Previously, the `core` API was received as first argument, and from now it is received as a `{ core }` property in the first argument. So a plugin that in V2 was defined as:
+* Change the arguments that they receive in the `constructor`, `register`, `init`, `start` and `stop` methods. Now they will receive:
+  * __3.1__: A single argument as an object containing all needed methods and properties Previously, the `core` API was received as first argument, and from now it is received as a `{ core }` property in the first argument.
+  * __>=3.2__: A Mocks Server [`core` instance](api-mocks-server-api.md), but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin.
+
+So, a plugin that in v2 was defined as:
 
 ```js
 class Plugin {
@@ -160,43 +164,54 @@ class Plugin {
 }
 ```
 
-Now it has to be defined as:
+In v3.1 had to be defined as in the next example, but you shouldn't use the `core` property, because it will be removed in the next major version. __Better use the `v3.2` example, which will be fully compatible with v4.__
 
 ```js
 class Plugin {
-  static get id() {
-    return "myPlugin";
-  }
+  static id = "myPlugin";
 
   constructor({ core, loadMocks, loadRoutes, alerts, config }) {
     // Do your stuff here
   }
+}
+```
 
-  register({ core, loadMocks, loadRoutes, alerts, config }) {
+__And in any version equal or greater than v3.2 it has to be defined as:__
+
+```js
+class Plugin {
+  static id = "myPlugin";
+
+  constructor({ onChangeMocks, onChangeAlerts, logger, loadMocks, loadRoutes, alerts, config }) {
+    // Here you receive all of the core API methods in one single argument
+    // The parameter is destructured only for example purpose
+  }
+
+  register(core) {
     // Do your stuff here
   }
 
-  init({ core, loadMocks, loadRoutes, alerts, config }) {
+  init(core) {
     // Do your stuff here
   }
 
-  start({ core, loadMocks, loadRoutes, alerts, config }) {
+  start(core) {
     // Do your stuff here
   }
 
-  stop({ core, loadMocks, loadRoutes, alerts, config }) {
+  stop(core) {
     // Do your stuff here
   }
 }
 ```
 
 :::note
-The old `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](plugins-developing-plugins.md) for further info about how to use them.
+The old `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. The `core` property added in v3.1 can be still used in any v3.x version, but it will be also removed in v4. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](plugins-developing-plugins.md) for further info about how to use them.
 :::
 
 ## Configuration API
 
-As a result of the [programmatic API changes](#programmatic-api), old methods for creating or reading settings are not available any more, such as `mocksServer.addSetting`, `mocksServer.settings.get`, `mocksServer.settings.set` or `mocksServer.lowLevelConfig`. Now you can create, read, or listen to configuration changes using the `mocksServer.config` object, or using the `config` object received in plugins, which is already namespaced with each plugin name. Here you have a brief example of how you can migrate from one system to another. For further information, you should read the [updated documentation about creating plugins](plugins-developing-plugins.md).
+As a result of the [programmatic API changes](#programmatic-api), old methods for creating or reading settings are not available any more, such as `core.addSetting`, `core.settings.get`, `core.settings.set` or `core.lowLevelConfig`. Now you can create, read, or listen to configuration changes using the `core.config` object, or using the `config` object received in plugins, which is already namespaced with each plugin name. Here you have a brief example of how you can migrate from one system to another. For further information, you should read the [updated documentation about creating plugins](plugins-developing-plugins.md).
 
 If you were creating or reading settings like this in v2:
 
@@ -225,29 +240,27 @@ class Plugin {
 }
 ```
 
-Now you have to do it like this in v3:
+Now you have to do it like this in >=3.2:
 
 ```js
 class Plugin {
-  static get id() {
-     return "myPlugin";
-  }
+  static id = "myPlugin";
 
-  constructor({ core, config }) {
+  constructor(core) {
     this._core = core;
-    this._myOption = config.addOption({
+    this._myOption = core.config.addOption({
       name: "myOption",
       type: "string",
     });
   }
 
   start() {
-    this._core.tracer.info(`Current value of my option is ${this._myOption.value}`);
+    this._core.logger.info(`Current value of my option is ${this._myOption.value}`);
     this._myOption.onChange(this._onChangeMyOption.bind(this));
   }
 
   _onChangeMyOption(newValue) {
-    this._core.tracer.info(`My option changed to: ${newValue}`);
+    this._core.logger.info(`My option changed to: ${newValue}`);
   }
 }
 ```

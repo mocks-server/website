@@ -39,11 +39,11 @@ The format for defining a route is to declare an object containing:
           * __`headers`__ _(Object)_: Object containing headers to set in the response.
           * __`status`__ _(Number)_: Status code to send.
           * __`body`__ _(Object)_: Object to send as body in the response.
-        * `middleware(req, res, next, mocksServer)`
+        * `middleware(req, res, next, core)`
           * __`req`__ Express middleware `req` object.
           * __`res`__ Express middleware `res` methods.
           * __`next`__ Express middleware `next` method.
-          * __`mocksServer`__ Mocks Server instance methods. Using this you could change the settings of the server itself from a request. [Read the API docs for further info](api-mocks-server-api.md) about available methods.
+          * __`core`__ Mocks Server core instance methods. Using this you could change the settings of the server itself from a request, for example. [Read the API docs for further info](api-mocks-server-api.md) about all available methods.
     * _`handler:"proxy"`_ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution. The variant can contain next extra properties:
       * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
       * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:

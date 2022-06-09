@@ -20,9 +20,9 @@ It is recommended that plugins are published with the `mocks-server-plugin-[name
 
 ## Plugins lifecycle
 
-Plugins should contain __four main methods__, which will receive an argument containing the instance of `mocksServer` and some __extra methods explicitly created for each different plugin__. Please read the [API chapter](api-mocks-server-api.md) to know how to use `mocksServer`.
+Plugins should contain __four main methods__, which will receive an argument containing the instance of [Mocks Server core API](api-mocks-server-api.md) with some __methods explicitly modified for each different plugin__. Please read the [API chapter](api-mocks-server-api.md) to know how to use the `core API`.
 
-#### `register(pluginApi)`
+#### `register(core)`
 
 This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized.
 
@@ -32,54 +32,31 @@ You should never access here to configuration values, because it is not still re
 
 > If you define your plugin as a Class, the `constructor` will be equivalent to defining a `register` method. If you define your plugin as a function, it will be called during the plugins registration, so you could also omit the `register` method.
 
-#### `init(pluginApi)`
+#### `init(core)`
 
-This method will be called when Mocks Server settings are ready. Here you can already use the `core.config` object to get the user options, and act in consequence. Here you should also add your listeners to the `core` events, such as `core.onChangeMocks`, etc.
+This method will be called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to get the user options for your plugin, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.onChangeMocks`, etc.
 
-#### `start(pluginApi)`
+#### `start(core)`
 
 When this method is called, Mocks Server is already started and listening to requests, and the files watcher is observing for changes too. Here you should start the plugin processes in case there are.
 
-#### `stop(pluginApi)`
+#### `stop(core)`
 
-This method will be called when the Mocks Server `stop` method is called. Here you should stop all the plugin processes.
+This method will be called when the Mocks Server `stop` method is called. Here you should stop all the plugin processes in case you started anything in the `start` method.
 
 :::warning
 Plugins must also contain an `id` property (usually the plugin name), which will be used by Mocks Server for providing to them namespaced configuration and alerts APIs and for information purposes. In the case of plugins defined as classes, it must be an static property. It is recommended to use `camelCase` when defining the plugin id.
 :::
 
-## Plugins API
+## Plugins parameters
 
-Apart of the `core` instance containing all methods and getters described in the [API chapter](api-mocks-server-api.md), plugins will receive methods explicitly created for each plugin instance. This object contains next methods:
+The __plugins methods receive a whole [`core` instance](api-mocks-server-api.md)__, but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin, but here you have also a __summary of the modified methods__:
 
-* __`core`__: The Mocks Server core instance. Read the [API chapter](api-mocks-server-api.md) for further information.
-* __`loadMocks(mocks)`__: Load `mocks` definitions. Each time this method is called, __all previously loaded mocks will be replaced by the new ones, but only those added by this plugin__. Mocks loaded by the core or by other plugins will remain.
-  * __mocks__ _(Array)_: Array containing mocks defined as described in the [`mocks`](get-started-mocks.md) chapter.
-* __`loadRoutes(routes)`__: Load `routes` definitions. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added by this plugin__. Routes loaded by the core or by other plugins will remain.
-  * __routes__ _(Array)_: Array containing routes defined as described in the [`routes`](get-started-routes.md) chapter.
-* __`alerts`__: Object containing methods allowing to add alerts, so Mocks Server and other plugins can know about them. Use alerts to inform the user about deprecated methods or other warning messages, or about current errors. For example, when an error happens loading files, `mocks-server` adds automatically an alert in order to let the user know about the error. Here are described only some methods of the `alerts` API, for further info please read the [`@mocks-server/nested-collections` docs](https://github.com/mocks-server/main/tree/master/packages/nested-collections/README.md), but note that in this case the `set` method is extended and requires different arguments:
-  * __`set(id, message, error)`__: Adds an alert or modify it.
-    * __`id`__ _(String)_: The id for the alert to be added or modified in case it already exists.
-    * __`message`__ _(String)_: Message for the alert.
-    * __`error`__ _(Error)_: Optional. Error causing the alert.
-  * __`remove(id)`__: Removes an alert.
-    * __`id`__ _(String)_: Id of the alert to be removed.
-  * __`clean`__: Removes all alerts, including descendant collections.
-  * __`collection(id)`__: Allows to create a new collection of alerts or returns an already existent one. The returned collection will have all of the same methods described for `alerts`. It is useful to group alerts by its type. The `context` of the alerts created in a child collection will include all parent collections ids joined with `:`, so the user can also know about the alerts "group".
-* __`config`__: A configuration namespace created specifically for the plugin, using its `id`. You can read the [`@mocks-server/config`](https://github.com/mocks-server/main/tree/master/packages/config/README.md) docs to know more about the configuration API. Here you have a summary:
-  * __`addNamespace(name)`__: Add another namespace to the current namespace. Returns a configuration [namespace instance](https://github.com/mocks-server/main/tree/master/packages/config/README.md#namespace-instance).
-    * `name` _(String)_: Name for the namespace.
-  * __`addOption(optionProperties)`__: Adds an option to the namespace. Returns a configuration [option instance](https://github.com/mocks-server/main/tree/master/packages/config/README.md#option-instance).
-    * `optionProperties` _(Object)_: Properties defining the option.
-      * __`name`__ _(String)_: Name for the option.
-      * __`description`__ _(String)_: _Optional_. Used in help, traces, etc.
-      * __`type`__  _(String)_. One of _`string`_, _`boolean`_, _`number`_, _`array`_ or _`object`_. Used to apply type validation when loading configuration and in `option.value` setter.
-      * __`itemsType`__ _(String)_. Can be defined only when `type` is `array`. It must be one of _`string`_, _`boolean`_, _`number`_ or _`object`_.
-      * __`default`__ - _Optional_. Default value. Its type depends on the `type` option.
-      * __`extraData`__ - _(Object)_. _Optional_. Useful to store any extra data you want in the option. For example, Mocks Server uses it to define whether an option must be written when creating the configuration scaffold or not.
-  * __`addOptions(optionsProperties)`__: Add many options. Returns an array of configuration [option instances](https://github.com/mocks-server/main/tree/master/packages/config/README.md#option-instance).
-    * `optionsProperties` _(Array)_: Array of `optionProperties`.
-  * __`value`__: Getter returning the current values from all child namespaces and options as an object. Levels in the object correspond to namespaces names, and last level keys correspond to option names. It can be also used as setter as an alias of the `set` method.
+* __`core.loadMocks(mocks)`__: Load `mocks` definitions. Each time this method is called, __all previously loaded mocks will be replaced by the new ones, but only those added by this plugin__. Mocks loaded by the core or by other plugins will remain.
+* __`core.loadRoutes(routes)`__: Load `routes` definitions. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added by this plugin__. Routes loaded by the core or by other plugins will remain.
+* __`core.alerts`__: While in the main core API the `alerts` getter returns an array with all current alerts in plain format, in the plugins this property returns a scoped `alerts` instance using the plugin `id`. It allows to add or remove alerts or alerts namespaces without having conflicts with other plugins or other Mocks Server elements. Read the [`core.alertsApi`](api-mocks-server-api.md) docs to know how to use it, but take into account that in plugins you will receive an alerts subcollection instead of the root alerts object.
+* __`core.config`__: A configuration namespace created specifically for the plugin, using its `id`. Read the [`core.config`](api-mocks-server-api.md) docs to know how to use it, but take into account that in plugins you will receive a configuration namespace instead of the root configuration object.
+* __`core.logger`__: A namespaced logger using the plugin `id`. It allows to easily identify the logs of each plugin and differentiate them from other internal Mocks Server components logs. Read the [`core.logger`](api-mocks-server-api.md) docs to know how to use it, but take into account that in plugins you will receive a logger namespace instead of the root logger object.
 
 ### Example
 
@@ -88,43 +65,43 @@ Here you have an example of how a plugin should be defined. Read the [Mocks Serv
 ```javascript
 class Plugin {
   static get id() {
-    return "traceMocks";
+    return "logMocks";
   }
 
-  constructor({ core, config }) {
-    this._traceMocksOption = config.addOption({
-      name: "traceMocks",
+  constructor(core) {
+    this._core = core;
+    this._enabledOption = core.config.addOption({
+      name: "enabled",
       type: "boolean",
-      description: "Trace mocks changes",
+      description: "Log mocks changes",
       default: true
     });
 
-    this._mocksServer = core;
     this._onChangeMocks = this._onChangeMocks.bind(this);
   }
 
   init() {
-    this._enabled = this._traceMocksOption.value;
-    this._removeChangeMocksListener = this._mocksServer.onChangeMocks(this._onChangeMocks);
-    this._traceMocksOption.onChange(this._onChangeOption.bind(this));
-    mocksServer.tracer.debug(`traceMocks initial value is ${this._enabled}`);
+    this._enabled = this._enabledOption.value;
+    this._removeChangeMocksListener = this._core.onChangeMocks(this._onChangeMocks);
+    this._enabledOption.onChange(this._onChangeOption.bind(this));
+    this._core.logger.debug(`enabled option initial value is ${this._enabled}`);
   }
 
-  traceMocks() {
+  logMocks() {
     if (this._enabled && this._started) {
-      this._mocksServer.tracer.info(`There are ${this._mocksServer.mocks.plainMocks.length} mocks available`);
+      this._core.logger.info(`There are ${this._core.mocks.plainMocks.length} mocks available`);
     }
   }
 
-  start({ core }) {
+  start(core) {
     this._started = true;
-    core.tracer.debug("traceMocks plugin started");
-    this.traceMocks();
+    core.logger.debug("logMocks plugin started");
+    this.logMocks();
   }
 
-  stop({ core }) {
+  stop(core) {
     this._started = false;
-    core.tracer.debug("traceMocks plugin stopped");
+    core.logger.debug("logMocks plugin stopped");
   }
 
   _onChangeOption(newValue) {
@@ -132,7 +109,7 @@ class Plugin {
   }
 
   _onChangeMocks() {
-    this.traceMocks();
+    this.logMocks();
   }
 }
 
@@ -153,49 +130,49 @@ export default class Plugin {
     return "fooPluginId";
   }
 
-  constructor(pluginApi) {
+  constructor(core) {
     // Do your register stuff here
   }  
 
-  register(pluginApi) {
+  register(core) {
     // You should omit this method if you already did your register stuff in the constructor
   }
 
-  init(pluginApi) {
+  init(core) {
     // Do your initialization stuff here
   }
 
-  start(pluginApi) {
+  start(core) {
     // Do your start stuff here
   }
 
-  stop(pluginApi) {
+  stop(core) {
     // Do your stop stuff here
   }
 }
 ```
 
 :::warning
-If the plugin has not an `id` static property, it will not receive the `config` and `alerts` API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions.
+If the plugin has not an `id` static property, it will not receive the `config` and `alerts` core API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions.
 :::
 
 ### Plugin as a `function`
 
 ```javascript
-const plugin = (pluginApi) => {
+const plugin = (core) => {
   // Do your register stuff here
   return {
     id: "fooPluginId",
-    register: (pluginApi) => {
+    register: (core) => {
       // You should omit this method if you already did your register stuff
     },
-    init: (pluginApi) => {
+    init: (core) => {
       // Do your initialization stuff here
     },
-    start: (pluginApi) => {
+    start: (core) => {
       // Do your start stuff here
     },
-    stop: (pluginApi) => {
+    stop: (core) => {
       // Do your stop stuff here
     }
   };
@@ -205,7 +182,7 @@ export default plugin;
 ```
 
 :::warning
-When defined as functions, the `alerts` and `config` API properties are received only in the `register`, `init`, `start` and `stop` methods, once Mocks Server knows the plugin `id`.
+When defined as functions, the `alerts` and `config` core API properties are received only in the `register`, `init`, `start` and `stop` methods, once Mocks Server knows the plugin `id`.
 :::
 
 ### Plugin as an `object`
@@ -213,16 +190,16 @@ When defined as functions, the `alerts` and `config` API properties are received
 ```javascript
 const plugin = {
   id: "fooPluginId",
-  register: (pluginApi) => {
+  register: (core) => {
     // Do your register stuff here
   },
-  init: (pluginApi) => {
+  init: (core) => {
     // Do your initialization stuff here
   },
-  start: (pluginApi) => {
+  start: (core) => {
     // Do your start stuff here
   },
-  stop: (pluginApi) => {
+  stop: (core) => {
     // Do your stop stuff here
   }
 };

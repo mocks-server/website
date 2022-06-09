@@ -34,10 +34,10 @@ This static getter must return a JSON schema defining the specific properties re
 * You must only define those properties added by the route handler to the variant definition. Those that are common to all route variant types must not be defined. So, you shouldn't use `additionalProperties:false` at the root level of the schema. Otherwise, the properties that are common to all route variants would be considered invalid.
 * Mocks Server supports a special JSON schema keyword named `instanceof`. You can use it to indicate that a property must be an instance of a `function`, or a `RegExp` for example.
 
-#### `constructor(route, mocksServer)`
+#### `constructor(route, core)`
 
 * `route`: All route and route variants properties from the `route` definition _(`method`, `url`, `variantId`, and all other properties defined in the route variant object)_.
-* `mocksServer`: The [`mocksServer` instance](api-mocks-server-api.md).
+* `core`: The [`core` instance](api-mocks-server-api.md), but with some methods specifically scoped for each route variant, such as `core.logger` and `core.alerts`, which are namespaced using each route variant id. So, logs or alerts from each different route variant can be easily identified.
 
 #### `middleware(req, res, next)`
 
@@ -59,14 +59,15 @@ class CustomRoutesHandler {
     return "error";
   }
 
-  constructor(routeVariant, mocksServer) {
+  constructor(routeVariant, core) {
     this._error = routeVariant.error;
     this._variantId = routeVariant.variantId;
-    this._mocksServer = mocksServer;
+    this._core = core;
   }
 
   middleware(req, res, next) {
-    this._mocksServer.tracer.info(`Sending route variant "${this._variantId}"`);
+    // Next log automatically includes the route variant id
+    this._core.logger.info("Sending response");
     res.status(this._error.code);
     res.send({
       message: this._error.message
@@ -105,7 +106,7 @@ module.exports = {
 ```
 
 :::note
-You can also add Route Handlers programmatically using the [`mocksServer.addRoutesHandler` method](api-mocks-server-api.md) (useful to be used from [plugins](plugins-developing-plugins.md), for example)
+You can also add Route Handlers programmatically using the [`core.addRoutesHandler` method](api-mocks-server-api.md) (useful to be used from [plugins](plugins-developing-plugins.md), for example)
 :::
 
 And now, you can use the custom handler when defining route variants:

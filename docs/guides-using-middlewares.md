@@ -176,9 +176,9 @@ module.exports = [
 
 In the example, a `PUT` request to `/api/users/1` with a `body` like `{ name: "Modified name" }` would result in consequent `GET` requests to `/api/users` or `/api/users/:id` returning the first user with name "Modified name".
 
-## Using the Mocks Server API in middlewares
+## Using the Mocks Server core API in middlewares
 
-As seen, Mocks Server route variants declaring `response` as functions will receive same arguments as `express` middlewares, but they also receive an extra argument containing [the whole `mocksServer` API](api-mocks-server-api.md).
+As seen, Mocks Server route variants declaring `response` as functions will receive same arguments as `express` middlewares, but they also receive an extra argument containing [the whole `core` API](api-mocks-server-api.md).
 
 This means that it is possible to change the Mocks Server settings from a middleware, for example, so you could set a new global `delay` when a request is received, or change the current mock, or an specific route variant, etc.
 
@@ -195,7 +195,7 @@ module.exports = [
     variants: [
       {
         id: "success",
-        response: (req, res, next, mocksServer) => {
+        response: (req, res, next, core) => {
           res.status(200).send([
             {
               id: 1,
@@ -207,7 +207,7 @@ module.exports = [
             }
           ]);
           // In the next request the mock will use another route variant!!
-          mocksServer.mocks.useRouteVariant("get-users:error"); 
+          core.mocks.useRouteVariant("get-users:error"); 
         }
       },
       {
