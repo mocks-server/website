@@ -30,8 +30,6 @@ Here you should register your own custom `options` using the `core.config` objec
 
 You should never access here to configuration values, because it is not still ready in this phase, which was designed with the intention of letting the plugins to add their own options.
 
-> If you define your plugin as a Class, the `constructor` will be equivalent to defining a `register` method. If you define your plugin as a function, it will be called during the plugins registration, so you could also omit the `register` method.
-
 #### `init(core)`
 
 This method will be called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to get the user options for your plugin, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.onChangeMocks`, etc.
@@ -45,7 +43,7 @@ When this method is called, Mocks Server is already started and listening to req
 This method will be called when the Mocks Server `stop` method is called. Here you should stop all the plugin processes in case you started anything in the `start` method.
 
 :::warning
-Plugins must also contain an `id` property (usually the plugin name), which will be used by Mocks Server for providing to them namespaced configuration and alerts APIs and for information purposes. In the case of plugins defined as classes, it must be an static property. It is recommended to use `camelCase` when defining the plugin id.
+Plugins must also contain an `id` static property (usually the plugin name), which will be used by Mocks Server for providing to them namespaced configuration and alerts APIs and for other information purposes. It is recommended to use `camelCase` when defining the plugin id.
 :::
 
 ## Plugins parameters
@@ -115,19 +113,14 @@ class Plugin {
 
 module.exports = Plugin;
 ```
+## Plugin scaffold
 
-## Plugins formats
-
-The methods can be defined in a plain `object`, as methods of a `Class` or even using a `function` returning an object containing them.
-
-Next examples show how each format should be defined:
-
-### Plugin as a `Class`
+Next example shows an empty plugin scaffold that you can use as a starting point:
 
 ```javascript
 export default class Plugin {
   static get id() {
-    return "fooPluginId";
+    return "myPluginId";
   }
 
   constructor(core) {
@@ -153,59 +146,8 @@ export default class Plugin {
 ```
 
 :::warning
-If the plugin has not an `id` static property, it will not receive the `config` and `alerts` core API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions.
+If the plugin has not an `id` static property, it will not receive the `config` and `alerts` core API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions. So, it is strongly recommended that the plugin id is defined in a static property.
 :::
-
-### Plugin as a `function`
-
-```javascript
-const plugin = (core) => {
-  // Do your register stuff here
-  return {
-    id: "fooPluginId",
-    register: (core) => {
-      // You should omit this method if you already did your register stuff
-    },
-    init: (core) => {
-      // Do your initialization stuff here
-    },
-    start: (core) => {
-      // Do your start stuff here
-    },
-    stop: (core) => {
-      // Do your stop stuff here
-    }
-  };
-};
-
-export default plugin;
-```
-
-:::warning
-When defined as functions, the `alerts` and `config` core API properties are received only in the `register`, `init`, `start` and `stop` methods, once Mocks Server knows the plugin `id`.
-:::
-
-### Plugin as an `object`
-
-```javascript
-const plugin = {
-  id: "fooPluginId",
-  register: (core) => {
-    // Do your register stuff here
-  },
-  init: (core) => {
-    // Do your initialization stuff here
-  },
-  start: (core) => {
-    // Do your start stuff here
-  },
-  stop: (core) => {
-    // Do your stop stuff here
-  }
-};
-
-export default plugin;
-```
 
 ## Installing plugins
 
