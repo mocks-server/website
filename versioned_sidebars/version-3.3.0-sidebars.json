@@ -35,8 +35,8 @@
     ],
     "API": [
       "api-routes-and-mocks",
-      "api-mocks-server-api",
       "api-programmatic-usage",
+      "api-mocks-server-api",
       "api-routes-handler"
     ]
   }
