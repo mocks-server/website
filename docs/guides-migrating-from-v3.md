@@ -31,6 +31,7 @@ The main breaking changes in v4.x will be:
 * __Some core API methods will be removed__. Read [core API](#core-api) below for further info.
 * __Legacy alerts object will be removed__. Read [alerts](#alerts) for further info.
 * __Arguments received by the plugins__. Read [plugins](#plugins) below for further info.
+* __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.
 
 ## Core API
 
@@ -52,7 +53,7 @@ V3 example:
 
 ```js
 class Plugin {
-  constructor({ logger, loadMocks, core, loadRoutes, addAlert, removeAlerts }) {
+  constructor({ logger, loadMocks, loadRoutes, core, addAlert, removeAlerts }) {
     // core property was almost an alias containing again all of the rest of properties received
   }
 }
@@ -65,3 +66,7 @@ class Plugin {
   }
 }
 ```
+
+### Formats
+
+From version 3.4, loading any plugin created as a function or as a plain object will produce an alert. In v4.x, plugins will have to be defined only as classes. So, it is strongly recommended that [any other format of plugin is converted into a class](plugins-developing-plugins.md).

@@ -12,11 +12,50 @@ keywords:
 
 ## Plugins
 
-Plugins can do a lot of things in Mocks Server. For example, you could use plugins to provide more interfaces, add [more routes handlers](api-routes-handler.md), add custom `express` routers to the server, etc.
+Using plugins it is possible to do almost anything on Mocks Server, for example:
+
+* Add routes and mocks programmatically
+* Add new [routes handlers](api-routes-handler.md)
+* Add custom `express` routers to the server.
+* Create new interfaces, APIs, etc.
+
+Creating a plugin is so easy as creating a class that must contain some standardized methods. The Mocks Server core is in charge of creating a plugin instance using the provided class and call to each method on each specific time of the Mocks Server lifecycle. The class constructor and the methods will always receive an instance of the [Mocks Server core API](api-mocks-server-api.md), so it can be used to interact with the core, listen to its events, etc.
 
 ### Naming plugins
 
 It is recommended that plugins are published with the `mocks-server-plugin-[name]` name format in order to facilitate the search. Plugins should also contain the `mocks-server-plugin` tag in the `package.json` `tags` property.
+
+## Plugin scaffold
+
+Next example shows an empty plugin scaffold that you can use as a starting point:
+
+```javascript
+export default class Plugin {
+  static get id() {
+    return "myPluginId";
+  }
+
+  constructor(core) {
+    // Do your register stuff here
+  }  
+
+  register(core) {
+    // You should omit this method if you already did your register stuff in the constructor
+  }
+
+  init(core) {
+    // Do your initialization stuff here
+  }
+
+  start(core) {
+    // Do your start stuff here
+  }
+
+  stop(core) {
+    // Do your stop stuff here
+  }
+}
+```
 
 ## Plugins lifecycle
 
@@ -24,11 +63,11 @@ Plugins should contain __four main methods__, which will receive an argument con
 
 #### `register(core)`
 
-This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized.
+This method will be called for registering the plugin during the Mocks Server initialization, before `options` have been initialized. From a lifecycle point of view, it is equivalent to the class `constructor`, so it is in your hand to perform registration stuff in the `constructor` or in the `register` method.
 
 Here you should register your own custom `options` using the `core.config` object, register your own custom express routers using the `core.addRouter` method, add custom Route Handlers using `core.addRoutesHandler`, etc.
 
-You should never access here to configuration values, because it is not still ready in this phase, which was designed with the intention of letting the plugins to add their own options.
+__You should never access here to configuration values, because the configuration object is not still ready in this phase__, which was designed with the intention of letting the plugins to add their own options.
 
 #### `init(core)`
 
@@ -113,37 +152,7 @@ class Plugin {
 
 module.exports = Plugin;
 ```
-## Plugin scaffold
 
-Next example shows an empty plugin scaffold that you can use as a starting point:
-
-```javascript
-export default class Plugin {
-  static get id() {
-    return "myPluginId";
-  }
-
-  constructor(core) {
-    // Do your register stuff here
-  }  
-
-  register(core) {
-    // You should omit this method if you already did your register stuff in the constructor
-  }
-
-  init(core) {
-    // Do your initialization stuff here
-  }
-
-  start(core) {
-    // Do your start stuff here
-  }
-
-  stop(core) {
-    // Do your stop stuff here
-  }
-}
-```
 
 :::warning
 If the plugin has not an `id` static property, it will not receive the `config` and `alerts` core API objects, because they must be namespaced using the plugin `id`. Due to backward compatibility, it will still pass those methods to the `register`, `init`, `start` and `stop` methods if the plugin instance has an `id` property, but this behavior will be removed in next major versions. So, it is strongly recommended that the plugin id is defined in a static property.
