@@ -48,11 +48,15 @@ core.init({
 
 ## Core API
 
-#### `new Core([config])` 
+#### `new Core([config][,advancedOptions])` 
 
 ##### Arguments
 
 * `config` _(Object)_: Object containing configuration properties and options as described in the [configuration chapter](configuration-options.md).
+* `advancedOptions` _(Object)_: Object containing advanced options for creating a core instance. It may contain any of next properties:
+  * `pkg` _(Object)_: It allows to change the package name and version that is checked by the update notifier. It is useful when publishing custom Mocks Server distributions, so you can check your package version instead of the default one, which is the current version of `@mocks-server/core`. It must be an object containing next properties:
+    * `name` _(String)_ : Name of the package.
+    * `version` _(String)_: Installed version of the package.
 
 ## Core instance API
 
