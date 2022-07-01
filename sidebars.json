@@ -7,6 +7,6 @@
     "Configuration": ["configuration-methods", "configuration-options"],
     "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "plugins-proxy", "plugins-developing-plugins"],
     "Integrations": ["integrations-cypress"],
-    "API": ["api-routes-and-mocks", "api-mocks-server-api", "api-programmatic-usage", "api-routes-handler"]
+    "API": ["api-routes-and-mocks", "api-programmatic-usage", "api-mocks-server-api", "api-routes-handler"]
   }
 }
