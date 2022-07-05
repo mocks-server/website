@@ -50,6 +50,7 @@ const textContents = {
     "variants": [
       {
         "id": "success",
+        "handler": "json",
         "response": {
           "status": 200,
           "body": { "id": 1, "name": "John Doe"}
@@ -57,14 +58,17 @@ const textContents = {
       },
       {
         "id": "not-found",
+        "handler": "json",
         "response": {
           "status": 404
         }
       },
       {
         "id": "proxied",
-        "handler": "proxy"
-        "host": "https://jsonplaceholder.typicode.com/users/1"
+        "handler": "proxy",
+        "response": {
+          "host": "https://jsonplaceholder.typicode.com/users/1"
+        }
       }
     ]
   }
