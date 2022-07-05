@@ -189,7 +189,7 @@ In the example, a `PUT` request to `/api/users/1` with a `body` like `{ name: "M
 
 ## Using the Mocks Server core API in middlewares
 
-As seen, Mocks Server route variants using the `middleware` handler will receive same arguments as `express` middlewares, but they also will receive an extra argument containing [the whole `core` API](api-mocks-server-api.md).
+As seen, Mocks Server route variants using the `middleware` handler will receive same arguments as `express` middlewares, but they will also receive an extra argument containing [the whole `core` API](api-mocks-server-api.md).
 
 This means that it is possible to change the Mocks Server settings from a middleware, for example, so you could set a new global `delay` when a request is received, or change the current mock, or an specific route variant, etc.
 
