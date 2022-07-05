@@ -169,7 +169,7 @@ module.exports = [
 
 ### Migrating proxy variants
 
-In v3.5 a new handler was added: `proxy-v4`. This handler is compatible with the coming Mocks Server v4 version, while the `proxy` one can still be used. So, in order to adapt the code to the v4 version, it is recommmended to migrate all of the variants using the `proxy` handler in order to use the new `proxy-v4` one. In the `proxy-v4` handler, all of the properties for the variant handler have to be defined under the `response` property of the variant, instead of defining them in the root level.
+In v3.5 a new handler was added: `proxy-v4`. This handler is compatible with the coming Mocks Server v4 version, while the `proxy` one can still be used. So, in order to adapt the code to the v4 version, it is recommended to migrate all of the variants using the `proxy` handler in order to use the new `proxy-v4` one. In the `proxy-v4` handler, all of the properties for the variant handler have to be defined under the `response` property of the variant, instead of defining them in the root level.
 
 So, a `proxy` variant defined in version lower than 3.5 as:
 

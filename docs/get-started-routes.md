@@ -32,7 +32,7 @@ The format for defining a route is to declare an object containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
   * __`handler`__ _(String)_: Id of the [Route Handler](api-routes-handler.md) to use for the variant. It can be one of `json` or `middleware`. In the "main" distribution of Mocks Server, the [`proxy` handler](plugins-proxy.md) is also available. _Read [Routes Handler](api-routes-handler.md) to know how to add custom handlers_.
   * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
-  * __`response`__ _(Object)_: Depending of the value of the `handler` property, the `response` propery could contain different properties:
+  * __`response`__ _(Object)_: Depending of the value of the `handler` property, the `response` property could contain different properties:
     * __`handler:"json"`__
       * __`headers`__ _(Object)_: Object containing headers to set in the response.
       * __`status`__ _(Number)_: Status code to send.
