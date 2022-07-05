@@ -31,6 +31,10 @@ This static getter will be used to recognize the Routes Handler. When defining a
 
 This property was added in v3.5 in order to allow to adapt to the next major version without breaking changes. It must return "4" in order to be able to use the API described in this page. Please read other version docs to check old handlers APIs.
 
+#### `static get deprecated()`
+
+This property was added in v3.5 in order to allow to adapt to the next major version without breaking changes. It should be added to Handlers using the old API in order to inform users that they shouldn't use it because it will be deprecated in v4. An alert will be added if this getter returns `true`.
+
 #### `static get validationSchema()`
 
 This static getter must return a JSON schema defining the specific properties required by the handler. It will be used by the core to validate the route variants of this type. `ajv` is used under the hood to perform validations. Take into account next points when defining the json schema:
