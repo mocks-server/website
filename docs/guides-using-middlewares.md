@@ -17,7 +17,7 @@ keywords:
 
 ## Preface
 
-Mocks Server uses `Express` under the hood, and [route variants' `response` property](get-started-routes.md) can be defined as an [`Express` middleware](https://expressjs.com/en/guide/using-middleware.html). This means that you can use them for several purposes, as persisting data modifications, add common headers to all your routes, trace data from all requests, etc.
+The [`middleware` routes handler](get-started-routes.md) allows to define [`Express` middlewares](https://expressjs.com/en/guide/using-middleware.html). This means that you can use them for several purposes, as persisting data modifications, add common headers to all your routes, log data from all requests, etc.
 
 In this chapter we are going to see two usual examples of how middlewares may be used, and a more advanced one, showing how the Mocks Server programmatic API can be used inside middlewares.
 
@@ -48,15 +48,21 @@ module.exports = [
     variants: [
       {
         id: "enabled",
-        response: (req, res, next) => {
-          res.set('Content-Type', 'application/json; charset=utf-8');
-          next();
-        }
+        handler: "middleware",
+        response: {
+          middleware: (req, res, next) => {
+            res.set('Content-Type', 'application/json; charset=utf-8');
+            next();
+          },
+        },
       },
       {
         id: "disabled",
-        response: (req, res, next) => next()
-      }
+        handler: "middleware",
+        response: {
+          middleware: (req, res, next) => next()
+        },
+      },
     ]
   }  
 ];
@@ -94,13 +100,13 @@ Now, let's add the `add-headers` route to the `base` mock, so all others will in
 
 As mentioned in the [`mocks` docs](get-started-mocks.md), the order matters when adding middleware route variants to `mocks`.
 
-The order in which Mocks Server register express middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
+The order in which Mocks Server register middlewares is strictly the same in which route variants are defined in the array, so take it into account when adding your route variants middlewares.
 
 When extending from another mock, the new route variant will replace the old one in the same position that the same route was originally defined. This means that, in the previous `mocks` example, the `no-headers` mock will keep the `add-headers` route in the first position, as it was originally defined in the `base` mock, so it will work properly.
 
 ## Persisting data modifications
 
-This is __usually not recommended__, because doing it, you will be almost implementing a "real api", so maybe it should be better to shutdown the Mocks Server and connect the application to your real api, but for some special cases maybe you need to accomplish it. So, let's see how it can be done.
+This is __usually not recommended__, because doing it, you will be almost implementing a "real API", so maybe it should be better to shutdown the Mocks Server and connect the application to your real API, but for some special cases maybe you need to accomplish it. So, let's see how it can be done.
 
 While Mocks Server is running, the modifications made to any JavaScript object in the `routes` folder will be kept in memory, so you could take advantage of this to persist some data while the server is running _(note that modifications will be lost when the files are modified and reloaded, for example)_
 
@@ -127,6 +133,7 @@ module.exports = [
     variants: [
       {
         id: "success",
+        handler: "json",
         response: {
           status: 200,
           body: USERS,
@@ -141,6 +148,7 @@ module.exports = [
     variants: [
       {
         id: "success",
+        handler: "json",
         response: {
           status: 200,
           body: USERS[0],
@@ -155,18 +163,21 @@ module.exports = [
     variants: [
       {
         id: "real-modification",
-        response: (req, res, next) => {
-          const userId = req.params.id;
-          const user = USERS.find((userData) => userData.id === Number(userId));
-          if (user) {
-            user.name = req.body.name; // MODIFY THE USER IN MEMORY!!
-            res.status(204).send();
-          } else {
-            res.status(404);
-            res.send({
-              message: "User not found",
-            });
-          }
+        handler: "middleware",
+        response: {
+          middleware: (req, res, next) => {
+            const userId = req.params.id;
+            const user = USERS.find((userData) => userData.id === Number(userId));
+            if (user) {
+              user.name = req.body.name; // MODIFY THE USER IN MEMORY!!
+              res.status(204).send();
+            } else {
+              res.status(404);
+              res.send({
+                message: "User not found",
+              });
+            }
+          },
         },
       },
     ]
@@ -178,7 +189,7 @@ In the example, a `PUT` request to `/api/users/1` with a `body` like `{ name: "M
 
 ## Using the Mocks Server core API in middlewares
 
-As seen, Mocks Server route variants declaring `response` as functions will receive same arguments as `express` middlewares, but they also receive an extra argument containing [the whole `core` API](api-mocks-server-api.md).
+As seen, Mocks Server route variants using the `middleware` handler will receive same arguments as `express` middlewares, but they will also receive an extra argument containing [the whole `core` API](api-mocks-server-api.md).
 
 This means that it is possible to change the Mocks Server settings from a middleware, for example, so you could set a new global `delay` when a request is received, or change the current mock, or an specific route variant, etc.
 
@@ -195,23 +206,27 @@ module.exports = [
     variants: [
       {
         id: "success",
-        response: (req, res, next, core) => {
-          res.status(200).send([
-            {
-              id: 1,
-              name: "John Doe"
-            },
-            {
-              id: 2,
-              name: "Jane Doe"
-            }
-          ]);
-          // In the next request the mock will use another route variant!!
-          core.mocks.useRouteVariant("get-users:error"); 
-        }
+        handler: "middleware",
+        response: {
+          middleware: (req, res, next, core) => {
+            res.status(200).send([
+              {
+                id: 1,
+                name: "John Doe"
+              },
+              {
+                id: 2,
+                name: "Jane Doe"
+              }
+            ]);
+            // In the next request the mock will use another route variant!!
+            core.mocks.useRouteVariant("get-users:error");
+          },
+        },
       },
       {
         id: "error",
+        handler: "json",
         response: {
           status: 400,
           body: {

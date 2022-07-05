@@ -39,6 +39,7 @@ module.exports = [
     variants: [
       {
         id: "one",
+        handler: "json",
         response: {
           status: 200,
           body: [ // body to send
@@ -51,8 +52,10 @@ module.exports = [
       },
       {
         id: "real-api",
-        handler: "proxy", // This route variant will use the "proxy" handler
-        host: "http://127.0.0.1:8080", // proxy host
+        handler: "proxy-v4", // This route variant will use the "proxy" handler
+        response: {
+          host: "http://127.0.0.1:8080", // proxy host
+        },
       },
     ],
   },
@@ -72,12 +75,17 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        handler: "proxy", // This route variant will use the "proxy" handler
-        host: "http://127.0.0.1:8080", // proxy host
+        handler: "proxy-v4", // This route variant will use the "proxy" handler
+        response: {
+          host: "http://127.0.0.1:8080", // proxy host
+        },
       },
       {
         id: "disabled", // This middleware does nothing, so we can easily disable the proxy and let other routes to handle the request
-        response: (req, res, next) => next(), 
+        handler: "middleware",
+        response: {
+          middleware: (req, res, next) => next(),
+        },
       },
     ],
   },
@@ -88,6 +96,7 @@ module.exports = [
     variants: [
       {
         id: "one",
+        handler: "json",
         response: {
           status: 200,
           body: [ // body to send
@@ -150,11 +159,13 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        handler: "proxy",
-        host: "http://127.0.0.1:8080",
-        options: {
-          filter: function(req, res) {
-            return req.method === "GET" && req.url.includes("users/") && req.params.id === "2";
+        handler: "proxy-v4",
+        response: {
+          host: "http://127.0.0.1:8080",
+          options: {
+            filter: function(req, res) {
+              return req.method === "GET" && req.url.includes("users/") && req.params.id === "2";
+            },
           },
         },
       },
@@ -178,14 +189,16 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        handler: "proxy",
-        host: "http://127.0.0.1:8080",
-        options: {
-          userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
-            data = JSON.parse(proxyResData.toString('utf8'));
-            data.name = `Modified ${data.name}`;
-            return JSON.stringify(data);
-          }
+        handler: "proxy-v4",
+        response: {
+          host: "http://127.0.0.1:8080",
+          options: {
+            userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
+              data = JSON.parse(proxyResData.toString('utf8'));
+              data.name = `Modified ${data.name}`;
+              return JSON.stringify(data);
+            }
+          },
         },
       },
     ],
@@ -207,16 +220,18 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        handler: "proxy",
-        host: "http://127.0.0.1:8080",
-        options: {
-          proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
-            // you can update headers
-            proxyReqOpts.headers['Content-Type'] = 'text/html';
-            // you can change the method
-            proxyReqOpts.method = 'GET';
-            return proxyReqOpts;
-          }
+        handler: "proxy-v4",
+        response: {
+          host: "http://127.0.0.1:8080",
+          options: {
+            proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+              // you can update headers
+              proxyReqOpts.headers['Content-Type'] = 'text/html';
+              // you can change the method
+              proxyReqOpts.method = 'GET';
+              return proxyReqOpts;
+            }
+          },
         },
       },
     ],

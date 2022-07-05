@@ -27,31 +27,39 @@ A Routes Handler should be defined as a `Class` containing:
 
 This static getter will be used to recognize the Routes Handler. When defining a route variant, the handler to be used can be defined using the `handler` property. That property in route variants should be the `id` of the Route Handler to be used.
 
+#### `static get version()`
+
+This property was added in v3.5 in order to allow to adapt to the next major version without breaking changes. It must return "4" in order to be able to use the API described in this page. Please read other version docs to check old handlers APIs.
+
+#### `static get deprecated()`
+
+This property was added in v3.5 in order to allow to adapt to the next major version without breaking changes. It should be added to Handlers using the old API in order to inform users that they shouldn't use it because it will be deprecated in v4. An alert will be added if this getter returns `true`.
+
 #### `static get validationSchema()`
 
 This static getter must return a JSON schema defining the specific properties required by the handler. It will be used by the core to validate the route variants of this type. `ajv` is used under the hood to perform validations. Take into account next points when defining the json schema:
 
-* You must only define those properties added by the route handler to the variant definition. Those that are common to all route variant types must not be defined. So, you shouldn't use `additionalProperties:false` at the root level of the schema. Otherwise, the properties that are common to all route variants would be considered invalid.
-* Mocks Server supports a special JSON schema keyword named `instanceof`. You can use it to indicate that a property must be an instance of a `function`, or a `RegExp` for example.
+* You must only define those properties defined in the `response` property of the variant definition.
+* Mocks Server supports a special JSON schema keyword named `instanceof`. You can use it to indicate that a property must be an instance of a `Function`, or a `RegExp` for example.
 
-#### `constructor(route, core)`
+#### `constructor(response, core)`
 
-* `route`: All route and route variants properties from the `route` definition _(`method`, `url`, `variantId`, and all other properties defined in the route variant object)_.
+* `response`: All properties in the `response` property of the route variant definition.
 * `core`: The [`core` instance](api-mocks-server-api.md), but with some methods specifically scoped for each route variant, such as `core.logger` and `core.alerts`, which are namespaced using each route variant id. So, logs or alerts from each different route variant can be easily identified.
 
 #### `middleware(req, res, next)`
 
 This is the middleware that will be called when the route url matches and the specific variant type corresponds to this route handler (it is equal to the route handler id).
 
-#### `get plainResponsePreview()`
+#### `get preview()`
 
-This getter should return a plain object containing an approached preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server interfaces.
+This getter should return a plain object containing an approached preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server interfaces. If you have not enough information to predict the response (as in the case of `middlewares` handler, for example), you should return `null`.
 
 ## Example
 
 Here you have an example of how a custom Routes Handler should be defined:
 
-```javascript
+```js
 // ./CustomRoutesHandler.js
 
 class CustomRoutesHandler {
@@ -59,27 +67,47 @@ class CustomRoutesHandler {
     return "error";
   }
 
-  constructor(routeVariant, core) {
-    this._error = routeVariant.error;
-    this._variantId = routeVariant.variantId;
+  static get version() {
+    return "4";
+  }
+
+  static get validationSchema() {
+    return {
+      type: "object",
+      properties: {
+        code: {
+          type: "number",
+        },
+        message: {
+          type: "string",
+        },
+      },
+      required: ["code", "message"],
+      additionalProperties: false,
+    };
+  }
+
+  constructor(response, core) {
+    this._code = response.code;
+    this._message = response.message;
     this._core = core;
   }
 
   middleware(req, res, next) {
     // Next log automatically includes the route variant id
     this._core.logger.info("Sending response");
-    res.status(this._error.code);
+    res.status(this._code);
     res.send({
-      message: this._error.message
+      message: this._message
     });
   }
 
-  get plainResponsePreview() {
+  get preview() {
     return {
       body: {
-        message: this._error.message
+        message: this._message
       },
-      status: this._error.code,
+      status: this._code,
     };
   }
 }
@@ -123,14 +151,15 @@ module.exports = [
       {
         id: "error-400",
         handler: "error", // id of the handler to be used
-        error: {
+        response: { // object that the handler will receive
           code: 400,
           message: "Error message",
-        }
+        },
       }
       {
-        // This one will use the "default" handler
+        // This one will use the "json" handler
         id: "empty",
+        handler: "json",
         response: {
           status: 200,
           body: []
