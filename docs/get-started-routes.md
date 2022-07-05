@@ -16,7 +16,7 @@ keywords:
 
 ## Intro
 
-* A __route__ defines the handler for an specific __request__ _(url and method)_ and the different responses that can be sent.
+* A __route__ defines the different responses that can be sent for an specific __request__ _(url and method)_.
 * Routes can contain many __variants__, which are different responses for the same route.
 * Routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](guides-organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
 
@@ -30,21 +30,20 @@ The format for defining a route is to declare an object containing:
 * __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `delay` global setting. It can be overridden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: of variants containing:
   * __`id`__ _(String)_: Id of the route variant. Used afterwards in combination with the route id to define which variants has to use an specific mock.
-  * __`handler`__ _(String)_: Id of the [Routes Handler](api-routes-handler.md) to use for the variant (default is `default`). In the "main" distribution of Mocks Server, the [`proxy` handler](plugins-proxy.md) is also available. _Read [Routes Handler](api-routes-handler.md) to know how to add custom handlers_.
+  * __`handler`__ _(String)_: Id of the [Route Handler](api-routes-handler.md) to use for the variant. It can be one of `json` or `middleware`. In the "main" distribution of Mocks Server, the [`proxy` handler](plugins-proxy.md) is also available. _Read [Routes Handler](api-routes-handler.md) to know how to add custom handlers_.
   * __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
-  * _`...variant handler properties`_ Depending of the value of the `handler` property, a variant can contain different extra properties:
-    * _`handler:"default"`_ The default handler. The variant can contain next extra properties:
-      * __`response`__ _(Object|Function)_: Defines the response that the server will send to the request. It can be defined as a plain object, or as an `express` middleware.
-        * `Object`
-          * __`headers`__ _(Object)_: Object containing headers to set in the response.
-          * __`status`__ _(Number)_: Status code to send.
-          * __`body`__ _(Object)_: Object to send as body in the response.
-        * `middleware(req, res, next, core)`
+  * __`response`__ _(Object)_: Depending of the value of the `handler` property, the `response` propery could contain different properties:
+    * __`handler:"json"`__
+      * __`headers`__ _(Object)_: Object containing headers to set in the response.
+      * __`status`__ _(Number)_: Status code to send.
+      * __`body`__ _(Object)_: Object to send as body of the request response.
+    * __`handler:"middleware"`__
+      * __`middleware`__ _(Function)_: It must be a function that will receive next parameters `(req, res, next, core)`:
           * __`req`__ Express middleware `req` object.
           * __`res`__ Express middleware `res` methods.
           * __`next`__ Express middleware `next` method.
           * __`core`__ Mocks Server core instance methods. Using this you could change the settings of the server itself from a request, for example. [Read the API docs for further info](api-mocks-server-api.md) about all available methods.
-    * _`handler:"proxy"`_ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution. The variant can contain next extra properties:
+    * __`handler:"proxy-v4"`__ [Proxy handler](plugins-proxy.md) provided by `@mocks-server/plugin-proxy`, included in the "main" distribution:
       * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
       * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:
         * __`filter`__ _(Function)_: [`filter` option](https://github.com/villadora/express-http-proxy#filter-supports-promises) for `express-http-proxy`.
@@ -52,7 +51,7 @@ The format for defining a route is to declare an object containing:
         * __...__ all other [`express-http-proxy` options](https://github.com/villadora/express-http-proxy#options) are also supported.
 
 :::note
-The format of variants describe here is the default one, but more formats can be added [using custom routes handlers](api-routes-handler.md).
+Here are described the possible formats of the `response` property taking into account the route handlers included in the main distribution, but more formats can be added [using custom routes handlers](api-routes-handler.md).
 :::
 
 ## Examples
@@ -68,6 +67,7 @@ In the next example you can see how routes are defined using `json` files:
     "variants": [
       {
         "id": "success", // id of the variant
+        "handler": "json",
         "response": {
           "status": 200, // status to send
           "body": [ // body to send
@@ -84,6 +84,7 @@ In the next example you can see how routes are defined using `json` files:
       },
       {
         "id": "error", // id of the variant
+        "handler": "json",
         "response": {
           "status": 400, // status to send
           "body": { // body to send
@@ -93,8 +94,10 @@ In the next example you can see how routes are defined using `json` files:
       },
       {
         "id": "real-api", // id of the variant
-        "handler": "proxy", // handler of the variant
-        "host": "http://127.0.0.1:8080", // host for "proxy" handler
+        "handler": "proxy-v4", // handler of the variant
+        "response": {
+          "host": "http://127.0.0.1:8080", // host for "proxy" handler
+        }
       },
     ]
   }
@@ -123,6 +126,7 @@ module.exports = [
     variants: [
       {
         id: "success", // id of the variant
+        handler: "json",
         response: {
           status: 200, // status to send
           body: USERS, // body to send
@@ -130,6 +134,7 @@ module.exports = [
       },
       {
         id: "error", // id of the variant
+        handler: "json",
         response: {
           status: 400, // status to send
           body: { // body to send
@@ -139,17 +144,19 @@ module.exports = [
       },
       {
         id: "real-api-modified",
-        handler: "proxy",
-        host: "http://127.0.0.1:8080",
-        options: {
-          userResDecorator: function(proxyRes, proxyResData) {
-            data = JSON.parse(proxyResData.toString('utf8'));
-            return JSON.stringify(data.map((user) => ({
-              ...user,
-              name: `Modified ${user.name}`
-            })));
-          }
-        },
+        handler: "proxy-v4",
+        response: {
+          host: "http://127.0.0.1:8080",
+          options: {
+            userResDecorator: function(proxyRes, proxyResData) {
+              data = JSON.parse(proxyResData.toString('utf8'));
+              return JSON.stringify(data.map((user) => ({
+                ...user,
+                name: `Modified ${user.name}`
+              })));
+            }
+          },
+        }
       },
     ]
   },
@@ -160,6 +167,7 @@ module.exports = [
     variants: [
       {
         id: "success", // id of the variant
+        handler: "json",
         response: {
           status: 200, // status to send
           body: USERS[0], // body to send
@@ -167,19 +175,22 @@ module.exports = [
       },
       {
         id: "real", // id of the variant
-        response: (req, res) => {
-          const userId = req.params.id;
-          const user = USERS.find((userData) => userData.id === Number(userId));
-          if (user) {
-            res.status(200);
-            res.send(user);
-          } else {
-            res.status(404);
-            res.send({
-              message: "User not found",
-            });
-          }
-        }
+        handler: "middleware",
+        response: {
+          middleware: (req, res) => {
+            const userId = req.params.id;
+            const user = USERS.find((userData) => userData.id === Number(userId));
+            if (user) {
+              res.status(200);
+              res.send(user);
+            } else {
+              res.status(404);
+              res.send({
+                message: "User not found",
+              });
+            }
+          },
+        },
       }
     ]
   }

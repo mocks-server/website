@@ -86,6 +86,7 @@ module.exports = [
     variants: [
       {
         id: "empty", // id of the variant
+        handler: "json", // variant handler
         response: {
           status: 200, // status to send
           body: [] // body to send
@@ -93,6 +94,7 @@ module.exports = [
       },
       {
         id: "error", // id of the variant
+        handler: "json", // variant handler
         response: {
           status: 400, // status to send
           body: { // body to send

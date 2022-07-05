@@ -95,6 +95,7 @@ module.exports = [
     variants: [
       {
         id: "all",
+        handler: "json",
         response: {
           status: 200,
           body: users
@@ -102,6 +103,7 @@ module.exports = [
       },
       {
         id: "one",
+        handler: "json",
         response: {
           status: 200,
           body: [users[0]]
