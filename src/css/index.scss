@@ -1,6 +1,15 @@
 @import "bootstrap.css";
 @import "actionButton.scss";
 
+@font-face {
+  font-family: "Virgil";
+  src: url("https://excalidraw.com/Virgil.woff2");
+}
+@font-face {
+  font-family: "Cascadia";
+  src: url("https://excalidraw.com/Cascadia.woff2");
+}
+
 .homepage {
   width: 100%;
   max-width: 100%;
@@ -67,6 +76,7 @@
   line-height: 1.2;
   margin-top: 0;
   font-weight: 500;
+  margin-bottom: 2rem;
 
   &.centered {
     width: 100%;
@@ -119,6 +129,15 @@ html[data-theme='dark'] {
   }
 }
 
+span.icon {
+  margin-left: 0.5rem;
+  color: var(--ifm-color-primary-darkest)
+}
+
+.cards-container {
+  margin-bottom: 2rem;
+}
+
 .text-card {
   padding: 1.5rem;
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
@@ -135,18 +154,42 @@ html[data-theme='dark'] {
   }
 }
 
-@media (max-width: 1200px) {
-  .cards-container {
-    margin-bottom: 2rem;
-  }
-}
-
 html[data-theme='dark'] {
   .text-card {
     border: 1px solid var(--ifm-color-gray-800);
     box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 60%);
   }
 }
+
+/* Image and Text */
+.image-and-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  img {
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Integrations */
+
+.integrations {
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  }
+}
+
 
 /* Header hero */
 

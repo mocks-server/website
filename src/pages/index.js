@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
+import CodeBlock from "@theme/CodeBlock";
 import GitHubButton from "react-github-btn";
 import Head from "@docusaurus/Head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ import {
   faCode,
   faGear,
   faWrench,
+  faFaceSmile,
 } from "@fortawesome/free-solid-svg-icons";
 
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -31,13 +33,50 @@ const textContents = {
     Control it using the [interactive CLI](docs/plugins-inquirer-cli), or use the [administration REST API](docs/plugins-admin-api), or [start it using JavaScript](docs/api-programmatic-usage) and control everything. Other integrations are available, such as [Cypress commands](docs/integrations-cypress).
   `,
   upcoming: `
-    Web user interface, Mock Web Sockets, Docker container, Open API integration, TypeScript definitions...
+    Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
+  `,
+  routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resources, or many.`,
+  variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
+  collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, it's easy to storage many collections and change the whole API behavior by simply changing the current one.`,
+  jsonCode: `
+    [
+      {
+        "id": "get-user",
+        "url": "/api/user/:id",
+        "method": "GET",
+        "delay": 1000,
+        "variants": [
+          {
+            "id": "success",
+            "handler": "json",
+            "options": {
+              "status": 200,
+              "body": { "id": 1, "name": "John Doe"}
+            }
+          },
+          {
+            "id": "not-found",
+            "handler": "json",
+            "options": {
+              "status": 404
+            }
+          },
+          {
+            "id": "proxied",
+            "handler": "proxy",
+            "options": {
+              "host": "https://jsonplaceholder.typicode.com/users/1"
+            }
+          }
+        ]
+      }
+    ]
   `,
 };
 
-const useContent = (textKey) => {
+function useContent(textKey) {
   return useText(textContents[textKey]);
-};
+}
 
 function Section({ element = "section", children, className, background = "light" }) {
   const El = element;
@@ -52,17 +91,18 @@ function Row({ children, className }) {
   return <div className={clsx(`row`, className)}>{children}</div>;
 }
 
-function Column({ children, md, sm, lg, xs, className, hiddenXs, hiddenSm }) {
+function Column({ children, md, sm, lg, xs, className, hiddenXs, hiddenMd, hiddenSm }) {
   return (
     <div
       className={`${clsx(
         className,
-        xs && `col-xs-${md}`,
+        xs && `col-xs-${xs}`,
         md && `col-md-${md}`,
         sm && `col-sm-${sm}`,
         lg && `col-lg-${lg}`,
         hiddenXs && `hidden-xs`,
-        hiddenSm && `hidden-sm`
+        hiddenSm && `hidden-sm`,
+        hiddenMd && `hidden-md`
       )}`}
     >
       {children}
@@ -78,15 +118,16 @@ function Text({ text }) {
   return <div className="text" dangerouslySetInnerHTML={{ __html: text }} />;
 }
 
-function Heading({ text, centered, className }) {
-  return <h2 className={clsx("heading", centered && "centered", className)}>{text}</h2>;
+function Heading({ element = "h2", text, centered, className }) {
+  const El = element;
+  return <El className={clsx("heading", centered && "centered", className)}>{text}</El>;
 }
 
 function SubHeading({ text, centered }) {
   return <p className={clsx("subheading", centered && "centered")}>{text}</p>;
 }
 
-function ActionButton({ href, type = "primary", external, children }) {
+function ActionButton({ href, type = "primary", external, children, variant = "contained" }) {
   const target = useMemo(() => {
     if (external) {
       return "_blank";
@@ -100,7 +141,7 @@ function ActionButton({ href, type = "primary", external, children }) {
     return null;
   });
   return (
-    <a className={clsx(`action-button`, type)} href={href} target={target} rel={rel}>
+    <a className={clsx(`action-button`, type, variant)} href={href} target={target} rel={rel}>
       {children}
       <Icon icon={faCircleRight} />
     </a>
@@ -203,10 +244,69 @@ function MainFeatures() {
         </Column>
         <Column lg={3} md={6} className="cards-container">
           <TextCard
-            title="Controllable"
+            title="Easy to control"
             text={useContent("featuresControllable")}
             icon={faGear}
             link={useBaseUrl("docs/get-started-intro")}
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton
+            type="secondary"
+            href={useBaseUrl("docs/get-started-intro")}
+            variant="text"
+          >
+            View all features
+          </ActionButton>
+        </Column>
+      </Row>
+    </Section>
+  );
+}
+
+function ImageAndText({ title, text, imageSrc, imageAlt }) {
+  return (
+    <div className="image-and-text">
+      <img src={imageSrc} alt={imageAlt} />
+      <Heading element="h3" text={title} className="title" />
+      <Text text={text} />
+    </div>
+  );
+}
+
+function MainConcepts({ background }) {
+  return (
+    <Section background={background}>
+      <Heading text="Main concepts" centered className="with-subheading" />
+      <SubHeading
+        text="Three simple concepts allowing to simulate, control and storage multiple API scenarios"
+        centered
+      />
+      <Row>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            title="Routes"
+            text={useContent("routes")}
+            imageSrc={useBaseUrl("img/concepts-route.png")}
+            imageAlt="Routes schema"
+          />
+        </Column>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            title="Variants"
+            text={useContent("variants")}
+            imageSrc={useBaseUrl("img/concepts-variant.png")}
+            imageAlt="Variants schema"
+          />
+        </Column>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            title="Collections"
+            text={useContent("collections")}
+            imageSrc={useBaseUrl("img/concepts-collection.png")}
+            imageAlt="Collections schema"
           />
         </Column>
       </Row>
@@ -219,14 +319,75 @@ function Upcoming({ background }) {
   return (
     <Section background={background}>
       <Heading text="Upcoming features" centered className="with-subheading" />
-      <SubHeading text="Stay up to date on what we are working." centered />
+      <SubHeading text="Stay up to date on what we are working" centered />
       <Row>
         <Column md={12} xs={12}>
           <p className="centered">{useContent("upcoming")}</p>
         </Column>
         <Column md={12} xs={12} className="center-content">
-          <ActionButton type="secondary" href={siteConfig.customFields.githubProjectUrl} external>
+          <ActionButton
+            type="secondary"
+            href={siteConfig.customFields.githubProjectUrl}
+            external
+            variant="text"
+          >
             Checkout the Github project
+          </ActionButton>
+        </Column>
+      </Row>
+    </Section>
+  );
+}
+
+function Integrations({ background }) {
+  return (
+    <Section background={background} className="integrations">
+      <Heading text="Integrations" centered className="with-subheading" />
+      <SubHeading text="Works well with many ecosystems, and more are coming..." centered />
+      <Row>
+        <Column sm={2} hiddenXs></Column>
+        <Column sm={2} xs={6} className="center-content">
+          <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
+        </Column>
+        <Column sm={2} xs={6} className="center-content">
+          <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
+        </Column>
+        <Column sm={2} xs={6} className="center-content">
+          <img alt="Cypress" src={useBaseUrl("img/cypress-logo.jpeg")} />
+        </Column>
+        <Column sm={2} xs={6} className="center-content">
+          <img alt="REST API" src={useBaseUrl("img/rest-api-logo.webp")} />
+        </Column>
+        <Column sm={2} hiddenXs></Column>
+      </Row>
+    </Section>
+  );
+}
+
+function CodeExample({ background }) {
+  return (
+    <Section background={background}>
+      <Heading text="Show me the code" centered className="with-subheading" />
+      <SubHeading
+        text="A simple example of how routes and variants can defined using a JSON file"
+        centered
+      />
+      <Row>
+        <Column md={2} hiddenXs></Column>
+        <Column md={8} xs={12}>
+          <CodeBlock language="json">{textContents.jsonCode}</CodeBlock>
+        </Column>
+        <Column md={2} hiddenXs></Column>
+      </Row>
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton
+            type="secondary"
+            href={useBaseUrl("docs/guides-organizing-files")}
+            external
+            variant="text"
+          >
+            View more examples
           </ActionButton>
         </Column>
       </Row>
@@ -238,7 +399,17 @@ function Star({ background }) {
   return (
     <Section background={background}>
       <Heading text="Give the project a star on GitHub" centered className="with-subheading" />
-      <SubHeading text="Do you like it? Let the community know" centered />
+      <SubHeading
+        text={
+          <>
+            Do you like it? Let the community know
+            <span className="icon">
+              <Icon icon={faFaceSmile} />
+            </span>
+          </>
+        }
+        centered
+      />
       <Row>
         <Column md={12} xs={12} className="center-content">
           <GitHubStarButton />
@@ -248,7 +419,7 @@ function Star({ background }) {
   );
 }
 
-const Version3 = () => {
+const Index = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout wrapperClassName="homepage">
@@ -265,10 +436,13 @@ const Version3 = () => {
       </Head>
       <HeaderHero />
       <MainFeatures />
+      <MainConcepts background="tint" />
+      <Integrations />
+      <CodeExample />
       <Upcoming background="dark" />
       <Star />
     </Layout>
   );
 };
 
-export default Version3;
+export default Index;

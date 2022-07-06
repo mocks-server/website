@@ -34,6 +34,15 @@
       color: white;
     }
   }
+
+  &.text {
+    background-color: transparent;
+    color: var(--ifm-color-primary-dark);
+
+    &:hover {
+      color: var(--ifm-color-primary-darkest);
+    }
+  }
 }
 
 @media only screen and (max-width: 480px) {
