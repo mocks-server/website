@@ -1,0 +1,46 @@
+/* ActionButton */
+
+.action-button {
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-decoration: none !important;
+  border-bottom: none;
+  transition: all 0.2s ease-out;
+  max-width: 50%;
+  border-radius: 2px;
+
+  svg {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+
+  &.primary {
+    color: var(--dark);
+    background-color: var(--brand);
+
+    &:hover {
+      color: black;
+      background-color: white;
+    }
+  }
+
+  &.secondary {
+    background-color: var(--dark);
+    color: var(--brand);
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .action-button {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+  }
+}
