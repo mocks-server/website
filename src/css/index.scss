@@ -262,6 +262,20 @@ html[data-theme='dark'] {
   }
 }
 
+@media only screen and (max-width: 1440px) and (min-width: 990px) {
+  .image-and-text {
+    img.collection {
+      height: auto;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .socialLinks {
+      margin-top: -2rem;
+    }
+  }
+}
+
 /* Header hero */
 
 .section.header-hero {

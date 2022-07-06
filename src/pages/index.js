@@ -295,10 +295,10 @@ function MainFeatures() {
   );
 }
 
-function ImageAndText({ title, text, imageSrc, imageAlt, countClassname, count }) {
+function ImageAndText({ title, text, imageSrc, imageAlt, countClassname, count, imageClassName }) {
   return (
     <div className="image-and-text">
-      <img src={imageSrc} alt={imageAlt} />
+      <img src={imageSrc} alt={imageAlt} className={clsx(imageClassName)} />
       <Heading
         element="h3"
         text={title}
@@ -348,6 +348,7 @@ function MainConcepts({ background }) {
             text={useContent("collections")}
             imageSrc={useBaseUrl("img/concepts-collection.png")}
             imageAlt="Collections schema"
+            imageClassName="collection"
           />
         </Column>
       </Row>
@@ -394,10 +395,10 @@ function Integrations({ background }) {
           <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
         </Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <img alt="Cypress" src={useBaseUrl("img/cypress-logo.jpeg")} />
+          <img alt="REST API" src={useBaseUrl("img/rest-api-logo.png")} />
         </Column>
         <Column md={2} sm={12} xs={12} className="center-content">
-          <img alt="REST API" src={useBaseUrl("img/rest-api-logo.webp")} />
+          <img alt="Cypress" src={useBaseUrl("img/cypress-logo.png")} />
         </Column>
         <Column md={2} hiddenSm hiddenXs></Column>
       </Row>
