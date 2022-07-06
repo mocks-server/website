@@ -69,6 +69,33 @@
   }
 }
 
+.heading-with-icon {
+  span {
+    display: inline-block;
+    margin-right: 0.6rem;
+    color: var(--ifm-font-color-base);
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .heading {
+    display: inline-block;
+  }
+  .icon-holder {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--ifm-font-color-base);
+    padding-top: 2px;
+  }
+}
+
+html[data-theme='dark'] {
+  .heading-with-icon {
+    .icon-holder {
+      border: 1px solid var(--ifm-font-color-base-inverse);
+    }
+  }
+}
+
 .subheading {
   font-size: 20px;
   color: var(--ifm-font-color-base);
@@ -76,7 +103,7 @@
   line-height: 1.2;
   margin-top: 0;
   font-weight: 500;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   &.centered {
     width: 100%;
@@ -175,7 +202,14 @@ html[data-theme='dark'] {
 
   img {
     height: 200px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media only screen and (max-width: 990px) {
+    .text {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
   }
 }
 
@@ -184,12 +218,49 @@ html[data-theme='dark'] {
 .integrations {
   img {
     width: 120px;
+    min-width: 120px;
     height: 120px;
     border-radius: 50%;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   }
 }
 
+/* Concepts */
+
+.heading-with-icon {
+  .icon-holder {
+    &.route {
+      background-color: #B7E8F7;
+    }
+
+    &.variant {
+      background-color: #94D3CF;
+    }
+
+    &.collection {
+      background-color: #08444D;
+      color: var(--ifm-font-color-base-inverse)
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .heading-with-icon {
+    .icon-holder {
+      &.route {
+        color: var(--ifm-font-color-base-inverse)
+      }
+
+      &.variant {
+        color: var(--ifm-font-color-base-inverse)
+      }
+
+      &.collection {
+        color: var(--ifm-font-color-base)
+      }
+    }
+  }
+}
 
 /* Header hero */
 

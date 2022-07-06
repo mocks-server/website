@@ -27,7 +27,7 @@ const textContents = {
     Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
   featuresExtensible: `
-    Use [Express](https://expressjs.com/) middlewares. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](docs/api-mocks-server-api).
+    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](docs/api-mocks-server-api).
   `,
   featuresControllable: `
     Control it using the [interactive CLI](docs/plugins-inquirer-cli), or use the [administration REST API](docs/plugins-admin-api), or [start it using JavaScript](docs/api-programmatic-usage) and control everything. Other integrations are available, such as [Cypress commands](docs/integrations-cypress).
@@ -37,7 +37,7 @@ const textContents = {
   `,
   routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resources, or many.`,
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
-  collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, it's easy to storage many collections and change the whole API behavior by simply changing the current one.`,
+  collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.`,
   jsonCode: `
     [
       {
@@ -118,8 +118,37 @@ function Text({ text }) {
   return <div className="text" dangerouslySetInnerHTML={{ __html: text }} />;
 }
 
-function Heading({ element = "h2", text, centered, className }) {
+function HeadingWithIcon({
+  element = "h2",
+  text,
+  centered,
+  className,
+  icon,
+  iconHolderClassName,
+}) {
+  return (
+    <div className={clsx("heading-with-icon", centered)}>
+      <span>
+        <div className={clsx("icon-holder", iconHolderClassName)}>{icon}</div>
+      </span>
+      <Heading element={element} text={text} className={className} />
+    </div>
+  );
+}
+
+function Heading({ element = "h2", text, centered, className, icon, iconHolderClassName }) {
   const El = element;
+  if (icon) {
+    return (
+      <HeadingWithIcon
+        icon={icon}
+        element={element}
+        text={text}
+        centered={centered}
+        iconHolderClassName={iconHolderClassName}
+      />
+    );
+  }
   return <El className={clsx("heading", centered && "centered", className)}>{text}</El>;
 }
 
@@ -266,11 +295,17 @@ function MainFeatures() {
   );
 }
 
-function ImageAndText({ title, text, imageSrc, imageAlt }) {
+function ImageAndText({ title, text, imageSrc, imageAlt, countClassname, count }) {
   return (
     <div className="image-and-text">
       <img src={imageSrc} alt={imageAlt} />
-      <Heading element="h3" text={title} className="title" />
+      <Heading
+        element="h3"
+        text={title}
+        className="title"
+        icon={count}
+        iconHolderClassName={countClassname}
+      />
       <Text text={text} />
     </div>
   );
@@ -287,6 +322,8 @@ function MainConcepts({ background }) {
       <Row>
         <Column lg={4} md={4} xs={12}>
           <ImageAndText
+            count="1"
+            countClassname="route"
             title="Routes"
             text={useContent("routes")}
             imageSrc={useBaseUrl("img/concepts-route.png")}
@@ -295,6 +332,8 @@ function MainConcepts({ background }) {
         </Column>
         <Column lg={4} md={4} xs={12}>
           <ImageAndText
+            count="2"
+            countClassname="variant"
             title="Variants"
             text={useContent("variants")}
             imageSrc={useBaseUrl("img/concepts-variant.png")}
@@ -303,6 +342,8 @@ function MainConcepts({ background }) {
         </Column>
         <Column lg={4} md={4} xs={12}>
           <ImageAndText
+            count="3"
+            countClassname="collection"
             title="Collections"
             text={useContent("collections")}
             imageSrc={useBaseUrl("img/concepts-collection.png")}
@@ -345,20 +386,20 @@ function Integrations({ background }) {
       <Heading text="Integrations" centered className="with-subheading" />
       <SubHeading text="Works well with many ecosystems, and more are coming..." centered />
       <Row>
-        <Column sm={2} hiddenXs></Column>
-        <Column sm={2} xs={6} className="center-content">
+        <Column md={2} hiddenSm hiddenXs></Column>
+        <Column md={2} sm={4} xs={4} className="center-content">
           <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
         </Column>
-        <Column sm={2} xs={6} className="center-content">
+        <Column md={2} sm={4} xs={4} className="center-content">
           <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
         </Column>
-        <Column sm={2} xs={6} className="center-content">
+        <Column md={2} sm={4} xs={4} className="center-content">
           <img alt="Cypress" src={useBaseUrl("img/cypress-logo.jpeg")} />
         </Column>
-        <Column sm={2} xs={6} className="center-content">
+        <Column md={2} sm={12} xs={12} className="center-content">
           <img alt="REST API" src={useBaseUrl("img/rest-api-logo.webp")} />
         </Column>
-        <Column sm={2} hiddenXs></Column>
+        <Column md={2} hiddenSm hiddenXs></Column>
       </Row>
     </Section>
   );
