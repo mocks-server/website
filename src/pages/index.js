@@ -21,6 +21,11 @@ import useText from "@theme/custom-hooks/useText";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
+function docsUrl(page) {
+  // TODO, remove "next"
+  return `docs/next/${page}`;
+}
+
 const textContents = {
   featuresQuickAndSimple: `
     Install it using NPM. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
@@ -29,10 +34,20 @@ const textContents = {
     Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
   featuresExtensible: `
-    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](docs/api-mocks-server-api).
+    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](${docsUrl(
+      "api/core"
+    )}).
   `,
   featuresControllable: `
-    Control it using the [interactive CLI](docs/plugins-inquirer-cli), or use the [administration REST API](docs/plugins-admin-api), or [start it using JavaScript](docs/api-programmatic-usage) and control everything. Other integrations are available, such as [Cypress commands](docs/integrations-cypress).
+    Control it using the [interactive CLI](${docsUrl(
+      "plugins/directory/inquirer-cli"
+    )}), or use the [administration REST API](${docsUrl(
+    "plugins/directory/admin-api"
+  )}), or [start it using JavaScript](${docsUrl(
+    "integrations/javascript"
+  )}) and control everything. Other integrations are available, such as [Cypress commands](${docsUrl(
+    "integrations/cypress"
+  )}).
   `,
   upcoming: `
     Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
@@ -197,10 +212,10 @@ function TextCard({ title, text, link, icon }) {
 function HomeCallToAction() {
   return (
     <>
-      <ActionButton type="primary" href={useBaseUrl("docs/get-started-intro")}>
+      <ActionButton type="primary" href={useBaseUrl(docsUrl("overview"))}>
         Get started
       </ActionButton>
-      <ActionButton type="secondary" href={useBaseUrl("docs/get-started-routes")}>
+      <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/routes"))}>
         Learn basics
       </ActionButton>
     </>
@@ -254,7 +269,7 @@ function MainFeatures() {
             title="Quick and simple"
             text={useContent("featuresQuickAndSimple")}
             icon={faRocket}
-            link={useBaseUrl("docs/get-started-intro")}
+            link={useBaseUrl(docsUrl("overview"))}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -262,7 +277,7 @@ function MainFeatures() {
             title="Flexible"
             text={useContent("featuresFlexible")}
             icon={faCode}
-            link={useBaseUrl("docs/guides-using-babel")}
+            link={useBaseUrl(docsUrl("guides/using-babel"))}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -270,7 +285,7 @@ function MainFeatures() {
             title="Extensible"
             text={useContent("featuresExtensible")}
             icon={faWrench}
-            link={useBaseUrl("docs/guides-using-middlewares")}
+            link={useBaseUrl(docsUrl("usage/variants/middleware"))}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -278,17 +293,13 @@ function MainFeatures() {
             title="Easy to control"
             text={useContent("featuresControllable")}
             icon={faGear}
-            link={useBaseUrl("docs/plugins-admin-api")}
+            link={useBaseUrl(docsUrl("integrations/rest-api"))}
           />
         </Column>
       </Row>
       <Row>
         <Column md={12} xs={12} className="center-content">
-          <ActionButton
-            type="secondary"
-            href={useBaseUrl("docs/get-started-intro")}
-            variant="text"
-          >
+          <ActionButton type="secondary" href={useBaseUrl(docsUrl("overview"))} variant="text">
             View all features
           </ActionButton>
         </Column>
@@ -356,6 +367,13 @@ function MainConcepts({ background }) {
           />
         </Column>
       </Row>
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/routes"))} variant="text">
+            Learn more
+          </ActionButton>
+        </Column>
+      </Row>
     </Section>
   );
 }
@@ -393,16 +411,24 @@ function Integrations({ background }) {
       <Row>
         <Column md={2} hiddenSm hiddenXs></Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
+          <a href={useBaseUrl(docsUrl("integrations/javascript"))}>
+            <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
+          </a>
         </Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
+          <a href={useBaseUrl(docsUrl("integrations/command-line"))}>
+            <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
+          </a>
         </Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <img alt="REST API" src={useBaseUrl("img/rest-api-logo.png")} />
+          <a href={useBaseUrl(docsUrl("integrations/rest-api"))}>
+            <img alt="REST API" src={useBaseUrl("img/rest-api-logo.png")} />
+          </a>
         </Column>
         <Column md={2} sm={12} xs={12} className="center-content">
-          <img alt="Cypress" src={useBaseUrl("img/cypress-logo.png")} />
+          <a href={useBaseUrl(docsUrl("integrations/cypress"))}>
+            <img alt="Cypress" src={useBaseUrl("img/cypress-logo.png")} />
+          </a>
         </Column>
         <Column md={2} hiddenSm hiddenXs></Column>
       </Row>
@@ -427,12 +453,7 @@ function CodeExample({ background }) {
       </Row>
       <Row>
         <Column md={12} xs={12} className="center-content">
-          <ActionButton
-            type="secondary"
-            href={useBaseUrl("docs/get-started-routes")}
-            external
-            variant="text"
-          >
+          <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/routes"))} variant="text">
             View more examples
           </ActionButton>
         </Column>
