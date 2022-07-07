@@ -37,7 +37,7 @@ const textContents = {
   `,
   routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resources, or many.`,
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
-  collections: `A <code>mock</code> is a collection of route variants defining all current routes and variants in the mocked API. They can be created extending other <code>mocks</code>. So, you can store many mocks and change the whole API behavior by simply changing the current one.`,
+  collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.`,
   jsonCode: `
     [
       {
@@ -49,7 +49,7 @@ const textContents = {
           {
             "id": "success",
             "handler": "json",
-            "response": {
+            "options": {
               "status": 200,
               "body": { "id": 1, "name": "John Doe"}
             }
@@ -57,14 +57,14 @@ const textContents = {
           {
             "id": "not-found",
             "handler": "json",
-            "response": {
+            "options": {
               "status": 404
             }
           },
           {
             "id": "proxied",
             "handler": "proxy",
-            "response": {
+            "options": {
               "host": "https://jsonplaceholder.typicode.com/users/1"
             }
           }
@@ -346,10 +346,10 @@ function MainConcepts({ background }) {
           <ImageAndText
             count="3"
             countClassname="collection"
-            title="Mocks"
+            title="Collections"
             text={useContent("collections")}
             imageSrc={useBaseUrl("img/concepts-collection.png")}
-            imageAlt="Mocks schema"
+            imageAlt="Collections schema"
             imageClassName="collection"
           />
         </Column>
