@@ -6,6 +6,7 @@ module.exports = {
   organizationName: "mocks-server",
   projectName: "mocks-server",
   scripts: ["https://buttons.github.io/buttons.js"],
+  clientModules: [require.resolve("@fortawesome/fontawesome-svg-core/styles.css")],
   favicon: "img/favicon.ico",
   customFields: {
     repoUrl: "https://github.com/mocks-server/main",
@@ -127,8 +128,8 @@ module.exports = {
               to: "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
             },
             {
-              label: "Github project",
-              to: "https://github.com/orgs/mocks-server/projects/1",
+              label: "Github",
+              to: "https://github.com/mocks-server/main",
             },
             {
               label: "Issues",
@@ -137,15 +138,18 @@ module.exports = {
           ],
         },
         {
-          title: "Find us",
+          title: "Acknowledgements",
           items: [
             {
-              label: "Github",
-              to: "https://github.com/mocks-server/main",
+              label: "Built with Docusaurus",
+              to: "https://docusaurus.io/",
             },
             {
-              label: "NPM",
-              to: "https://www.npmjs.com/package/@mocks-server/main",
+              html: `
+                  <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
+                    <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" width="100" height="50" />
+                  </a>
+                `,
             },
           ],
         },
