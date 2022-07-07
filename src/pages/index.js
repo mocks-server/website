@@ -260,7 +260,7 @@ function MainFeatures() {
             title="Flexible"
             text={useContent("featuresFlexible")}
             icon={faCode}
-            link={useBaseUrl("docs/get-started-intro")}
+            link={useBaseUrl("docs/guides-using-babel")}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -268,7 +268,7 @@ function MainFeatures() {
             title="Extensible"
             text={useContent("featuresExtensible")}
             icon={faWrench}
-            link={useBaseUrl("docs/get-started-intro")}
+            link={useBaseUrl("docs/guides-using-middlewares")}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -276,7 +276,7 @@ function MainFeatures() {
             title="Easy to control"
             text={useContent("featuresControllable")}
             icon={faGear}
-            link={useBaseUrl("docs/get-started-intro")}
+            link={useBaseUrl("docs/plugins-admin-api")}
           />
         </Column>
       </Row>
@@ -425,7 +425,7 @@ function CodeExample({ background }) {
         <Column md={12} xs={12} className="center-content">
           <ActionButton
             type="secondary"
-            href={useBaseUrl("docs/guides-organizing-files")}
+            href={useBaseUrl("docs/get-started-routes")}
             external
             variant="text"
           >
