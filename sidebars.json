@@ -1,12 +1,120 @@
 {
   "docs": {
-    "Welcome": ["welcome-about-docs"],
-    "Getting started": ["get-started-intro", "get-started-routes", "get-started-mocks"],
-    "Guides": ["guides-organizing-files", "guides-using-babel", "guides-proxy-route-variants", "guides-using-middlewares"],
-    "Releases": ["guides-migrating-from-v3", "guides-migrating-from-v2", "guides-migrating-from-v1"],
-    "Configuration": ["configuration-methods", "configuration-options"],
-    "Plugins": ["plugins-adding-plugins", "plugins-inquirer-cli", "plugins-admin-api", "plugins-proxy", "plugins-developing-plugins"],
-    "Integrations": ["integrations-cypress"],
-    "API": ["api-routes-and-mocks", "api-programmatic-usage", "api-mocks-server-api", "api-routes-handler"]
+    "Getting started": ["getting-started/overview", "getting-started/installation", "getting-started/quick-start"],
+    "Usage": [
+      "usage/routes",
+      {
+        "type": "category",
+        "label": "Variants",
+        "link": {"type": "doc", "id": "usage/variants"},
+        "items": [
+          {
+            "type": "doc",
+            "id": "usage/variants/json",
+            "label": "Json"
+          },
+          {
+            "type": "doc",
+            "id": "usage/variants/middleware",
+            "label": "Middleware"
+          },
+          {
+            "type": "doc",
+            "id": "usage/variants/proxy",
+            "label": "Proxy"
+          }
+        ]
+      },
+      "usage/collections"
+    ],
+    "Configuration": [
+      "configuration/how-to-change-settings",
+      "configuration/options"
+    ],
+    "Integrations": [
+      {
+        "type": "doc",
+        "id": "integrations/javascript",
+        "label": "JavaScript"
+      },
+      {
+        "type": "doc",
+        "id": "integrations/cypress",
+        "label": "Cypress"
+      },
+      {
+        "type": "doc",
+        "id": "integrations/rest-api",
+        "label": "REST API"
+      }
+    ],
+    "Customization": {
+      "Plugins": [
+        {
+          "type": "doc",
+          "id": "plugins/installation",
+          "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "id": "plugins/development",
+          "label": "Development"
+        },
+        {
+          "type": "category",
+          "label": "Directory",
+          "link": {"type": "doc", "id": "plugins/directory"},
+          "items": [
+            {
+              "type": "doc",
+              "id": "plugins/directory/inquirer-cli",
+              "label": "inquirerCli"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/directory/admin-api",
+              "label": "adminApi"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/directory/proxy",
+              "label": "proxy"
+            }
+          ]
+        }
+      ],
+      "Variant Handlers": [
+        {
+          "type": "doc",
+          "id": "variant-handlers/development",
+          "label": "Development"
+        },
+        {
+          "type": "doc",
+          "id": "variant-handlers/directory",
+          "label": "Directory"
+        }
+      ]
+    },
+    "Guides": [
+      "guides/organizing-files",
+      "guides/using-babel"
+    ],
+    "Releases": [
+      {
+        "type": "doc",
+        "id": "releases/migrating-from-v3",
+        "label": "Preparing v3 to v4"
+      },
+      "releases/migrating-from-v2",
+      "releases/migrating-from-v1"
+    ],
+    "API": [
+      {
+        "type": "doc",
+        "id": "api/core",
+        "label": "Core"
+      }
+    ]
   }
 }

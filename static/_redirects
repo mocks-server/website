@@ -1,7 +1,8 @@
 # Redirect default Netlify subdomain to primary domain
 https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 
-# Redirect from docs home to intro
+# Redirects previous to v4. Remove when v4 is released
+
 /docs /docs/get-started-intro
 /docs/advanced-custom-fixtures-handlers /docs/api-routes-handler
 /docs/advanced-developing-plugins /docs/plugins-developing-plugins
@@ -18,3 +19,91 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 /docs/tutorials-static /docs/get-started-routes
 /docs/configuration-file /docs/configuration-methods
 /docs/configuration-command-line-arguments /docs/configuration-methods
+
+# Redirects. Uncomment when v4 is released
+# /docs /docs/overview
+
+# /docs/welcome-about-docs /docs/overview
+/docs/next/welcome-about-docs /docs/next/overview
+
+# /docs/get-started-intro /docs/overview
+/docs/next/get-started-intro /docs/next/overview
+
+# /docs/tutorials-static /docs/usage/routes
+# /docs/get-started-fixtures /docs/usage/routes
+# /docs/get-started-routes /docs/usage/routes
+/docs/next/get-started-routes /docs/next/usage/routes
+
+# /docs/tutorials-dynamic /docs/usage/variants/middleware
+# /docs/guides-using-middlewares /docs/usage/variants/middleware
+/docs/next/guides-using-middlewares /docs/next/usage/variants/middleware
+
+# /docs/guides-proxy-route-variants /docs/usage/variants/proxy
+/docs/next/guides-proxy-route-variants /docs/next/usage/variants/proxy
+
+# /docs/get-started-behaviors /docs/usage/collections
+# /docs/get-started-mocks /docs/usage/collections
+/docs/next/get-started-mocks /docs/next/usage/collections
+
+# /docs/configuration-file /docs/configuration/how-to-change-settings
+# /docs/configuration-command-line-arguments /docs/configuration/how-to-change-settings
+# /docs/configuration-methods /docs/configuration/how-to-change-settings
+/docs/next/configuration-methods /docs/next/configuration/how-to-change-settings
+
+# /docs/configuration-options /docs/configuration/options
+/docs/next/configuration-options /docs/next/configuration/options
+
+# /docs/integrations-cypress /docs/integrations/cypress
+/docs/next/integrations-cypress /docs/next/integrations/cypress
+
+# /docs/advanced-programmatic-usage /docs/integrations/javascript
+# /docs/api-programmatic-usage /docs/integrations/javascript
+/docs/next/api-programmatic-usage /docs/next/integrations/javascript
+
+# /docs/plugins-adding-plugins /docs/plugins/installation
+/docs/next/plugins-adding-plugins /docs/next/plugins/installation
+
+# /docs/advanced-developing-plugins /docs/plugins/development
+# /docs/plugins-developing-plugins /docs/plugins/development
+/docs/next/plugins-developing-plugins /docs/next/plugins/development
+
+# /docs/configuration-interactive-cli /docs/plugins/directory/inquirer-cli
+/docs/next/configuration-interactive-cli /docs/next/plugins/directory/inquirer-cli
+# /docs/plugin-inquirer-cli /docs/plugins/directory/inquirer-cli
+/docs/next/plugin-inquirer-cli /docs/next/plugins/directory/inquirer-cli
+# /docs/plugins-inquirer-cli /docs/plugins/directory/inquirer-cli
+
+# /docs/plugins-admin-api docs/plugins/directory/admin-api
+/docs/next/plugins-admin-api docs/next/plugins/directory/admin-api
+
+# /docs/plugins-proxy docs/plugins/directory/proxy
+/docs/next/plugins-proxy docs/next/plugins/directory/proxy
+
+# /docs/advanced-custom-fixtures-handlers /docs/variant-handlers/development
+# /docs/api-routes-handler /docs/variant-handlers/development
+/docs/next/api-routes-handler /docs/next/variant-handlers/development
+
+# /docs/guides-defining-fixtures /docs/guides/organizing-files
+# /docs/guides-organizing-the-definitions /docs/guides/organizing-files
+# /docs/guides-organizing-files /docs/guides/organizing-files
+/docs/next/guides-organizing-files /docs/next/guides/organizing-files
+
+# /docs/guides-using-babel /docs/guides/using-babel
+/docs/next/guides-using-babel /docs/next/guides/using-babel
+
+# /docs/guides-migrating-from-v1 /docs/releases/migrating-from-v1
+/docs/next/guides-migrating-from-v1 /docs/next/releases/migrating-from-v1
+
+# /docs/guides-migrating-from-v2 /docs/releases/migrating-from-v2
+/docs/next/guides-migrating-from-v2 /docs/next/releases/migrating-from-v2
+
+# /docs/guides-migrating-from-v3 /docs/releases/migrating-from-v3
+/docs/next/guides-migrating-from-v3 /docs/next/releases/migrating-from-v3
+
+# /docs/api-mocks-server-api /docs/api/core
+/docs/next/api-mocks-server-api /docs/next/api/core
+
+# /docs/api-routes-and-mocks docs/overview
+/docs/next/api-routes-and-mocks docs/next/overview
+
+/docs/next/how-to-fix-ajv-installation docs/next/installation
