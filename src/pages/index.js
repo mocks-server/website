@@ -18,6 +18,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import useText from "@theme/custom-hooks/useText";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 const textContents = {
   featuresQuickAndSimple: `
