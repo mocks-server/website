@@ -6,12 +6,7 @@ module.exports = {
   organizationName: "mocks-server",
   projectName: "mocks-server",
   scripts: ["https://buttons.github.io/buttons.js"],
-  stylesheets: [
-    {
-      href: "/css/fort-awesome.css",
-      type: "text/css",
-    },
-  ],
+  clientModules: [require.resolve("@fortawesome/fontawesome-svg-core/styles.css")],
   favicon: "img/favicon.ico",
   customFields: {
     repoUrl: "https://github.com/mocks-server/main",
