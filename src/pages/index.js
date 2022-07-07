@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useMemo } from "react";
+import clsx from "clsx";
 import Layout from "@theme/Layout";
 import CodeBlock from "@theme/CodeBlock";
 import GitHubButton from "react-github-btn";
 import Head from "@docusaurus/Head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleRight,
+  faRocket,
+  faCode,
+  faGear,
+  faWrench,
+  faFaceSmile,
+} from "@fortawesome/free-solid-svg-icons";
 
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -10,147 +20,185 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useText from "@theme/custom-hooks/useText";
 
 const textContents = {
-  benefitsEasyToUse: `
-    Change the current mock and other settings while the server is running using the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api). [Integrations with other tools](docs/integrations-cypress) are also available.
+  featuresQuickAndSimple: `
+    Install it using NPM. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
   `,
-  benefitsRouteVariants: `
-    Define different responses for the same [route](docs/get-started-routes), and group them into different [mocks](docs/get-started-mocks). Define responses using plain objects, Express middlewares, or even proxy the requests.
-    Ensure that your API client is ready to handle all cases both in development and testing phases.
+  featuresFlexible: `
+    Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
-  benefitsMultipleFormats: `
-    Define [routes](docs/get-started-routes) and [mocks](docs/get-started-mocks) using <code>json</code> files or JavaScript files. [Babel](https://babeljs.io/) is supported, so [ESM modules and TypeScript can also be used](docs/guides-using-babel). Hot reload changes the responses in real time once files are changed.
+  featuresExtensible: `
+    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](docs/api-mocks-server-api).
   `,
-  easyToUse: `
-    Install and start it in seconds. Read [get started](docs/get-started-intro) to know how it works and you will be adding your own routes in minutes.
-    <br/><br/>
-    Configure it using a [configuration file, process arguments or environment variables](docs/configuration-methods). Use the [interactive CLI](docs/plugins-inquirer-cli) or the [admin REST API](docs/plugins-admin-api) for changing settings while it is running.
-    <br/><br/>
-    There are also available packages for integrating the Mocks Server with other development tools. <code>@mocks-server/cypress-commands</code> allows to easily control the mock server from Cypress.
-    Read the [Cypress integration chapter for further info](docs/integrations-cypress)
-  `,
-  flexible: `
-    Define route variants for HTTP responses in JSON files, or as JavaScript objects.
-    <br/><br/>
-    Route variants can be plain objects, [Express middlewares](docs/guides-using-middlewares), or can proxy requests to another host, and even modify its response.
-    <br/><br/>
-    Group route variants into different [mocks](docs/get-started-mocks).
-    <br/>
-    Mocks can be created extending from another ones, so you can modify or add new routes to the main mock,
-    and the rest of mocks will inherit them.
-    <br/><br/>
-    If this is not enough, you can even [add your own route handlers](docs/api-routes-handler) to add more formats for defining route variants.
-  `,
-  flexibleJsonCode: `
-// mocks/routes/users.json
-[
-  {
-    "id": "get-user",
-    "url": "/api/user/:id",
-    "method": "GET",
-    "variants": [
-      {
-        "id": "success",
-        "handler": "json",
-        "response": {
-          "status": 200,
-          "body": { "id": 1, "name": "John Doe"}
-        }
-      },
-      {
-        "id": "not-found",
-        "handler": "json",
-        "response": {
-          "status": 404
-        }
-      },
-      {
-        "id": "proxied",
-        "handler": "proxy",
-        "response": {
-          "host": "https://jsonplaceholder.typicode.com/users/1"
-        }
-      }
-    ]
-  }
-]
-  `,
-  customizable: `
-    Plugins can be easily [installed from NPM](docs/plugins-adding-plugins) or [developed](docs/plugins-developing-plugins).
-    <br/>
-    <br/>
-    Plugins can do a lot of things in Mocks Server. You could use plugins to provide more interfaces, add [more routes handlers](docs/api-routes-handler), add your own Express routers to the server, etc.
-    <br/>
-    <br/>
-    Read also the [programmatic usage chapter](docs/api-programmatic-usage) to learn how to use Mocks Server from your own program.
-  `,
-  customizableCode: `
-  class MyPlugin {
-    static id = "mocksLogger"
-  
-    constructor({ config, onChangeMocks }) {
-      this._option = config.addOption({
-        name: "enabled",
-        type: "boolean",
-        description: "Log mocks changes or not",
-        default: true
-      });
-  
-      onChangeMocks(this._onChangeMocks.bind(this))
-    }
-    // ...
-  }
-  `,
-  flexibleJsCode: `
-const users = require("./db/users");
-
-module.exports = {
-  id: 'get-users',
-  url: '/api/users',
-  method: 'GET',
-  response: (req, res) => {
-    res.status(200);
-    res.send(users);
-  },
-}
+  featuresControllable: `
+    Control it using the [interactive CLI](docs/plugins-inquirer-cli), or use the [administration REST API](docs/plugins-admin-api), or [start it using JavaScript](docs/api-programmatic-usage) and control everything. Other integrations are available, such as [Cypress commands](docs/integrations-cypress).
   `,
   upcoming: `
-    Administration web user interface, Mocking Web Sockets, documentation improvements, etc.
+    Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
+  `,
+  routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resources, or many.`,
+  variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
+  collections: `A <code>mock</code> is a collection of route variants defining all current routes and variants in the mocked API. They can be created extending other <code>mocks</code>. So, you can store many mocks and change the whole API behavior by simply changing the current one.`,
+  jsonCode: `
+    [
+      {
+        "id": "get-user",
+        "url": "/api/user/:id",
+        "method": "GET",
+        "delay": 1000,
+        "variants": [
+          {
+            "id": "success",
+            "handler": "json",
+            "response": {
+              "status": 200,
+              "body": { "id": 1, "name": "John Doe"}
+            }
+          },
+          {
+            "id": "not-found",
+            "handler": "json",
+            "response": {
+              "status": 404
+            }
+          },
+          {
+            "id": "proxied",
+            "handler": "proxy",
+            "response": {
+              "host": "https://jsonplaceholder.typicode.com/users/1"
+            }
+          }
+        ]
+      }
+    ]
   `,
 };
 
-const useContent = (textKey) => {
+function useContent(textKey) {
   return useText(textContents[textKey]);
-};
-
-function Heading({ text }) {
-  return <h2 className="Heading">{text}</h2>;
 }
 
-function ActionButton({ href, type = "primary", target, children }) {
+function Section({ element = "section", children, className, background = "light" }) {
+  const El = element;
   return (
-    <a className={`ActionButton ${type}`} href={href} target={target}>
+    <El className={clsx("section", className, background)}>
+      <div className="container">{children}</div>
+    </El>
+  );
+}
+
+function Row({ children, className }) {
+  return <div className={clsx(`row`, className)}>{children}</div>;
+}
+
+function Column({ children, md, sm, lg, xs, className, hiddenXs, hiddenMd, hiddenSm }) {
+  return (
+    <div
+      className={`${clsx(
+        className,
+        xs && `col-xs-${xs}`,
+        md && `col-md-${md}`,
+        sm && `col-sm-${sm}`,
+        lg && `col-lg-${lg}`,
+        hiddenXs && `hidden-xs`,
+        hiddenSm && `hidden-sm`,
+        hiddenMd && `hidden-md`
+      )}`}
+    >
       {children}
+    </div>
+  );
+}
+
+function Icon({ icon }) {
+  return <FontAwesomeIcon icon={icon} />;
+}
+
+function Text({ text }) {
+  return <div className="text" dangerouslySetInnerHTML={{ __html: text }} />;
+}
+
+function HeadingWithIcon({
+  element = "h2",
+  text,
+  centered,
+  className,
+  icon,
+  iconHolderClassName,
+}) {
+  return (
+    <div className={clsx("heading-with-icon", centered)}>
+      <span>
+        <div className={clsx("icon-holder", iconHolderClassName)}>{icon}</div>
+      </span>
+      <Heading element={element} text={text} className={className} />
+    </div>
+  );
+}
+
+function Heading({ element = "h2", text, centered, className, icon, iconHolderClassName }) {
+  const El = element;
+  if (icon) {
+    return (
+      <HeadingWithIcon
+        icon={icon}
+        element={element}
+        text={text}
+        centered={centered}
+        iconHolderClassName={iconHolderClassName}
+      />
+    );
+  }
+  return <El className={clsx("heading", centered && "centered", className)}>{text}</El>;
+}
+
+function SubHeading({ text, centered }) {
+  return <p className={clsx("subheading", centered && "centered")}>{text}</p>;
+}
+
+function ActionButton({ href, type = "primary", external, children, variant = "contained" }) {
+  const target = useMemo(() => {
+    if (external) {
+      return "_blank";
+    }
+    return "_self";
+  });
+  const rel = useMemo(() => {
+    if (external) {
+      return "noreferrer noopener";
+    }
+    return null;
+  });
+  return (
+    <a className={clsx(`action-button`, type, variant)} href={href} target={target} rel={rel}>
+      {children}
+      <Icon icon={faCircleRight} />
     </a>
   );
 }
 
-function TextColumn({ title, text, moreContent }) {
+function TextCard({ title, text, link, icon }) {
   return (
-    <>
+    <div className="text-card">
+      <div className="icon-holder">
+        <Icon icon={icon} />
+      </div>
       <Heading text={title} />
-      <div dangerouslySetInnerHTML={{ __html: text }} />
-      {moreContent}
-    </>
+      <Text text={text} />
+      <a className="text-link" href={link}>
+        Learn more →
+      </a>
+    </div>
   );
 }
 
 function HomeCallToAction() {
   return (
     <>
-      <ActionButton type="primary" href={useBaseUrl("docs/get-started-intro")} target="_self">
+      <ActionButton type="primary" href={useBaseUrl("docs/get-started-intro")}>
         Get started
       </ActionButton>
-      <ActionButton type="secondary" href={useBaseUrl("docs/get-started-routes")} target="_self">
+      <ActionButton type="secondary" href={useBaseUrl("docs/get-started-routes")}>
         Learn basics
       </ActionButton>
     </>
@@ -165,6 +213,7 @@ function GitHubStarButton() {
         data-icon="octicon-star"
         data-size="large"
         aria-label="Star Mocks Server on GitHub"
+        data-show-count="true"
       >
         Star
       </GitHubButton>
@@ -172,148 +221,249 @@ function GitHubStarButton() {
   );
 }
 
-function Section({ element = "section", children, className, background = "light" }) {
-  const El = element;
-  return <El className={`Section ${className} ${background}`}>{children}</El>;
-}
-
-function TwoColumns({ columnOne, columnTwo, reverse }) {
-  return (
-    <div className={`TwoColumns ${reverse ? "reverse" : ""}`}>
-      <div className={`column first ${reverse ? "right" : "left"}`}>{columnOne}</div>
-      <div className={`column last ${reverse ? "left" : "right"}`}>{columnTwo}</div>
-    </div>
-  );
-}
-
-function ThreeColumns({ columnOne, columnTwo, columnThree }) {
-  return (
-    <div className={`ThreeColumns`}>
-      <div className={`column first left`}>{columnOne}</div>
-      <div className={`column center`}>{columnTwo}</div>
-      <div className={`column last right`}>{columnThree}</div>
-    </div>
-  );
-}
-
 function HeaderHero() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Section background="dark" className="HeaderHero">
-      <TwoColumns
-        reverse
-        columnOne={<img alt="Interactive CLI animation" src={useBaseUrl("img/logo-white.svg")} />}
-        columnTwo={
-          <>
-            <h1 className="title">{siteConfig.title}</h1>
-            <p className="tagline">{siteConfig.tagline}</p>
-            <div className="buttons">
-              <HomeCallToAction />
-            </div>
-          </>
-        }
-      />
-    </Section>
-  );
-}
-
-function Benefits() {
-  return (
-    <Section className="Benefits">
-      <ThreeColumns
-        reverse
-        columnOne={
-          <TextColumn title="Route variants" text={useContent("benefitsRouteVariants")} />
-        }
-        columnTwo={
-          <TextColumn title="Multiple formats" text={useContent("benefitsMultipleFormats")} />
-        }
-        columnThree={<TextColumn title="Easy to use" text={useContent("benefitsEasyToUse")} />}
-      />
-    </Section>
-  );
-}
-
-function Friendly({ reverse, background }) {
-  return (
-    <Section className="Friendly" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Friendly" text={useContent("easyToUse")} />}
-        columnTwo={
-          <div className="cliImageContainer">
-            <img src={useBaseUrl("img/inquirer-cli.gif")} />
+    <Section background="dark" className="header-hero">
+      <Row>
+        <Column md={4} className={"col-md-push-8"} hiddenXs hiddenSm>
+          <img alt="Mocks Server Logo" src={useBaseUrl("img/logo-white.svg")} />
+        </Column>
+        <Column md={8} className={"col-md-pull-4"}>
+          <h1 className="title">{siteConfig.title}</h1>
+          <p className="tagline">
+            Node.js mock server running live, interactive mocks in place of real APIs
+          </p>
+          <div className="buttons">
+            <HomeCallToAction />
           </div>
-        }
-      />
+        </Column>
+      </Row>
     </Section>
   );
 }
 
-function Flexible({ reverse, background }) {
+function MainFeatures() {
   return (
-    <Section className="Flexible codeExample" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Flexible and maintainable" text={useContent("flexible")} />}
-        columnTwo={<CodeBlock language="json">{textContents.flexibleJsonCode}</CodeBlock>}
-      />
+    <Section>
+      <Row>
+        <Column lg={3} md={6} className="cards-container">
+          <TextCard
+            title="Quick and simple"
+            text={useContent("featuresQuickAndSimple")}
+            icon={faRocket}
+            link={useBaseUrl("docs/get-started-intro")}
+          />
+        </Column>
+        <Column lg={3} md={6} className="cards-container">
+          <TextCard
+            title="Flexible"
+            text={useContent("featuresFlexible")}
+            icon={faCode}
+            link={useBaseUrl("docs/guides-using-babel")}
+          />
+        </Column>
+        <Column lg={3} md={6} className="cards-container">
+          <TextCard
+            title="Extensible"
+            text={useContent("featuresExtensible")}
+            icon={faWrench}
+            link={useBaseUrl("docs/guides-using-middlewares")}
+          />
+        </Column>
+        <Column lg={3} md={6} className="cards-container">
+          <TextCard
+            title="Easy to control"
+            text={useContent("featuresControllable")}
+            icon={faGear}
+            link={useBaseUrl("docs/plugins-admin-api")}
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton
+            type="secondary"
+            href={useBaseUrl("docs/get-started-intro")}
+            variant="text"
+          >
+            View all features
+          </ActionButton>
+        </Column>
+      </Row>
     </Section>
   );
 }
 
-function Customizable({ reverse, background }) {
+function ImageAndText({ title, text, imageSrc, imageAlt, countClassname, count, imageClassName }) {
   return (
-    <Section className="Customizable codeExample" background={background}>
-      <TwoColumns
-        reverse={reverse}
-        columnOne={<TextColumn title="Pluggable" text={useContent("customizable")} />}
-        columnTwo={<CodeBlock language="javascript">{textContents.customizableCode}</CodeBlock>}
+    <div className="image-and-text">
+      <div className={clsx("image-holder", imageClassName)}>
+        <img src={imageSrc} alt={imageAlt} />
+      </div>
+      <Heading
+        element="h3"
+        text={title}
+        className="title"
+        icon={count}
+        iconHolderClassName={countClassname}
       />
+      <Text text={text} />
+    </div>
+  );
+}
+
+function MainConcepts({ background }) {
+  return (
+    <Section background={background}>
+      <Heading text="Main concepts" centered className="with-subheading" />
+      <SubHeading
+        text="Three simple concepts allowing to simulate, control and storage multiple API scenarios"
+        centered
+      />
+      <Row>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            count="1"
+            countClassname="route"
+            title="Routes"
+            text={useContent("routes")}
+            imageSrc={useBaseUrl("img/concepts-route.png")}
+            imageAlt="Routes schema"
+          />
+        </Column>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            count="2"
+            countClassname="variant"
+            title="Variants"
+            text={useContent("variants")}
+            imageSrc={useBaseUrl("img/concepts-variant.png")}
+            imageAlt="Variants schema"
+          />
+        </Column>
+        <Column lg={4} md={4} xs={12}>
+          <ImageAndText
+            count="3"
+            countClassname="collection"
+            title="Mocks"
+            text={useContent("collections")}
+            imageSrc={useBaseUrl("img/concepts-collection.png")}
+            imageAlt="Mocks schema"
+            imageClassName="collection"
+          />
+        </Column>
+      </Row>
     </Section>
   );
 }
 
-function Upcoming({ reverse, background }) {
+function Upcoming({ background }) {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Section className="Upcoming" background={background}>
-      <div className="content">
-        <Heading text="Upcoming features" />
-        <TwoColumns
-          reverse={reverse}
-          columnOne={<p>{useContent("upcoming")}</p>}
-          columnTwo={
-            <p>
-              Check the{" "}
-              <a
-                href={siteConfig.customFields.githubProjectUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                GitHub project
-              </a>{" "}
-              to stay up to date on what we are working.
-            </p>
-          }
-        />
-      </div>
+    <Section background={background}>
+      <Heading text="Upcoming features" centered className="with-subheading" />
+      <SubHeading text="Stay up to date on what we are working" centered />
+      <Row>
+        <Column md={12} xs={12}>
+          <p className="centered">{useContent("upcoming")}</p>
+        </Column>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton
+            type="secondary"
+            href={siteConfig.customFields.githubProjectUrl}
+            external
+            variant="text"
+          >
+            Checkout the Github project
+          </ActionButton>
+        </Column>
+      </Row>
     </Section>
   );
 }
 
-function Star() {
+function Integrations({ background }) {
   return (
-    <Section className="Star" background="dark">
-      <div className="content">
-        <Heading text="Give it a star on GitHub" />
-        <GitHubStarButton />
-      </div>
+    <Section background={background} className="integrations">
+      <Heading text="Integrations" centered className="with-subheading" />
+      <SubHeading text="Works well with many ecosystems, and more are coming..." centered />
+      <Row>
+        <Column md={2} hiddenSm hiddenXs></Column>
+        <Column md={2} sm={4} xs={4} className="center-content">
+          <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
+        </Column>
+        <Column md={2} sm={4} xs={4} className="center-content">
+          <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
+        </Column>
+        <Column md={2} sm={4} xs={4} className="center-content">
+          <img alt="REST API" src={useBaseUrl("img/rest-api-logo.png")} />
+        </Column>
+        <Column md={2} sm={12} xs={12} className="center-content">
+          <img alt="Cypress" src={useBaseUrl("img/cypress-logo.png")} />
+        </Column>
+        <Column md={2} hiddenSm hiddenXs></Column>
+      </Row>
     </Section>
   );
 }
 
-const Version3 = () => {
+function CodeExample({ background }) {
+  return (
+    <Section background={background}>
+      <Heading text="Show me the code" centered className="with-subheading" />
+      <SubHeading
+        text="A simple example of how routes and variants can defined using a JSON file"
+        centered
+      />
+      <Row>
+        <Column md={2} hiddenXs></Column>
+        <Column md={8} xs={12}>
+          <CodeBlock language="json">{textContents.jsonCode}</CodeBlock>
+        </Column>
+        <Column md={2} hiddenXs></Column>
+      </Row>
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <ActionButton
+            type="secondary"
+            href={useBaseUrl("docs/get-started-routes")}
+            external
+            variant="text"
+          >
+            View more examples
+          </ActionButton>
+        </Column>
+      </Row>
+    </Section>
+  );
+}
+
+function Star({ background }) {
+  return (
+    <Section background={background}>
+      <Heading text="Give the project a star on GitHub" centered className="with-subheading" />
+      <SubHeading
+        text={
+          <>
+            Do you like it? Let the community know
+            <span className="icon">
+              <Icon icon={faFaceSmile} />
+            </span>
+          </>
+        }
+        centered
+      />
+      <Row>
+        <Column md={12} xs={12} className="center-content">
+          <GitHubStarButton />
+        </Column>
+      </Row>
+    </Section>
+  );
+}
+
+const Index = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout wrapperClassName="homepage">
@@ -329,14 +479,14 @@ const Version3 = () => {
         />
       </Head>
       <HeaderHero />
-      <Benefits />
-      <Friendly reverse background="tint" />
-      <Flexible />
-      <Customizable reverse background="tint" />
-      <Upcoming />
+      <MainFeatures />
+      <MainConcepts background="tint" />
+      <Integrations />
+      <CodeExample />
+      <Upcoming background="dark" />
       <Star />
     </Layout>
   );
 };
 
-export default Version3;
+export default Index;
