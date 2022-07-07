@@ -200,9 +200,16 @@ html[data-theme='dark'] {
     font-size: 1.8rem;
   }
 
-  img {
-    height: 200px;
+  .image-holder {
+    align-items: center;
+    justify-content: center;
+    display: flex;
     margin-bottom: 2rem;
+    img {
+      height: auto;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 
   @media only screen and (max-width: 990px) {
@@ -212,6 +219,8 @@ html[data-theme='dark'] {
     }
   }
 }
+
+
 
 /* Integrations */
 
@@ -258,20 +267,6 @@ html[data-theme='dark'] {
       &.collection {
         color: var(--ifm-font-color-base)
       }
-    }
-  }
-}
-
-@media only screen and (max-width: 1440px) and (min-width: 990px) {
-  .image-and-text {
-    img.collection {
-      height: auto;
-      width: 100%;
-      margin-top: 2rem;
-    }
-
-    .socialLinks {
-      margin-top: -2rem;
     }
   }
 }

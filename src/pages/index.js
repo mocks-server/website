@@ -298,7 +298,9 @@ function MainFeatures() {
 function ImageAndText({ title, text, imageSrc, imageAlt, countClassname, count, imageClassName }) {
   return (
     <div className="image-and-text">
-      <img src={imageSrc} alt={imageAlt} className={clsx(imageClassName)} />
+      <div className={clsx("image-holder", imageClassName)}>
+        <img src={imageSrc} alt={imageAlt} />
+      </div>
       <Heading
         element="h3"
         text={title}
