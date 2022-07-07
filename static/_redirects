@@ -67,8 +67,8 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 # /docs/plugins-developing-plugins /docs/plugins/development
 /docs/next/plugins-developing-plugins /docs/next/plugins/development
 
-# /docs/configuration-interactive-cli /docs/plugins/directory/inquirer-cli
-/docs/next/configuration-interactive-cli /docs/next/plugins/directory/inquirer-cli
+# /docs/configuration-interactive-cli /docs/integrations/command-line
+/docs/next/configuration-interactive-cli /docs/next/integrations/command-line
 # /docs/plugin-inquirer-cli /docs/plugins/directory/inquirer-cli
 /docs/next/plugin-inquirer-cli /docs/next/plugins/directory/inquirer-cli
 # /docs/plugins-inquirer-cli /docs/plugins/directory/inquirer-cli

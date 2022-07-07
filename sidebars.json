@@ -34,6 +34,11 @@
     "Integrations": [
       {
         "type": "doc",
+        "id": "integrations/command-line",
+        "label": "CLI"
+      },
+      {
+        "type": "doc",
         "id": "integrations/javascript",
         "label": "JavaScript"
       },
@@ -48,54 +53,64 @@
         "label": "REST API"
       }
     ],
-    "Customization": {
-      "Plugins": [
-        {
-          "type": "doc",
-          "id": "plugins/installation",
-          "label": "Installation"
-        },
-        {
-          "type": "doc",
-          "id": "plugins/development",
-          "label": "Development"
-        },
-        {
-          "type": "category",
-          "label": "Directory",
-          "link": {"type": "doc", "id": "plugins/directory"},
-          "items": [
-            {
-              "type": "doc",
-              "id": "plugins/directory/inquirer-cli",
-              "label": "inquirerCli"
-            },
-            {
-              "type": "doc",
-              "id": "plugins/directory/admin-api",
-              "label": "adminApi"
-            },
-            {
-              "type": "doc",
-              "id": "plugins/directory/proxy",
-              "label": "proxy"
-            }
-          ]
-        }
-      ],
-      "Variant Handlers": [
-        {
-          "type": "doc",
-          "id": "variant-handlers/development",
-          "label": "Development"
-        },
-        {
-          "type": "doc",
-          "id": "variant-handlers/directory",
-          "label": "Directory"
-        }
-      ]
-    },
+    "Customization": [
+      {
+        "type": "category",
+        "label": "Variant Handlers",
+        "link": {"type": "doc", "id": "variant-handlers/intro"},
+        "items": [
+          {
+            "type": "doc",
+            "id": "variant-handlers/development",
+            "label": "Development"
+          },
+          {
+            "type": "doc",
+            "id": "variant-handlers/directory",
+            "label": "Directory"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Plugins",
+        "link": {"type": "doc", "id": "plugins/intro"},
+        "items": [
+          {
+            "type": "doc",
+            "id": "plugins/installation",
+            "label": "Installation"
+          },
+          {
+            "type": "doc",
+            "id": "plugins/development",
+            "label": "Development"
+          },
+          {
+            "type": "category",
+            "label": "Directory",
+            "link": {"type": "doc", "id": "plugins/directory"},
+            "items": [
+              {
+                "type": "doc",
+                "id": "plugins/directory/inquirer-cli",
+                "label": "inquirerCli"
+              },
+              {
+                "type": "doc",
+                "id": "plugins/directory/admin-api",
+                "label": "adminApi"
+              },
+              {
+                "type": "doc",
+                "id": "plugins/directory/proxy",
+                "label": "proxy"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "Guides": [
       "guides/organizing-files",
       "guides/using-babel"
