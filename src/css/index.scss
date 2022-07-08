@@ -320,4 +320,23 @@ html[data-theme='dark'] {
       margin-top: -2rem;
     }
   }
-} 
+}
+
+.docs-img-holder {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+  div {
+    p, img {
+      margin: 0;
+    }
+
+    span {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+    }
+  }
+}
