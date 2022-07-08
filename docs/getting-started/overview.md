@@ -35,9 +35,9 @@ Defining the API responses during the earliest phases of development will improv
 <div class="docs-img-holder">
   <div>
 
-![Interactive CLI](../assets/high-five.jpg)
+![Api mock workflow](../assets/api-mock-workflow.jpg)
 
-  <span><a href="https://www.freepik.com/vectors/computer-work" target="_blank" rel="noopener noreferrer">Computer work vector created by jcomp - www.freepik.com</a></span>
+  <span><a href="https://www.freepik.com/vectors/computer-work" target="_blank" rel="noopener noreferrer">Vectors created by jcomp and vectorjuice - www.freepik.com</a></span>
   </div>
 </div>
 
