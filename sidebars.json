@@ -2,6 +2,7 @@
   "docs": {
     "Getting started": ["getting-started/overview", "getting-started/installation", "getting-started/quick-start"],
     "Usage": [
+      "usage/intro",
       "usage/routes",
       {
         "type": "category",

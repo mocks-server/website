@@ -79,7 +79,7 @@ Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Ser
 Routes can be defined in many ways, from plain objects to [Express middlewares](usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxing the request to another host.
 
 :::tip
-Read the usage chapter to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
+Read the [usage chapter](usage/intro.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
 :::
 
 ## Configuration
