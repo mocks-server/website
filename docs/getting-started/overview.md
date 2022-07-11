@@ -22,6 +22,11 @@ keywords:
   - overview
 ---
 
+```mdx-code-block
+import DocsImage from '@site/src/components/DocsImage';
+import ApiMocksWorkflow from '../assets/api-mock-workflow.jpg';
+```
+
 ## The project
 
 Node.js mock server running live, interactive mocks in place of real APIs. __It makes able to define many different responses for a same route__, so you can change the whole mocked API behavior by simply changing the response of one or many routes while the server is running.
@@ -32,24 +37,25 @@ Controlling the responses of the API will improve the development workflow, avoi
 
 Defining the API responses during the earliest phases of development will improve the communication among team members and align their expectations.
 
-<div class="docs-img-holder">
-  <div>
+```mdx-code-block
+<DocsImage src={ApiMocksWorkflow} alt="Api mock workflow" note={<a href="https://www.freepik.com/vectors/computer-work" target="_blank" rel="noopener noreferrer">Vectors created by jcomp and vectorjuice - www.freepik.com</a>} />
+```
 
-![Api mock workflow](../assets/api-mock-workflow.jpg)
+## Why "Mocks" in plural?
 
-  <span><a href="https://www.freepik.com/vectors/computer-work" target="_blank" rel="noopener noreferrer">Vectors created by jcomp and vectorjuice - www.freepik.com</a></span>
-  </div>
-</div>
+As explained, Mocks Server is able to handle different responses for each route, and store different sets of responses in order to simulate different API states. So, there is only one mock server running, but __it can contain and switch between many different predefined API state simulations, like each one of them was a different mock__.
 
 ## Installation
 
-It should be added as an NPM dependency of your project.
+Mocks Server is essentially a set of NPM packages, so it should be added as an NPM dependency of your project.
 
 ```sh
 npm i --D @mocks-server/main
 ```
 
+:::note
 Read [installation](getting-started/installation.md) for further details.
+:::
 
 ## Execution
 
@@ -68,7 +74,7 @@ const server = new Core();
 server.start();
 ```
 
-:::note
+:::tip
 __The [quick start](getting-started/quick-start.md) chapter will help you to take your first steps with Mocks Server.__
 :::
 
@@ -79,7 +85,7 @@ Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Ser
 Routes can be defined in many ways, from plain objects to [Express middlewares](usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxing the request to another host.
 
 :::tip
-Read the [usage chapter](usage/intro.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
+Read the [usage chapter](usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
 :::
 
 ## Configuration

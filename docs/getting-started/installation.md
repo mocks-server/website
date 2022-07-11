@@ -22,7 +22,7 @@ keywords:
 Mocks Server is essentially a set of NPM packages.
 
 :::tip
-Read the [usage chapter](usage/intro.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
+Read the [usage chapter](usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
 :::
 
 ## Requirements
@@ -43,7 +43,7 @@ npm i -D @mocks-server/main
 This will install the `@mocks-server/main` package, which contains some preinstalled plugins. This docs usually make reference to this distribution until the contrary is indicated.
 :::
 
-### NPM script
+## NPM script
 
 Add the next script to the `package.json` file:
 
@@ -56,6 +56,10 @@ Add the next script to the `package.json` file:
 ```
 
 This enables to start the server by simply running a command in the project folder.
+
+```bash
+npm run mocks
+```
 
 :::note
 If you are going to use the [JavaScript API](integrations/javascript) to start Mocks Server, this step is not required.
