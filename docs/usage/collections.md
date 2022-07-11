@@ -166,7 +166,7 @@ Sometimes you'll need to change the response of only one specific route. Instead
 So, don't create a collection if you only need to change the response of one or many routes in a particular moment. You can define custom route variants for the current collection using any of the APIs or integration tools, such as the [JavaScript API](integrations/javascript.md), the [interactive CLI](integrations/command-line.md), the [administration REST API](integrations/rest-api.md) or the [Cypress commands](integrations/cypress.md).
 
 :::caution
-Custom variants for the current collections are lost whenever another collection is selected or a change is made in files. If you need to set that scenario frequently, you should consider creating a collection instead.
+Custom variants for the current collections are lost whenever another collection is selected or a change is made in files. If you need to set that scenario frequently, then you should consider creating a collection instead.
 :::
 
 ## Changing the current collection
@@ -236,7 +236,7 @@ describe("books page", () => {
 ```
 
 ```bash
-curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
+curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
 ```
 
 ```mdx-code-block
