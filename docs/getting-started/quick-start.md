@@ -73,11 +73,11 @@ When the server is started for the first time, it will create a configuration fi
 ```
 project-root/
 ├── mocks/
-│   ├── routes/
+│   ├── routes/ <- DEFINE YOUR ROUTES HERE
 │   │   ├── common.js
 │   │   └── users.js
-│   └── collections.json
-└── mocks.config.js
+│   └── collections.json <- DEFINE YOUR COLLECTIONS HERE
+└── mocks.config.js <- DEFINE YOUR CONFIGURATION HERE
 ```
 
 * The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](usage/routes.md).
@@ -142,7 +142,7 @@ We could use the `get-user:real` route variant and request for  `api/users/2`, b
 ```js
 {
   id: "id-2", // id of the variant
-  handler: "json", // variant handler
+  type: "json", // variant type
   response: {
     status: 200, // status to send
     body: ALL_USERS[1], // body to send
@@ -217,5 +217,5 @@ Modifying the `mocks.config.js` file is not the only method for changing configu
   * [Cypress](integrations/cypress.md)
   * [REST API](integrations/rest-api.md)
 * Do you have an idea for extending Mocks Server with your own features?
-  * Add new formats for defining variants by creating [custom variant handlers](variant-handlers/intro.md).
+  * Add new variant types by creating [custom variant type handlers](variant-handlers/intro.md).
   * [Plugins](plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.

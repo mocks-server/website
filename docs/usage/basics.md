@@ -82,7 +82,7 @@ core.start().then(() => {
   core.loadRoutes(routes);
   core.loadCollections(collections);
 
-  core.routes.collection.select("collection-a");
+  core.routes.collections.select("collection-a");
 });
 ```
 
@@ -134,7 +134,7 @@ describe("books page", () => {
 ```
 
 ```bash
-curl -X PATCH -d '{"routes":{"collection":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
+curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
 ```
 
 ```mdx-code-block

@@ -114,7 +114,8 @@
     ],
     "Guides": [
       "guides/organizing-files",
-      "guides/using-babel"
+      "guides/using-babel",
+      "guides/using-the-options-method"
     ],
     "Releases": [
       {
