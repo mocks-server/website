@@ -21,6 +21,8 @@ keywords:
 
 The [Mocks Server main distribution](https://github.com/mocks-server/main/tree/master/packages/main) includes the [admin-api plugin](https://github.com/mocks-server/main/tree/master/packages/plugin-admin-api) preinstalled. It provides a REST API allowing to interact with the server while it is running.
 
+The administration API is started in the same server than the API mock, but in a different path. It is located in the `/admin` path by default, but this can be changed using [configuration](#configuration).
+
 :::tip
 A __JavaScript client for the administration api__ is also distributed as a separated package: [@mocks-server/admin-api-client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client).
 :::
