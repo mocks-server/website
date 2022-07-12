@@ -15,7 +15,7 @@ keywords:
 
 ## Preface
 
-In the previous chapter [we saw what a Variant Handler is](variant-handlers/intro.md), now we are going to see how to create them, so you can add your own features to Mocks Server easily 🙂.
+In the previous chapters [we saw what a Variant Handler is](variant-handlers/intro.md), and [how to install it](variant-handlers/installation.md). Now we are going to see how to create them, so you can add your own features to Mocks Server easily 🙂.
 
 A Variant Handler basically consists on a JavaScript `Class` which receives the variant options in the `constructor` method, and which must contain a `middleware` method. This method receives the same parameters than an [Express middleware](https://expressjs.com/en/guide/using-middleware.html), and it will be executed whenever the route is requested.
 
@@ -49,7 +49,7 @@ This getter has to return a plain object containing an approached preview of the
 
 ## Example
 
-In the next example we are going to see how to create a custom Variant Handler that would receive `code` and `message` options, and it would send an HTTP error response based on those options whenever the route is executed. 
+In the next example we are going to see how to create a custom Variant Handler that would receive `code` and `message` options. It would send an HTTP error response based on those options whenever the route is executed. 
 
 ```js
 class ErrorResponseHandler {

@@ -135,7 +135,7 @@ const start = () => {
       },
     },
   );
-  return mocksServer.start();
+  return server.start();
 };
 
 module.exports = {

@@ -62,6 +62,11 @@
         "items": [
           {
             "type": "doc",
+            "id": "variant-handlers/installation",
+            "label": "Installation"
+          },
+          {
+            "type": "doc",
             "id": "variant-handlers/development",
             "label": "Development"
           },
@@ -88,26 +93,9 @@
             "label": "Development"
           },
           {
-            "type": "category",
-            "label": "Directory",
-            "link": {"type": "doc", "id": "plugins/directory"},
-            "items": [
-              {
-                "type": "doc",
-                "id": "plugins/directory/inquirer-cli",
-                "label": "inquirerCli"
-              },
-              {
-                "type": "doc",
-                "id": "plugins/directory/admin-api",
-                "label": "adminApi"
-              },
-              {
-                "type": "doc",
-                "id": "plugins/directory/proxy",
-                "label": "proxy"
-              }
-            ]
+            "type": "doc",
+            "id": "plugins/directory",
+            "label": "Directory"
           }
         ]
       }

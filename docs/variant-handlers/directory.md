@@ -26,5 +26,5 @@ Here you have listed the official Variant Handlers included in the [Mocks Server
 ## Community
 
 :::tip
-If you have published your own Variant Handlers please [modify this page and add it](https://github.com/mocks-server/website/tree/master/docs/variant-handlers/directory.md), so other users can take advantage of it also 🙂!
+If you have published your own Variant Handler please [modify this page and add it](https://github.com/mocks-server/website/tree/master/docs/variant-handlers/directory.md), so other users can take advantage of it also 🙂!
 :::
