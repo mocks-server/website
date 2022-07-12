@@ -50,7 +50,7 @@ When it is started, the interactive CLI is displayed. It allows you to see some 
 
 ![Interactive CLI](../assets/inquirer-cli.gif)
 
-This CLI is a great tool for running the mock server while you are developing an API client, because you can change the server responses in real time using it without modifying any code. Suppose that you are developing a web application that is polling to the API, and you want to check if it is refreshing the data properly. The only thing that you have to do is to use the CLI to change the current responses collection, and the next time the application requests a data, the response will be different.
+This CLI is a great tool for controlling the mock server while you are developing an API client, because you can change the server responses in real time using it without modifying any code. Suppose that you are developing a web application that is polling to the API, and you want to check if it is refreshing the data properly. The only thing that you have to do is to use the CLI to change the current responses collection, and the next time the application requests a data, the response will be different.
 
 :::note
 The [interactive CLI can be disabled using configuration](configuration/how-to-change-settings.md), and then the server logs will be displayed instead. This should be done when using the server for running tests, for example.
