@@ -109,7 +109,7 @@
       {
         "type": "doc",
         "id": "releases/migrating-from-v3",
-        "label": "Preparing v3 to v4"
+        "label": "Preparing from v3 to v4"
       },
       "releases/migrating-from-v2",
       "releases/migrating-from-v1"
