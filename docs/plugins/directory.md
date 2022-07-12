@@ -38,5 +38,5 @@ Here you have listed the official Plugins included in the [Mocks Server main dis
 ## Community
 
 :::tip
-If you have published your own plugin please [modify this page and add it](https://github.com/mocks-server/website/tree/master/docs/vplugins/directory.md), so other users can take advantage of it also 🙂!
+If you have published your own plugin, please [modify this page in order to add it](https://github.com/mocks-server/website/tree/master/docs/vplugins/directory.md), so other users can also take advantage of it 🙂!
 :::
