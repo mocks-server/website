@@ -53,7 +53,7 @@ const textContents = {
           {
             "id": "success",
             "handler": "json",
-            "options": {
+            "response": {
               "status": 200,
               "body": { "id": 1, "name": "John Doe"}
             }
@@ -61,14 +61,14 @@ const textContents = {
           {
             "id": "not-found",
             "handler": "json",
-            "options": {
+            "response": {
               "status": 404
             }
           },
           {
             "id": "proxied",
             "handler": "proxy",
-            "options": {
+            "response": {
               "host": "https://jsonplaceholder.typicode.com/users/1"
             }
           }
@@ -87,7 +87,7 @@ const textContents = {
           {
             id: "success",
             handler: "json",
-            options: {
+            response: {
               status: 200,
               body: { "id": 1, "name": "John Doe"}
             }
@@ -95,14 +95,14 @@ const textContents = {
           {
             id: "not-found",
             handler: "json",
-            options: {
+            response: {
               status: 404
             }
           },
           {
             id: "proxied",
             handler: "proxy",
-            options: {
+            response: {
               host: "https://jsonplaceholder.typicode.com/users/1"
             }
           }
