@@ -2,6 +2,7 @@
   "docs": {
     "Getting started": ["getting-started/overview", "getting-started/installation", "getting-started/quick-start"],
     "Usage": [
+      "usage/basics",
       "usage/routes",
       {
         "type": "category",
@@ -61,6 +62,11 @@
         "items": [
           {
             "type": "doc",
+            "id": "variant-handlers/installation",
+            "label": "Installation"
+          },
+          {
+            "type": "doc",
             "id": "variant-handlers/development",
             "label": "Development"
           },
@@ -87,48 +93,59 @@
             "label": "Development"
           },
           {
-            "type": "category",
-            "label": "Directory",
-            "link": {"type": "doc", "id": "plugins/directory"},
-            "items": [
-              {
-                "type": "doc",
-                "id": "plugins/directory/inquirer-cli",
-                "label": "inquirerCli"
-              },
-              {
-                "type": "doc",
-                "id": "plugins/directory/admin-api",
-                "label": "adminApi"
-              },
-              {
-                "type": "doc",
-                "id": "plugins/directory/proxy",
-                "label": "proxy"
-              }
-            ]
+            "type": "doc",
+            "id": "plugins/directory",
+            "label": "Directory"
           }
         ]
       }
     ],
     "Guides": [
       "guides/organizing-files",
-      "guides/using-babel"
+      "guides/using-babel",
+      "guides/using-the-options-method"
     ],
     "Releases": [
       {
         "type": "doc",
         "id": "releases/migrating-from-v3",
-        "label": "Preparing v3 to v4"
+        "label": "Preparing from v3 to v4"
       },
       "releases/migrating-from-v2",
       "releases/migrating-from-v1"
     ],
     "API": [
       {
-        "type": "doc",
-        "id": "api/core",
-        "label": "Core"
+        "type": "category",
+        "label": "Core",
+        "link": {"type": "doc", "id": "api/core"},
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/core/server",
+            "label": "server"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/routes",
+            "label": "routes"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/logger",
+            "label": "logger"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/config",
+            "label": "config"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/alerts",
+            "label": "alerts"
+          }
+        ]
       }
     ]
   }

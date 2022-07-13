@@ -12,6 +12,7 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "docusaurus": "docusaurus",
+    "serve": "docusaurus serve",
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
@@ -25,9 +26,9 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.18.2",
     "@babel/preset-react": "7.18.6",
-    "@docusaurus/core": "2.0.0-beta.21",
-    "@docusaurus/preset-classic": "2.0.0-beta.21",
-    "clsx": "1.2.0",
+    "@docusaurus/core": "2.0.0-beta.22",
+    "@docusaurus/preset-classic": "2.0.0-beta.22",
+    "clsx": "1.2.1",
     "docusaurus-plugin-sass": "0.2.2",
     "eslint": "8.19.0",
     "eslint-config-prettier": "8.5.0",

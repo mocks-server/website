@@ -31,3 +31,10 @@
     opacity: 0.5;
   }
 }
+
+details.code-example {
+  --ifm-alert-background-color: var( --ifm-color-secondary-contrast-background );
+  --ifm-alert-background-color-highlight: rgba(235, 237, 240, 0.15);
+  --ifm-alert-foreground-color: var( --ifm-color-secondary-contrast-foreground );
+  --ifm-alert-border-color: var(--ifm-color-secondary-dark);
+}

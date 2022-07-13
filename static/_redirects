@@ -69,15 +69,15 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 
 # /docs/configuration-interactive-cli /docs/integrations/command-line
 /docs/next/configuration-interactive-cli /docs/next/integrations/command-line
-# /docs/plugin-inquirer-cli /docs/plugins/directory/inquirer-cli
-/docs/next/plugin-inquirer-cli /docs/next/plugins/directory/inquirer-cli
+# /docs/plugin-inquirer-cli /docs/integrations/command-line
+/docs/next/plugin-inquirer-cli /docs/next/integrations/command-line
 # /docs/plugins-inquirer-cli /docs/plugins/directory/inquirer-cli
 
-# /docs/plugins-admin-api docs/plugins/directory/admin-api
-/docs/next/plugins-admin-api docs/next/plugins/directory/admin-api
+# /docs/plugins-admin-api /docs/integrations/admin-api
+/docs/next/plugins-admin-api /docs/next/integrations/admin-api
 
-# /docs/plugins-proxy docs/plugins/directory/proxy
-/docs/next/plugins-proxy docs/next/plugins/directory/proxy
+# /docs/plugins-proxy /docs/usage/variants/proxy
+/docs/next/plugins-proxy /docs/next/usage/variants/proxy
 
 # /docs/advanced-custom-fixtures-handlers /docs/variant-handlers/development
 # /docs/api-routes-handler /docs/variant-handlers/development
@@ -103,7 +103,8 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 # /docs/api-mocks-server-api /docs/api/core
 /docs/next/api-mocks-server-api /docs/next/api/core
 
-# /docs/api-routes-and-mocks docs/overview
-/docs/next/api-routes-and-mocks docs/next/overview
+# /docs/api-routes-and-mocks /docs/usage/basics
+/docs/next/api-routes-and-mocks /docs/next/usage/basics
 
-/docs/next/how-to-fix-ajv-installation docs/next/installation
+# /docs/how-to-fix-ajv-installation /docs/installation
+/docs/next/how-to-fix-ajv-installation /docs/next/installation
