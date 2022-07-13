@@ -77,7 +77,7 @@ const textContents = {
     ]
   `,
   jsCode: `
-    const routes = [
+    module.exports = [
       {
         id: "get-user",
         url: "/api/user/:id",
@@ -109,8 +109,6 @@ const textContents = {
         ]
       }
     ];
-
-    export default routes;
   `,
 };
 

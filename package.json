@@ -12,6 +12,7 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "docusaurus": "docusaurus",
+    "serve": "docusaurus serve",
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
