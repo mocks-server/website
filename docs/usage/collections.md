@@ -135,11 +135,11 @@ module.exports = [
 
 ## The order matters
 
-Note that the order in which route variants are added to the array may be important. __The firts route in the array matching the route method and route url will handle the request__.
+Note that the order in which route variants are added to the array may be important. __The first route in the array matching the route method and route url will handle the request__.
 
 If many routes match the url and method:
 * The first route variant sending a response will produce the rest to be ignored.
-* If the first variant matching the url and method is of type `middleware` and it calls to the `next` parameter, then the next route matching the url and method wil be executed.
+* If the first variant matching the url and method is of type `middleware` and it calls to the `next` parameter, then the next route matching the url and method will be executed.
 
 So, you can use the order of the routes in a collection to apply middlewares in the order that you want.
 

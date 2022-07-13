@@ -15,7 +15,7 @@ keywords:
 
 ### NPM installation
 
-In order to install a plugin, first you have to install the correspondant NPM dependency:
+In order to install a plugin, first you have to install the correspondent NPM dependency:
 
 ```sh
 npm i --save-dev mocks-server-plugin-foo

@@ -59,7 +59,7 @@ Read the [API chapter](api/core.md) for further info about server available meth
 Starting the server using JavaScript may be useful for:
 
 * [Control it from your preferred unit testing framework, such as Jest.](#example-with-jest)
-* [Creating your own Mocks Server distribution](#creating-your-own-distribution), preinstalling the plugins of your choice.
+* [Creating your own Mocks Server distribution](#creating-your-own-distribution), pre-installing the plugins of your choice.
 
 :::tip
 It is also possible to tap into, modify, or extend the server internal behavior without having to start it by your own. You can also [create a plugin](#customization-using-plugins) and load it using the configuration file.

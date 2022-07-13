@@ -17,7 +17,7 @@ keywords:
 
 ### NPM installation
 
-In order to install a Variant Handler from NPM, first you have to install the correspondant NPM dependency:
+In order to install a Variant Handler from NPM, first you have to install the correspondent NPM dependency:
 
 ```sh
 npm i --save-dev foo-variant-handler

@@ -136,7 +136,7 @@ Now suppose that we want the API to return the user 2 in `api/users/:id`. After 
 
 * `success` - Returns the user 1
 * `id-3` - Returns the user 3
-* `real` - Middleware that searchs for the user by the received id and returns it.
+* `real` - Middleware that searches for the user by the received id and returns it.
 
 We could use the `get-user:real` route variant and request for  `api/users/2`, but that is not what we want in this particular case. We want the API to always return the user 2. So, let's create another variant. Add the next code to the `variants` array in the `get-user` route:
 

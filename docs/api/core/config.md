@@ -161,7 +161,7 @@ An `option` instance is returned when using the `config.addOption` or `config.op
 __`option.set(value, [options])`__: Sets option value. Allows to pass options when setting the value.
 * `value` : `<Any>`. Depending on the option type, the value type may be different.
 * `options` : `<Object>`.
-  * `merge` : `<Boolean>`. Define wheter the value should be merged with the previous value in case it is an Object or an Array. Default is `false`.
+  * `merge` : `<Boolean>`. Define wether the value should be merged with the previous value in case it is an Object or an Array. Default is `false`.
 
 ### onChange()
 

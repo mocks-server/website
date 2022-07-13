@@ -34,7 +34,7 @@ When the same option is defined using multiple methods, the priority is the indi
 The final configuration applied will be the result of extending all configuration properties defined using any method, with the mentioned priority.
 
 :::info
-When an option is of type `Object` or `Array`, its final value will be the extension of all different values when they are defined multiple times using different methods. In that case, `Objects` are extended, and `Arrays` are concated.
+When an option is of type `Object` or `Array`, its final value will be the extension of all different values when they are defined multiple times using different methods. In that case, `Objects` are extended, and `Arrays` are concatenated.
 :::
 
 ## Programmatic configuration

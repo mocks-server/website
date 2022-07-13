@@ -16,7 +16,7 @@ keywords:
 
 As described in the [variants chapter](usage/variants.md):
 
-> _route variants can be defined in many ways, from [plain objects](usage/variants/json.md) to [Express middlewares](usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxing the request to another host](usage/variants/proxy.md)_.
+> _route variants can be defined in many ways, from [plain objects](usage/variants/json.md) to [Express middlewares](usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxying the request to another host](usage/variants/proxy.md)_.
 
 This is possible because the route variant itself does not contain the logic at charge of sending the response. __Each route variant can be of a different type, and its type defines which Variant Handler is at charge of receiving the variant options and act in consequence.__
 
