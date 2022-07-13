@@ -48,7 +48,7 @@ __`core.stop()`__: Stop the server and plugins. Returns a promise.
 
 ## Example
 ```js
-import Core from "@mocks-server/main";
+const Core = require("@mocks-server/main");
 
 const core = new Core();
 

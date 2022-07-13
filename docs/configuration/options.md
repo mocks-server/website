@@ -127,7 +127,7 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`plugins.register`__: _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins/intro.md).
 * __`routes.delay`__ _(Number)_: Responses delay time in milliseconds. This is a global setting that can be overridden for specific routes or route variants using [their options](usage/routes.md).
 * __`routes.collections.selected`__ _(String)_: Collection to use when the server is started.
-* __`routes.variants.handlers`__ _(Array of `Variant Handlers`)_: Array of [`Variant Handlers`](variant-handlers/intro.md) to be added. Default variant handlers are not removed.
+* __`routes.variantHandlers.register`__ _(Array of `Variant Handlers`)_: Array of [`Variant Handlers`](variant-handlers/intro.md) to be added. Default variant handlers are not removed.
 * __`server.cors.enabled`__ _(Boolean)_: Built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. Default is `true`.  Use `false` to disable it.
 * __`server.cors.options`__ _(Object)_: Options for the built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. By default, it sets the `preflightContinue` property as `false`, which means that Mocks Server will respond to all `OPTIONS` requests with a 204 status and correspondent CORS headers. If you want to [handle OPTIONS requests by yourself](guides/using-the-options-method), you should set that property to `true`.
 * __`server.host`__ _(String)_: Host for the server. Default is `0.0.0.0` (Listen to any local host).
@@ -146,7 +146,7 @@ Each plugin can add its own options when it is installed. These options can also
 * __`plugins.adminApi.path`__ _(String)_: Path for the administration REST API. Default is `/admin`. You should change it only in case there is any conflict with the routes of the API that you are mocking.
 
 :::info
-These extra options are added by the [@mocks-server/plugin-admin-api](plugins/directory/admin-api.md) and the [@mocks-server/plugin-inquirer-cli](plugins/directory/inquirer-cli.md) plugins, which are both included in the Mocks Server main distribution.
+These extra options are added by the [@mocks-server/plugin-admin-api](plugins/directory.md) and the [@mocks-server/plugin-inquirer-cli](plugins/directory.md) plugins, which are both included in the Mocks Server main distribution.
 
 For another plugins options, please refer to their own documentation.
 :::

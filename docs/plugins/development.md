@@ -27,7 +27,7 @@ Plugins should contain __four main methods__, which will receive an argument con
 
 This method is executed for registering the plugin during the Mocks Server initialization, before the `configuration` has been initialized.
 
-Here you should register your own custom `options` using the `core.config` object, register your own custom Express routers using the `core.server.addRouter` method, add custom Variant Handlers using `core.routes.registerHandler`, etc.
+Here you should register your own custom `options` using the `core.config` object, register your own custom Express routers using the `core.server.addRouter` method, add custom Variant Handlers using `core.routes.variantHandlers.register`, etc.
 
 :::caution
 You should never read the configuration values in the `constructor`, because the configuration object is not still ready in this phase. Here you should only define your own options.

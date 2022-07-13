@@ -64,7 +64,7 @@ Here you have some examples about how to change the current collection and other
 ```
 
 ```js
-import Core from "@mocks-server/main";
+const Core = require("@mocks-server/main");
 
 const core = new Core({
   config: {

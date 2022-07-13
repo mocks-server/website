@@ -59,7 +59,7 @@ In the next chapters we will see in detail how to use each different variant typ
 ```
 
 ```js
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -88,8 +88,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ```mdx-code-block
@@ -98,7 +96,7 @@ export default routes;
 ```
 
 ```js
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -129,8 +127,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ```mdx-code-block
@@ -139,7 +135,7 @@ export default routes;
 ```
 
 ```js
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -158,8 +154,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ```mdx-code-block

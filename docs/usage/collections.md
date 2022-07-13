@@ -91,7 +91,7 @@ Collections must be defined as an array of objects containing:
 ```
 
 ```js
-const collections = [
+module.exports = [
   {
     id: "base", // collection id
     routes: ["get-users:all", "get-user:id-1"] // collection routes
@@ -102,8 +102,6 @@ const collections = [
     routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
   }
 ];
-
-export default collections;
 ```
 
 ```mdx-code-block
@@ -120,7 +118,7 @@ This is specially important when an API contains many resources, because you cou
 As you will see in the next section, the order in which routes are added to a collection may be important. So, it is important to know that, __when extending collections and redefining the variant of one route, the route will keep the same order in which it was originally defined in the first collection__. For example:
 
 ```js
-const collections = [
+module.exports = [
   {
     id: "base",
     routes: ["get-users:all", "get-user:id-1", "delete-user:success", "create-user:success"]
@@ -133,8 +131,6 @@ const collections = [
   }
   // highlight-end
 ];
-
-export default collections;
 ```
 
 ## The order matters
@@ -196,7 +192,7 @@ module.exports = {
 ```
 
 ```js
-import Core from "@mocks-server/main";
+const Core = require("@mocks-server/main");
 
 const core = new Core();
 

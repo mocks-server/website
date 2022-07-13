@@ -53,26 +53,6 @@ removeListener();
 </ExampleDetails>
 ```
 
-### registerVariantHandler()
-
-__`core.routes.registerVariantHandler(VariantHandler)`__: Register a [Variant Handler](variant-handlers/intro.md).
-* `VariantHandler`: `<Class>` Custom Variant handler. Read the [creating Variant Handlers chapter](variant-handlers/development.md) for further info.
-
-```mdx-code-block
-<ExampleDetails>
-```
-
-```js
-import MyVariantHandler from "./MyVariantHandler";
-
-// highlight-next-line
-core.routes.registerVariantHandler(MyVariantHandler);
-```
-
-```mdx-code-block
-</ExampleDetails>
-```
-
 ### createLoaders()
 
 __`core.routes.createLoaders()`__: Return methods allowing to load routes and collections. Each method reloads only the collections or routes added by it, so, it allows to have many different sources for loading routes or collections without having conflicts between them.
@@ -87,7 +67,7 @@ It returns an object containing next methods:
 ```
 
 ```js
-import { routes, collections } from "./fixtures";
+const { routes, collections } = require("./fixtures");
 
 // highlight-next-line
 const { loadRoutes, loadCollections } = core.routes.createLoaders();
@@ -112,6 +92,32 @@ __`core.routes.plain`__: Returns an array with all defined routes in plain forma
 ### plainVariants
 
 __`core.routes.plainVariants`__: Returns an array with all defined variants in plain format.
+
+## variantHandlers API
+
+:::info
+The `core.routes.variantHandlers` object provides access to methods related to [`Variant Handlers`](variant-handlers/intro.md).
+:::
+
+### register()
+
+__`core.routes.variantHandlers.register(VariantHandler)`__: Register a [Variant Handler](variant-handlers/intro.md).
+* `VariantHandler`: `<Class>` Custom Variant handler. Read the [creating Variant Handlers chapter](variant-handlers/development.md) for further info.
+
+```mdx-code-block
+<ExampleDetails>
+```
+
+```js
+import MyVariantHandler from "./MyVariantHandler";
+
+// highlight-next-line
+core.routes.variantHandlers.register(MyVariantHandler);
+```
+
+```mdx-code-block
+</ExampleDetails>
+```
 
 ## Collections API
 

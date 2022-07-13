@@ -122,7 +122,7 @@ module.exports = {
 ```
 
 :::info
-You can also add Route Handlers programmatically using the [`core.routes.registerHandler` method](api/core.md)
+You can also add Route Handlers programmatically using the [`core.routes.variantHandlers.register` method](api/core/routes.md)
 :::
 
 And then, you could use the new variant type when defining route variants:
@@ -139,7 +139,7 @@ module.exports = [
       {
         id: "error-400",
         // highlight-start
-        handler: "error", // id of the handler to be used
+        type: "error", // id of the handler to be used
         options: { // options that the handler will receive
           code: 400,
           message: "Error message",
@@ -148,7 +148,7 @@ module.exports = [
       }
       {
         id: "empty",
-        handler: "json", // This one will use the "json" handler
+        type: "json", // This one will use the "json" handler
         options: {
           status: 200,
           body: []

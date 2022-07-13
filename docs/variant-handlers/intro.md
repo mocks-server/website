@@ -38,7 +38,7 @@ But, adding your own Variant Handlers, you would be able to create new types of 
 In the next example you can see how route variants define the handler to be used.
 
 ```js
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -65,8 +65,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 :::tip

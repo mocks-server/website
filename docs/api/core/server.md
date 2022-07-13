@@ -55,7 +55,7 @@ __`core.server.addRouter(path, expressRouter)`__: Add a custom [express router](
 ```
 
 ```js
-import express from "express";
+const express = require("express");
 
 const customRouter = express.Router();
 
@@ -78,7 +78,7 @@ __`core.server.removeRouter(path, expressRouter)`__: Remove a custom Express rou
 ```
 
 ```js
-import express from "express";
+const express = require("express");
 
 const customRouter = express.Router();
 

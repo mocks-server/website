@@ -97,8 +97,8 @@ Read the [using Babel guide](guides/using-babel.md) for further info about how t
 ```
 
 ```js
-import Core from "@mocks-server/main";
-import { routes, collections } from "./fixtures";
+const Core = require("@mocks-server/main");
+const { routes, collections } = require("./fixtures");
 
 const core = new Core();
 
@@ -171,9 +171,9 @@ __Depending on the variant type, the format of the variants may differ__. In the
 ```
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "get-users", // id of the route
     url: "/api/users", // url in path-to-regexp format
@@ -190,8 +190,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ```mdx-code-block
@@ -218,9 +216,9 @@ Read the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) document
 * Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](guides/using-the-options-method.md))_.
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "get-users", // id of the route
     url: "/api/users", // url in path-to-regexp format
@@ -253,8 +251,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ### Multiple methods
@@ -262,9 +258,9 @@ export default routes;
 The route method can be also defined as an array of methods, then the route will handle requests with any of them.
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "modify-user", // id of the route
     url: "/api/users/:id", // url in path-to-regexp format
@@ -281,6 +277,4 @@ const routes = [
     ]
   },
 ];
-
-export default routes;
 ```

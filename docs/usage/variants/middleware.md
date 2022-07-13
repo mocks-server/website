@@ -24,9 +24,9 @@ The `options` property in a variant of type `middleware` must be an object conta
 * __`middleware`__ _(Function)_: [Express middleware](https://expressjs.com/en/guide/using-middleware.html). It also receives an extra parameter containing the whole [Mocks Server JavaScript API](api/core.md) allowing to interact with the server.
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -48,8 +48,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ## Middleware API
@@ -81,9 +79,9 @@ Some of these examples show how to do things that usually shouldn't be done, bec
 Middlewares can be used to get information from the request parameters and filter the response data in consequence. Suppose that you have defined an `users.js` file that contains a collection of users fixtures. Then you can create an `/api/users` route returning all of your users, and a `/api/users/:id` returning always the same user. If this is not enough and you need your mock to return a different user depending on the received id, you don't have to create a different route for each user. You can use a middleware searching for the desired user and returning it.
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -125,8 +123,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ### Changing the current collection
@@ -134,9 +130,9 @@ export default routes;
 Now, based on the previous example, suppose that you also have a DELETE `/api/users/:id` route, and you want the GET `api/users/:id` to return a 404 status code after the first one is requested. Suppose also that you have a `user-deleted` collection returning a 404 status code whenever GET `api/users/:id` is requested. Then, you could use the core API to change the current collection once DELETE `/api/users/:id` is requested:
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "delete-user",
     url: "/api/users/:id",
@@ -158,8 +154,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ### Persisting data modifications
@@ -167,9 +161,9 @@ export default routes;
 Based on the previous example, we could go a step further and remove the user that is being deleted from the users fixtures, so next requests won't return it. Take into account that the modifications made to any JavaScript object in the `routes` folder will be kept in memory, so you could take advantage of this to persist some data modifications while the server is running _(note that modifications will be lost when the files are modified and reloaded, for example)._
 
 ```js
-import { allUsers } from "../fixtures/users";
+const { allUsers } = require("../fixtures/users");
 
-const routes = [
+module.exports = [
   {
     id: "delete-user",
     url: "/api/users/:id",
@@ -197,8 +191,6 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
 
 ### Adding common headers to all responses

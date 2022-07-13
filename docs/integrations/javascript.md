@@ -24,8 +24,8 @@ keywords:
 The server can be instantiated and started programmatically using JavaScript. Its JavaScript API enables you to control it and to tap into, modify, or extend its internal behavior.
 
 ```js
-import Core from "@mocks-server/main";
-import { routes, collections } from "./fixtures";
+const Core = require("@mocks-server/main");
+const { routes, collections } = require("./fixtures");
 
 const server = new Core({
   config: {
@@ -72,8 +72,8 @@ You can start, control and stop the mock server programmatically from your NodeJ
 You could use the configuration file and load routes, variants and collections creating files in the "mocks" folder as usual, or even disable files and load all configuration and fixtures programmatically also:
 
 ```js
-import Core from "@mocks-server/main";
-import { routes, collections } from "./fixtures";
+const Core = require("@mocks-server/main");
+const { routes, collections } = require("./fixtures");
 
 beforeAll(async () => {
     const server = new Core({

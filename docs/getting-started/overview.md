@@ -68,7 +68,7 @@ npm run mocks
 Or programmatically using JavaScript:
 
 ```js
-import Core from "@mocks-server/main";
+const Core = require("@mocks-server/main");
 
 const server = new Core();
 server.start();

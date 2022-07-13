@@ -26,7 +26,7 @@ The `options` property in a variant of type `json` must be an object containing 
 * __`headers`__ _(Object)_: Object containing headers to set in the response. Optional.
 
 ```js
-const routes = [
+module.exports = [
   {
     id: "get-users",
     url: "/api/users",
@@ -57,6 +57,4 @@ const routes = [
     ]
   }
 ];
-
-export default routes;
 ```
