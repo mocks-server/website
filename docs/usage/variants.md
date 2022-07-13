@@ -27,7 +27,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 ## Description
 
 * Each route may contain many different variants. Each variant usually defines the response to be sent when the route is requested.
-* Route variants can be defined in many ways, from [plain objects](usage/variants/json.md) to [Express middlewares](usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxying the request to another host](usage/variants/proxy.md).
+* Route variants can be defined in many ways, from [plain objects](usage/variants/json.md) to [Express middlewares](usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxy the request to another host](usage/variants/proxy.md).
 * The user can decide which variant is used on each particular moment, and he can also create [collections](usage/collections.md) defining the variant used by each different route.
 
 ```mdx-code-block
