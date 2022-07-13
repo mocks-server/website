@@ -109,7 +109,7 @@ module.exports = {
             },
             {
               label: "Usage",
-              to: docsUrl("usage/routes"),
+              to: docsUrl("usage/basics"),
             },
             {
               label: "Configuration",

@@ -42,9 +42,9 @@ const textContents = {
   `,
   featuresControllable: `
     Control it using the [interactive CLI](${docsUrl(
-      "plugins/directory/inquirer-cli"
+      "integrations/command-line"
     )}), or use the [administration REST API](${docsUrl(
-    "plugins/directory/admin-api"
+    "integrations/rest-api"
   )}), or [start it using JavaScript](${docsUrl(
     "integrations/javascript"
   )}) and control everything. Other integrations are available, such as [Cypress commands](${docsUrl(
@@ -251,7 +251,7 @@ function HomeCallToAction() {
       <ActionButton type="primary" href={useBaseUrl(docsUrl("overview"))}>
         Get started
       </ActionButton>
-      <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/routes"))}>
+      <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/basics"))}>
         Learn basics
       </ActionButton>
     </>
@@ -305,7 +305,7 @@ function MainFeatures() {
             title="Quick and simple"
             text={useContent("featuresQuickAndSimple")}
             icon={faRocket}
-            link={useBaseUrl(docsUrl("overview"))}
+            link={useBaseUrl(docsUrl("quick-start"))}
           />
         </Column>
         <Column lg={3} md={6} className="cards-container">
@@ -329,7 +329,7 @@ function MainFeatures() {
             title="Easy to control"
             text={useContent("featuresControllable")}
             icon={faGear}
-            link={useBaseUrl(docsUrl("integrations/rest-api"))}
+            link={useBaseUrl(docsUrl("integrations/cypress"))}
           />
         </Column>
       </Row>
@@ -405,7 +405,7 @@ function MainConcepts({ background }) {
       </Row>
       <Row>
         <Column md={12} xs={12} className="center-content">
-          <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/routes"))} variant="text">
+          <ActionButton type="secondary" href={useBaseUrl(docsUrl("usage/basics"))} variant="text">
             Learn more
           </ActionButton>
         </Column>
