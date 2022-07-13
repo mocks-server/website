@@ -103,9 +103,11 @@ import { routes, collections } from "./fixtures";
 const core = new Core();
 
 core.start().then(() => {
+  // highlight-start
   const { loadRoutes, loadCollections } = core.routes.createLoaders();
   loadRoutes(routes);
   loadCollections(collections);
+  // highlight-end
 });
 ```
 
@@ -145,8 +147,8 @@ __Depending on the variant type, the format of the variants may differ__. In the
         "id": "success", // id of the variant
         "type": "json", // variant type
         "options": {
-          "status": 200, // status to send
-          "body": [ // body to send
+          "status": 200,
+          "body": [
             {
               "id": 1,
               "name": "John Doe"
@@ -181,8 +183,8 @@ const routes = [
         id: "success", // id of the variant
         type: "json", // variant type
         options: {
-          status: 200, // status to send
-          body: allUsers // body to send
+          status: 200,
+          body: allUsers
         }
       },
     ]
@@ -222,14 +224,15 @@ const routes = [
   {
     id: "get-users", // id of the route
     url: "/api/users", // url in path-to-regexp format
+    // highlight-next-line
     method: "GET", // HTTP method
     variants: [
       {
         id: "success", // id of the variant
         type: "json", // variant type
         options: {
-          status: 200, // status to send
-          body: allUsers // body to send
+          status: 200,
+          body: allUsers
         }
       },
     ]
@@ -237,13 +240,14 @@ const routes = [
   {
     id: "create-user", // id of the route
     url: "/api/users", // url in path-to-regexp format
+    // highlight-next-line
     method: "POST", // HTTP method
     variants: [
       {
         id: "success", // id of the variant
         type: "json", // variant type
         options: {
-          status: 201, // status to send
+          status: 201,
         }
       },
     ]
@@ -264,13 +268,14 @@ const routes = [
   {
     id: "modify-user", // id of the route
     url: "/api/users/:id", // url in path-to-regexp format
+    // highlight-next-line
     method: ["PATCH", "PUT"] // HTTP methods
     variants: [
       {
         id: "success", // id of the variant
         type: "json", // variant type
         options: {
-          status: 200, // status to send
+          status: 200,
         }
       },
     ]

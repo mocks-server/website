@@ -31,6 +31,7 @@ Add the next script to the `package.json` file:
 ```json
 {
   "scripts": {
+    // highlight-next-line
     "mocks" : "mocks-server"
   }
 }

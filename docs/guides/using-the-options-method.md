@@ -59,6 +59,7 @@ module.exports = [
     "url": "/api/users/*", // paths to enable cors
     "method": ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"], // HTTP methodS
     "variants": [
+      // highlight-start
       {
         "id": "enabled",
         "type": "middleware",
@@ -66,6 +67,7 @@ module.exports = [
           "middleware": cors(),
         }
       },
+      // highlight-end
     ]
   }
 ];
@@ -77,6 +79,7 @@ Then, remember to add your route to the beginning of your "base" [collection](us
 [
   {
     "id": "base", // collection from which the others extend
+    // highlight-next-line
     "routes": ["cors", "get-users:all", "get-user:id-1"] // add cors middleware to the beggining of the routes array
   }
 ]

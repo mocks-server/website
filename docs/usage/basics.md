@@ -78,6 +78,7 @@ const core = new Core({
 });
 
 core.start().then(() => {
+  // highlight-next-line
   core.routes.collections.select("collection-a");
 });
 ```
@@ -98,7 +99,8 @@ core.start().then(() => {
 describe("books page", () => {
   describe("when there are two books", () => {
     before(() => {
-      cy.mocksSelectCollection("collection-b");
+      // highlight-next-line
+      cy.mocksSelectCollection("collection-b"); // Use "collection-b" routes and variants
       cy.visit("/");
     });
 
@@ -109,11 +111,13 @@ describe("books page", () => {
 
   describe("when there is an error loading data", () => {
     before(() => {
+      // highlight-next-line
       cy.mocksUseRouteVariant("get-user:error"); // Use "get-books:error" route variant
       cy.visit("/");
     });
 
     after(() => {
+      // highlight-next-line
       cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
     });
 

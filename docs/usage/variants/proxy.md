@@ -53,9 +53,11 @@ module.exports = [
       {
         id: "real-api",
         type: "proxy", // Variant of type "proxy"
+        // highlight-start
         options: {
           host: "http://127.0.0.1:8080", // proxy host
         },
+        // highlight-end
       },
     ],
   },
@@ -77,9 +79,11 @@ module.exports = [
       {
         id: "proxied",
         type: "proxy", // Variant of type "proxy"
+        // highlight-start
         options: {
           host: "http://127.0.0.1:8080", // proxy host
         },
+        // highlight-end
       },
     ],
   },
@@ -113,6 +117,7 @@ module.exports = [
       },
     ],
   },
+  // highlight-start
   {
     id: "proxy-all", // Proxy all requests
     url: "*",
@@ -127,6 +132,7 @@ module.exports = [
       },
     ],
   },
+  // highlight-end
 ];
 ```
 
@@ -163,6 +169,7 @@ module.exports = [
       {
         id: "add-prefix",
         type: "proxy",
+        // highlight-start
         options: {
           host: "http://127.0.0.1:8080",
           options: {
@@ -173,6 +180,7 @@ module.exports = [
             }
           },
         },
+        // highlight-end
       },
     ],
   },
@@ -197,7 +205,8 @@ module.exports = [
       {
         id: "real-api",
         type: "proxy",
-        response: {
+        // highlight-start
+        options: {
           host: "http://127.0.0.1:8080",
           options: {
             proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
@@ -209,6 +218,7 @@ module.exports = [
             }
           },
         },
+        // highlight-end
       },
     ],
   },

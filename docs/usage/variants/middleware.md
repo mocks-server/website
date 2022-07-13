@@ -35,6 +35,7 @@ const routes = [
       {
         id: "all-users",
         type: "middleware", // variant of type "middleware"
+        // highlight-start
         options: {
           middleware: (req, res, next, core) => { // middleware to use
             core.logger.info("Request received!");
@@ -42,6 +43,7 @@ const routes = [
             res.send(allUsers);
           },
         },
+        // highlight-end
       }
     ]
   }
@@ -106,6 +108,7 @@ const routes = [
         id: "real-user",
         type: "middleware", // variant of type "middleware"
         options: {
+          // highlight-start
           middleware: (req, res) => { // Search for the user and return it
             const user = allUsers.find((user) => user.id === req.params.id);
             if (user) {
@@ -116,6 +119,7 @@ const routes = [
               res.send();
             }
           },
+          // highlight-end
         },
       }
     ]
@@ -142,11 +146,13 @@ const routes = [
         id: "change-collection",
         type: "middleware", // variant of type "middleware"
         options: {
+          // highlight-start
           middleware: (req, res, next, core) => { // Search for the user and return it
             res.status(204);
             res.send();
             core.routes.collections.select("user-deleted");
           },
+          // highlight-end
         },
       }
     ]
@@ -173,6 +179,7 @@ const routes = [
         id: "delete-user",
         type: "middleware", // variant of type "middleware"
         options: {
+          // highlight-start
           middleware: (req, res, next, core) => { // Search for the user and remove it
             const userIndex = allUsers.findIndex((user) => user.id === req.params.id);
             if (userIndex >= 0) {
@@ -184,6 +191,7 @@ const routes = [
               res.send();
             }
           },
+          // highlight-end
         },
       }
     ]
@@ -210,10 +218,12 @@ module.exports = [
         id: "add-x-custom-header",
         type: "middleware",
         options: {
+          // highlight-start
           middleware: (req, res, next) => {
             res.set('x-custom-header', 'custom header value'); // Set response header
             next(); // Let other routes to be processed
           },
+          // highlight-end
         },
       },
     ]

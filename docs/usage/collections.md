@@ -125,11 +125,13 @@ const collections = [
     id: "base",
     routes: ["get-users:all", "get-user:id-1", "delete-user:success", "create-user:success"]
   },
+  // highlight-start
   {
     id: "user-2",
     from: "base",
     routes: ["get-user:id-2"] // "get-user" route is still in the second place of the collection
   }
+  // highlight-end
 ];
 
 export default collections;
@@ -199,6 +201,7 @@ import Core from "@mocks-server/main";
 const core = new Core();
 
 core.start().then(() => {
+  // highlight-next-line
   core.routes.collections.select("collection-b");
 });
 ```
@@ -219,6 +222,7 @@ core.start().then(() => {
 describe("books page", () => {
   describe("when there are two books", () => {
     before(() => {
+      // highlight-next-line
       cy.mocksSelectCollection("collection-b"); // Change collection to "collection-b"
       cy.visit("/");
     });

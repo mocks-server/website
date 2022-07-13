@@ -35,6 +35,7 @@ const routes = [
       {
         id: "success",
         type: "json", // variant of type json
+        // highlight-start
         options: {
           status: 200, // status to send
           headers: { // response headers to send
@@ -51,6 +52,7 @@ const routes = [
             }
           ]
         },
+        // highlight-end
       }
     ]
   }

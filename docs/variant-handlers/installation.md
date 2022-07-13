@@ -34,6 +34,7 @@ module.exports = {
   ...config,
   routes: {
     variantHandlers: {
+      // highlight-next-line
       register: [FooVariantHandler]
     },
   }
@@ -53,6 +54,7 @@ const server = new Core(
   {
     routes: {
       variantHandlers: {
+        // highlight-next-line
         register: [FooVariantHandler]
       },
     }

@@ -31,6 +31,7 @@ const FooPlugin = require("mocks-server-plugin-foo");
 module.exports = {
   ...config,
   plugins: {
+    // highlight-next-line
     register: [FooPlugin],
   }
 };
@@ -48,6 +49,7 @@ const MyPlugin = require("./MyPlugin");
 const server = new Core(
   {
     plugins: {
+      // highlight-next-line
       register: [MyPlugin],
     },
   },

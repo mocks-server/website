@@ -112,6 +112,7 @@ module.exports = [
 ```
 
 ```js
+// highlight-next-line
 const users = require("../data/users");
 
 module.exports = [
@@ -125,6 +126,7 @@ module.exports = [
         type: "json",
         options: {
           status: 200,
+          // highlight-next-line
           body: users
         }
       },
@@ -133,6 +135,7 @@ module.exports = [
         type: "json",
         options: {
           status: 200,
+          // highlight-next-line
           body: [users[0]]
         }
       }
@@ -171,15 +174,18 @@ For assigning an id to the collections, we recommend to maintain a base `collect
 ```json
 [
   {
+    // highlight-next-line
     "id": "base",
     "routes": ["get-users:all", "get-user:success", "create-user:success"]
   },
   {
+    // highlight-next-line
     "id": "users-errors",
     "from": "base",
     "routes": ["create-user:error", "get-users:error"]
   },
   {
+    // highlight-next-line
     "id": "users-with-long-name",
     "from": "base",
     "routes": ["get-users:long-names", "get-user:long-name"]

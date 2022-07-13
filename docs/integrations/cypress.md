@@ -92,6 +92,7 @@ cy.mocksConfigAdminApiClient({
 describe("books page", () => {
   describe("when there are two books", () => {
     before(() => {
+      // highlight-next-line
       cy.mocksSetCollection("two-books"); // Use "two-books" collection
       cy.visit("/");
     });
@@ -103,11 +104,13 @@ describe("books page", () => {
 
   describe("when there is an error loading data", () => {
     before(() => {
+      // highlight-next-line
       cy.mocksUseRouteVariant("get-books:error"); // Use "get-books:error" route variant
       cy.visit("/");
     });
 
     after(() => {
+      // highlight-next-line
       cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
     });
 
@@ -118,11 +121,13 @@ describe("books page", () => {
 
   describe("when the API is slow", () => {
     before(() => {
+      // highlight-next-line
       cy.mocksSetDelay(3000); // Set a delay of 3 seconds in API responses
       cy.visit("/");
     });
 
     after(() => {
+      // highlight-next-line
       cy.mocksSetDelay(0); // Restore the delay to 0
     });
 

@@ -111,6 +111,7 @@ const ErrorResponseHandler = require("./ErrorResponseHandler");
 module.exports = {
   routes: {
     variantHandlers: {
+      // highlight-next-line
       register: [ErrorResponseHandler],
     },
   },
@@ -137,11 +138,13 @@ module.exports = [
     variants: [
       {
         id: "error-400",
+        // highlight-start
         handler: "error", // id of the handler to be used
         options: { // options that the handler will receive
           code: 400,
           message: "Error message",
         },
+        // highlight-end
       }
       {
         id: "empty",

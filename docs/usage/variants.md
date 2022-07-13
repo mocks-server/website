@@ -65,6 +65,7 @@ const routes = [
     url: "/api/users",
     method: "GET",
     variants: [
+      // highlight-start
       {
         id: "success", // id of the variant
         delay: 1000, // delay of the variant
@@ -83,6 +84,7 @@ const routes = [
           ]
         },
       }
+      // highlight-end
     ]
   }
 ];
@@ -102,6 +104,7 @@ const routes = [
     url: "/api/users",
     method: "GET",
     variants: [
+      // highlight-start
       {
         id: "success", // id of the variant
         delay: 1000, // delay of the variant
@@ -122,6 +125,7 @@ const routes = [
           },
         },
       }
+      // highlight-end
     ]
   }
 ];
@@ -141,6 +145,7 @@ const routes = [
     url: "/api/users",
     method: "GET",
     variants: [
+      // highlight-start
       {
         id: "from-real-api", // id of the variant
         delay: 1000, // delay of the variant
@@ -149,6 +154,7 @@ const routes = [
           host: "http://127.0.0.1:8080", // proxy host
         },
       }
+      // highlight-end
     ]
   }
 ];

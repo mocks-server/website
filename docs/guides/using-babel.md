@@ -31,11 +31,13 @@ module.exports = {
       selected: "base",
     },
   },
+  // highlight-start
   files: {
     babelRegister: {
       enabled: true
     },
   },
+  // highlight-end
 };
 ```
 
@@ -86,11 +88,13 @@ module.exports = {
   files: {
     babelRegister: {
       enabled: true,
+      // highlight-start
       options: {
         only: (filePath) => {
           return filePath.includes("/mocks/") || filePath.includes("/my-folder-to-include/");
         },
       },
+      // highlight-end
     },
   },
 };
