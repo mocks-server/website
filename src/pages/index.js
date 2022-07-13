@@ -17,6 +17,8 @@ import {
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import useText from "@theme/custom-hooks/useText";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
@@ -37,9 +39,9 @@ const textContents = {
   upcoming: `
     Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
   `,
-  routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resources, or many.`,
+  routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resource, or many.`,
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
-  collections: `A <code>mock</code> is a collection of route variants defining all current routes and variants in the mocked API. They can be created extending other <code>mocks</code>. So, you can store many mocks and change the whole API behavior by simply changing the current one.`,
+  collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.`,
   jsonCode: `
     [
       {
@@ -73,6 +75,40 @@ const textContents = {
         ]
       }
     ]
+  `,
+  jsCode: `
+    module.exports = [
+      {
+        id: "get-user",
+        url: "/api/user/:id",
+        method: "GET",
+        delay: 1000,
+        variants: [
+          {
+            id: "success",
+            handler: "json",
+            response: {
+              status: 200,
+              body: { "id": 1, "name": "John Doe"}
+            }
+          },
+          {
+            id: "not-found",
+            handler: "json",
+            response: {
+              status: 404
+            }
+          },
+          {
+            id: "proxied",
+            handler: "proxy",
+            response: {
+              host: "https://jsonplaceholder.typicode.com/users/1"
+            }
+          }
+        ]
+      }
+    ];
   `,
 };
 
@@ -348,10 +384,10 @@ function MainConcepts({ background }) {
           <ImageAndText
             count="3"
             countClassname="collection"
-            title="Mocks"
+            title="Collections"
             text={useContent("collections")}
             imageSrc={useBaseUrl("img/concepts-collection.png")}
-            imageAlt="Mocks schema"
+            imageAlt="Collections schema"
             imageClassName="collection"
           />
         </Column>
@@ -415,13 +451,20 @@ function CodeExample({ background }) {
     <Section background={background}>
       <Heading text="Show me the code" centered className="with-subheading" />
       <SubHeading
-        text="A simple example of how routes and variants can defined using a JSON file"
+        text="A simple example of how routes and variants can defined using different languages"
         centered
       />
       <Row>
         <Column md={2} hiddenXs></Column>
         <Column md={8} xs={12}>
-          <CodeBlock language="json">{textContents.jsonCode}</CodeBlock>
+          <Tabs>
+            <TabItem value="JSON">
+              <CodeBlock language="json">{textContents.jsonCode}</CodeBlock>
+            </TabItem>
+            <TabItem value="JavaScript">
+              <CodeBlock language="js">{textContents.jsCode}</CodeBlock>
+            </TabItem>
+          </Tabs>
         </Column>
         <Column md={2} hiddenXs></Column>
       </Row>
