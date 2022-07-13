@@ -55,7 +55,7 @@ V3 example:
 
 ```js
 class Plugin {
-  constructor({ logger, loadMocks, loadRoutes, core, addAlert, removeAlerts }) {
+  constructor({ logger, core, addAlert, removeAlerts }) {
     // core property was almost an alias containing again all of the rest of properties received
   }
 }
@@ -63,7 +63,7 @@ class Plugin {
 V4 example:
 ```js
 class Plugin {
-  constructor({ logger, loadMocks, loadRoutes }) {
+  constructor({ logger }) {
     // core property is no longer received
   }
 }

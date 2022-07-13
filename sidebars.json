@@ -116,9 +116,36 @@
     ],
     "API": [
       {
-        "type": "doc",
-        "id": "api/core",
-        "label": "Core"
+        "type": "category",
+        "label": "Core",
+        "link": {"type": "doc", "id": "api/core"},
+        "items": [
+          {
+            "type": "doc",
+            "id": "api/core/server",
+            "label": "server"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/routes",
+            "label": "routes"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/logger",
+            "label": "logger"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/config",
+            "label": "config"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/alerts",
+            "label": "alerts"
+          }
+        ]
       }
     ]
   }

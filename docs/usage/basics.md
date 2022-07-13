@@ -65,7 +65,6 @@ Here you have some examples about how to change the current collection and other
 
 ```js
 import Core from "@mocks-server/main";
-import { routes, collections } from "./fixtures";
 
 const core = new Core({
   config: {
@@ -79,9 +78,6 @@ const core = new Core({
 });
 
 core.start().then(() => {
-  core.loadRoutes(routes);
-  core.loadCollections(collections);
-
   core.routes.collections.select("collection-a");
 });
 ```

@@ -103,8 +103,9 @@ import { routes, collections } from "./fixtures";
 const core = new Core();
 
 core.start().then(() => {
-  core.loadRoutes(routes);
-  core.loadCollections(collections);
+  const { loadRoutes, loadCollections } = core.routes.createLoaders();
+  loadRoutes(routes);
+  loadCollections(collections);
 });
 ```
 
