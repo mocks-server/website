@@ -35,7 +35,7 @@ You should never read the configuration values in the `constructor`, because the
 
 ### `init(core)`
 
-This method is called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to read the user options, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.onChangeMocks`, etc.
+This method is called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to read the user options, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.routes.onChange`, etc.
 
 ### `start(core)`
 
@@ -89,9 +89,9 @@ export default class Plugin {
 
 All __plugins methods receive a whole [`core` instance](api/core.md)__, but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin, but here you have also a __summary of the modified methods__:
 
-* __`core.alerts`__: This property contains a scoped `alerts` instance using the plugin `id`. It allows to add or remove alerts or alerts namespaces without having conflicts with other plugins or other Mocks Server core elements. Read the [`core.alertsApi`](api/core.md) docs to know how to use it, but take into account that in plugins you will receive an alerts subcollection instead of the root alerts object.
-* __`core.config`__: A configuration namespace created specifically for the plugin, using its `id`. Read the [`core.config`](api/core.md) docs to know how to use it, but take into account that in plugins you will receive a configuration namespace instead of the root configuration object.
-* __`core.logger`__: A namespaced logger using the plugin `id`. It allows to easily identify the logs of each plugin and differentiate them from other internal Mocks Server components logs. Read the [`core.logger`](api/core.md) docs to know how to use it, but take into account that in plugins you will receive a logger namespace instead of the root logger object.
+* __`core.alerts`__: This property contains a scoped `alerts` instance using the plugin `id`. It allows to add or remove alerts or alerts namespaces without having conflicts with other plugins or other Mocks Server core elements. Read the [`core.alerts`](api/core/alerts.md) docs to know how to use it, but take into account that in plugins you will receive an alerts subcollection instead of the root alerts object.
+* __`core.config`__: A configuration namespace created specifically for the plugin, using its `id`. Read the [`core.config`](api/core/config.md) docs to know how to use it, but take into account that in plugins you will receive a configuration namespace instead of the root configuration object.
+* __`core.logger`__: A namespaced logger using the plugin `id`. It allows to easily identify the logs of each plugin and differentiate them from other internal Mocks Server components logs. Read the [`core.logger`](api/core/logger.md) docs to know how to use it, but take into account that in plugins you will receive a logger namespace instead of the root logger object.
 
 ### Example
 
@@ -117,7 +117,7 @@ class Plugin {
 
   init() {
     this._enabled = this._enabledOption.value;
-    this._removeChangeMocksListener = this._core.onChangeCollections(this._onChangeCollections);
+    this._removeChangeMocksListener = this._core.routes.onChange(this._onChangeCollections);
     this._enabledOption.onChange(this._onChangeOption.bind(this));
     this._core.logger.debug(`enabled option initial value is ${this._enabled}`);
   }

@@ -67,8 +67,6 @@ Mocks Server searches for configuration files in `process.cwd()`. [`Cosmiconfig`
 * A `mocks.config.js` or `mocks.config.cjs` CommonJS module exporting an async function. __It receives programmatic configuration as first argument__.
 
 ```js
-//mocks.selected option:
-
 module.exports = {
   routes: {
     collections: {
