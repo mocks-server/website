@@ -27,7 +27,7 @@ Read the [usage chapter](usage/basics.md) in 5 minutes ⏱ to fully understand t
 
 ## Requirements
 
-Node.js version 14.0 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
+[Node.js](https://nodejs.org/) version 14.0 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
 
 For using the interactive CLI may be there some additional requirements. The [Inquirer](https://www.npmjs.com/package/inquirer) library is used for displaying it. You can [check its OS Terminals support here](https://www.npmjs.com/package/inquirer#support-os-terminals).
 

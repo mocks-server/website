@@ -32,16 +32,14 @@ const FooVariantHandler = require("foo-variant-handler");
 
 module.exports = {
   ...config,
-  routes: {
-    variantHandlers: {
-      // highlight-next-line
-      register: [FooVariantHandler]
-    },
-  }
+  variantHandlers: {
+    // highlight-next-line
+    register: [FooVariantHandler]
+  },
 };
 ```
 
-### Using JavaScript
+### Using JavaScript config
 
 If you are going to start Mocks Server using the [Javascript API](integrations/javascript.md), you can also use the [programmatic configuration](configuration/how-to-change-settings.md) to register your own Variant Handlers:
 
@@ -52,14 +50,20 @@ const FooVariantHandler = require("./FooVariantHandler");
 
 const server = new Core(
   {
-    routes: {
-      variantHandlers: {
-        // highlight-next-line
-        register: [FooVariantHandler]
-      },
-    }
+    variantHandlers: {
+      // highlight-next-line
+      register: [FooVariantHandler]
+    },
   },
 );
 
 server.start();
+```
+
+### Using JavaScript API
+
+You can also use the [Javascript API](api/core/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
+
+```js
+core.variantHandlers.register(FooVariantHandler);
 ```

@@ -109,11 +109,9 @@ Once created, you could register your new Variant Handler using the configuratio
 const ErrorResponseHandler = require("./ErrorResponseHandler");
 
 module.exports = {
-  routes: {
-    variantHandlers: {
-      // highlight-next-line
-      register: [ErrorResponseHandler],
-    },
+  variantHandlers: {
+    // highlight-next-line
+    register: [ErrorResponseHandler],
   },
   server: {
     port: 3100,
@@ -122,7 +120,7 @@ module.exports = {
 ```
 
 :::info
-You can also add Route Handlers programmatically using the [`core.routes.variantHandlers.register` method](api/core/routes.md)
+You can also add Route Handlers programmatically using the [`core.variantHandlers.register` method](api/core/variant-handlers.md)
 :::
 
 And then, you could use the new variant type when defining route variants:

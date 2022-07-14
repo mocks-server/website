@@ -26,7 +26,7 @@ Use the [configuration option](configuration/options.md) `files.babelRegister.en
 
 ```js
 module.exports = {
-  routes: {
+  mock: {
     collections: {
       selected: "base",
     },
