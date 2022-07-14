@@ -37,7 +37,10 @@ The main breaking changes in v4.x will be:
 
 ## Core API
 
-* __`core.tracer`__: The `tracer` object will be completely removed and using it from v3.2 produces an alert. You must use `core.logger` instead, which is already namespaced when passed to plugins and route middlewares. [Read the logger API docs](api/core.md#logger) for further info.
+* __`core.tracer`__: The `tracer` object will be completely removed and using it from v3.2 produces an alert. You must use `core.logger` instead, which is already namespaced when passed to plugins and route middlewares. [Read the logger API docs](api/core/logger.md) for further info.
+* __`core.restartServer`__: The `restartServer` method will be removed and using it from v3.6 produces an alert. You must use `core.server.restart` instead. [Read the server API docs](api/core/server.md) for further info.
+* __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
+* __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
 
 ## Alerts
 

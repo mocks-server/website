@@ -146,7 +146,7 @@ module.exports = [
           middleware: (req, res, next, core) => { // Search for the user and return it
             res.status(204);
             res.send();
-            core.routes.collections.select("user-deleted");
+            core.mock.collections.select("user-deleted");
           },
           // highlight-end
         },

@@ -44,7 +44,7 @@ Available API resources are:
   * Request body example: `{ "id": "users:error" }`
 * `DELETE` `/admin/mock-custom-routes-variants` Restore routes variants to those defined in current mock.
 * `GET` `/admin/settings` Returns current server settings.
-  * Response body example: `{ "server": { "delay": 0 }, "routes": {"collections": { "selected": "foo-mock" } } }`
+  * Response body example: `{ "server": { "delay": 0 }, "mock": {"collections": { "selected": "foo-mock" } } }`
 * `PATCH` `/admin/settings` Changes current server settings.
   * Request body example: `{ "server": { "delay": 3000 } }`
 * `GET` `/admin/alerts` Returns current server alerts.
@@ -61,7 +61,7 @@ curl http://localhost:3100/admin/collections
 ### Change the current collection
 
 ```bash
-curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3100/admin/settings
+curl -X PATCH -d '{"mock":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3100/admin/settings
 ```
 
 ## Configuration

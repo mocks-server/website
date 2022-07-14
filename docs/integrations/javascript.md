@@ -42,11 +42,11 @@ const server = new Core({
 });
 
 server.start().then(() => {
-  const { loadRoutes, loadCollections } = server.routes.createLoaders();
+  const { loadRoutes, loadCollections } = server.mock.createLoaders();
   loadRoutes(routes);
   loadCollections(collections);
 
-  server.routes.collections.select("collection-a");
+  server.mock.collections.select("collection-a");
 });
 ```
 
@@ -91,7 +91,7 @@ beforeAll(async () => {
     });
 
     await server.start();
-    const { loadRoutes, loadCollections } = server.routes.createLoaders();
+    const { loadRoutes, loadCollections } = server.mock.createLoaders();
     loadRoutes(routes);
     loadCollections(collections);
 });
@@ -103,7 +103,7 @@ afterAll(async () => {
 describe("users API client", () => {
   it("getUsers method should return 3 users", async () => {
       // Select the collection returning the expected data
-      server.routes.collections.select("3-users");
+      server.mock.collections.select("3-users");
 
       // configure the unit under test
       const usersApiClient = new UsersService('http://localhost:3100/api/users');

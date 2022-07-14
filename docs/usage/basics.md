@@ -79,7 +79,7 @@ const core = new Core({
 
 core.start().then(() => {
   // highlight-next-line
-  core.routes.collections.select("collection-a");
+  core.mock.collections.select("collection-a");
 });
 ```
 
@@ -96,11 +96,11 @@ core.start().then(() => {
 ```
 
 ```js
-describe("books page", () => {
-  describe("when there are two books", () => {
+describe("users page", () => {
+  describe("when there are two users in the API", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksSelectCollection("collection-b"); // Use "collection-b" routes and variants
+      cy.mocksSelectCollection("two-users"); // Use "two-users" routes and variants
       cy.visit("/");
     });
 
@@ -109,10 +109,10 @@ describe("books page", () => {
     });
   });
 
-  describe("when there is an error loading data", () => {
+  describe("when there is an error loading users", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksUseRouteVariant("get-user:error"); // Use "get-books:error" route variant
+      cy.mocksUseRouteVariant("get-users:error"); // Use "get-users:error" route variant
       cy.visit("/");
     });
 
@@ -134,7 +134,7 @@ describe("books page", () => {
 ```
 
 ```bash
-curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
+curl -X PATCH -d '{"mock":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
 ```
 
 ```mdx-code-block

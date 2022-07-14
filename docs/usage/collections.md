@@ -178,7 +178,7 @@ You can use the configuration or any of the available APIs or integration tools 
 
 ```js
 module.exports = {
-  routes: {
+  mock: {
     collections: {
       selected: "collection-b",
     },
@@ -198,7 +198,7 @@ const core = new Core();
 
 core.start().then(() => {
   // highlight-next-line
-  core.routes.collections.select("collection-b");
+  core.mock.collections.select("collection-b");
 });
 ```
 

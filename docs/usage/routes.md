@@ -104,7 +104,7 @@ const core = new Core();
 
 core.start().then(() => {
   // highlight-start
-  const { loadRoutes, loadCollections } = core.routes.createLoaders();
+  const { loadRoutes, loadCollections } = core.mock.createLoaders();
   loadRoutes(routes);
   loadCollections(collections);
   // highlight-end
