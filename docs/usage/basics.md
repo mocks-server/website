@@ -79,7 +79,7 @@ const core = new Core({
 
 core.start().then(() => {
   // highlight-next-line
-  core.routes.collections.select("collection-a");
+  core.mock.collections.select("collection-a");
 });
 ```
 
@@ -134,7 +134,7 @@ describe("users page", () => {
 ```
 
 ```bash
-curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
+curl -X PATCH -d '{"mock":{"collections":{"selected":"collection-c"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
 ```
 
 ```mdx-code-block

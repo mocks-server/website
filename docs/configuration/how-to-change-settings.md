@@ -43,7 +43,7 @@ When [starting the Mocks Server core programmatically](integrations/javascript.m
 
 ```js
 const server = new Core({
-  routes: {
+  mock: {
     collections: {
       selected: "foo", // Set collection "foo" as initially selected
     },
@@ -52,7 +52,7 @@ const server = new Core({
 ```
 
 :::tip
-In the [examples on the next page](configuration/options.md) you'll see options like `routes.collections.selected`. When provided programmatically, that option would correspond to object properties, like `{ routes: { collections: { selected: "foo" }}}`
+In the [examples on the next page](configuration/options.md) you'll see options like `mock.collections.selected`. When provided programmatically, that option would correspond to object properties, like `{ mock: { collections: { selected: "foo" }}}`
 :::
 
 ## Configuration file
@@ -68,7 +68,7 @@ Mocks Server searches for configuration files in `process.cwd()`. [`Cosmiconfig`
 
 ```js
 module.exports = {
-  routes: {
+  mock: {
     collections: {
       selected: "foo", // Set collection "foo" as initially selected
     },
@@ -93,12 +93,12 @@ Note that it is not required to return the whole configuration in the function, 
 
 ## Environment variables
 
-Options can be also defined using environment variables. In this case, the option name must be provided using "screaming snake case", always with the `MOCKS` prefix. So, an option like `server.delay`, must be defined using environment variables as `MOCKS_SERVER_DELAY`.
+Options can be also defined using environment variables. In this case, the option name must be provided using "screaming snake case", always with the `MOCKS` prefix. So, an option like `mock.delay`, must be defined using environment variables as `MOCKS_MOCK_DELAY`.
 
 ```sh
 # routes.delay option
 
-MOCKS_ROUTES_DELAY=1000 npm run mocks
+MOCKS_MOCK_DELAY=1000 npm run mocks
 ```
 
 ### Boolean values
@@ -135,12 +135,12 @@ MOCKS_CONFIG_FILE_SEARCH_PLACES='["myConfigFile.js","myConfigFile.json"]' npm ru
 
 Options can also be defined using command line arguments. Options must be prefixed with a double dash (`--`).
 
-In the [options docs](configuration/options.md) you'll see options like `routes.delay`. When provided using command line arguments, use the same format:
+In the [options docs](configuration/options.md) you'll see options like `mock.delay`. When provided using command line arguments, use the same format:
 
 ```sh
 # routes.delay option:
 
-npm run mocks -- --routes.delay=3000
+npm run mocks -- --mock.delay=3000
 ```
 
 :::note

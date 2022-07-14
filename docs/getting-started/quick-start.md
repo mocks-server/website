@@ -190,11 +190,11 @@ Read the [collections chapter](usage/collections.md) to learn more about how to 
 
 ### Changing the configuration
 
-Now that we have created our own collection, we want the server to use it whenever it is started. So, let's change the configuration. Modify the `mocks.config.js` file and change the `routes.collections.selected` property:
+Now that we have created our own collection, we want the server to use it whenever it is started. So, let's change the configuration. Modify the `mocks.config.js` file and change the `mock.collections.selected` property:
 
 ```js
 {
-  routes: {
+  mock: {
     collections: {
       selected: "all-users-user-2",
     },
