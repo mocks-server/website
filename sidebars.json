@@ -127,8 +127,8 @@
           },
           {
             "type": "doc",
-            "id": "api/core/routes",
-            "label": "routes"
+            "id": "api/core/mock",
+            "label": "mock"
           },
           {
             "type": "doc",
@@ -144,6 +144,11 @@
             "type": "doc",
             "id": "api/core/alerts",
             "label": "alerts"
+          },
+          {
+            "type": "doc",
+            "id": "api/core/variant-handlers",
+            "label": "variantHandlers"
           }
         ]
       }

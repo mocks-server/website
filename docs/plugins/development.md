@@ -27,7 +27,7 @@ Plugins should contain __four main methods__, which will receive an argument con
 
 This method is executed for registering the plugin during the Mocks Server initialization, before the `configuration` has been initialized.
 
-Here you should register your own custom `options` using the `core.config` object, register your own custom Express routers using the `core.server.addRouter` method, add custom Variant Handlers using `core.routes.variantHandlers.register`, etc.
+Here you should register your own custom `options` using the `core.config` object, register your own custom Express routers using the `core.server.addRouter` method, add custom Variant Handlers using `core.variantHandlers.register`, etc.
 
 :::caution
 You should never read the configuration values in the `constructor`, because the configuration object is not still ready in this phase. Here you should only define your own options.
@@ -35,7 +35,7 @@ You should never read the configuration values in the `constructor`, because the
 
 ### `init(core)`
 
-This method is called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to read the user options, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.routes.onChange`, etc.
+This method is called when Mocks Server configuration is loaded and ready. Here you can already use the `core.config` object to read the user options, and act in consequence, and you can also access to the whole configuration object using `core.config.root`. Here you should also add your listeners to the `core` events, such as `core.mock.onChange`, etc.
 
 ### `start(core)`
 
@@ -117,14 +117,14 @@ class Plugin {
 
   init() {
     this._enabled = this._enabledOption.value;
-    this._removeChangeMocksListener = this._core.routes.onChange(this._onChangeCollections);
+    this._removeChangeMocksListener = this._core.mock.onChange(this._onChangeCollections);
     this._enabledOption.onChange(this._onChangeOption.bind(this));
     this._core.logger.debug(`enabled option initial value is ${this._enabled}`);
   }
 
   logCollections() {
     if (this._enabled && this._started) {
-      this._core.logger.info(`There are ${this._core.routes.collections.plain.length} collections available`);
+      this._core.logger.info(`There are ${this._core.mock.collections.plain.length} collections available`);
     }
   }
 
