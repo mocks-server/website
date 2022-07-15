@@ -139,7 +139,7 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`server.port`__ _(Number)_: Port number for Mocks Server to be listening at. Default is `3100`.
 * __`server.urlEncodedBodyParser.enabled`__ _(Boolean)_: If `false`, it disables the [`urlencoded` `body-parser` built-in Express middleware](https://github.com/expressjs/body-parser). Default is `true`.
 * __`server.urlEncodedBodyParser.options`__ _(Object)_: Options for the [`urlencoded` `body-parser` built-in Express middleware](https://github.com/expressjs/body-parser).
-* __`variantHandlers.register`__ _(Array of `Variant Handlers`)_: Array of [`Variant Handlers`](variant-handlers/intro.md) to be added. Default variant handlers are not removed.
+* __`variantHandlers.register`__ _(Array of `Variant Handlers`)_: Array of [`Variant Handlers`](variant-handlers/intro.md) to be added. Other variant handlers are not removed.
 
 ## Plugins options
 
