@@ -44,9 +44,9 @@ Available API resources are:
   * Request body example: `{ "id": "users:error" }`
 * `DELETE` `/admin/mock-custom-routes-variants` Restore routes variants to those defined in current mock.
 * `GET` `/admin/settings` Returns current server settings.
-  * Response body example: `{ "server": { "delay": 0 }, "mock": {"collections": { "selected": "foo-mock" } } }`
+  * Response body example: `{ "mock": {"collections": { "selected": "foo-mock" } } }`
 * `PATCH` `/admin/settings` Changes current server settings.
-  * Request body example: `{ "server": { "delay": 3000 } }`
+  * Request body example: `{ "mock": { "routes": { "delay": 3000 } } }`
 * `GET` `/admin/alerts` Returns current server alerts.
 * `GET` `/admin/alerts/:id` Returns a specific alert. _(read the [core API](api/core.md) for further info about alerts)_.
 

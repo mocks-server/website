@@ -39,7 +39,7 @@ Read the [previous chapter](configuration/how-to-change-settings.md) for further
 
 ## Option names
 
-Examples in this page use the "dot notation" to display the option names. But option names may differ depending on the chosen method to set them. Here you have a brief example of how the same option (`mock.delay`) must be defined when using different methods:
+Examples in this page use the "dot notation" to display the option names. But option names may differ depending on the chosen method to set them. Here you have a brief example of how the same option (`mock.routes.delay`) must be defined when using different methods:
 
 ```mdx-code-block
 <Tabs>
@@ -47,11 +47,13 @@ Examples in this page use the "dot notation" to display the option names. But op
 ```
 
 ```js
-// Set routes.delay option
+// Set mock.routes.delay option
 
 const server = new Core({
   mock: {
-    delay: 3000,
+    routes: {
+      delay: 3000,
+    },
   },
 });
 ```
@@ -66,11 +68,13 @@ Convert the "dot notation" into an object when setting programmatic configuratio
 ```
 
 ```js
-// Set routes.delay option
+// Set mock.routes.delay option
 
 module.exports = {
   mock: {
-    delay: 3000,
+    routes: {
+      delay: 3000,
+    },
   },
 };
 ```
@@ -85,7 +89,7 @@ Convert the "dot notation" into an object when setting configuration using the c
 ```
 
 ```sh
-MOCKS_MOCK_DELAY=3000 npm run mocks
+MOCKS_MOCK_ROUTES_DELAY=3000 npm run mocks
 ```
 
 :::info
@@ -98,7 +102,7 @@ Convert the "dot notation" into "screaming snake case", adding the `MOCKS` prefi
 ```
 
 ```sh
-npm run mocks -- --mock.delay=3000
+npm run mocks -- --mock.routes.delay=3000
 ```
 
 :::info
@@ -124,8 +128,8 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`files.babelRegister.enabled`__ _(Boolean)_: Enables [Babel compilation](guides/using-babel.md) for files inside the `/mocks` folder.
 * __`files.babelRegister.options`__ _(Object)_: Options for [`@babel/register`](https://babeljs.io/docs/en/babel-register) when `babelRegister` is enabled. Properties in this object are passed directly to `@babel/register` as options, so refer to [its documentation](https://babeljs.io/docs/en/babel-register) for further info. You can also see some usage examples in the ["using Babel"](guides/using-babel.md) chapter of this docs.
 * __`log`__ _(String)_: Logs level. Can be one of `silly`, `debug`, `verbose`, `info`, `warn` or `error`.
-* __`mock.delay`__ _(Number)_: Responses delay time in milliseconds. This is a global setting that can be overridden in specific routes or route variants using [their options](usage/routes.md).
 * __`mock.collections.selected`__ _(String)_: Collection to use when the server is started.
+* __`mock.routes.delay`__ _(Number)_: Responses delay time in milliseconds. This is a global setting that can be overridden in specific routes or route variants using [their options](usage/routes.md).
 * __`plugins.register`__: _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins/intro.md).
 * __`server.cors.enabled`__ _(Boolean)_: Built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. Default is `true`.  Use `false` to disable it.
 * __`server.cors.options`__ _(Object)_: Options for the built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. By default, it sets the `preflightContinue` property as `false`, which means that Mocks Server will respond to all `OPTIONS` requests with a 204 status and correspondent CORS headers. If you want to [handle OPTIONS requests by yourself](guides/using-the-options-method.md), you should set that property to `true`.

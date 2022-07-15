@@ -23,12 +23,17 @@ Even when v4 release is still not published, we are deprecating some things in v
 
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
+:::tip
+If you are already using v3.x, then __update to v3.6, which is fully compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then update to v4.
+:::
+
 
 ## Changes summary
 
 The main breaking changes in v4.x will be:
 
 * __Some core API methods will be removed__. Read [core API](#core-api) below for further info.
+* __Some options will be changed__. Read [options](#options) below for further info.
 * __Legacy alerts object will be removed__. Read [alerts](#alerts) for further info.
 * __Arguments received by the plugins__. Read [plugins](#plugins) below for further info.
 * __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.
@@ -41,6 +46,11 @@ The main breaking changes in v4.x will be:
 * __`core.restartServer`__: The `restartServer` method will be removed and using it from v3.6 produces an alert. You must use `core.server.restart` instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
+
+## Options
+
+* __`mocks.selected`__: This option will be removed. Use `mock.collections.selected` instead.
+* __`mocks.delay`__: This option will be removed. Use `mock.routes.delay` instead.
 
 ## Alerts
 

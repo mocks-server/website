@@ -39,7 +39,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 Variants must be defined in the [`variants` property of the routes](usage/routes.md). Each variant must be defined as an object containing:
 
 * __`id`__ _(String)_: Id of the variant. It is used in combination with the route id to define which variants has to use an specific collection, for example.
-* __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
+* __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `mock.routes.delay` global setting. If it is set to `null`, the variant will use the `mock.routes.delay` global setting even when the route has a delay defined.
 * __`type`__ _(String)_: Id of the Variant Handler that will handle the request. In the "main" distribution of Mocks Server, it can be one of [`json`](usage/variants/json.md), [`middleware`](usage/variants/middleware.md) or [`proxy`](usage/variants/proxy.md).
 * __`options`__ _(Object)_: Options for the Variant Handler. So, depending of the value of the `type` property, the `options` property may have a different format.
 

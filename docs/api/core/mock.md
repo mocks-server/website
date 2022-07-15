@@ -26,11 +26,15 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.mock` object provides methods related to the API mock served, so it contains methods related to [`routes`](usage/routes.md), [`variants`](usage/variants.md) and [`collections`](usage/collections.md).
 
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
+
 ## API
 
 ### onChange()
 
-__`core.mock.onChange(callback)`__: Add a callback to be executed when anything related to the API mock changes. So, it is triggered whenever collections or routes change, and also whenever mock settings change, such as `mock.collections.selected` or `mock.delay`. It returns a function for removing the added callback.
+__`core.mock.onChange(callback)`__: Add a callback to be executed when anything related to the API mock changes. So, it is triggered whenever collections or routes change, and also whenever mock settings change, such as `mock.collections.selected` or `mock.routes.delay`. It returns a function for removing the added callback.
 * `callback()` (Function): Function to be executed on change collections.
 
 ```mdx-code-block

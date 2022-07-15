@@ -26,6 +26,10 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.logger` object provides methods for printing and storing logs. It allows to create namespaces, so each namespaced logger provides information about its label. Each namespace log level can be set separately and each one contains also a separated logs store.
 
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
+
 ## API
 
 :::caution

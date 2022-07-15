@@ -28,6 +28,10 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.variantHandlers` object provides methods related to [Variant Handlers](variant-handlers/intro.md)
 
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
+
 ## API
 
 ### register()

@@ -67,7 +67,9 @@ cy.mocksConfig({
     watch: false,
   },
   mock: {
-    delay: 0,
+    routes: {
+      delay: 0,
+    },
     collections: {
       selected: "get-users-error"
     },
