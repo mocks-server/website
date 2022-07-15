@@ -47,6 +47,7 @@ The main breaking changes in v4.x will be:
 * __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.addRoutesHandler`__: The `addRoutesHandler` method will be removed and using it from v3.6 produces an alert. `core.variantHandlers.register` must be used instead. [Read the variantHandlers API docs](api/core/variant-handlers.md) for further info.
+* __`core.mocks.restoreRoutesVariants`__: The `mocks.restoreRoutesVariants` method will be removed and using it from v3.6 produces an alert. `core.mock.restoreRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
 
 ## Options
 

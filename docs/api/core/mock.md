@@ -88,14 +88,14 @@ Note that, if you want your routes and collections to replace other defined prev
 </ExampleDetails>
 ```
 
-### useVariant()
+### useRouteVariant()
 
-__`core.mock.useVariant(variantId)`__: Define a [route variant](usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes are reloaded.
-* `variantId` _(String)_: Route variant id, with the format `"[routeId]:[variantId]"`.
+__`core.mock.useRouteVariant(routeVariantId)`__: Define a [route variant](usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes are reloaded.
+* `routeVariantId` _(String)_: Route and variant id, with the format `"[routeId]:[variantId]"`.
 
-### restoreVariants()
+### restoreRouteVariants()
 
-__`core.mock.restoreVariants()`__: Restore current collection route variants. It removes all variants defined with the `useVariant` method.
+__`core.mock.restoreRouteVariants()`__: Restore current collection route variants. It removes all variants defined with the `useRouteVariant` method.
 
 ## Routes API
 
