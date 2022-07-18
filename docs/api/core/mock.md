@@ -131,10 +131,10 @@ __`core.mock.collections.select(collectionId)`__: Changes the current collection
 
 __`core.mock.collections.selected`__: Getter returning a `collection` instance correspondent to the currently selected collection.
 
-### ids
-
-__`core.mock.collections.ids`__: Getter returning an array with all collection ids.
-
 ### plain
 
 __`core.mock.collections.plain`__: Returns an array with current collections in plain format.
+
+### ids
+
+__`core.mock.collections.ids`__: Getter returning an array with all collections ids.
