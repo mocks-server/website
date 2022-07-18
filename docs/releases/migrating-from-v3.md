@@ -51,8 +51,10 @@ The main breaking changes in v4.x will be:
 * __`core.loadMocks`__: The `loadMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
 * __`core.loadRoutes`__: The `loadRoutes` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
 * __`core.mocks.restoreRoutesVariants`__: The `mocks.restoreRoutesVariants` method will be removed and using it from v3.6 produces an alert. `core.mock.restoreRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.customRoutesVariants`__: The `mocks.customRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.customRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
 * __`core.mocks.plainRoutes`__: The `mocks.plainRoutes` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plain` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
 * __`core.mocks.plainRoutesVariants`__: The `mocks.plainRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plainVariants` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.current`__: The `mocks.current` getter and setter will be removed and using them from v3.6 produces alerts. `core.mock.collections.selected` getter and `core.mocks.collections.select` method must be used instead. The setter[Read the mock API docs](api/core/mock.md) for further info.
 
 ## Options
 
