@@ -37,7 +37,7 @@ Use only the API methods described in this docs. Use other methods under your ow
 ### register()
 
 __`core.variantHandlers.register(variantHandlers)`__: Register [variant handlers](variant-handlers/intro.md).
-* `VariantHandler`: `<Array of Variant Handler classes>` Custom variant handlers. Read the [creating Variant Handlers chapter](variant-handlers/development.md) for further info.
+* `variantHandlers`: `<Array of Variant Handler classes>` Custom variant handlers. Read the [creating Variant Handlers chapter](variant-handlers/development.md) for further info.
 
 ```mdx-code-block
 <ExampleDetails>

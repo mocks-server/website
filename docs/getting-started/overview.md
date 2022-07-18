@@ -29,7 +29,7 @@ import ApiMocksWorkflow from '../assets/api-mock-workflow.jpg';
 
 ## The project
 
-Node.js mock server running live, interactive mocks in place of real APIs. __It makes able to define many different responses for a same route__, so you can change the whole mocked API behavior by simply changing the response of one or many routes while the server is running.
+Node.js mock server running live, interactive mocks in place of real APIs. __It makes able to define many different responses for a same route__, so, you can change the whole mocked API behavior by simply changing the response of one or many routes while the server is running.
 
 ## Why a mock server?
 
