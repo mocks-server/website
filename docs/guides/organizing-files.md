@@ -84,7 +84,7 @@ project-root/
 │   │   └── users.js
 │   ├── routes/
 │   │   └── users.js
-│   └── mocks.json
+│   └── collections.json
 └── mocks.config.js
 ```
 

@@ -1,7 +1,7 @@
 ---
 id: core
-title: Mocks Server core API
-description: Mocks Server core API
+title: JavaScript API
+description: Mocks Server JavaScript API
 keywords:
   - mocks server
   - programmatic
@@ -69,7 +69,7 @@ core.init({
 });
 ```
 
-## Children objects
+## Children objects APIs
 
 ```mdx-code-block
 <DocCardList items={useCurrentSidebarCategory().items}/>

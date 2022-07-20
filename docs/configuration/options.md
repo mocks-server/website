@@ -133,7 +133,7 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`plugins.register`__: _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](plugins/intro.md).
 * __`server.cors.enabled`__ _(Boolean)_: Built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. Default is `true`.  Use `false` to disable it.
 * __`server.cors.options`__ _(Object)_: Options for the built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware. By default, it sets the `preflightContinue` property as `false`, which means that Mocks Server will respond to all `OPTIONS` requests with a 204 status and correspondent CORS headers. If you want to [handle OPTIONS requests by yourself](guides/using-the-options-method.md), you should set that property to `true`.
-* __`server.host`__ _(String)_: Host for the server. Default is `0.0.0.0` (Listen to any local host).
+* __`server.host`__ _(String)_: Host for the server. Default is `0.0.0.0` (Reachable to all IPv4 addresses on the local machine).
 * __`server.jsonBodyParser.enabled`__ _(Boolean)_: If `false`, it disables the [`json` `body-parser` built-in Express middleware](https://github.com/expressjs/body-parser). Default is `true`.
 * __`server.jsonBodyParser.options`__ _(Object)_: Options for the [`json` `body-parser` built-in Express middleware](https://github.com/expressjs/body-parser).
 * __`server.port`__ _(Number)_: Port number for Mocks Server to be listening at. Default is `3100`.
@@ -147,7 +147,8 @@ Each plugin can add its own options when it is installed. These options can also
 
 * __`plugins.inquirerCli.enabled`__ _(Boolean)_: Start interactive CLI plugin or not. Default is `true`.
 * __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines whether the inquirer CLI uses emojis or not. Default is `true`.
-* __`plugins.adminApi.path`__ _(String)_: Path for the administration REST API. Default is `/admin`. You should change it only in case there is any conflict with the routes of the API that you are mocking.
+* __`plugins.adminApi.port`__ _(Number)_: Port for the administration REST API. Default is `3110`.
+* __`plugins.adminApi.host`__ _(String)_: Host for the administration REST API. Default is `0.0.0.0` (Reachable to all IPv4 addresses on the local machine).
 
 :::info
 These extra options are added by the [@mocks-server/plugin-admin-api](plugins/directory.md) and the [@mocks-server/plugin-inquirer-cli](plugins/directory.md) plugins, which are both included in the Mocks Server main distribution.
