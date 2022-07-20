@@ -97,7 +97,7 @@ __`core.mock.useRouteVariant(routeVariantId)`__: Define a [route variant](usage/
 
 __`core.mock.restoreRouteVariants()`__: Restore current collection route variants. It removes all variants defined with the `useRouteVariant` method.
 
-### plainCustomRouteVariants
+### customRouteVariants
 
 __`core.mock.customRouteVariants`__: Getter returning an array of current custom route variants ids defined with the `useRouteVariant` method.
 
