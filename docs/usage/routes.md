@@ -124,7 +124,7 @@ Routes must be defined as objects containing:
 * __`id`__ _(String)_: Used as a reference for grouping routes into different [collections](usage/collections.md), etc.
 * __`url`__ _(String|Regexp)_: Path of the route. [Read Routing for further info](#routing).
 * __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS`. Read [method](#method) and [multiple methods](#multiple-methods) for further info.
-* __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `delay` global setting. It can be overridden by the `delay` defined in a variant.
+* __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `mock.routes.delay` global setting. It can be overridden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: Array of variants. Each variant usually defines a different response to be sent when the route is requested.
 
 :::info

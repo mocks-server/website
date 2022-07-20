@@ -26,6 +26,10 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.server` object provides methods allowing to control the internal HTTP server.
 
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
+
 ## API
 
 ### restart()

@@ -109,6 +109,169 @@ module.exports = [
 </Tabs>
 ```
 
+## Changing the current collection
+
+You can use the configuration or any of the available APIs or integration tools to change the current collection while the server is running:
+
+```mdx-code-block
+<Tabs>
+<TabItem value="Configuration">
+```
+
+```js
+module.exports = {
+  mock: {
+    collections: {
+      selected: "collection-b",
+    },
+  },
+};
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="NodeJS">
+```
+
+```js
+const Core = require("@mocks-server/main");
+
+const core = new Core();
+
+core.start().then(() => {
+  // highlight-next-line
+  core.mock.collections.select("collection-b");
+});
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Interactive CLI">
+```
+
+![Interactive CLI](../assets/inquirer-cli.gif)
+
+:::note
+Select "Select collection" -> press "Enter" -> Select the collection you want for the server to use -> press "Enter".
+:::
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Cypress">
+```
+
+```js
+describe("books page", () => {
+  describe("when there are two books", () => {
+    before(() => {
+      // highlight-next-line
+      cy.mocksSelectCollection("collection-b"); // Change collection to "collection-b"
+      cy.visit("/");
+    });
+
+    it("should display two users", () => {
+      cy.get("#users li").should("have.length", 2);
+    });
+  });
+});
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="REST API">
+```
+
+```bash
+curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+## Defining custom route variants
+
+Mocks Server provides a feature to change the variant of routes defined in the current collection while the server is running without the need to create another collection nor modify any code.
+
+For example, if the current collection defines that for the `route-A` it uses the `variant-B` (`"routes": ["route-A:variant-B"]`), you can change it temporarily to return the `variant-C` using any of the available APIs or integration tools. When doing so, the current collection will be modified in memory, and it will be restored whenever another collection is selected or routes or collections are reloaded.
+
+:::info
+This is very useful when you need to change the response of only one route temporarily, because you don't need to create another collection or to modify an existent one.
+:::
+
+```mdx-code-block
+<Tabs>
+<TabItem value="NodeJS">
+```
+
+```js
+const Core = require("@mocks-server/main");
+
+const core = new Core();
+
+core.start().then(() => {
+  core.mock.collections.select("collection-b");
+  // highlight-next-line
+  core.mock.collection.useRouteVariant("route-A:variant-C")
+});
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Cypress">
+```
+
+```js
+describe("books page", () => {
+  describe("when there are two books", () => {
+    before(() => {
+      // highlight-next-line
+      cy.mocksUseRouteVariant("get-books:two");
+      cy.visit("/");
+    });
+
+    after(() => {
+      // highlight-next-line
+      cy.mocksRestoreRoutesVariants();
+    });
+
+    it("should display two users", () => {
+      cy.get("#users li").should("have.length", 2);
+    });
+  });
+});
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="REST API">
+```
+
+```bash
+curl -X POST -d '{"id": "get-user:2"}' -H 'Content-Type: application/json' http://localhost:3110/api/mock/custom-route-variants
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Interactive CLI">
+```
+
+![Interactive CLI](../assets/inquirer-cli.gif)
+
+:::note
+Select "Use route variant" -> press "Enter" -> Select the route variant you want for the collection to use -> press "Enter".
+:::
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::caution
+Custom variants for the current collections are lost whenever another collection is selected or a change is made in files. If you need to set that scenario frequently, then you should consider creating a collection instead.
+:::
+
 ## Extending collections
 
 Collections can be created extending another one. This means that __you can get all of the routes defined in one collection, and create another collection changing only the variants of some of its routes__.
@@ -159,88 +322,4 @@ The name of your "base" collection could be any other one, such as "main", "defa
 
 ### Limit the amount of collections
 
-Sometimes you'll need to change the response of only one specific route. Instead of creating a new collection for that, you can change the current variant of one or many routes without storing that state as a collection. Instead of that, the current collection will be modified in memory, and it will be restored whenever another collection is selected or routes or collections are reloaded.
-
-So, don't create a collection if you only need to change the response of one or many routes in a particular moment. You can define custom route variants for the current collection using any of the APIs or integration tools, such as the [JavaScript API](integrations/javascript.md), the [interactive CLI](integrations/command-line.md), the [administration REST API](integrations/rest-api.md) or the [Cypress commands](integrations/cypress.md).
-
-:::caution
-Custom variants for the current collections are lost whenever another collection is selected or a change is made in files. If you need to set that scenario frequently, then you should consider creating a collection instead.
-:::
-
-## Changing the current collection
-
-You can use the configuration or any of the available APIs or integration tools to change the current collection while the server is running:
-
-```mdx-code-block
-<Tabs>
-<TabItem value="Configuration">
-```
-
-```js
-module.exports = {
-  mock: {
-    collections: {
-      selected: "collection-b",
-    },
-  },
-};
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="NodeJS">
-```
-
-```js
-const Core = require("@mocks-server/main");
-
-const core = new Core();
-
-core.start().then(() => {
-  // highlight-next-line
-  core.mock.collections.select("collection-b");
-});
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="Interactive CLI">
-```
-
-![Interactive CLI](../assets/inquirer-cli.gif)
-
-```mdx-code-block
-</TabItem>
-<TabItem value="Cypress">
-```
-
-```js
-describe("books page", () => {
-  describe("when there are two books", () => {
-    before(() => {
-      // highlight-next-line
-      cy.mocksSelectCollection("collection-b"); // Change collection to "collection-b"
-      cy.visit("/");
-    });
-
-    it("should display two users", () => {
-      cy.get("#users li").should("have.length", 2);
-    });
-  });
-});
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="REST API">
-```
-
-```bash
-curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3200/admin/settings
-```
-
-```mdx-code-block
-</TabItem>
-</Tabs>
-```
-
+Sometimes you'll need to change the response of only one specific route. Instead of creating a new collection for that, you can set [custom route variants](#defining-custom-route-variants) and the current collection will be modified in memory.
