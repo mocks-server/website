@@ -67,7 +67,9 @@ cy.mocksConfig({
     watch: false,
   },
   mock: {
-    delay: 0,
+    routes: {
+      delay: 0,
+    },
     collections: {
       selected: "get-users-error"
     },
@@ -167,7 +169,7 @@ Now, when running `npm run test`, Mocks Server will be started without the inter
 
 By default, the API client is configured to request to `http://localhost:3100/admin`, based in the [default Mocks Server options](configuration/options.md)
 
-You can change both the base url of Mocks Server, and the api path of the [administration API](integrations/rest-api.md) using the `cy.mocksConfigClient` command mentioned above, or the plugin environment variables:
+You can change both the base url of Mocks Server, and the port of the [administration API](integrations/rest-api.md) using the `cy.mocksConfigClient` command mentioned above, or the plugin environment variables:
 
 * __`MOCKS_SERVER_BASE_URL`__: Modifies the base url of Mocks Server. Default is `http://localhost:3100`.
 * __`MOCKS_SERVER_ADMIN_API_PATH`__: Modifies the path of the Mocks Server administration API. Default is `/admin`.

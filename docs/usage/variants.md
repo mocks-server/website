@@ -28,7 +28,10 @@ import RoutesVariants from '../assets/routes-variants.png';
 
 * Each route may contain many different variants. Each variant usually defines the response to be sent when the route is requested.
 * Route variants can be defined in many ways, from [plain objects](usage/variants/json.md) to [Express middlewares](usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxy the request to another host](usage/variants/proxy.md).
-* The user can decide which variant is used on each particular moment, and he can also create [collections](usage/collections.md) defining the variant used by each different route.
+
+:::info
+The user can decide which variant is used on each particular moment, and he can also create [collections](usage/collections.md) defining the variant used by each different route. So, creating different collections you can store different API states and reuse them for running tests, etc.
+:::
 
 ```mdx-code-block
 <DocsImage src={RoutesVariants} alt="Routes and variants" />
@@ -39,7 +42,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 Variants must be defined in the [`variants` property of the routes](usage/routes.md). Each variant must be defined as an object containing:
 
 * __`id`__ _(String)_: Id of the variant. It is used in combination with the route id to define which variants has to use an specific collection, for example.
-* __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `delay` global setting. If it is set to `null`, the variant will use the `delay` global setting even when the route has a delay defined.
+* __`delay`__ _(Number|null)_: Milliseconds of delay for this variant. It would override the route `delay` if it was defined and the `mock.routes.delay` global setting. If it is set to `null`, the variant will use the `mock.routes.delay` global setting even when the route has a delay defined.
 * __`type`__ _(String)_: Id of the Variant Handler that will handle the request. In the "main" distribution of Mocks Server, it can be one of [`json`](usage/variants/json.md), [`middleware`](usage/variants/middleware.md) or [`proxy`](usage/variants/proxy.md).
 * __`options`__ _(Object)_: Options for the Variant Handler. So, depending of the value of the `type` property, the `options` property may have a different format.
 

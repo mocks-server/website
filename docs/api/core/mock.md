@@ -26,11 +26,15 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.mock` object provides methods related to the API mock served, so it contains methods related to [`routes`](usage/routes.md), [`variants`](usage/variants.md) and [`collections`](usage/collections.md).
 
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
+
 ## API
 
 ### onChange()
 
-__`core.mock.onChange(callback)`__: Add a callback to be executed when anything related to the API mock changes. So, it is triggered whenever collections or routes change, and also whenever mock settings change, such as `mock.collections.selected` or `mock.delay`. It returns a function for removing the added callback.
+__`core.mock.onChange(callback)`__: Add a callback to be executed when anything related to the API mock changes. So, it is triggered whenever collections or routes change, and also whenever mock settings change, such as `mock.collections.selected` or `mock.routes.delay`. It returns a function for removing the added callback.
 * `callback()` (Function): Function to be executed on change collections.
 
 ```mdx-code-block
@@ -84,14 +88,18 @@ Note that, if you want your routes and collections to replace other defined prev
 </ExampleDetails>
 ```
 
-### useVariant()
+### useRouteVariant()
 
-__`core.mock.useVariant(variantId)`__: Define a [route variant](usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes are reloaded.
-* `variantId` _(String)_: Route variant id, with the format `"[routeId]:[variantId]"`.
+__`core.mock.useRouteVariant(routeVariantId)`__: Define a [route variant](usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes or collections are reloaded.
+* `routeVariantId` _(String)_: Route and variant id, with the format `"[routeId]:[variantId]"`.
 
-### restoreVariants()
+### restoreRouteVariants()
 
-__`core.mock.restoreVariants()`__: Restore current collection route variants. It removes all variants defined with the `useVariant` method.
+__`core.mock.restoreRouteVariants()`__: Restore current collection route variants. It removes all variants defined with the `useRouteVariant` method.
+
+### customRouteVariants
+
+__`core.mock.customRouteVariants`__: Getter returning an array of current custom route variants ids defined with the `useRouteVariant` method.
 
 ## Routes API
 
@@ -123,10 +131,10 @@ __`core.mock.collections.select(collectionId)`__: Changes the current collection
 
 __`core.mock.collections.selected`__: Getter returning a `collection` instance correspondent to the currently selected collection.
 
-### ids
-
-__`core.mock.collections.ids`__: Getter returning an array with all collection ids.
-
 ### plain
 
 __`core.mock.collections.plain`__: Returns an array with current collections in plain format.
+
+### ids
+
+__`core.mock.collections.ids`__: Getter returning an array with all collections ids.

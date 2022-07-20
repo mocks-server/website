@@ -65,5 +65,5 @@ server.start();
 You can also use the [Javascript API](api/core/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
 
 ```js
-core.variantHandlers.register(FooVariantHandler);
+core.variantHandlers.register([FooVariantHandler]);
 ```
