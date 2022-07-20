@@ -1,7 +1,7 @@
 ---
 id: core
-title: Mocks Server core API
-description: Mocks Server core API
+title: JavaScript API
+description: Mocks Server JavaScript API
 keywords:
   - mocks server
   - programmatic
@@ -31,6 +31,10 @@ You can also create and start your own Mocks Server core instance programmatical
 :::
 
 ## API
+
+:::caution
+Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
+:::
 
 ### init()
 
@@ -65,7 +69,7 @@ core.init({
 });
 ```
 
-## Children objects
+## Children objects APIs
 
 ```mdx-code-block
 <DocCardList items={useCurrentSidebarCategory().items}/>

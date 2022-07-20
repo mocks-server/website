@@ -164,7 +164,7 @@ module.exports = [
   {
     id: "get-user",
     url: "/api/users/:id",
-    method: "GET"],
+    method: "GET",
     variants: [
       {
         id: "add-prefix",

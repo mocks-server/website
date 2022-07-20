@@ -106,7 +106,7 @@ Note that the server is sending the user with id 1 even when we requested the us
 
 But, what about if you need another responses in a particular moment? For example, you want 3 users instead of 2 in `api/users`, and the user 2 to be returned by `api/users/:id`. Well, then you're lucky, because the scaffold already contains a collection sending that specific responses 😄. Let's change the current collection to `all-users`:
 
-* Select `Current collection` -> press `Return` -> select `all-users` -> press `Return`.
+* Select `Select collection` -> press `Return` -> select `all-users` -> press `Return`.
 
 Now, the responses of both routes have changed:
 
@@ -115,9 +115,9 @@ Now, the responses of both routes have changed:
 
 ### Changing a route variant
 
-But, what about if you want the API to return all users in `api/users`, but still return the user 2 in `api/users/:id`? Should you create another collection just to change the response of that single url? The response is _no_. You can also change the response of a single url changing a route variant:
+But, what about if you want the API to return all users in `api/users`, but still return the user 2 in `api/users/:id`? Should you create another collection just to change the response of that single url? The response is _no_. You can also change the response of a single url [changing a route variant](../usage/collections.md#defining-custom-route-variants):
 
-* Select `Change route variant` -> press `Return` -> select `get-user:success` -> press `Return`.
+* Select `Use route variant` -> press `Return` -> select `get-user:success` -> press `Return`.
 
 Now, the responses of the routes are:
 
@@ -153,7 +153,7 @@ We could use the `get-user:real` route variant and request for  `api/users/2`, b
 
 The new variant is added once the file is saved. So, let's change again the current collection route variants:
 
-* Select `Change route variant` -> press `Return` -> select `get-user:id-2` -> press `Return`.
+* Select `Use route variant` -> press `Return` -> select `get-user:id-2` -> press `Return`.
 
 * [http://localhost:3100/api/users/2](http://localhost:3100/api/users/2) -> `{"id":2,"name":"Jane Doe"}`
 
@@ -179,7 +179,7 @@ This means that, for creating our collection `all-users-user-2` we are extending
 
 Now, let's select our new collection:
 
-* Select `Change collection` -> press `Return` -> select `all-users-user-2` -> press `Return`.
+* Select `Select collection` -> press `Return` -> select `all-users-user-2` -> press `Return`.
 
 * [http://localhost:3100/api/users/](http://localhost:3100/api/users/) -> `[{"id":1,"name":"John Doe"},{"id":2,"name":"Jane Doe"},{"id":3,"name":"Tommy"},{"id":4,"name":"Timmy"}]`
 * [http://localhost:3100/api/users/2](http://localhost:3100/api/users/2) -> `{"id":2,"name":"Jane Doe"}`

@@ -22,6 +22,7 @@ cleanStore
 createLoaders
 customizable
 customVariants
+customRouteVariants
 dependant
 descendent
 Docusaurus
@@ -43,6 +44,7 @@ init
 inquirerCli
 instantiation
 integrations
+IPv
 javascript
 jQuery
 json
@@ -81,6 +83,7 @@ README
 redux
 removeRouter
 restoreVariants
+restoreRouteVariants
 reusability
 setLevel
 stringified
@@ -89,11 +92,13 @@ subfolders
 submenu
 theirself
 TypeScript
+UI
 url
 urls
 uri
 uris
 useVariant
+useRouteVariant
 variantHandlers
 www
 

@@ -23,17 +23,28 @@ Even when v4 release is still not published, we are deprecating some things in v
 
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
+:::tip
+If you are already using v3.x, then __update to v3.6, which is fully compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then you'll be able to update to v4.
+:::
+
 
 ## Changes summary
 
 The main breaking changes in v4.x will be:
 
+* __Main concepts will be renamed__. Read [main concepts](#main-concepts) below for further info.
 * __Some core API methods will be removed__. Read [core API](#core-api) below for further info.
+* __Some options will be changed__. Read [options](#options) below for further info.
 * __Legacy alerts object will be removed__. Read [alerts](#alerts) for further info.
 * __Arguments received by the plugins__. Read [plugins](#plugins) below for further info.
 * __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.
 * __Default route variants handler will be removed__. Read [route variants handlers](#route-variants-handlers) below for further info.
 * __The API for developing variants handlers will change__. Read [route variants handlers API](#route-variants-handlers) below for further info.
+
+## Main concepts
+
+* __`mocks`__ - The "mocks" concept has been renamed to "collections". All docs, API, logs and file names now make reference to "collections" instead of "mocks". The main change needed to be prepared for the v4 release is to rename the `mocks/mocks.[js|json]` file into `mocks/collections.[js|json]`.
+  * The `routesVariants` property in mock definitions has been renamed into `routes` (and `routeVariants` will be also supported as an alias).
 
 ## Core API
 
@@ -41,6 +52,26 @@ The main breaking changes in v4.x will be:
 * __`core.restartServer`__: The `restartServer` method will be removed and using it from v3.6 produces an alert. You must use `core.server.restart` instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
 * __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
+* __`core.addRoutesHandler`__: The `addRoutesHandler` method will be removed and using it from v3.6 produces an alert. `core.variantHandlers.register` must be used instead. [Read the variantHandlers API docs](api/core/variant-handlers.md) for further info.
+* __`core.onChangeMocks`__: The `onChangeMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.onChange` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.loadMocks`__: The `loadMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.loadRoutes`__: The `loadRoutes` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.restoreRoutesVariants`__: The `mocks.restoreRoutesVariants` method will be removed and using it from v3.6 produces an alert. `core.mock.restoreRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.customRoutesVariants`__: The `mocks.customRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.customRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.plainRoutes`__: The `mocks.plainRoutes` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plain` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.plainRoutesVariants`__: The `mocks.plainRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plainVariants` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.current`__: The `mocks.current` getter and setter will be removed and using it from v3.6 produces an alert. `core.mock.collections.selected` getter and `core.mocks.collections.select` method must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.ids`__: The `mocks.ids` getter will be removed and using them from v3.6 produces alerts. `core.mock.collections.ids` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.mocks.plainMocks`__: The `mocks.plainMocks` getter will be removed and using it from v3.6 produces an alert. `core.mock.collections.plain` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](api/core/mock.md) for further info.
+* __`core.logs`__: The `core.logs` getter will be removed and using them from v3.6 produces an alert. `core.logger.globalStore` getter must be used instead. [Read the logger API docs](api/core/logger.md) for further info.
+* __`core.onChangeAlerts`__: The `core.onChangeAlerts` method will be removed and using them from v3.6 produces an alert. `core.alerts.root.onChange` method must be used instead. [Read the alerts API docs](api/core/alerts.md) for further info.
+* __`core.onChangeLogs`__: The `core.onChangeLogs` method will be removed and using them from v3.6 produces an alert. `core.logger.onChangeGlobalStore` method must be used instead. [Read the logger API docs](api/core/logger.md) for further info.
+
+## Options
+
+* __`mocks.selected`__: This option will be removed. Use `mock.collections.selected` instead.
+* __`mocks.delay`__: This option will be removed. Use `mock.routes.delay` instead.
+* __`routesHandlers`__: This option will be removed. Use `variantHandlers.register` instead.
 
 ## Alerts
 
@@ -86,7 +117,7 @@ __The code can be migrated from v3.5, which will be compatible both with the new
 
 ### Migrating variants defined as plain response object
 
-Variants using the `default` handler containing a plain response and status can be migrated simply adding a `handler: "json"` property. A variant defined in version lower than 3.5 as:
+Variants using the `default` handler containing a plain response and status can be migrated simply adding a `type: "json"` property, and renaming the `response` property into `options`. So, a variant defined in version lower than 3.5 as:
 
 ```js
 module.exports = [
@@ -107,7 +138,7 @@ module.exports = [
 ]
 ```
 
-From v3.5 it has to be defined as:
+From v3.6 it has to be defined as:
 
 ```js
 module.exports = [
@@ -118,8 +149,8 @@ module.exports = [
     variants: [
       {
         id: "success",
-        variant: "json", // Add variant property with "json" value
-        response: {
+        type: "json", // Add variant type property with "json" value
+        options: {
           status: 200,
           body: USERS,
         },
@@ -131,7 +162,7 @@ module.exports = [
 
 ### Migrating variants defined as middlewares
 
-Variants defining the `response` property as a function (middlewares) in version lower than v3.5 must to be migrated adding a `handler: "middleware"`. The `response` property has to be converted into an object containing a `middleware` property, which must contain the function. So, A variant defined in version lower than 3.5 as:
+Variants defining the `response` property as a function (middlewares) in version lower than v3.5 must to be migrated adding a `type: "middleware"`. The `response` property has to be converted into an `options` object containing a `middleware` property, which must contain the function. So, A variant defined in version lower than 3.5 as:
 
 ```js
 module.exports = [
@@ -149,7 +180,7 @@ module.exports = [
 ]
 ```
 
-From v3.5 it has to be defined as:
+From v3.6 it has to be defined as:
 
 ```js
 module.exports = [
@@ -160,8 +191,8 @@ module.exports = [
     variants: [
       {
         id: "real",
-        handler: "middleware", // Add the handler property with "middleware" value
-        response: { // Move the function to a "middleware" property under "response"
+        type: "middleware", // Add the type property with "middleware" value
+        options: { // Move the function to a "middleware" property under "options"
           middleware: (req, res, next) => next(),
         },
       },
@@ -172,7 +203,7 @@ module.exports = [
 
 ### Migrating proxy variants
 
-In v3.5 a new handler was added: `proxy-v4`. This handler is compatible with the coming Mocks Server v4 version, while the `proxy` one can still be used. So, in order to adapt the code to the v4 version, it is recommended to migrate all of the variants using the `proxy` handler in order to use the new `proxy-v4` one. In the `proxy-v4` handler, all of the properties for the variant handler have to be defined under the `response` property of the variant, instead of defining them in the root level.
+In v3.5 a new handler was added: `proxy-v4`. This handler is compatible with the coming Mocks Server v4 version, while the `proxy` one can still be used. So, in order to adapt the code to the v4 version, it is recommended to migrate all of the variants using the `proxy` handler in order to use the new `proxy-v4` one. In the `proxy-v4` handler, all of the properties for the variant handler have to be defined under the `options` property of the variant, instead of defining them in the root level.
 
 So, a `proxy` variant defined in version lower than 3.5 as:
 
@@ -200,7 +231,7 @@ module.exports = [
 ];
 ```
 
-From v3.5 it has to be defined as:
+From v3.6 it has to be defined as:
 
 ```js
 module.exports = [
@@ -211,8 +242,8 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        handler: "proxy-v4", // Change to "proxy-v4"
-        response: { // Move host and options properties under the response property
+        type: "proxy-v4", // Change to "proxy-v4"
+        options: { // Move host and options properties under the variant options property
           host: "http://127.0.0.1:8080",
           options: {
             userResDecorator: (function(proxyRes, proxyResData, userReq, userRes) {
@@ -230,12 +261,12 @@ module.exports = [
 
 ## Route variants handlers API
 
-In versions lower than v3.4, the properties of the route variants differed depending on the used handler, and this made difficult to validate them and could produce conflicts between variant properties and specific handler properties. __From v3.5, a new way of defining variant handlers was introduced__, and it will be the only way from v4.x. In the new format, the `middleware` method of the `Handler` classes will receive as first parameter only the properties defined in the `response` property of the route variant instead of all of the route variant properties. This ensures that the `Handlers` can only use the properties that they should use.
+In versions lower than v3.4, the properties of the route variants differed depending on the used handler, and this made difficult to validate them and could produce conflicts between variant properties and specific handler properties. __From v3.5, a new way of defining variant handlers was introduced__, and it will be the only way from v4.x. In the new format, the `middleware` method of the `Handler` classes will receive as first parameter only the properties defined in the `options` property of the route variant instead of all of the route variant properties. This ensures that the `Handlers` can only use the properties that they should use.
 
 From v3.5, you can use the new API adding a static `version` property returning `4` to the class, so Mocks Server can know which parameters it should pass to the class. Note that doing this will imply next things:
 
-* The `middleware` method will receive as first argument only the properties defined in the `response` property of the variant instead of all the variant properties.
-* The `validationSchema` property will be scoped only to the `response` properties instead of all of the variant properties.
+* The `middleware` method will receive as first argument only the properties defined in the `options` property of the variant instead of all the variant properties.
+* The `validationSchema` property will be scoped only to the `options` properties instead of all of the variant properties.
 * The `plainResponsePreview` property must be renamed into `preview`.
 
 So, a route handler defined in v3.4 as:
@@ -297,7 +328,7 @@ class CustomRoutesHandler {
 module.exports = CustomRoutesHandler;
 ```
 
-From v3.5 should be changed into:
+From v3.5 it should be changed into:
 
 ```js
 // ./CustomRoutesHandler.js
@@ -312,7 +343,7 @@ class CustomRoutesHandler {
     return "4";
   }
 
-  // Validate only the content of the variant `response` property
+  // Validate only the content of the variant `options` property
   static get validationSchema() {
     return {
       type: "object",
@@ -329,10 +360,10 @@ class CustomRoutesHandler {
     };
   }
 
-  // Receives the response property in the constructor instead of the whole variant
-  constructor(response, core) {
-    this._code = response.code;
-    this._message = response.message;
+  // Receives the options property in the constructor instead of the whole variant
+  constructor(options, core) {
+    this._code = options.code;
+    this._message = options.message;
     this._core = core;
   }
 
