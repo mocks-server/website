@@ -165,7 +165,7 @@ describe("books page", () => {
   describe("when there are two books", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksSelectCollection("collection-b"); // Change collection to "collection-b"
+      cy.mocksSetCollection("collection-b"); // Change collection to "collection-b"
       cy.visit("/");
     });
 
@@ -233,7 +233,7 @@ describe("books page", () => {
 
     after(() => {
       // highlight-next-line
-      cy.mocksRestoreRoutesVariants();
+      cy.mocksRestoreRouteVariants();
     });
 
     it("should display two users", () => {
