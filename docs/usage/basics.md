@@ -100,7 +100,7 @@ describe("users page", () => {
   describe("when there are two users in the API", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksSelectCollection("two-users"); // Use "two-users" routes and variants
+      cy.mocksSetCollection("two-users"); // Use "two-users" routes and variants
       cy.visit("/");
     });
 
@@ -118,7 +118,7 @@ describe("users page", () => {
 
     after(() => {
       // highlight-next-line
-      cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
+      cy.mocksRestoreRouteVariants(); // Restore mock route variants after the test
     });
 
     it("should display error message", () => {

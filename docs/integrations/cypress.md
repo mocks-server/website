@@ -47,10 +47,10 @@ Use specific [route variant](../usage/routes.md):
 cy.mocksUseRouteVariant("get-users:error");
 ```
 
-Restore [routes variants](../usage/routes.md) to those defined in current [collection](../usage/collections.md):
+Restore [route variants](../usage/routes.md) to those defined in current [collection](../usage/collections.md):
 
 ```js
-cy.mocksRestoreRoutesVariants();
+cy.mocksRestoreRouteVariants();
 ```
 
 Set delay time:
@@ -62,7 +62,7 @@ cy.mocksSetDelay(2000);
 Set any other [configuration option](../configuration/options.md):
 
 ```js
-cy.mocksConfig({
+cy.mocksSetConfig({
   files: {
     watch: false,
   },
@@ -81,8 +81,8 @@ Configures the [Mocks Server administration API client](https://github.com/mocks
 
 ```js
 cy.mocksConfigAdminApiClient({
-  path: "/foo",
-  baseUrl: "http://localhost:3300"
+  port: 3110,
+  host: "127.0.0.1"
 });
 ```
 
@@ -111,7 +111,7 @@ describe("books page", () => {
 
     after(() => {
       // highlight-next-line
-      cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
+      cy.mocksRestoreRouteVariants(); // Restore mock route variants after the test
     });
 
     it("should display error message", () => {
@@ -167,10 +167,10 @@ Now, when running `npm run test`, Mocks Server will be started without the inter
 
 ## Configuration
 
-By default, the API client is configured to request to `http://localhost:3100/admin`, based in the [default Mocks Server options](../configuration/options.md)
+By default, the API client is configured to request to `http://localhost:3110/api`, based in the [default Mocks Server options](../configuration/options.md)
 
-You can change both the base url of Mocks Server, and the port of the [administration API](./rest-api.md) using the `cy.mocksConfigClient` command mentioned above, or the plugin environment variables:
+You can change both the host and port of the [administration API](./rest-api.md) using the `cy.mocksConfigAdminApiClient` command mentioned above, or the plugin environment variables:
 
-* __`MOCKS_SERVER_BASE_URL`__: Modifies the base url of Mocks Server. Default is `http://localhost:3100`.
-* __`MOCKS_SERVER_ADMIN_API_PATH`__: Modifies the path of the Mocks Server administration API. Default is `/admin`.
-* __`MOCKS_SERVER_ENABLED`__: Disables requests to Mocks Server, so the commands will not fail even when Mocks Server is not running. This is useful to reuse same tests for running them using a mocked API and a real API, because the commands to change Mocks Server settings will be ignored.
+* __`MOCKS_SERVER_ADMIN_API_PORT`__: Modifies the admin API client port. Default is `3110`.
+* __`MOCKS_SERVER_ADMIN_API_HOST`__: Modifies the admin API client host. Default is `127.0.0.1`.
+* __`MOCKS_SERVER_ENABLED`__: Disables requests to the Mocks Server admin API, so the commands will not fail even when Mocks Server is not running. This is useful to reuse same tests with a mocked API and a real API, because commands to change Mocks Server configuration will be ignored.
