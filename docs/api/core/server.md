@@ -50,7 +50,7 @@ await core.server.restart();
 
 ### addRouter()
 
-__`core.server.addRouter(path, expressRouter)`__: Add a custom [express router](https://expressjs.com/es/guide/routing.html) to the server. Custom routers are added just before the middleware that serves the mock [routes](usage/routes.md), so if a custom router path matches with a route path, the first one will have priority.
+__`core.server.addRouter(path, expressRouter)`__: Add a custom [express router](https://expressjs.com/es/guide/routing.html) to the server. Custom routers are added just before the middleware that serves the mock [routes](../../usage/routes.md), so if a custom router path matches with a route path, the first one will have priority.
 * `path` _(String)_: Api path for the custom router
 * `expressRouter` _(Express Router)_: Instance of an [`Express` router](https://expressjs.com/es/guide/routing.html).
 

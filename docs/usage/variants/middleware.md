@@ -21,7 +21,7 @@ Variants of type `middleware` define an [Express middleware](https://expressjs.c
 
 The `options` property in a variant of type `middleware` must be an object containing next properties:
 
-* __`middleware`__ _(Function)_: [Express middleware](https://expressjs.com/en/guide/using-middleware.html). It also receives an extra parameter containing the whole [Mocks Server JavaScript API](api/core.md) allowing to interact with the server.
+* __`middleware`__ _(Function)_: [Express middleware](https://expressjs.com/en/guide/using-middleware.html). It also receives an extra parameter containing the whole [Mocks Server core instance](api/core.md) allowing to interact with the server.
 
 ```js
 const { allUsers } = require("../fixtures/users");
