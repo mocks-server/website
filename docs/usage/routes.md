@@ -97,7 +97,7 @@ Read the [using Babel guide](../guides/using-babel.md) for further info about ho
 ```
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
 const core = createServer();

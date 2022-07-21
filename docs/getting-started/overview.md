@@ -61,6 +61,15 @@ Read [installation](./installation.md) for further details.
 
 It can be started simply running an NPM script:
 
+```json
+{
+  "scripts": {
+    // highlight-next-line
+    "mocks" : "mocks-server"
+  }
+}
+```
+
 ```sh
 npm run mocks
 ```
@@ -68,7 +77,7 @@ npm run mocks
 Or programmatically using JavaScript:
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
 const server = createServer();
 server.start();

@@ -50,7 +50,7 @@ Read [Routes](./routes.md), [Variants](./variants.md) and [Collections](./collec
 
 __The management of different responses for the same route and the ability to store different collections allows to easily toggle between many predefined API state simulations.__ This is perfect while developing an API client, because all of the responses of the API can be changed at a time using the interactive CLI, or one single response can be changed also without modifying any code. And it is also perfect while running tests, because the different route variants collections can be used to test different scenarios.
 
-Exposing different APIs allowing to control the server while it is running make able to integrate it easily with different tools and ecosystems. So, once the responses are defined, they can be reused in different development stages, such as local development, integration testing, etc.
+Exposing different APIs allowing to control the server while it is running makes able to integrate it easily with different tools and ecosystems. So, once the responses are defined, they can be reused in different development lifecycle stages, such as local development, continuous integration testing, etc.
 
 ```mdx-code-block
 <DocsImage src={WorkflowSchema} alt="Workflow schema" />
@@ -64,18 +64,9 @@ Here you have some examples about how to change the current collection and other
 ```
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const core = createServer({
-  config: {
-    readFile: false,
-  },
-  plugins: {
-    inquirerCli: {
-      enabled: false,
-    },
-  },
-});
+const core = createServer();
 
 core.start().then(() => {
   // highlight-next-line

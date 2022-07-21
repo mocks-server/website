@@ -123,7 +123,8 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`config.readArguments`__ _(Boolean)_: If `false`, it disables the ability of defining options using command line arguments. Default is `true`. This option can be defined only programmatically, using configuration file or environment variables.
 * __`config.readEnvironment`__ _(Boolean)_: If `false`, it disables the ability of defining options using environment variables. Default is `true`. This option can be defined only programmatically.
 * __`config.readFile`__ _(Boolean)_: If `false`, it disables the ability of reading configuration file. Default is `true`. This option can be defined only programmatically, using configuration file or environment variables.
-* __`files.path`__ _(String)_: Path to the folder containing collections and routes to be loaded by the server. Default is `/mocks`
+* __`files.enabled`__ _(String)_: Allows to disable loading routes and collections from files, which may be useful when used programmatically. Default is `true`.
+* __`files.path`__ _(String)_: Path to the folder containing collections and routes to be loaded by the server. Default is `/mocks`.
 * __`files.watch`__ _(Boolean)_: Watch the `/mocks` folder and restart server on changes. Default is `true`.
 * __`files.babelRegister.enabled`__ _(Boolean)_: Enables [Babel compilation](../guides/using-babel.md) for files inside the `/mocks` folder.
 * __`files.babelRegister.options`__ _(Object)_: Options for [`@babel/register`](https://babeljs.io/docs/en/babel-register) when `babelRegister` is enabled. Properties in this object are passed directly to `@babel/register` as options, so refer to [its documentation](https://babeljs.io/docs/en/babel-register) for further info. You can also see some usage examples in the ["using Babel"](../guides/using-babel.md) chapter of this docs.

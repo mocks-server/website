@@ -134,7 +134,7 @@ module.exports = {
 ```
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
 const core = createServer();
 
@@ -206,14 +206,14 @@ This is very useful when you need to change the response of only one route tempo
 ```
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
 const core = createServer();
 
 core.start().then(() => {
   core.mock.collections.select("collection-b");
   // highlight-next-line
-  core.mock.collection.useRouteVariant("route-A:variant-C")
+  core.mock.useRouteVariant("route-A:variant-C")
 });
 ```
 

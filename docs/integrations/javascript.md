@@ -23,7 +23,7 @@ keywords:
 
 The server provides a JavaScript API that enables you to control it and to tap into, modify, or extend its internal behavior. It provides its JavaScript `core` instance to plugins, middlewares and other system elements.
 
-## Ways of obtaining a core instance
+## Using the core instance
 
 Apart from [creating your own `core` instance programmatically](#creating-your-own-instance), you can also use it from other system elements, because it is passed as an argument to them. Some elements to which the core instance is passed are:
 
@@ -37,22 +37,10 @@ Apart from [creating your own `core` instance programmatically](#creating-your-o
 The server can be also instantiated and started programmatically.
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
-const server = createServer({
-  config: {
-    readFile: false,
-  },
-  files: {
-    read: false,
-  },
-  plugins: {
-    inquirerCli: {
-      enabled: false,
-    },
-  },
-});
+const server = createServer();
 
 server.start().then(() => {
   const { loadRoutes, loadCollections } = server.mock.createLoaders();
@@ -89,50 +77,39 @@ const createServer = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
 beforeAll(async () => {
-    const server = createServer({
-      config: {
-        readFile: false,
-      },
-      files: {
-        read: false,
-      },
-      plugins: {
-        inquirerCli: {
-          enabled: false,
-        },
-      },
-    });
+  const server = createServer();
 
-    await server.start();
-    const { loadRoutes, loadCollections } = server.mock.createLoaders();
-    loadRoutes(routes);
-    loadCollections(collections);
+  const { loadRoutes, loadCollections } = server.mock.createLoaders();
+  loadRoutes(routes);
+  loadCollections(collections);
+
+  await server.start();
 });
 
 afterAll(async () => {
-    await server.stop();
+  await server.stop();
 });
 
 describe("users API client", () => {
   it("getUsers method should return 3 users", async () => {
-      // Select the collection returning the expected data
-      server.mock.collections.select("3-users");
+    // Select the collection returning the expected data
+    server.mock.collections.select("3-users");
 
-      // configure the unit under test
-      const usersApiClient = new UsersService('http://localhost:3100/api/users');
+    // configure the unit under test
+    const usersApiClient = new UsersService('http://localhost:3100/api/users');
 
-      // call your unit under test, which invokes the mock
-      const users = await usersApiClient.getUsers();
+    // call your unit under test, which invokes the mock
+    const users = await usersApiClient.getUsers();
 
-      // assert values returned by the mock
-      expect(users.length).toEqual(3);
+    // assert values returned by the mock
+    expect(users.length).toEqual(3);
   });
 });
 ```
 
 ## Creating your own distribution
 
-The main distribution of Mocks Server ([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main)) includes some preinstalled plugins. But you could also create your own distribution with the plugins of your choice or predefined configuration in case you need to reuse those presets in many projects, for example. To achieve it, you should use the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) package, and start it by your own setting the programmatic configuration that you need. Using the "programmatic" configuration still allows the end user to modify it using [other configuration methods](../configuration/how-to-change-settings.md), such as the configuration file, environment variables, etc.
+The main distribution of Mocks Server ([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main)) includes some preinstalled plugins. But you could also create your own distribution with the plugins of your choice or predefined configuration in case you need to reuse those presets in many projects, for example. To achieve it, you should use the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) package, and start it by your own providing the configuration that you need. Using the "programmatic" configuration still allows the end user to modify it using [other configuration methods](../configuration/how-to-change-settings.md), such as the configuration file, environment variables, etc.
 
 ```js
 const Core = require("@mocks-server/core");
