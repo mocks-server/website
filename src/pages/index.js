@@ -36,8 +36,8 @@ const textContents = {
     Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
   featuresExtensible: `
-    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](${docsUrl(
-      "api/core"
+    Use Express middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core JavaScript API](${docsUrl(
+      "api/javascript"
     )}).
   `,
   featuresControllable: `

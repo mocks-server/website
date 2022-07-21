@@ -24,7 +24,7 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 ## Preface
 
-The `core.mock` object provides methods related to the API mock served, so it contains methods related to [`routes`](usage/routes.md), [`variants`](usage/variants.md) and [`collections`](usage/collections.md).
+The `core.mock` object provides methods related to the API mock served, so it contains methods related to [`routes`](../../usage/routes.md), [`variants`](../../usage/variants.md) and [`collections`](../../usage/collections.md).
 
 :::caution
 Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
@@ -63,8 +63,8 @@ __`core.mock.createLoaders()`__: Return methods allowing to load routes and coll
 
 It returns an object containing next methods:
 
-* `loadRoutes(routes)`: `<Array of routes>` Load [`routes`](usage/routes.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added using this method__. Routes loaded by the files loader or other plugins will remain.
-* `loadCollections(collections)`: `<Array of collections>` Load [`collections`](usage/collections.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded collections will be replaced by the new ones, but only those added using this method__. Collections loaded by the files loader or other plugins will remain.
+* `loadRoutes(routes)`: `<Array of routes>` Load [`routes`](../../usage/routes.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added using this method__. Routes loaded by the files loader or other plugins will remain.
+* `loadCollections(collections)`: `<Array of collections>` Load [`collections`](../../usage/collections.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded collections will be replaced by the new ones, but only those added using this method__. Collections loaded by the files loader or other plugins will remain.
 
 ```mdx-code-block
 <ExampleDetails>
@@ -90,7 +90,7 @@ Note that, if you want your routes and collections to replace other defined prev
 
 ### useRouteVariant()
 
-__`core.mock.useRouteVariant(routeVariantId)`__: Define a [route variant](usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes or collections are reloaded.
+__`core.mock.useRouteVariant(routeVariantId)`__: Define a [route variant](../../usage/variants.md) to be used instead of the one defined in the current collection. The change is stored in memory only, so the original collection route variants are restored whenever the selected collection changes or routes or collections are reloaded.
 * `routeVariantId` _(String)_: Route and variant id, with the format `"[routeId]:[variantId]"`.
 
 ### restoreRouteVariants()
@@ -104,7 +104,7 @@ __`core.mock.customRouteVariants`__: Getter returning an array of current custom
 ## Routes API
 
 :::info
-The `core.mock.routes` object provides methods related to [`routes`](usage/routes.md) and [`variants`](usage/variants.md).
+The `core.mock.routes` object provides methods related to [`routes`](../../usage/routes.md) and [`variants`](../../usage/variants.md).
 :::
 
 
@@ -119,7 +119,7 @@ __`core.mock.routes.plainVariants`__: Returns an array with all defined variants
 ## Collections API
 
 :::info
-The `core.mock.collections` object provides access to methods related to [`collections`](usage/collections.md).
+The `core.mock.collections` object provides access to methods related to [`collections`](../../usage/collections.md).
 :::
 
 ### select()

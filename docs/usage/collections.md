@@ -43,8 +43,8 @@ __The management of different responses for the same route and the ability to st
 
 ## Load
 
-* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` file, or event other formats [using Babel](guides/using-babel.md).
-* Collections can also be loaded programmatically using the [JavaScript API](integrations/javascript.md).
+* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` file, or event other formats [using Babel](../guides/using-babel.md).
+* Collections can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 
 ```
 project-root/

@@ -79,7 +79,7 @@ module.exports = {
           position: "right",
         },
         {
-          to: docsUrl("api/core"),
+          to: docsUrl("api/javascript"),
           label: "API",
           position: "right",
         },
