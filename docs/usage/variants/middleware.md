@@ -21,7 +21,7 @@ Variants of type `middleware` define an [Express middleware](https://expressjs.c
 
 The `options` property in a variant of type `middleware` must be an object containing next properties:
 
-* __`middleware`__ _(Function)_: [Express middleware](https://expressjs.com/en/guide/using-middleware.html). It also receives an extra parameter containing the whole [Mocks Server core instance](api/core.md) allowing to interact with the server.
+* __`middleware`__ _(Function)_: [Express middleware](https://expressjs.com/en/guide/using-middleware.html). It also receives an extra parameter containing the whole [Mocks Server core instance](../../api/javascript.md) allowing to interact with the server.
 
 ```js
 const { allUsers } = require("../fixtures/users");
@@ -58,7 +58,7 @@ The `middleware` function defined in a variant of type `middleware` receives nex
   * __`req`__ Express middleware `req` object.
   * __`res`__ Express middleware `res` object.
   * __`next`__ Express middleware `next` object.
-  * __`core`__ Mocks Server `core` API, enabling you to tap into, modify, or extend its internal behavior. Read [core API](api/core.md) for further info.
+  * __`core`__ Mocks Server `core` API, enabling you to tap into, modify, or extend its internal behavior. Read [core API](../../api/javascript.md) for further info.
 
 :::tip
 Read the [Express middleware docs](https://expressjs.com/en/guide/using-middleware.html) for further info about using middlewares.
@@ -224,5 +224,5 @@ module.exports = [
 ```
 
 :::caution
-In order to make it work, you should add this route to your collection before any other route, because it must be processed the first. Read more about how to define collections in the [collections](usage/collections.md) chapter.
+In order to make it work, you should add this route to your collection before any other route, because it must be processed the first. Read more about how to define collections in the [collections](../collections.md) chapter.
 :::

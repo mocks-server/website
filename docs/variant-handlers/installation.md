@@ -62,7 +62,7 @@ server.start();
 
 ### Using JavaScript API
 
-You can also use the [Javascript API](api/core/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
+You can also use the [Javascript API](api/javascript/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
 
 ```js
 core.variantHandlers.register([FooVariantHandler]);

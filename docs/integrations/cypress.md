@@ -17,9 +17,9 @@ keywords:
 
 ## Preface
 
-Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`collection`](usage/collections.md) of Mocks Server or change any other server settings simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the API will return to your web page.
+Using the [Cypress](https://www.cypress.io/) commands provided by the package [@mocks-server/cypress-commands](http://npmjs.com/package/@mocks-server/cypress-commands) you'll be able to change the current [`collection`](../usage/collections.md) of Mocks Server or change any other server settings simply using a Cypress command. This means that you can __develop solid tests, without the dependency of the real API__, because you can control in every moment the responses that the API will return to your web page.
 
-__You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real API__, with the advantage that you could reuse the same mock while you are developing the application, because in that case you can control it using any of the other integration tools, such as the [interactive CLI](integrations/command-line.md).
+__You'll be able to develop Cypress tests for error cases, slow requests and many other cases that are very hard to reproduce with a real API__, with the advantage that you could reuse the same mock while you are developing the application, because in that case you can control it using any of the other integration tools, such as the [interactive CLI](./command-line.md).
 
 ## Installation
 
@@ -35,19 +35,19 @@ import "@mocks-server/cypress-commands"
 
 ## Cypress Commands
 
-Set current [collection](usage/collections.md):
+Set current [collection](../usage/collections.md):
 
 ```js
 cy.mocksSetCollection("admin-user");
 ```
 
-Use specific [route variant](usage/routes.md):
+Use specific [route variant](../usage/routes.md):
 
 ```js
 cy.mocksUseRouteVariant("get-users:error");
 ```
 
-Restore [routes variants](usage/routes.md) to those defined in current [collection](usage/collections.md):
+Restore [routes variants](../usage/routes.md) to those defined in current [collection](../usage/collections.md):
 
 ```js
 cy.mocksRestoreRoutesVariants();
@@ -59,7 +59,7 @@ Set delay time:
 cy.mocksSetDelay(2000);
 ```
 
-Set any other [configuration option](configuration/options.md):
+Set any other [configuration option](../configuration/options.md):
 
 ```js
 cy.mocksConfig({
@@ -77,7 +77,7 @@ cy.mocksConfig({
 });
 ```
 
-Configures the [Mocks Server administration API client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client/README.md), used under the hood to communicate with the [Mocks Server administration API](integrations/rest-api.md). Use this command only if you changed the administration API configuration and you need to configure the client properly.
+Configures the [Mocks Server administration API client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client/README.md), used under the hood to communicate with the [Mocks Server administration API](./rest-api.md). Use this command only if you changed the administration API configuration and you need to configure the client properly.
 
 ```js
 cy.mocksConfigAdminApiClient({
@@ -167,9 +167,9 @@ Now, when running `npm run test`, Mocks Server will be started without the inter
 
 ## Configuration
 
-By default, the API client is configured to request to `http://localhost:3100/admin`, based in the [default Mocks Server options](configuration/options.md)
+By default, the API client is configured to request to `http://localhost:3100/admin`, based in the [default Mocks Server options](../configuration/options.md)
 
-You can change both the base url of Mocks Server, and the port of the [administration API](integrations/rest-api.md) using the `cy.mocksConfigClient` command mentioned above, or the plugin environment variables:
+You can change both the base url of Mocks Server, and the port of the [administration API](./rest-api.md) using the `cy.mocksConfigClient` command mentioned above, or the plugin environment variables:
 
 * __`MOCKS_SERVER_BASE_URL`__: Modifies the base url of Mocks Server. Default is `http://localhost:3100`.
 * __`MOCKS_SERVER_ADMIN_API_PATH`__: Modifies the path of the Mocks Server administration API. Default is `/admin`.

@@ -20,7 +20,7 @@ keywords:
 
 ## Installation
 
-A quick reminder of [how to install Mocks Server](getting-started/installation.md) using NPM:
+A quick reminder of [how to install Mocks Server](./installation.md) using NPM:
 
 ```bash
 npm i -D @mocks-server/main
@@ -39,7 +39,7 @@ Add the next script to the `package.json` file:
 
 ## Start the mock server
 
-Once you have [installed Mocks Server and added the npm script](getting-started/installation.md), you'll be able to start it by simply running an NPM command in the project's folder:
+Once you have [installed Mocks Server and added the npm script](./installation.md), you'll be able to start it by simply running an NPM command in the project's folder:
 
 ```bash
 npm run mocks
@@ -54,7 +54,7 @@ When it is started, the interactive CLI is displayed. It allows you to see some 
 This CLI is a great tool for controlling the mock server while you are developing an API client, because you can change the server responses in real time using it without modifying any code. Suppose that you are developing a web application that is polling to the API, and you want to check if it is refreshing the data properly. The only thing that you have to do is to use the CLI to change the current responses collection, and the next time the application requests a data, the response will be different.
 
 :::note
-The [interactive CLI can be disabled using configuration](configuration/how-to-change-settings.md), and then the server logs will be displayed instead. This should be done when using the server for running tests, for example.
+The [interactive CLI can be disabled using configuration](../configuration/how-to-change-settings.md), and then the server logs will be displayed instead. This should be done when using the server for running tests, for example.
 :::
 
 ## Main concepts
@@ -64,7 +64,7 @@ The [interactive CLI can be disabled using configuration](configuration/how-to-c
 * __Collections__: A `collection` of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.
 
 :::tip
-Read the [usage chapter](usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
+Read the [usage chapter](../usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
 :::
 
 ## Scaffold
@@ -81,12 +81,12 @@ project-root/
 └── mocks.config.js <- DEFINE YOUR CONFIGURATION HERE
 ```
 
-* The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](usage/routes.md).
-* The `mocks/collections.json` file is used to define [collections](usage/collections.md) of [route variants](usage/variants.md).
+* The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](../usage/routes.md).
+* The `mocks/collections.json` file is used to define [collections](../usage/collections.md) of [route variants](../usage/variants.md).
 * The server watches for changes in all files in the `mocks` folder, so changing a file will immediately update the mocked API.
 
 :::info
-Collections and routes can also be defined programmatically. Read the [Javascript integration chapter](integrations/javascript.md) for further info.
+Collections and routes can also be defined programmatically. Read the [Javascript integration chapter](../integrations/javascript.md) for further info.
 :::
 
 ## First steps
@@ -158,7 +158,7 @@ The new variant is added once the file is saved. So, let's change again the curr
 * [http://localhost:3100/api/users/2](http://localhost:3100/api/users/2) -> `{"id":2,"name":"Jane Doe"}`
 
 :::tip
-Read the [routes](usage/routes.md) and [variants](usage/variants.md) chapters to learn more about how to create them.
+Read the [routes](../usage/routes.md) and [variants](../usage/variants.md) chapters to learn more about how to create them.
 :::
 
 ### Creating collections
@@ -185,7 +185,7 @@ Now, let's select our new collection:
 * [http://localhost:3100/api/users/2](http://localhost:3100/api/users/2) -> `{"id":2,"name":"Jane Doe"}`
 
 :::tip
-Read the [collections chapter](usage/collections.md) to learn more about how to define them.
+Read the [collections chapter](../usage/collections.md) to learn more about how to define them.
 :::
 
 ### Changing the configuration
@@ -205,18 +205,18 @@ Now that we have created our own collection, we want the server to use it whenev
 The next time the server is started, it will use that collection.
 
 :::info
-Modifying the `mocks.config.js` file is not the only method for changing configuration. You can also use environment variables or command line arguments, for example. Read the [configuration chapter](configuration/how-to-change-settings.md) for further info.
+Modifying the `mocks.config.js` file is not the only method for changing configuration. You can also use environment variables or command line arguments, for example. Read the [configuration chapter](../configuration/how-to-change-settings.md) for further info.
 :::
 
 ## Next steps
 
-* Read the [usage chapter](usage/basics.md) to fully understand the concepts of Route, Variant and Collection, and how to create or modify them.
-* Read the [configuration chapter](configuration/how-to-change-settings.md) in order to be able to configure the server for different use cases and environments: Local development, running tests locally, running tests in CI, etc.
+* Read the [usage chapter](../usage/basics.md) to fully understand the concepts of Route, Variant and Collection, and how to create or modify them.
+* Read the [configuration chapter](../configuration/how-to-change-settings.md) in order to be able to configure the server for different use cases and environments: Local development, running tests locally, running tests in CI, etc.
 * Read one of the different integration chapters in order to easily control Mocks Server using your preferred tool or ecosystem:
-  * [CLI](integrations/command-line.md)
-  * [JavaScript](integrations/javascript.md)
-  * [Cypress](integrations/cypress.md)
-  * [REST API](integrations/rest-api.md)
+  * [CLI](../integrations/command-line.md)
+  * [JavaScript](../integrations/javascript.md)
+  * [Cypress](../integrations/cypress.md)
+  * [REST API](../integrations/rest-api.md)
 * Do you have an idea for extending Mocks Server with your own features?
-  * Add new variant types by creating [custom variant type handlers](variant-handlers/intro.md).
-  * [Plugins](plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.
+  * Add new variant types by creating [custom variant type handlers](../variant-handlers/intro.md).
+  * [Plugins](../plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.

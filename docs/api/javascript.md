@@ -1,5 +1,5 @@
 ---
-id: core
+id: javascript
 title: JavaScript API
 description: Mocks Server JavaScript API
 keywords:
@@ -52,7 +52,7 @@ Apart from creating your own `core` instance programmatically, you can also use 
 ### init()
 
 __`core.init([config])`__: Register plugins, initialize options and prepare all other internal dependencies needed to start the server. Returns a promise. Accepts next arguments:
-  * `config` _(Object)_: Any of [Mocks Server options](../configuration/options.md#core-options) or [plugin options](../configuration/options.md#plugin-options). If provided, the config passed in the [constructor](#constructor) would be merged with this one. Command line arguments, environment variables and configuration file options would override the values defined here. Options are internally available using the [`core.config` API](./core/config.md) once they are initialized.
+  * `config` _(Object)_: Any of [Mocks Server options](../configuration/options.md#core-options) or [plugin options](../configuration/options.md#plugin-options). If provided, the config passed in the [constructor](#constructor) would be merged with this one. Command line arguments, environment variables and configuration file options would override the values defined here. Options are internally available using the [`core.config` API](./javascript/config.md) once they are initialized.
 
 ### start()
 

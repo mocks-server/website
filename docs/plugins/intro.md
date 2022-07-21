@@ -18,7 +18,7 @@ Plugins enable you to tap into, modify, or extend the Mocks Server internal beha
 Having access to the whole core API, a plugin is able to do almost anything on Mocks Server, for example:
 
 * Adding routes and collections programmatically
-* Adding new [Variant Handlers](variant-handlers/intro.md)
+* Adding new [Variant Handlers](../variant-handlers/intro.md)
 * Adding custom `Express` routers to the server.
 * Creating new integration tools, interfaces, etc.
 
@@ -27,13 +27,13 @@ Having access to the whole core API, a plugin is able to do almost anything on M
 Plugins can be installed using the configuration file or programmatically.
 
 :::tip
-Read the [plugins installation chapter](plugins/installation.md) for further info.
+Read the [plugins installation chapter](./installation.md) for further info.
 :::
 
 ## Creating plugins
 
-A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the `Class` methods will always receive an instance of the [Mocks Server core API](api/core.md), so it can be used to tap into, modify, or extend its internal behavior.
+A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the `Class` methods will always receive an instance of the [Mocks Server core API](../api/javascript.md), so it can be used to tap into, modify, or extend its internal behavior.
 
 :::tip
-Read the [plugins development chapter](plugins/development.md) for further info.
+Read the [plugins development chapter](./development.md) for further info.
 :::

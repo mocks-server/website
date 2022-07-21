@@ -51,7 +51,7 @@ server.start().then(() => {
 ```
 
 :::tip
-Read the [API chapter](api/core.md) for further info about server available methods
+Read the [API chapter](../api/javascript.md) for further info about server available methods
 :::
 
 ## Use cases
@@ -119,7 +119,7 @@ describe("users API client", () => {
 
 ## Creating your own distribution
 
-The main distribution of Mocks Server ([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main)) includes some preinstalled plugins. But you could also create your own distribution with the plugins of your choice or predefined configuration in case you need to reuse those presets in many projects, for example. To achieve it, you should use the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) package, and start it by your own setting the programmatic configuration that you need. Using the "programmatic" configuration still allows the end user to modify it using [other configuration methods](configuration/how-to-change-settings.md), such as the configuration file, environment variables, etc.
+The main distribution of Mocks Server ([@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main)) includes some preinstalled plugins. But you could also create your own distribution with the plugins of your choice or predefined configuration in case you need to reuse those presets in many projects, for example. To achieve it, you should use the [@mocks-server/core](https://www.npmjs.com/package/@mocks-server/core) package, and start it by your own setting the programmatic configuration that you need. Using the "programmatic" configuration still allows the end user to modify it using [other configuration methods](../configuration/how-to-change-settings.md), such as the configuration file, environment variables, etc.
 
 ```js
 const Core = require("@mocks-server/core");
@@ -145,8 +145,8 @@ module.exports = {
 
 ## Customization using plugins
 
-If you only want tap into, modify, or extend the server internal behavior, then you probably don't need to start the server by your own. You can use the main distribution and use the configuration file to add your own plugin, which provides to you access to the [whole server core API](api/core.md).
+If you only want tap into, modify, or extend the server internal behavior, then you probably don't need to start the server by your own. You can use the main distribution and use the configuration file to add your own plugin, which provides to you access to the [whole server core API](../api/javascript.md).
 
 :::tip
-Read the [plugins chapter](plugins/intro.md) for further info about how to create plugins.
+Read the [plugins chapter](../plugins/intro.md) for further info about how to create plugins.
 :::

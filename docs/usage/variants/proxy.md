@@ -152,7 +152,7 @@ In this example, every request except the `/api/users` one will be proxied to `h
 :::
 
 :::tip
-For further information about how to define collections, please [read the collections chapter](usage/collections.md).
+For further information about how to define collections, please [read the collections chapter](../collections.md).
 :::
 
 ### Modifying the host response

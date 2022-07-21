@@ -43,7 +43,7 @@ Mocks Server relies on three simple concepts for simulating, control and storage
 ```
 
 :::info
-Read [Routes](usage/routes.md), [Variants](usage/variants.md) and [Collections](usage/collections.md) chapters for further info about how to define them
+Read [Routes](./routes.md), [Variants](./variants.md) and [Collections](./collections.md) chapters for further info about how to define them
 :::
 
 ## Motivation
