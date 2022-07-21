@@ -32,7 +32,7 @@ Read the [plugins installation chapter](./installation.md) for further info.
 
 ## Creating plugins
 
-A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the `Class` methods will always receive an instance of the [Mocks Server core API](../api/javascript.md), so it can be used to tap into, modify, or extend its internal behavior.
+A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the other methods will always receive an instance of the [Mocks Server core](../api/javascript.md), so it can be used to tap into, modify, or extend its internal behavior.
 
 :::tip
 Read the [plugins development chapter](./development.md) for further info.

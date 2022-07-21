@@ -58,7 +58,7 @@ The `middleware` function defined in a variant of type `middleware` receives nex
   * __`req`__ Express middleware `req` object.
   * __`res`__ Express middleware `res` object.
   * __`next`__ Express middleware `next` object.
-  * __`core`__ Mocks Server `core` API, enabling you to tap into, modify, or extend its internal behavior. Read [core API](../../api/javascript.md) for further info.
+  * __`core`__ Mocks Server `core` instance, enabling you to tap into, modify, or extend its internal behavior. Read [core API](../../api/javascript.md) for further info.
 
 :::tip
 Read the [Express middleware docs](https://expressjs.com/en/guide/using-middleware.html) for further info about using middlewares.

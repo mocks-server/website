@@ -60,7 +60,7 @@ Here you have some examples about how to change the current collection and other
 
 ```mdx-code-block
 <Tabs>
-<TabItem value="NodeJS">
+<TabItem value="JavaScript">
 ```
 
 ```js

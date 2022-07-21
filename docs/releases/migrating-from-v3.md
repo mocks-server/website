@@ -33,9 +33,9 @@ If you are already using v3.x, then __update to v3.6, which is fully compatible 
 The main breaking changes in v4.x will be:
 
 * __Main concepts will be renamed__. Read [main concepts](#main-concepts) below for further info.
-* __Some JavaScript API methods will be removed__. Read [core API](#javascript-api) below for further info.
+* __Some JavaScript API methods will be removed__. Read [JavaScript API](#javascript-api) below for further info.
 * __Some options will be changed__. Read [options](#options) below for further info.
-* __The REST API will be server in a different port__. Read [#rest-api](#rest-api) below for further info.
+* __The REST API will be server in a different port__. Read [REST API](#rest-api) below for further info.
 * __Legacy alerts object will be removed__. Read [alerts](#alerts) for further info.
 * __Arguments received by the plugins__. Read [plugins](#plugins) below for further info.
 * __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.

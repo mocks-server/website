@@ -24,7 +24,7 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 ## Preface
 
-Mocks Server provides its `core` instance to plugins, middlewares and other system pieces. It contains methods allowing to configure it, start or stop it, listen to its events, etc. Using it also enables to tap into, modify, or extend its internal behavior.
+Mocks Server provides its `core` instance to plugins, middlewares and other system elements. It contains methods allowing to configure it, start or stop it, listen to its events, etc. Using it also enables to tap into, modify, or extend its internal behavior.
 
 :::caution
 Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
