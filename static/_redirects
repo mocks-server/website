@@ -82,8 +82,8 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 /docs/guides-migrating-from-v3 /docs/releases/migrating-from-v3
 /docs/next/guides-migrating-from-v3 /docs/next/releases/migrating-from-v3
 
-/docs/api-mocks-server-api /docs/api/core
-/docs/next/api-mocks-server-api /docs/next/api/core
+/docs/api-mocks-server-api /docs/api/javascript
+/docs/next/api-mocks-server-api /docs/next/api/javascript
 
 /docs/api-routes-and-mocks /docs/usage/basics
 /docs/next/api-routes-and-mocks /docs/next/usage/basics
