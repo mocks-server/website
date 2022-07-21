@@ -64,9 +64,9 @@ Here you have some examples about how to change the current collection and other
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const createServer = require("@mocks-server/main");
 
-const core = new Core({
+const core = createServer({
   config: {
     readFile: false,
   },
