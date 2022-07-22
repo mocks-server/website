@@ -64,7 +64,7 @@ The `Core` constructor is exported only by the `@mocks-server/core` package, and
 
 ### Creating an instance with pre-installed plugins
 
-The `@mocks-server/main` distribution preinstalls some plugins providing useful integrations, such as the [Admin Api Plugin](../integrations/rest-api.md), etc. If you create a new server instance using the `@mocks-server/core` package as in the example above, you would have to [install your desired plugins](../plugins/installation.md) by your own (which may be useful to [create your own distribution](../integrations/javascript.md#creating-your-own-distribution), for example).
+The `@mocks-server/main` distribution includes some plugins providing useful integrations, such as the [Admin Api Plugin](../integrations/rest-api.md), etc. If you create a new server instance using the `@mocks-server/core` package as in the example above, you would have to [install your desired plugins](../plugins/installation.md) by your own (which may be useful to [create your own distribution](../integrations/javascript.md#creating-your-own-distribution), for example).
 
 Note also that the [default configuration](../configuration/options.md) of `@mocks-server/core` is intended to be used in CLI, so it tries to load files, read arguments and environment variables, etc. which might not be ideal to start it programmatically in Jest tests, for example.
 
