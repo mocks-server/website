@@ -225,7 +225,17 @@ html[data-theme='dark'] {
 /* Integrations */
 
 .integrations {
+  a {
+    &:hover {
+      img {
+        box-shadow: 0 1rem 1rem rgb(0 0 0 / 16%);
+        transform: translate(0, -3px);
+      }
+    }
+  }
+
   img {
+    transition: all 100ms linear 0s;
     width: 120px;
     min-width: 120px;
     height: 120px;

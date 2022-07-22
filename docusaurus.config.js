@@ -1,3 +1,7 @@
+function docsUrl(page) {
+  return `docs/${page}`;
+}
+
 module.exports = {
   title: "Mocks Server",
   tagline: "Node.js mock server",
@@ -64,17 +68,17 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/get-started-intro",
-          label: "Get started",
+          to: docsUrl("overview"),
+          label: "Docs",
           position: "right",
         },
         {
-          to: "docs/configuration-options",
+          to: docsUrl("configuration/how-to-change-settings"),
           label: "Configuration",
           position: "right",
         },
         {
-          to: "docs/api-mocks-server-api",
+          to: docsUrl("api/javascript"),
           label: "API",
           position: "right",
         },
@@ -99,20 +103,20 @@ module.exports = {
           title: "Docs",
           items: [
             {
-              label: "Getting Started",
-              to: "docs/get-started-intro",
+              label: "Overview",
+              to: docsUrl("overview"),
             },
             {
-              label: "Guides",
-              to: "docs/guides-organizing-files",
+              label: "Usage",
+              to: docsUrl("usage/basics"),
             },
             {
               label: "Configuration",
-              to: "docs/configuration-methods",
+              to: docsUrl("configuration/how-to-change-settings"),
             },
             {
-              label: "Plugins",
-              to: "docs/plugins-adding-plugins",
+              label: "Customization",
+              to: docsUrl("variant-handlers/intro"),
             },
           ],
         },
