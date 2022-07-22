@@ -31,7 +31,7 @@ const textContents = {
     Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
   featuresExtensible: `
-    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core API](docs/api-mocks-server-api).
+    Use [Express](https://expressjs.com/) middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core JavaScript API](docs/api-mocks-server-api).
   `,
   featuresControllable: `
     Control it using the [interactive CLI](docs/plugins-inquirer-cli), or use the [administration REST API](docs/plugins-admin-api), or [start it using JavaScript](docs/api-programmatic-usage) and control everything. Other integrations are available, such as [Cypress commands](docs/integrations-cypress).

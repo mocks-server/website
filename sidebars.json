@@ -118,36 +118,36 @@
       {
         "type": "category",
         "label": "JavaScript",
-        "link": {"type": "doc", "id": "api/core"},
+        "link": {"type": "doc", "id": "api/javascript"},
         "items": [
           {
             "type": "doc",
-            "id": "api/core/server",
+            "id": "api/javascript/server",
             "label": "server"
           },
           {
             "type": "doc",
-            "id": "api/core/mock",
+            "id": "api/javascript/mock",
             "label": "mock"
           },
           {
             "type": "doc",
-            "id": "api/core/logger",
+            "id": "api/javascript/logger",
             "label": "logger"
           },
           {
             "type": "doc",
-            "id": "api/core/config",
+            "id": "api/javascript/config",
             "label": "config"
           },
           {
             "type": "doc",
-            "id": "api/core/alerts",
+            "id": "api/javascript/alerts",
             "label": "alerts"
           },
           {
             "type": "doc",
-            "id": "api/core/variant-handlers",
+            "id": "api/javascript/variant-handlers",
             "label": "variantHandlers"
           }
         ]

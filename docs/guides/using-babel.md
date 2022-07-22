@@ -22,7 +22,7 @@ It is possible to use [Babel compiler](https://babeljs.io/) when loading collect
 
 ## Babel Configuration
 
-Use the [configuration option](configuration/options.md) `files.babelRegister.enabled` to enable Babel compilation:
+Use the [configuration option](../configuration/options.md) `files.babelRegister.enabled` to enable Babel compilation:
 
 ```js
 module.exports = {
@@ -104,7 +104,7 @@ module.exports = {
 
 Here is an example of how to configure Babel to compile [TypeScript](https://www.typescriptlang.org/) files in the `/mocks` folder.
 
-Enable the `files.babelRegister.enabled` option in the [`mocks.config.js` file](configuration/how-to-change-settings.md):
+Enable the `files.babelRegister.enabled` option in the [`mocks.config.js` file](../configuration/how-to-change-settings.md):
 
 ```js
 module.exports = {

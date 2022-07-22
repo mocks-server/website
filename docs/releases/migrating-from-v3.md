@@ -14,12 +14,16 @@ keywords:
 ---
 
 :::warning
-If you are already using Mocks Server v2.x you should [migrate first from v2.x to v3.x](releases/migrating-from-v2.md), and then read this chapter to prepare migration to v4.x.
+If you are already using Mocks Server v2.x you should [migrate first from v2.x to v3.x](./migrating-from-v2.md), and then read this chapter to prepare migration to v4.x.
 :::
 
 ## Preface
 
 Even when v4 release is still not published, we are deprecating some things in v3 that will be removed in v4. While v4 is not released, every change in v3.x will be completely backward compatible, but __users upgrading to next minor versions would probably receive alerts about usage of deprecated methods, etc__.
+
+:::info
+Alerts are logged and [displayed in the interactive CLI](../integrations/command-line.md), apart from being available using any of the Mocks Server APIs.
+:::
 
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
@@ -33,39 +37,45 @@ If you are already using v3.x, then __update to v3.6, which is fully compatible 
 The main breaking changes in v4.x will be:
 
 * __Main concepts will be renamed__. Read [main concepts](#main-concepts) below for further info.
-* __Some core API methods will be removed__. Read [core API](#core-api) below for further info.
+* __Some JavaScript API methods will be removed__. Read [JavaScript API](#javascript-api) below for further info.
 * __Some options will be changed__. Read [options](#options) below for further info.
+* __The REST API will be server in a different port__. Read [REST API](#rest-api) below for further info.
 * __Legacy alerts object will be removed__. Read [alerts](#alerts) for further info.
 * __Arguments received by the plugins__. Read [plugins](#plugins) below for further info.
 * __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.
 * __Default route variants handler will be removed__. Read [route variants handlers](#route-variants-handlers) below for further info.
-* __The API for developing variants handlers will change__. Read [route variants handlers API](#route-variants-handlers) below for further info.
+* __The JavaScript API for developing variants handlers will change__. Read [route variants handlers API](#route-variants-handlers) below for further info.
+
+### Changes in other packages
+
+* __Cypress commands__. The `@mocks-server/cypress-commands` package release 5.0 and above can be used only with Mocks Server >=3.6. Command names have been renamed, so it is a breaking change. But any `@mocks-server/cypress-commands@4.x` version will continue working with Mocks Server 3.x. So, you can continue using Cypress Commands 4.x and update Mocks Server to the latest 3.x version in order to migrate progressively.
+* __Admin API Client__. The `@mocks-server/admin-api-client` package release 6.0 and above can be used only with Mocks Server >=3.6. Methods have been renamed, so it is a breaking change. But any `@mocks-server/admin-api-client@5.x` version will continue working with Mocks Server 3.x. So, you can continue using `admin-api-client` 5.x and update Mocks Server to the latest 3.x version in order to migrate progressively.
 
 ## Main concepts
 
 * __`mocks`__ - The "mocks" concept has been renamed to "collections". All docs, API, logs and file names now make reference to "collections" instead of "mocks". The main change needed to be prepared for the v4 release is to rename the `mocks/mocks.[js|json]` file into `mocks/collections.[js|json]`.
   * The `routesVariants` property in mock definitions has been renamed into `routes` (and `routeVariants` will be also supported as an alias).
 
-## Core API
+## JavaScript API
 
-* __`core.tracer`__: The `tracer` object will be completely removed and using it from v3.2 produces an alert. You must use `core.logger` instead, which is already namespaced when passed to plugins and route middlewares. [Read the logger API docs](api/core/logger.md) for further info.
-* __`core.restartServer`__: The `restartServer` method will be removed and using it from v3.6 produces an alert. You must use `core.server.restart` instead. [Read the server API docs](api/core/server.md) for further info.
-* __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
-* __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](api/core/server.md) for further info.
-* __`core.addRoutesHandler`__: The `addRoutesHandler` method will be removed and using it from v3.6 produces an alert. `core.variantHandlers.register` must be used instead. [Read the variantHandlers API docs](api/core/variant-handlers.md) for further info.
-* __`core.onChangeMocks`__: The `onChangeMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.onChange` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.loadMocks`__: The `loadMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.loadRoutes`__: The `loadRoutes` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.restoreRoutesVariants`__: The `mocks.restoreRoutesVariants` method will be removed and using it from v3.6 produces an alert. `core.mock.restoreRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.customRoutesVariants`__: The `mocks.customRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.customRouteVariants` must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.plainRoutes`__: The `mocks.plainRoutes` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plain` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.plainRoutesVariants`__: The `mocks.plainRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plainVariants` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.current`__: The `mocks.current` getter and setter will be removed and using it from v3.6 produces an alert. `core.mock.collections.selected` getter and `core.mocks.collections.select` method must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.ids`__: The `mocks.ids` getter will be removed and using them from v3.6 produces alerts. `core.mock.collections.ids` getter must be used instead. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.mocks.plainMocks`__: The `mocks.plainMocks` getter will be removed and using it from v3.6 produces an alert. `core.mock.collections.plain` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](api/core/mock.md) for further info.
-* __`core.logs`__: The `core.logs` getter will be removed and using them from v3.6 produces an alert. `core.logger.globalStore` getter must be used instead. [Read the logger API docs](api/core/logger.md) for further info.
-* __`core.onChangeAlerts`__: The `core.onChangeAlerts` method will be removed and using them from v3.6 produces an alert. `core.alerts.root.onChange` method must be used instead. [Read the alerts API docs](api/core/alerts.md) for further info.
-* __`core.onChangeLogs`__: The `core.onChangeLogs` method will be removed and using them from v3.6 produces an alert. `core.logger.onChangeGlobalStore` method must be used instead. [Read the logger API docs](api/core/logger.md) for further info.
+* __`core.tracer`__: The `tracer` object will be completely removed and using it from v3.2 produces an alert. You must use `core.logger` instead, which is already namespaced when passed to plugins and route middlewares. [Read the logger API docs](../api/javascript/logger.md) for further info.
+* __`core.restartServer`__: The `restartServer` method will be removed and using it from v3.6 produces an alert. You must use `core.server.restart` instead. [Read the server API docs](../api/javascript/server.md) for further info.
+* __`core.addRouter`__: The `addRouter` method will be removed and using it from v3.6 produces an alert. `core.server.addRouter` must be used instead. [Read the server API docs](../api/javascript/server.md) for further info.
+* __`core.removeRouter`__: The `removeRouter` method will be removed and using it from v3.6 produces an alert. `core.server.removeRouter` must be used instead. [Read the server API docs](../api/javascript/server.md) for further info.
+* __`core.addRoutesHandler`__: The `addRoutesHandler` method will be removed and using it from v3.6 produces an alert. `core.variantHandlers.register` must be used instead. [Read the variantHandlers API docs](../api/javascript/variant-handlers.md) for further info.
+* __`core.onChangeMocks`__: The `onChangeMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.onChange` must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.loadMocks`__: The `loadMocks` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.loadRoutes`__: The `loadRoutes` method will be removed and using it from v3.6 produces an alert. `core.mock.createLoaders` must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.restoreRoutesVariants`__: The `mocks.restoreRoutesVariants` method will be removed and using it from v3.6 produces an alert. `core.mock.restoreRouteVariants` must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.customRoutesVariants`__: The `mocks.customRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.customRouteVariants` must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.plainRoutes`__: The `mocks.plainRoutes` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plain` getter must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.plainRoutesVariants`__: The `mocks.plainRoutesVariants` getter will be removed and using it from v3.6 produces an alert. `core.mock.routes.plainVariants` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.current`__: The `mocks.current` getter and setter will be removed and using it from v3.6 produces an alert. `core.mock.collections.selected` getter and `core.mocks.collections.select` method must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.ids`__: The `mocks.ids` getter will be removed and using them from v3.6 produces alerts. `core.mock.collections.ids` getter must be used instead. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.mocks.plainMocks`__: The `mocks.plainMocks` getter will be removed and using it from v3.6 produces an alert. `core.mock.collections.plain` getter must be used instead, but take into account that the items properties have changed in the new getter. [Read the mock API docs](../api/javascript/mock.md) for further info.
+* __`core.logs`__: The `core.logs` getter will be removed and using them from v3.6 produces an alert. `core.logger.globalStore` getter must be used instead. [Read the logger API docs](../api/javascript/logger.md) for further info.
+* __`core.onChangeAlerts`__: The `core.onChangeAlerts` method will be removed and using them from v3.6 produces an alert. `core.alerts.root.onChange` method must be used instead. [Read the alerts API docs](../api/javascript/alerts.md) for further info.
+* __`core.onChangeLogs`__: The `core.onChangeLogs` method will be removed and using them from v3.6 produces an alert. `core.logger.onChangeGlobalStore` method must be used instead. [Read the logger API docs](../api/javascript/logger.md) for further info.
 
 ## Options
 
@@ -73,10 +83,14 @@ The main breaking changes in v4.x will be:
 * __`mocks.delay`__: This option will be removed. Use `mock.routes.delay` instead.
 * __`routesHandlers`__: This option will be removed. Use `variantHandlers.register` instead.
 
+## REST API
+
+From v3.6, a new REST API server is started in a different port of the API mock. URLs and models was changed too, and Swagger UI was added. Review the [new REST API docs](../integrations/rest-api.md) for further info. The legacy API in the `/admin` path will be still available in all v3.x versions, but using it will produce an alert.
+
 ## Alerts
 
 * The __`core.alerts`__ getter in the core when created programmatically was different to the `core.alerts` property received in the plugins from v3.2 due to backward compatibility reasons. In v4 it will return an `alerts` instance in the first case too. In the first case, it was returning a plain alerts collection. So, if you are using a programmatic root core, you should start using `core.alertsApi.customFlat` to get the same values, because that alias will be maintained in v4. Note that, in the case of plugins, you should continue using the `alerts` property, which will not change in v4.
-* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins are receiving an `alerts` property in the core to be used instead, which was also available in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](api/core.md#alerts) for further info.
+* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins are receiving an `alerts` property in the core to be used instead, which was also available in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](../api/javascript.md#alerts) for further info.
 
 
 ## Plugins
@@ -105,7 +119,7 @@ class Plugin {
 
 ### Formats
 
-From version 3.4, loading any plugin created as a function or as a plain object will produce an alert. In v4.x, plugins will have to be defined only as classes. So, it is strongly recommended that [any other format of plugin is converted into a class](plugins/development.md) while using >=v3.4, so the code will be ready for migrating to v4.x.
+From version 3.4, loading any plugin created as a function or as a plain object will produce an alert. In v4.x, plugins will have to be defined only as classes. So, it is strongly recommended that [any other format of plugin is converted into a class](../plugins/development.md) while using >=v3.4, so the code will be ready for migrating to v4.x.
 
 ## Route variants handlers
 

@@ -36,18 +36,18 @@ project-root/
 └── mocks.config.js <- DEFINE YOUR CONFIGURATION HERE
 ```
 
-* The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](usage/routes.md).
-* The `mocks/collections.json` file is used to define [collections](usage/collections.md) of [route variants](usage/variants.md).
+* The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](../usage/routes.md).
+* The `mocks/collections.json` file is used to define [collections](../usage/collections.md) of [route variants](../usage/variants.md).
 * The server watches for changes in all files in the `mocks` folder, so changing a file will immediately update the mocked API.
 
 :::info
-Collections and routes can also be defined programmatically. Read the [Javascript integration chapter](integrations/javascript.md) for further info.
+Collections and routes can also be defined programmatically. Read the [Javascript integration chapter](../integrations/javascript.md) for further info.
 :::
 
 
 ## Defining routes
 
-The server searches for all files in the `mocks/routes` folder, __including subfolders__, and load their content as [routes](usage/routes.md). So, every file in that folder must export an array of [routes](usage/routes.md).
+The server searches for all files in the `mocks/routes` folder, __including subfolders__, and load their content as [routes](../usage/routes.md). So, every file in that folder must export an array of [routes](../usage/routes.md).
 
 In the folder, you can organize the files in the way you want. As a suggestion, you could create a different file for each API entity, and a different folder for each API domain. This would help to maintain your routes organized. For example:
 
@@ -62,15 +62,15 @@ routes/
 ```
 
 :::caution
-Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](usage/routes.md).
+Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](../usage/routes.md).
 :::
 
 ## Defining collections
 
-The server reads the `mocks/collections.json` file and loads its content as [`collections`](usage/collections.md). That file can also be renamed into `.js` or even `.ts`. Read the [using Babel guide for further info](guides/using-babel.md).
+The server reads the `mocks/collections.json` file and loads its content as [`collections`](../usage/collections.md). That file can also be renamed into `.js` or even `.ts`. Read the [using Babel guide for further info](./using-babel.md).
 
 :::info
-The `mocks/collections.json` file must export an array of [Mocks Server `collections`](usage/collections.md).
+The `mocks/collections.json` file must export an array of [Mocks Server `collections`](../usage/collections.md).
 :::
 
 ## Other files and folders
@@ -165,7 +165,7 @@ The alert will be removed automatically when the file containing the error is fi
 
 ### Use descriptive ids
 
-We strongly recommend to assign very descriptive ids to the [`routes`](usage/routes.md), [`variants`](usage/variants.md) and [`collections`](usage/collections.md), because they will be used afterwards in the CLI, the REST API, and all other available integration tools.
+We strongly recommend to assign very descriptive ids to the [`routes`](../usage/routes.md), [`variants`](../usage/variants.md) and [`collections`](../usage/collections.md), because they will be used afterwards in the CLI, the REST API, and all other available integration tools.
 
 A good pattern for assigning an id to a `route` can be `[method]-[entity]`, as in `get-users`, `get-user`, etc.
 

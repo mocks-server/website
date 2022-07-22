@@ -69,7 +69,7 @@ __`core.logger.setLevel(level, [options])`__: Set the logger current log level f
   * `forcePropagation` _(Boolean)_: When `true`, the propagation will ignore `pinned` levels and will always override them.
 
 :::caution
-This method should not be used directly until you know well what you are doing. Use the [config API](api/core/config.md) to set the global log level instead (`core.config.option("log").value="x"`).
+This method should not be used directly until you know well what you are doing. Use the [config API](./config.md) to set the global log level instead (`core.config.option("log").value="x"`).
 :::
 
 ### namespace()

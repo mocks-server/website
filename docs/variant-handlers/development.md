@@ -15,7 +15,7 @@ keywords:
 
 ## Preface
 
-In the previous chapters [we saw what a Variant Handler is](variant-handlers/intro.md), and [how to install it](variant-handlers/installation.md). Now we are going to see how to create them, so you can add your own features to Mocks Server easily 🙂.
+In the previous chapters [we saw what a Variant Handler is](./intro.md), and [how to install it](./installation.md). Now we are going to see how to create them, so you can add your own features to Mocks Server easily 🙂.
 
 A Variant Handler basically consists on a JavaScript `Class` which receives the variant options in the `constructor` method, and which must contain a `middleware` method. This method receives the same parameters than an [Express middleware](https://expressjs.com/en/guide/using-middleware.html), and it will be executed whenever the route is requested.
 
@@ -37,7 +37,7 @@ This static getter must return a JSON schema defining the specific options requi
 #### `constructor(options, core)`
 
 * `options`: All properties in the `options` property of the route variant.
-* `core`: The [`core` instance](api/core.md), but with some methods specifically scoped for each route variant, such as `core.logger` and `core.alerts`, which are namespaced using each route variant id. So, logs or alerts from each different route variant can be easily identified.
+* `core`: The [`core` instance](../api/javascript.md), but with some methods specifically scoped for each route variant, such as `core.logger` and `core.alerts`, which are namespaced using each route variant id. So, logs or alerts from each different route variant can be easily identified.
 
 #### `middleware(req, res, next)`
 
@@ -120,7 +120,7 @@ module.exports = {
 ```
 
 :::info
-You can also add Route Handlers programmatically using the [`core.variantHandlers.register` method](api/core/variant-handlers.md)
+You can also add Route Handlers programmatically using the [`core.variantHandlers.register` method](../api/javascript/variant-handlers.md)
 :::
 
 And then, you could use the new variant type when defining route variants:

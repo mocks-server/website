@@ -43,8 +43,8 @@ __The management of different responses for the same route and the ability to st
 
 ## Load
 
-* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` file, or event other formats [using Babel](guides/using-babel.md).
-* Collections can also be loaded programmatically using the [JavaScript API](integrations/javascript.md).
+* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` file, or event other formats [using Babel](../guides/using-babel.md).
+* Collections can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 
 ```
 project-root/
@@ -134,9 +134,9 @@ module.exports = {
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const core = new Core();
+const core = createServer();
 
 core.start().then(() => {
   // highlight-next-line
@@ -165,7 +165,7 @@ describe("books page", () => {
   describe("when there are two books", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksSelectCollection("collection-b"); // Change collection to "collection-b"
+      cy.mocksSetCollection("collection-b"); // Change collection to "collection-b"
       cy.visit("/");
     });
 
@@ -206,14 +206,14 @@ This is very useful when you need to change the response of only one route tempo
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const core = new Core();
+const core = createServer();
 
 core.start().then(() => {
   core.mock.collections.select("collection-b");
   // highlight-next-line
-  core.mock.collection.useRouteVariant("route-A:variant-C")
+  core.mock.useRouteVariant("route-A:variant-C")
 });
 ```
 
@@ -233,7 +233,7 @@ describe("books page", () => {
 
     after(() => {
       // highlight-next-line
-      cy.mocksRestoreRoutesVariants();
+      cy.mocksRestoreRouteVariants();
     });
 
     it("should display two users", () => {

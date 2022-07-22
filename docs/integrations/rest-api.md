@@ -56,7 +56,7 @@ curl http://localhost:3110/api/mock/collections
 ### Change the current collection
 
 ```bash
-curl -X PATCH -d '{"mock":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3100/api/mock/config
+curl -X PATCH -d '{"mock":{"collections":{"selected":"collection-b"}}}' -H 'Content-Type: application/json' http://localhost:3110/api/config
 ```
 
 ## Configuration
@@ -67,5 +67,5 @@ You can use the next Mocks Server configuration properties to change the API con
 * __`plugins.adminApi.host`__ _(String)_: Host for the administration REST API. Default is `0.0.0.0` (Reachable to all IPv4 addresses on the local machine).
 
 :::info
-Learn more about how to set Mocks Server settings in the [configuration chapter](configuration/how-to-change-settings.md)
+Learn more about how to set Mocks Server settings in the [configuration chapter](../configuration/how-to-change-settings.md)
 :::
