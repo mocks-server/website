@@ -23,7 +23,7 @@ npm i --save-dev mocks-server-plugin-foo
 
 ### Configuration file
 
-Once installed, you have to register it in the Mocks Server configuration. You can do it using the [configuration file](configuration/how-to-change-settings.md):
+Once installed, you have to register it in the Mocks Server configuration. You can do it using the [configuration file](../configuration/how-to-change-settings.md):
 
 ```js
 const FooPlugin = require("mocks-server-plugin-foo");
@@ -39,7 +39,7 @@ module.exports = {
 
 ### Using JavaScript
 
-If you are going to start Mocks Server using the [Javascript API](integrations/javascript.md), you can also use the [programmatic configuration](configuration/how-to-change-settings.md) to register your own plugins:
+If you are going to start Mocks Server using the [Javascript API](../integrations/javascript.md), you can also use the [programmatic configuration](../configuration/how-to-change-settings.md) to register your own plugins:
 
 ```js
 const Core = require("@mocks-server/core");

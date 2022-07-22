@@ -44,11 +44,11 @@ module.exports = {
 If you are going to start Mocks Server using the [Javascript API](integrations/javascript.md), you can also use the [programmatic configuration](configuration/how-to-change-settings.md) to register your own Variant Handlers:
 
 ```js
-const Core = require("@mocks-server/core");
+const { createServer } = require("@mocks-server/main");
 
 const FooVariantHandler = require("./FooVariantHandler");
 
-const server = new Core(
+const server = createServer(
   {
     variantHandlers: {
       // highlight-next-line
@@ -62,7 +62,7 @@ server.start();
 
 ### Using JavaScript API
 
-You can also use the [Javascript API](api/core/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
+You can also use the [Javascript API](api/javascript/variant-handlers.md) to register your own Variant Handlers from plugins, etc.
 
 ```js
 core.variantHandlers.register([FooVariantHandler]);

@@ -13,15 +13,15 @@ keywords:
 
 ## Preface
 
-In the previous chapters [we saw what Plugins are](plugins/intro.md), and [how to install them](plugins/installation.md). Now we are going to see how to create them, so you can extend Mocks Server with your own features easily 🙂.
+In the previous chapters [we saw what Plugins are](./intro.md), and [how to install them](./installation.md). Now we are going to see how to create them, so you can extend Mocks Server with your own features easily 🙂.
 
 As mentioned in the plugins intro:
 
-> A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the `Class` methods will always receive an instance of the [Mocks Server core API](api/core.md), so it can be used to tap into, modify, or extend its internal behavior.
+> A plugin basically consist on a JavaScript `Class` containing some standardized methods. The Mocks Server core is at charge of creating the plugin instance using the provided `Class` and calling to each method on each specific time of the Mocks Server lifecycle. The `constructor` and the `Class` methods will always receive an instance of the [Mocks Server core API](../api/javascript.md), so it can be used to tap into, modify, or extend its internal behavior.
 
 ## Lifecycle
 
-Plugins should contain __four main methods__, which will receive an argument containing the instance of [Mocks Server core API](api/core.md) with some __methods explicitly modified for each different plugin__. Please read the [API chapter to know how to use the `core API`](api/core.md).
+Plugins should contain __four main methods__, which will receive an argument containing the instance of [Mocks Server core API](../api/javascript.md) with some __methods explicitly modified for each different plugin__. Please read the [API chapter to know how to use the `core API`](../api/javascript.md).
 
 ### `constructor(core)`
 
@@ -87,11 +87,11 @@ export default class Plugin {
 
 ## Parameters
 
-All __plugins methods receive a whole [`core` instance](api/core.md)__, but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin, but here you have also a __summary of the modified methods__:
+All __plugins methods receive a whole [`core` instance](../api/javascript.md)__, but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin, but here you have also a __summary of the modified methods__:
 
-* __`core.alerts`__: This property contains a scoped `alerts` instance using the plugin `id`. It allows to add or remove alerts or alerts namespaces without having conflicts with other plugins or other Mocks Server core elements. Read the [`core.alerts`](api/core/alerts.md) docs to know how to use it, but take into account that in plugins you will receive an alerts subcollection instead of the root alerts object.
-* __`core.config`__: A configuration namespace created specifically for the plugin, using its `id`. Read the [`core.config`](api/core/config.md) docs to know how to use it, but take into account that in plugins you will receive a configuration namespace instead of the root configuration object.
-* __`core.logger`__: A namespaced logger using the plugin `id`. It allows to easily identify the logs of each plugin and differentiate them from other internal Mocks Server components logs. Read the [`core.logger`](api/core/logger.md) docs to know how to use it, but take into account that in plugins you will receive a logger namespace instead of the root logger object.
+* __`core.alerts`__: This property contains a scoped `alerts` instance using the plugin `id`. It allows to add or remove alerts or alerts namespaces without having conflicts with other plugins or other Mocks Server core elements. Read the [`core.alerts`](../api/javascript/alerts.md) docs to know how to use it, but take into account that in plugins you will receive an alerts subcollection instead of the root alerts object.
+* __`core.config`__: A configuration namespace created specifically for the plugin, using its `id`. Read the [`core.config`](../api/javascript/config.md) docs to know how to use it, but take into account that in plugins you will receive a configuration namespace instead of the root configuration object.
+* __`core.logger`__: A namespaced logger using the plugin `id`. It allows to easily identify the logs of each plugin and differentiate them from other internal Mocks Server components logs. Read the [`core.logger`](../api/javascript/logger.md) docs to know how to use it, but take into account that in plugins you will receive a logger namespace instead of the root logger object.
 
 ### Example
 
@@ -152,5 +152,5 @@ module.exports = Plugin;
 ```
 
 :::tip
-Read the [API chapter](api/core.md) for further info about all available Mocks Server `core` methods.
+Read the [Javascript API chapter](../api/javascript.md) for further info about all available Mocks Server `core` methods.
 :::

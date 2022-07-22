@@ -35,9 +35,9 @@ import RoutesVariants from '../assets/routes-variants.png';
 
 ## Load
 
-* Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
-* Files in the `mocks/routes` folder can be of type `.json`, `.js` or even `.ts`. Read the [using Babel guide for further info](guides/using-babel.md).
-* Routes can also be loaded programmatically using the [JavaScript API](integrations/javascript.md).
+* Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](../guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
+* Files in the `mocks/routes` folder can be of type `.json`, `.js` or even `.ts`. Read the [using Babel guide for further info](../guides/using-babel.md).
+* Routes can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 
 ```mdx-code-block
 <Tabs>
@@ -88,7 +88,7 @@ project-root/
 ```
 
 :::info
-Read the [using Babel guide](guides/using-babel.md) for further info about how to use TypeScript.
+Read the [using Babel guide](../guides/using-babel.md) for further info about how to use TypeScript.
 :::
 
 ```mdx-code-block
@@ -97,10 +97,10 @@ Read the [using Babel guide](guides/using-babel.md) for further info about how t
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
-const core = new Core();
+const core = createServer();
 
 core.start().then(() => {
   // highlight-start
@@ -121,14 +121,14 @@ core.start().then(() => {
 
 Routes must be defined as objects containing:
 
-* __`id`__ _(String)_: Used as a reference for grouping routes into different [collections](usage/collections.md), etc.
+* __`id`__ _(String)_: Used as a reference for grouping routes into different [collections](./collections.md), etc.
 * __`url`__ _(String|Regexp)_: Path of the route. [Read Routing for further info](#routing).
 * __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS`. Read [method](#method) and [multiple methods](#multiple-methods) for further info.
 * __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `mock.routes.delay` global setting. It can be overridden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: Array of variants. Each variant usually defines a different response to be sent when the route is requested.
 
 :::info
-__Depending on the variant type, the format of the variants may differ__. In the next examples we'll see ho to define a variant of type `json`, which sends a JSON response. For further info about how to define variants [read the next chapter](usage/variants.md).
+__Depending on the variant type, the format of the variants may differ__. In the next examples we'll see ho to define a variant of type `json`, which sends a JSON response. For further info about how to define variants [read the next chapter](./variants.md).
 :::
 
 ```mdx-code-block
@@ -213,7 +213,7 @@ Read the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) document
 ### Method
 
 * Requests with a method different to the one defined in the route won't be handled by it. So, you can define two different routes for handling two different methods of the same URL.
-* Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](guides/using-the-options-method.md))_.
+* Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](../guides/using-the-options-method.md))_.
 
 ```js
 const { allUsers } = require("../fixtures/users");

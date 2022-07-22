@@ -16,7 +16,7 @@ keywords:
 
 ## Preface
 
-Due to the built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware, the usage of the `OPTIONS` method in [`routes`](usage/routes.md) requires some additional configuration.
+Due to the built-in [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) middleware, the usage of the `OPTIONS` method in [`routes`](../usage/routes.md) requires some additional configuration.
 
 Mocks Server adds by default a middleware to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) automatically in all routes. It also enables CORS pre-flight responses, so it will respond with a 204 status to all requests using the `OPTIONS` method to any route. This means that the `OPTIONS` method can't be used in `routes` until this middleware is disabled, because the built-in CORS pre-flight middleware would send the request response before your route is executed.
 
@@ -37,7 +37,7 @@ module.exports = {
 ```
 
 :::tip
-Read the [configuration chapter](configuration/how-to-change-settings.md) for further info.
+Read the [configuration chapter](../configuration/how-to-change-settings.md) for further info.
 :::
 
 ### Enabling CORS pre-flight response only for some paths
@@ -73,7 +73,7 @@ module.exports = [
 ];
 ```
 
-Then, remember to add your route to the beginning of your "base" [collection](usage/collections.md):
+Then, remember to add your route to the beginning of your "base" [collection](../usage/collections.md):
 
 ```json
 [
@@ -86,5 +86,5 @@ Then, remember to add your route to the beginning of your "base" [collection](us
 ```
 
 :::tip
-Read [how to use middleware variants](usage/variants/middleware.md) for further info.
+Read [how to use middleware variants](../usage/variants/middleware.md) for further info.
 :::

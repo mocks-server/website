@@ -32,7 +32,7 @@ The [interactive CLI can be disabled using configuration](#how-to-disable-it), a
 
 ## Alerts
 
-The plugin will display Mocks Server alerts on the top of the screen. This is very useful when you are modifying [`routes`](usage/routes.md), [`variants`](usage/variants.md) or [`collections`](usage/collections.md) files and any file contains an error, for example.
+The plugin will display Mocks Server alerts on the top of the screen. This is very useful when you are modifying [`routes`](../usage/routes.md), [`variants`](../usage/variants.md) or [`collections`](../usage/collections.md) files and any file contains an error, for example.
 
 ![Interactive CLI alerts](../assets/inquirer-cli-alerts.png)
 
@@ -46,7 +46,7 @@ As Mocks Server includes hot reloading, the alert will automatically disappear w
 * __`plugins.inquirerCli.emojis`__ _(Boolean)_: Defines whether the inquirer CLI uses emojis or not. Default is `true`.
 
 :::tip
-[Check out the configuration docs for further info about how to change settings](configuration/how-to-change-settings.md).
+[Check out the configuration docs for further info about how to change settings](../configuration/how-to-change-settings.md).
 :::
 
 ## How to disable it

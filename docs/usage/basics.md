@@ -34,8 +34,8 @@ import WorkflowSchema from '../assets/workflow.png';
 
 Mocks Server relies on three simple concepts for simulating, control and storage multiple API scenarios:
 
-* __Routes__: A `route` defines the url and method of an API resource. Wildcards can be used in urls and methods, so one `route`route can simulate one real API resource, or many.
-* __Variants__: Each `route` can contain many different `variants`. Each `variants` can define a response to send, or a middleware to execute, or a url to proxy the request, etc.
+* __Routes__: A `route` defines the url and method of an API resource. Wildcards can be used in urls and methods, so, one `route` can simulate one real API resource, or many.
+* __Variants__: Each `route` can contain many different `variants`. Each `variant` can define a response to send, or a middleware to execute, or a url to proxy the request, etc.
 * __Collections__: A `collection` of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.
 
 ```mdx-code-block
@@ -43,14 +43,14 @@ Mocks Server relies on three simple concepts for simulating, control and storage
 ```
 
 :::info
-Read [Routes](usage/routes.md), [Variants](usage/variants.md) and [Collections](usage/collections.md) chapters for further info about how to define them
+Read [Routes](./routes.md), [Variants](./variants.md) and [Collections](./collections.md) chapters for further info about how to define them
 :::
 
 ## Motivation
 
 __The management of different responses for the same route and the ability to store different collections allows to easily toggle between many predefined API state simulations.__ This is perfect while developing an API client, because all of the responses of the API can be changed at a time using the interactive CLI, or one single response can be changed also without modifying any code. And it is also perfect while running tests, because the different route variants collections can be used to test different scenarios.
 
-Exposing different APIs allowing to control the server while it is running make able to integrate it easily with different tools and ecosystems. So, once the responses are defined, they can be reused in different development stages, such as local development, integration testing, etc.
+Exposing different APIs allowing to control the server while it is running makes able to integrate it easily with different tools and ecosystems. So, once the responses are defined, they can be reused in different development lifecycle stages, such as local development, continuous integration testing, etc.
 
 ```mdx-code-block
 <DocsImage src={WorkflowSchema} alt="Workflow schema" />
@@ -60,22 +60,13 @@ Here you have some examples about how to change the current collection and other
 
 ```mdx-code-block
 <Tabs>
-<TabItem value="NodeJS">
+<TabItem value="JavaScript">
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const core = new Core({
-  config: {
-    readFile: false,
-  },
-  plugins: {
-    inquirerCli: {
-      enabled: false,
-    },
-  },
-});
+const core = createServer();
 
 core.start().then(() => {
   // highlight-next-line
@@ -100,7 +91,7 @@ describe("users page", () => {
   describe("when there are two users in the API", () => {
     before(() => {
       // highlight-next-line
-      cy.mocksSelectCollection("two-users"); // Use "two-users" routes and variants
+      cy.mocksSetCollection("two-users"); // Use "two-users" routes and variants
       cy.visit("/");
     });
 
@@ -118,7 +109,7 @@ describe("users page", () => {
 
     after(() => {
       // highlight-next-line
-      cy.mocksRestoreRoutesVariants(); // Restore mock route variants after the test
+      cy.mocksRestoreRouteVariants(); // Restore mock route variants after the test
     });
 
     it("should display error message", () => {

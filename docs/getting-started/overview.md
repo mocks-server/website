@@ -54,12 +54,21 @@ npm i --D @mocks-server/main
 ```
 
 :::note
-Read [installation](getting-started/installation.md) for further details.
+Read [installation](./installation.md) for further details.
 :::
 
 ## Execution
 
 It can be started simply running an NPM script:
+
+```json
+{
+  "scripts": {
+    // highlight-next-line
+    "mocks" : "mocks-server"
+  }
+}
+```
 
 ```sh
 npm run mocks
@@ -68,40 +77,40 @@ npm run mocks
 Or programmatically using JavaScript:
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const server = new Core();
+const server = createServer();
 server.start();
 ```
 
 :::tip
-__The [quick start](getting-started/quick-start.md) chapter will help you to take your first steps with Mocks Server.__
+__The [quick start](./quick-start.md) chapter will help you to take your first steps with Mocks Server.__
 :::
 
 ## Usage
 
-Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watch for changes. Defining routes using any of the available APIs is also possible.
+Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watches for changes. Defining routes using any of the available APIs is also possible.
 
-Routes can be defined in many ways, from plain objects to [Express middlewares](usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxy the request to another host.
+Routes can be defined in many ways, from plain objects to [Express middlewares](../usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxy the request to another host.
 
 :::tip
-Read the [usage chapter](usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
+Read the [usage chapter](../usage/basics.md) in 5 minutes ⏱ to fully understand the Mocks Server main concepts: Routes, Variants and Collections.
 :::
 
 ## Configuration
 
-Configure the server simply [modifying the configuration file at the root folder of your project, or use command line arguments, or even environment variables](configuration/how-to-change-settings.md).
+Configure the server simply [modifying the configuration file at the root folder of your project, or use command line arguments, or even environment variables](../configuration/how-to-change-settings.md).
 
-For changing [options](configuration/how-to-change-settings.md) while it is running, you can also use any of the available integrations tools that enable live interactions with Mocks Server.
+For changing [options](../configuration/how-to-change-settings.md) while it is running, you can also use any of the available integrations tools that enable live interactions with Mocks Server.
 
 ## Integrations
 
-Providing a [Javascript API](integrations/javascript.md), an [interactive command line interface](integrations/command-line.md) and a [REST API](integrations/cypress.md) for __changing the responses of the mocked API while it is running, it is easy to use both for development and testing__. Tools providing integrations with other ecosystems are also available, such as [Cypress commands](integrations/cypress.md).
+Providing a [Javascript API](../integrations/javascript.md), an [interactive command line interface](../integrations/command-line.md) and a [REST API](../integrations/cypress.md) for __changing the responses of the mocked API while it is running, it is easy to use both for development and testing__. Tools providing integrations with other ecosystems are also available, such as [Cypress commands](../integrations/cypress.md).
 
 ## Customization
 
 Mocks Server provides many ways for you to make it fit your requirements, giving you the possibility of extend it with any new amazing feature you want:
 
-* Add new formats for defining routes using [custom variant handlers](variant-handlers/intro.md).
-* [Plugins](plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.
+* Add new formats for defining routes using [custom variant handlers](../variant-handlers/intro.md).
+* [Plugins](../plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.
 * Add custom Express routers using the JavaScript API.

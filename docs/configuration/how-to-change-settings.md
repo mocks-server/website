@@ -39,7 +39,7 @@ When an option is of type `Object` or `Array`, its final value will be the exten
 
 ## Programmatic configuration
 
-When [starting the Mocks Server core programmatically](integrations/javascript.md), you can provide an object with the configuration as first argument.
+When [starting the Mocks Server core programmatically](../integrations/javascript.md), you can provide an object with the configuration as first argument.
 
 ```js
 const server = new Core({
@@ -52,7 +52,7 @@ const server = new Core({
 ```
 
 :::tip
-In the [examples on the next page](configuration/options.md) you'll see options like `mock.collections.selected`. When provided programmatically, that option would correspond to object properties, like `{ mock: { collections: { selected: "foo" }}}`
+In the [examples on the next page](./options.md) you'll see options like `mock.collections.selected`. When provided programmatically, that option would correspond to object properties, like `{ mock: { collections: { selected: "foo" }}}`
 :::
 
 ## Configuration file
@@ -135,7 +135,7 @@ MOCKS_CONFIG_FILE_SEARCH_PLACES='["myConfigFile.js","myConfigFile.json"]' npm ru
 
 Options can also be defined using command line arguments. Options must be prefixed with a double dash (`--`).
 
-In the [options docs](configuration/options.md) you'll see options like `mock.routes.delay`. When provided using command line arguments, use the same format:
+In the [options docs](./options.md) you'll see options like `mock.routes.delay`. When provided using command line arguments, use the same format:
 
 ```sh
 # mock.routes.delay option:
