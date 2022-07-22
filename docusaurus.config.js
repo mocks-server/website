@@ -1,6 +1,5 @@
 function docsUrl(page) {
-  // TODO, remove "next"
-  return `docs/next/${page}`;
+  return `docs/${page}`;
 }
 
 module.exports = {

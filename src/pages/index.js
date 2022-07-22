@@ -24,8 +24,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 function docsUrl(page) {
-  // TODO, remove "next"
-  return `docs/next/${page}`;
+  return `docs/${page}`;
 }
 
 const textContents = {
