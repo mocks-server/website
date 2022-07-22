@@ -21,6 +21,10 @@ If you are already using Mocks Server v2.x you should [migrate first from v2.x t
 
 Even when v4 release is still not published, we are deprecating some things in v3 that will be removed in v4. While v4 is not released, every change in v3.x will be completely backward compatible, but __users upgrading to next minor versions would probably receive alerts about usage of deprecated methods, etc__.
 
+:::info
+Alerts are logged and [displayed in the interactive CLI](../integrations/command-line.md), apart from being available using any of the Mocks Server APIs.
+:::
+
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
 :::tip
@@ -41,6 +45,11 @@ The main breaking changes in v4.x will be:
 * __Remove support for defining plugins as objects or functions__. Read [plugins](#plugins) below for further info.
 * __Default route variants handler will be removed__. Read [route variants handlers](#route-variants-handlers) below for further info.
 * __The JavaScript API for developing variants handlers will change__. Read [route variants handlers API](#route-variants-handlers) below for further info.
+
+### Changes in other packages
+
+* __Cypress commands__. The `@mocks-server/cypress-commands` package release 5.0 and above can be used only with Mocks Server >=3.6. Command names have been renamed, so it is a breaking change. But any `@mocks-server/cypress-commands@4.x` version will continue working with Mocks Server 3.x. So, you can continue using Cypress Commands 4.x and update Mocks Server to the latest 3.x version in order to migrate progressively.
+* __Admin API Client__. The `@mocks-server/admin-api-client` package release 6.0 and above can be used only with Mocks Server >=3.6. Methods have been renamed, so it is a breaking change. But any `@mocks-server/admin-api-client@5.x` version will continue working with Mocks Server 3.x. So, you can continue using `admin-api-client` 5.x and update Mocks Server to the latest 3.x version in order to migrate progressively.
 
 ## Main concepts
 

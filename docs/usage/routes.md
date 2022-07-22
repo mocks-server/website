@@ -97,10 +97,10 @@ Read the [using Babel guide](../guides/using-babel.md) for further info about ho
 ```
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
-const core = new Core();
+const core = createServer();
 
 core.start().then(() => {
   // highlight-start

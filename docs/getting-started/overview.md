@@ -61,6 +61,15 @@ Read [installation](./installation.md) for further details.
 
 It can be started simply running an NPM script:
 
+```json
+{
+  "scripts": {
+    // highlight-next-line
+    "mocks" : "mocks-server"
+  }
+}
+```
+
 ```sh
 npm run mocks
 ```
@@ -68,9 +77,9 @@ npm run mocks
 Or programmatically using JavaScript:
 
 ```js
-const Core = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 
-const server = new Core();
+const server = createServer();
 server.start();
 ```
 
@@ -80,7 +89,7 @@ __The [quick start](./quick-start.md) chapter will help you to take your first s
 
 ## Usage
 
-Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watch for changes. Defining routes using any of the available APIs is also possible.
+Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watches for changes. Defining routes using any of the available APIs is also possible.
 
 Routes can be defined in many ways, from plain objects to [Express middlewares](../usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxy the request to another host.
 

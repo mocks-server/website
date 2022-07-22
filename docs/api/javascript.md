@@ -39,7 +39,66 @@ __`new Core([config], [advancedOptions])`__: Creates a new Mocks Server core ins
       * `name` _(String)_: Package name
       * `version` _(String)_: Current package version
 
-### Other ways of obtaining a core instance
+```js
+const Core = require("@mocks-server/core");
+
+// highlight-next-line
+const core = new Core({
+  server: {
+    port: 3500
+  },
+});
+
+// highlight-next-line
+core.init().then(async () => {
+  // highlight-start
+  await core.start();
+  await core.stop();
+  // highlight-end
+});
+```
+
+:::warning
+The `Core` constructor is exported only by the `@mocks-server/core` package, and it doesn't include any pre-installed plugins, so you should [install them by yourself](../plugins/installation.md) if you choose this method for starting Mocks Server programmatically. Read the [next section](#creating-an-instance-with-pre-installed-plugins) for an alternative method of creating a core instance using the `@mocks-server/main` package, which includes pre-installed plugins and other optimal configuration to start it programmatically.
+:::
+
+### Creating an instance with pre-installed plugins
+
+The `@mocks-server/main` distribution includes some plugins providing useful integrations, such as the [Admin Api Plugin](../integrations/rest-api.md), etc. If you create a new server instance using the `@mocks-server/core` package as in the example above, you would have to [install your desired plugins](../plugins/installation.md) by your own (which may be useful to [create your own distribution](../integrations/javascript.md#creating-your-own-distribution), for example).
+
+Note also that the [default configuration](../configuration/options.md) of `@mocks-server/core` is intended to be used in CLI, so it tries to load files, read arguments and environment variables, etc. which might not be ideal to start it programmatically in Jest tests, for example.
+
+But it is also possible to create an instance with all `@mocks-server/main` distribution plugins and configuration optimized for a programmatic usage using the next function exported by the library:
+
+__`createServer([config])`__: Returns a new core instance. The `config` provided is merged with the default package config, which includes some pre-installed plugins and optimized configuration for a programmatic usage:
+  * It disables the files load. The scaffold is not created and routes and collections must have to be loaded using the JavaScript API.
+  * It disables loading configuration from file, environment variables or arguments. So, possible conflicts are avoided and all configuration has to be provided programmatically.
+  * It disables the interactive CLI plugin.
+
+```js
+const { createServer } = require("@mocks-server/main");
+const { routes, collections } = require("./fixtures");
+
+// highlight-next-line
+const core = createServer({
+  server: {
+    port: 3500
+  },
+});
+
+// highlight-next-line
+core.init().then(async () => {
+  // highlight-start
+  const { loadRoutes, loadCollections } = core.mock.createLoaders();
+  loadRoutes(routes);
+  loadCollections(collections);
+  
+  await core.start();
+  // highlight-end
+});
+```
+
+### Other ways of accessing to the core instance
 
 Apart from creating your own `core` instance programmatically, you can also use it from other system elements, because it is passed as an argument to them. Some elements to which the core instance is passed are:
 
@@ -61,26 +120,6 @@ __`core.start()`__: Start the server and plugins. Returns a promise. It calls to
 ### stop()
 
 __`core.stop()`__: Stop the server and plugins. Returns a promise.
-
-
-## Example
-```js
-const Core = require("@mocks-server/main");
-
-const core = new Core();
-
-// highlight-next-line
-core.init({
-  server: {
-    port: 3500
-  },
-}).then(async () => {
-  // highlight-start
-  await core.start();
-  await core.stop();
-  // highlight-end
-});
-```
 
 ## Children objects APIs
 
