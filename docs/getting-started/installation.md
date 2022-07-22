@@ -63,7 +63,7 @@ npm run mocks
 ```
 
 :::note
-If you are going to use the [JavaScript API](../integrations/javascript) to start Mocks Server, this step is not required.
+If you are going to use the [JavaScript API](../integrations/javascript.md) to start Mocks Server, this step is not required.
 :::
 
 
