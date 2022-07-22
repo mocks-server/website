@@ -21,6 +21,10 @@ If you are already using Mocks Server v2.x you should [migrate first from v2.x t
 
 Even when v4 release is still not published, we are deprecating some things in v3 that will be removed in v4. While v4 is not released, every change in v3.x will be completely backward compatible, but __users upgrading to next minor versions would probably receive alerts about usage of deprecated methods, etc__.
 
+:::info
+Alerts are logged and [displayed in the interactive CLI](../integrations/command-line.md), apart from being available using any of the Mocks Server APIs.
+:::
+
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
 :::tip
