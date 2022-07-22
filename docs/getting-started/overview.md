@@ -89,7 +89,7 @@ __The [quick start](./quick-start.md) chapter will help you to take your first s
 
 ## Usage
 
-Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watch for changes. Defining routes using any of the available APIs is also possible.
+Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watches for changes. Defining routes using any of the available APIs is also possible.
 
 Routes can be defined in many ways, from plain objects to [Express middlewares](../usage/variants/middleware.md), and they can act in different ways also, from sending a response to proxy the request to another host.
 
