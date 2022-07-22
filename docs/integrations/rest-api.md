@@ -31,7 +31,7 @@ The administration API is started on a different server of the API mock. By defa
 
 ## API resources
 
-Available API resources are described in the OpenAPI specification provided by the API server itself at [http://localhost:3110/docs/open-api.json](http://localhost:3110/docs/open-api.json).
+Available API resources are described in the OpenAPI specification provided by the API server itself at [http://localhost:3110/docs/openapi.json](http://localhost:3110/docs/openapi.json).
 
 :::tip
 Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to checkout the API Swagger UI.
