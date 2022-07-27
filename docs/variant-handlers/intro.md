@@ -16,13 +16,14 @@ keywords:
 
 As described in the [variants chapter](../usage/variants.md):
 
-> _route variants can be defined in many ways, from [plain objects](../usage/variants/json.md) to [Express middlewares](../usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxy the request to another host](../usage/variants/proxy.md)_.
+> _route variants can be defined in many ways, from [plain objects](../usage/variants/json.md) to [plain text](../usage/variants/text.md) and even [Express middlewares](../usage/variants/middleware.md), and, depending on the variant type, they can act in different ways also, from sending a response to [proxy the request to another host](../usage/variants/proxy.md)_.
 
 This is possible because the route variant itself does not contain the logic at charge of sending the response. __Each route variant can be of a different type, and its type defines which Variant Handler is at charge of receiving the variant options and act in consequence.__
 
 This allows to add new Variant Handlers to provide more features to Mocks Server easily. For example, next variant handlers are included by default in the main distribution of Mocks Server:
 
-* __[`json`](../usage/variants/json.md)__: Defines the JSON body and the status code to be sent when the route is requested. 
+* __[`json`](../usage/variants/json.md)__: Defines the JSON body and the status code to be sent when the route is requested.
+* __[`text`](../usage/variants/text.md)__: Defines the text body and the status code to be sent when the route is requested. 
 * __[`middleware`](../usage/variants/middleware.md)__: Defines an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) to be executed when the request is received. It is completely on your hand to send a response, or to pass the request to the next middleware, etc.
 * __[`proxy`](../usage/variants/proxy.md)__: Defines a host to proxy the request when it is received. You can modify the request and/or the response also.
 
@@ -60,6 +61,14 @@ module.exports = [
               name: "Jane Doe"
             }
           ]
+        },
+      },
+      {
+        id: "error",
+        type: "text", // variant type. Corresponds to the Variant Handler id
+        options: { // options for the Variant Handler
+          status: 403,
+          body: "An error ocurred"
         },
       }
     ]

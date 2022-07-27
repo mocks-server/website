@@ -58,3 +58,7 @@ module.exports = [
   }
 ];
 ```
+
+## Response headers
+
+By defaul, the `json` variant type sets a `Content-Type` header in the response with value `application/json; charset=utf-8`, but it can be changed using the headers option.

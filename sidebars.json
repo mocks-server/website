@@ -16,6 +16,11 @@
           },
           {
             "type": "doc",
+            "id": "usage/variants/text",
+            "label": "Text"
+          },
+          {
+            "type": "doc",
             "id": "usage/variants/middleware",
             "label": "Middleware"
           },
