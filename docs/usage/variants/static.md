@@ -134,11 +134,13 @@ module.exports = [
         // highlight-start
         type: "json", // Sends a JSON response
         options: {
-          status: "500",
-          message: "There was an error"
+          status: 500,
+          body: {
+            message: "There was an error",
+          },
         },
         // highlight-end
-      }
+      },
     ]
   },
   {
