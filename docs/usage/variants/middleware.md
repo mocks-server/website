@@ -15,7 +15,7 @@ keywords:
   - examples
 ---
 
-Variants of type `middleware` define an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) to be executed when the request is received. It is completely on your hand to send a response, or to pass the request to the next middleware, etc.
+Variants of type `middleware` define an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) to be executed when the request is received. It is completely on your hand to send a response, or to pass the request to the next route, etc.
 
 ## Options
 
@@ -76,7 +76,7 @@ Some of these examples show how to do things that usually shouldn't be done, bec
 
 ### Filtering data
 
-Middlewares can be used to get information from the request parameters and filter the response data in consequence. Suppose that you have defined an `users.js` file that contains a collection of users fixtures. Then you can create an `/api/users` route returning all of your users, and a `/api/users/:id` returning always the same user. If this is not enough and you need your mock to return a different user depending on the received id, you don't have to create a different route for each user. You can use a middleware searching for the desired user and returning it.
+Middlewares can be used to get information from the request query or body parameters and filter the response data in consequence. Suppose that you have defined an `users.js` file that contains a collection of users fixtures. Then you can create an `/api/users` route returning all of your users, and a `/api/users/:id` returning always the same user. If this is not enough and you need your mock to return a different user depending on the ID received in the query parameters, you don't have to create a different route for each user. You can use a middleware searching for the desired user and returning it.
 
 ```js
 const { allUsers } = require("../fixtures/users");

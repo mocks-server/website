@@ -15,9 +15,13 @@ keywords:
 
 ## Preface
 
-In the previous chapters [we saw what a Variant Handler is](./intro.md), and [how to install it](./installation.md). Now we are going to see how to create them, so you can add your own features to Mocks Server easily 🙂.
+In the previous chapters [we figured out what a Variant Handler is](./intro.md), and [how to install it](./installation.md). Now we are going to learn how to create them, so you can add your own features to Mocks Server easily 🙂.
 
-A Variant Handler basically consists on a JavaScript `Class` which receives the variant options in the `constructor` method, and which must contain a `middleware` method. This method receives the same parameters than an [Express middleware](https://expressjs.com/en/guide/using-middleware.html), and it will be executed whenever the route is requested.
+A Variant Handler basically consists on a JavaScript `Class` which receives the variant options in the `constructor` method, and which must contain a `middleware` method or a `router` getter. 
+
+In the first case, the middleware method receives the same parameters than an [Express middleware](https://expressjs.com/en/guide/using-middleware.html), and it will be executed whenever the route is requested.
+
+In the second case, the router returned must be a valid [Express router](https://expressjs.com/en/4x/api.html#router), which will be mounted on the route url. So, basically, variants of this type will produce to ignore the `method` defined in the route, and they will be at charge of handling requests to all HTTP methods and subpaths of the route url. That is the case of the [`static` variant handler](../usage/variants/static.md), for example.
 
 ## Properties
 
@@ -41,11 +45,15 @@ This static getter must return a JSON schema defining the specific options requi
 
 #### `middleware(req, res, next)`
 
-This is the middleware that will be called when the route is requested.
+When defined, this is the [Express middleware](https://expressjs.com/en/guide/using-middleware.html) that will be called when the route url is requested with any of the route methods.
+
+#### `get router()`
+
+When defined, it must return a valid [Express router](https://expressjs.com/en/4x/api.html#router), which will be mounted on the route url. Note that this will produce to ignore the `method` defined in the route, and the returned router will be at charge of handling requests to all HTTP methods and subpaths of the route url.
 
 #### `get preview()`
 
-This getter has to return a plain object containing an approached preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server integration tools. If you have not enough information to predict the response (as in the case of the `middleware` handler, for example), then you should return `null`.
+This getter has to return a plain object containing an approached preview of the response that will be sent when the route variant is used. This is useful to provide information to other plugins or Mocks Server integration tools. If you have not enough information to predict the response, then you should return `null` (this is the case of the [`middleware` Variant Handler](../usage/variants/middleware.md), for example, because it is not possible to predict the response without executing it).
 
 ## Example
 

@@ -27,7 +27,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 ## Description
 
 * A __route__ defines the different responses that can be sent for an specific __request__ _(url and method)_.
-* Routes can contain many __variants__, which usually define a different response to be sent when the route is requested.
+* Routes can contain many __variants__, which usually define a different response to be sent when the route is requested. The user can choose which variant has to be used by each route on each particular moment.
 
 ```mdx-code-block
 <DocsImage src={RoutesVariants} alt="Routes and variants" />
@@ -123,7 +123,7 @@ Routes must be defined as objects containing:
 
 * __`id`__ _(String)_: Used as a reference for grouping routes into different [collections](./collections.md), etc.
 * __`url`__ _(String|Regexp)_: Path of the route. [Read Routing for further info](#routing).
-* __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS`. Read [method](#method) and [multiple methods](#multiple-methods) for further info.
+* __`method`__ _(String|Array)_: Method of the request. Defines the HTTP method to which the route will response. It can be also defined as an array of methods, then the route will response to all of them. Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` and `OPTIONS`. Usage of the wildcard `*` is also allowed. Read [method](#method) and [multiple methods](#multiple-methods) for further info.
 * __`delay`__ _(Number)_: Milliseconds of delay for all variants of this route. This option will override the value of the `mock.routes.delay` global setting. It can be overridden by the `delay` defined in a variant.
 * __`variants`__ _(Array)_: Array of variants. Each variant usually defines a different response to be sent when the route is requested.
 
@@ -212,8 +212,10 @@ Read the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) document
 
 ### Method
 
-* Requests with a method different to the one defined in the route won't be handled by it. So, you can define two different routes for handling two different methods of the same URL.
-* Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](../guides/using-the-options-method.md))_.
+* Requests with a method different to the one defined in the route won't be handled by it. So, you have to define two different routes for handling two different methods of the same URL.
+* Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](../guides/using-the-options-method.md))_. Methods can be also defined using lower case.
+* The wildcard `*` can also be used as method. In that case, the route would handle all HTTP methods. Read [multiple methods](#multiple-methods) for further info.
+* Note that some types of variants are internally implemented using an [Express router](https://expressjs.com/en/4x/api.html#router) instead of an [Express middleware](https://expressjs.com/en/guide/using-middleware.html). In that case, selecting that variant would produce to ignore the method defined in the route, because, basically, that produces the variant to handle all route methods and subpaths. That is the case of the [`static` variant handler](./variants/static.md), for example.
 
 ```js
 const { allUsers } = require("../fixtures/users");
@@ -277,4 +279,61 @@ module.exports = [
     ]
   },
 ];
+```
+
+If the route method is not defined, or the wildcard `*` is used, then the route will handle requests to any HTTP method:
+
+```mdx-code-block
+<Tabs>
+<TabItem value="Wildcard">
+```
+
+```js
+module.exports = [
+  {
+    id: "users-error",
+    url: "/api/users",
+    // highlight-next-line
+    method: "*" // All HTTP methods
+    variants: [
+      {
+        id: "error",
+        type: "json",
+        options: {
+          status: 500,
+        }
+      },
+    ]
+  },
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="No method">
+```
+
+```js
+module.exports = [
+  {
+    id: "users-error",
+    url: "/api/users",
+    // highlight-next-line
+    // All HTTP methods, because method is not defined
+    variants: [
+      {
+        id: "error",
+        type: "json",
+        options: {
+          status: 500,
+        }
+      },
+    ]
+  },
+];
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
 ```

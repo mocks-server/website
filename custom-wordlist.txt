@@ -20,6 +20,7 @@ cors
 CORS
 cleanStore
 createLoaders
+css
 customizable
 customVariants
 customRouteVariants
@@ -38,6 +39,8 @@ getters
 globalStore
 gzipped
 HOCs
+html
+HTML
 http
 https
 init
@@ -90,7 +93,10 @@ setLevel
 stringified
 subcollection
 subfolders
+subfolder
 submenu
+subpaths
+subpath
 theirself
 TypeScript
 UI

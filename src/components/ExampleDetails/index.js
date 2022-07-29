@@ -2,9 +2,9 @@ import React from "react";
 
 import Details from "@theme/Details";
 
-function ExampleDetails({ children }) {
+function ExampleDetails({ children, title = "Example" }) {
   return (
-    <Details className="code-example" summary={<summary>Example</summary>}>
+    <Details className="code-example" summary={<summary>{title}</summary>}>
       {children}
     </Details>
   );
