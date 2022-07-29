@@ -57,7 +57,7 @@ module.exports = [
 
 ## Response headers
 
-By defaul, the `text` variant type sets a `Content-Type` header in the response with value `text/plain; charset=utf-8`, but it can be changed using the headers option.
+By default, the `text` variant type sets a `Content-Type` header in the response with value `text/plain; charset=utf-8`, but it can be changed using the headers option.
 
 ```mdx-code-block
 <Tabs>

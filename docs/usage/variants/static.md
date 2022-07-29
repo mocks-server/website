@@ -29,7 +29,7 @@ The `options` property in a variant of type `static` must be an object containin
 * __`options`__ _(Object)_: Object containing any of the available [`express.static` method options](https://expressjs.com/en/4x/api.html#express.static). Some of them are:
   * __`index`__ _(Boolean|String)_: Sends the specified directory index file. Set to false to disable directory indexing.
   * __`maxAge`__ _(Number)_ : Set the max-age property of the Cache-Control header in milliseconds or a string in ms format.
-  * __`redirect`__ _(Boolean)_ : Redirect to trailing `/` when the pathname is a directory.
+  * __`redirect`__ _(Boolean)_ : Redirect to trailing `/` when the `pathname` is a directory.
   * __`...`__ : Any of the other options supported by the [`express.static` method](https://expressjs.com/en/4x/api.html#express.static).
 
 For example, use the following route to serve HTML files, images, CSS files, and JavaScript files in a directory named `public` in the `mocks` folder:

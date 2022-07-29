@@ -127,7 +127,7 @@ The `core.mock.collections` object provides access to methods related to [`colle
 __`core.mock.collections.select(collectionId [,options])`__: Changes the current collection. The API mock will use the routes and variants defined in the selected collection.
 * `collectionId` _(String)_: Collection id.
 * `options` _(Object)_: Options object:
-  * `check` _(Boolean)_: When `true`, the method returns a promise that is resolved when the provided collection is set as the current one and it is efectively used by the mock server. Otherwise the promise is rejected after 2 seconds (in case the collection does not exists, for example).
+  * `check` _(Boolean)_: When `true`, the method returns a promise that is resolved when the provided collection is set as the current one and it is effectively used by the mock server. Otherwise the promise is rejected after 2 seconds (in case the collection does not exists, for example).
 
 ```mdx-code-block
 <ExampleDetails title="Examples">
@@ -135,7 +135,7 @@ __`core.mock.collections.select(collectionId [,options])`__: Changes the current
 
 ```js
 
-// Async is not handled. The selected collection is set and it may take some milliseconds to the server to efectively use it
+// Async is not handled. The selected collection is set and it may take some milliseconds to the server to effectively use it
 core.mock.collections.select("foo-collection-id");
 
 // Async is handled. The selected collection is set and the promise is resolved when it is used by the server
