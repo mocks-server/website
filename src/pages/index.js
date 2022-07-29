@@ -66,23 +66,23 @@ const textContents = {
         "variants": [
           {
             "id": "success",
-            "handler": "json",
-            "response": {
+            "type": "json",
+            "options": {
               "status": 200,
               "body": { "id": 1, "name": "John Doe"}
             }
           },
           {
             "id": "not-found",
-            "handler": "json",
-            "response": {
+            "type": "json",
+            "options": {
               "status": 404
             }
           },
           {
             "id": "proxied",
-            "handler": "proxy",
-            "response": {
+            "type": "proxy",
+            "options": {
               "host": "https://jsonplaceholder.typicode.com/users/1"
             }
           }
@@ -100,23 +100,23 @@ const textContents = {
         variants: [
           {
             id: "success",
-            handler: "json",
-            response: {
+            type: "json",
+            options: {
               status: 200,
               body: { "id": 1, "name": "John Doe"}
             }
           },
           {
             id: "not-found",
-            handler: "json",
-            response: {
+            type: "json",
+            options: {
               status: 404
             }
           },
           {
             id: "proxied",
-            handler: "proxy",
-            response: {
+            type: "proxy",
+            options: {
               host: "https://jsonplaceholder.typicode.com/users/1"
             }
           }

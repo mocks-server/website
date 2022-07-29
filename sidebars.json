@@ -16,8 +16,18 @@
           },
           {
             "type": "doc",
+            "id": "usage/variants/text",
+            "label": "Text"
+          },
+          {
+            "type": "doc",
             "id": "usage/variants/middleware",
             "label": "Middleware"
+          },
+          {
+            "type": "doc",
+            "id": "usage/variants/static",
+            "label": "Static"
           },
           {
             "type": "doc",

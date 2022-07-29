@@ -128,7 +128,7 @@ These options are provided by the core of Mocks Server, so they can be used in a
 * __`files.watch`__ _(Boolean)_: Watch the `/mocks` folder and restart server on changes. Default is `true`.
 * __`files.babelRegister.enabled`__ _(Boolean)_: Enables [Babel compilation](../guides/using-babel.md) for files inside the `/mocks` folder.
 * __`files.babelRegister.options`__ _(Object)_: Options for [`@babel/register`](https://babeljs.io/docs/en/babel-register) when `babelRegister` is enabled. Properties in this object are passed directly to `@babel/register` as options, so refer to [its documentation](https://babeljs.io/docs/en/babel-register) for further info. You can also see some usage examples in the ["using Babel"](../guides/using-babel.md) chapter of this docs.
-* __`log`__ _(String)_: Logs level. Can be one of `silly`, `debug`, `verbose`, `info`, `warn` or `error`.
+* __`log`__ _(String)_: Logs level. Can be one of `silly`, `debug`, `verbose`, `info`, `warn`, `error` or `silent`.
 * __`mock.collections.selected`__ _(String)_: Collection to use when the server is started.
 * __`mock.routes.delay`__ _(Number)_: Responses delay time in milliseconds. This is a global setting that can be overridden in specific routes or route variants using [their options](../usage/routes.md).
 * __`plugins.register`__: _(Array of `Plugin`)_: Array of Plugins, defined as described in the [plugins chapter](../plugins/intro.md).
