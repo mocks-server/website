@@ -42,7 +42,7 @@ const { routes, collections } = require("./fixtures");
 
 const server = createServer();
 
-server.start().then(() => {
+server.start().then(async () => {
   const { loadRoutes, loadCollections } = server.mock.createLoaders();
   loadRoutes(routes);
   loadCollections(collections);
@@ -70,7 +70,7 @@ It is also possible to tap into, modify, or extend the server internal behavior 
 
 You can start, control and stop the mock server programmatically from your NodeJs unit tests.
 
-You could use the configuration file and load routes, variants and collections creating files in the "mocks" folder as usual, or even disable files and load all configuration and fixtures programmatically also:
+You can load all configuration and fixtures programmatically. And, using configuration, you could also enable loading routes, variants and collections from files in the "/mocks" folder.
 
 ```js
 const createServer = require("@mocks-server/main");
@@ -92,8 +92,8 @@ afterAll(async () => {
 
 describe("users API client", () => {
   it("getUsers method should return 3 users", async () => {
-    // Select the collection returning the expected data
-    server.mock.collections.select("3-users");
+    // Select the collection returning the expected data, and wait for the mock to be ready
+    await server.mock.collections.select("3-users", { check: true });
 
     // configure the unit under test
     const usersApiClient = new UsersService('http://localhost:3100/api/users');

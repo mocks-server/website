@@ -35,7 +35,7 @@ import WorkflowSchema from '../assets/workflow.png';
 Mocks Server relies on three simple concepts for simulating, control and storage multiple API scenarios:
 
 * __Routes__: A `route` defines the url and method of an API resource. Wildcards can be used in urls and methods, so, one `route` can simulate one real API resource, or many.
-* __Variants__: Each `route` can contain many different `variants`. Each `variant` can define a response to send, or a middleware to execute, or a url to proxy the request, etc.
+* __Variants__: Each `route` can contain many different `variants`. Each `variant` can define a response to send, or a middleware to execute, or a url to proxy the request, etc. You can choose which variant has to be used by each route on each particular moment.
 * __Collections__: A `collection` of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.
 
 ```mdx-code-block

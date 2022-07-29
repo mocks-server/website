@@ -26,6 +26,11 @@
           },
           {
             "type": "doc",
+            "id": "usage/variants/static",
+            "label": "Static"
+          },
+          {
+            "type": "doc",
             "id": "usage/variants/proxy",
             "label": "Proxy"
           }
