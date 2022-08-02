@@ -73,7 +73,7 @@ You can start, control and stop the mock server programmatically from your NodeJ
 You can load all configuration and fixtures programmatically. And, using configuration, you could also enable loading routes, variants and collections from files in the "/mocks" folder.
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
 beforeAll(async () => {
