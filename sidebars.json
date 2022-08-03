@@ -21,6 +21,11 @@
           },
           {
             "type": "doc",
+            "id": "usage/variants/status",
+            "label": "Status"
+          },
+          {
+            "type": "doc",
             "id": "usage/variants/middleware",
             "label": "Middleware"
           },
