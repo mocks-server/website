@@ -24,6 +24,7 @@ css
 customizable
 customVariants
 customRouteVariants
+cy
 dependant
 descendent
 Docusaurus
@@ -59,6 +60,13 @@ middleware
 middlewares
 md
 mocksServer
+mocksSetCollection
+mocksUseRouteVariant
+mocksRestoreRouteVariants
+mocksSetDelay
+mocksSetConfig
+mocksConfigClient
+AdminApiClient
 Namespaces
 namespaces
 Namespace
