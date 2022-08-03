@@ -245,7 +245,7 @@ module.exports = [
     variants: [
       {
         id: "success", // id of the variant
-        type: "json", // variant type
+        type: "status", // variant type
         options: {
           status: 201,
         }
@@ -271,7 +271,7 @@ module.exports = [
     variants: [
       {
         id: "success", // id of the variant
-        type: "json", // variant type
+        type: "status", // variant type
         options: {
           status: 200,
         }
@@ -298,7 +298,7 @@ module.exports = [
     variants: [
       {
         id: "error",
-        type: "json",
+        type: "status",
         options: {
           status: 500,
         }
@@ -323,7 +323,7 @@ module.exports = [
     variants: [
       {
         id: "error",
-        type: "json",
+        type: "status",
         options: {
           status: 500,
         }

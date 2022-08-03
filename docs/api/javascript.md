@@ -58,7 +58,7 @@ core.init().then(async () => {
 });
 ```
 
-:::warning
+:::caution
 The `Core` constructor is exported only by the `@mocks-server/core` package, and it doesn't include any pre-installed plugins, so you should [install them by yourself](../plugins/installation.md) if you choose this method for starting Mocks Server programmatically. Read the [next section](#creating-an-instance-with-pre-installed-plugins) for an alternative method of creating a core instance using the `@mocks-server/main` package, which includes pre-installed plugins and other optimal configuration to start it programmatically.
 :::
 
@@ -98,6 +98,41 @@ core.init().then(async () => {
 });
 ```
 
+<details>
+<summary>
+Creating an instance with pre-installed plugins and custom configuration
+</summary>
+<div>
+
+You can also use the `createServer` method to create an instance programmatically, but loading files from the `mocks` folder and configuration files, for example. In the next example, the server would be started as it was started using the `mocks-server` CLI command:
+
+```js
+const { createServer } = require("@mocks-server/main");
+
+// highlight-next-line
+const core = createServer({
+  config: {
+    readArguments: true,
+    readEnvironment: true,
+    readFile: true,
+  },
+  plugins: {
+    inquirerCli: {
+      enabled: true,
+    },
+  },
+  files: {
+    enabled: true,
+  },
+});
+
+// highlight-next-line
+core.start();
+```
+
+</div>
+</details>
+
 ### Other ways of accessing to the core instance
 
 Apart from creating your own `core` instance programmatically, you can also use it from other system elements, because it is passed as an argument to them. Some elements to which the core instance is passed are:
@@ -106,7 +141,13 @@ Apart from creating your own `core` instance programmatically, you can also use 
 * __Variant handlers__: A variant handler receives the core instance on its constructor. Read [variant handlers development](../variant-handlers/development.md) for further info.
   * __middleware variants__: The core is passed from the `middleware` variant handler to the middleware functions defined in that type of variants. So, it can be used directly in Express middlewares. Read the [middleware variant chapter](../usage/variants/middleware.md) for further info.
 
+:::tip
+Read the [plugins development](../plugins/development.md) and [variant handlers development](../plugins/development.md) chapters for further info.
+:::
+
 ## API
+
+Here are described the methods that are available at first level of the `core` instance.
 
 ### init()
 
@@ -122,6 +163,8 @@ __`core.start()`__: Start the server and plugins. Returns a promise. It calls to
 __`core.stop()`__: Stop the server and plugins. Returns a promise.
 
 ## Children objects APIs
+
+Continue reading to checkout the API docs of other objects available in the `core` instance:
 
 ```mdx-code-block
 <DocCardList items={useCurrentSidebarCategory().items}/>

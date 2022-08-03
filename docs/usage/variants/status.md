@@ -28,16 +28,16 @@ The `options` property in a variant of type `status` must be an object containin
 ```js
 module.exports = [
   {
-    id: "get-users",
+    id: "create-user",
     url: "/api/users",
-    method: "GET",
+    method: "POST",
     variants: [
       {
         id: "success",
         type: "status", // variant of type status
         // highlight-start
         options: {
-          status: 200, // status to send
+          status: 201, // status to send
           headers: { // response headers to send
             "x-custom-header": "foo-header-value",
           }

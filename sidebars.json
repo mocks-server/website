@@ -36,6 +36,11 @@
           },
           {
             "type": "doc",
+            "id": "usage/variants/file",
+            "label": "File"
+          },
+          {
+            "type": "doc",
             "id": "usage/variants/proxy",
             "label": "Proxy"
           }

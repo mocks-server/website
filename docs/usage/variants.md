@@ -49,7 +49,7 @@ Variants must be defined in the [`variants` property of the routes](./routes.md)
 
 ## Types
 
-The value of the `type` property in a variant defines the Variant Handler that will handle a request. The `@mocks-server/main` package includes three variant handlers, so variants can be of type `json`, `middleware` or `proxy`. The Variant Handler receives the `options` property from the variant, so, each different variant type requires a different format in the `options` object.
+The value of the `type` property in a variant defines the Variant Handler that will handle a request. The `@mocks-server/main` package includes multiple variant handlers. The Variant Handler receives the `options` property from the variant, so, each different variant type requires a different format in the `options` object.
 
 In the next chapters we will see in detail how to use each different variant type. For the moment, here you have a brief description of each type:
 
@@ -58,6 +58,7 @@ In the next chapters we will see in detail how to use each different variant typ
 * __[`status`](./variants/status.md)__: Defines a status code to be sent without body when the route is requested. 
 * __[`middleware`](./variants/middleware.md)__: Defines an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) to be executed when the request is received. It is completely on your hand to send a response, or to pass the request to the next route, etc.
 * __[`static`](./variants/static.md)__: Defines a folder from which to serve static assets.
+* __[`file`](./variants/file.md)__: Defines a file to transfer when the route is requested.
 * __[`proxy`](./variants/proxy.md)__: Defines a host to proxy the request when it is received. You can modify the request and/or the response also.
 
 ```mdx-code-block
@@ -89,6 +90,59 @@ module.exports = [
               name: "Jane Doe"
             }
           ]
+        },
+      }
+      // highlight-end
+    ]
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="text">
+```
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    method: "GET",
+    variants: [
+      // highlight-start
+      {
+        id: "error",
+        type: "text", // variant of type text
+        options: {
+          status: 403, // status to send
+          body: "An error ocurred"
+        },
+      }
+      // highlight-end
+    ]
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="status">
+```
+
+```js
+module.exports = [
+  {
+    id: "create-user",
+    url: "/api/users",
+    method: "POST",
+    variants: [
+      // highlight-start
+      {
+        id: "success",
+        type: "status", // variant of type status
+        options: {
+          status: 201, // status to send
         },
       }
       // highlight-end
@@ -138,6 +192,57 @@ module.exports = [
 
 ```mdx-code-block
 </TabItem>
+<TabItem value="static">
+```
+
+```js
+module.exports = [
+  {
+    id: "public",
+    url: "/web",
+    variants: [
+      // highlight-start
+      {
+        id: "available",
+        type: "static",
+        options: {
+          path: "mocks/public", // path of the folder to be served
+        },
+      }
+      // highlight-end
+    ]
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="file">
+```
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    variants: [
+      // highlight-start
+      {
+        id: "success",
+        type: "file",
+        options: {
+          status: 200, // Status to be sent
+          path: "mocks/files/users.json", // path of the file to be transferred
+        },
+      }
+      // highlight-end
+    ]
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
 <TabItem value="proxy">
 ```
 
@@ -169,7 +274,7 @@ module.exports = [
 ```
 
 :::tip
-Read the next chapters to learn how to define each different variant type: [`json`](./variants/json.md), [`text`](./variants/text.md), [`middleware`](./variants/middleware.md), [`proxy`](./variants/proxy.md), etc.
+Read the next chapters to learn how to define each different variant type: [`json`](./variants/json.md), [`text`](./variants/text.md), [`status`](./variants/status.md), [`middleware`](./variants/middleware.md), [`static`](./variants/static.md), [`file`](./variants/file.md) or [`proxy`](./variants/proxy.md)
 :::
 
 ### Custom types

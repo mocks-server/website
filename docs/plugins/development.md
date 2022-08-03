@@ -13,7 +13,7 @@ keywords:
 
 ## Preface
 
-In the previous chapters [we saw what Plugins are](./intro.md), and [how to install them](./installation.md). Now we are going to see how to create them, so you can extend Mocks Server with your own features easily 🙂.
+In the previous chapters [we figured out what Plugins are](./intro.md), and [how to install them](./installation.md). Now we are going to see how to create them, so you can extend Mocks Server with your own features easily 🙂.
 
 As mentioned in the plugins intro:
 
@@ -21,7 +21,7 @@ As mentioned in the plugins intro:
 
 ## Lifecycle
 
-Plugins should contain __four main methods__, which will receive an argument containing the instance of [Mocks Server core API](../api/javascript.md) with some __methods explicitly modified for each different plugin__. Please read the [API chapter to know how to use the `core API`](../api/javascript.md).
+Plugins should contain __four main methods, which will receive an argument containing the instance of [Mocks Server core API](../api/javascript.md)__. Please read the [API chapter to know how to use the `core API`](../api/javascript.md).
 
 ### `constructor(core)`
 
