@@ -24,8 +24,10 @@ css
 customizable
 customVariants
 customRouteVariants
+cy
 dependant
 descendent
+devDependencies
 Docusaurus
 ecmascript
 env
@@ -59,6 +61,13 @@ middleware
 middlewares
 md
 mocksServer
+mocksSetCollection
+mocksUseRouteVariant
+mocksRestoreRouteVariants
+mocksSetDelay
+mocksSetConfig
+mocksConfigClient
+AdminApiClient
 Namespaces
 namespaces
 Namespace
