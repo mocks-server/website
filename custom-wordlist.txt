@@ -27,6 +27,7 @@ customRouteVariants
 cy
 dependant
 descendent
+devDependencies
 Docusaurus
 ecmascript
 env
