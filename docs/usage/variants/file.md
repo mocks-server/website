@@ -19,7 +19,7 @@ keywords:
   - examples
 ---
 
-Variants of type `file` define a file to transfer when a route is requested. It sets the Content-Type response HTTP header field based on the filename’s extension.
+Variants of type `file` define a file to transfer when a route is requested. It sets the Content-Type response HTTP header field based on the filename's extension.
 
 ## Options
 
@@ -59,5 +59,5 @@ module.exports = [
 ```
 
 :::tip
-The Content-Type response HTTP header field is set automatically based on the filename’s extension, but you can still use the `headers` option to set your own headers or override the automatic header.
+The Content-Type response HTTP header field is set automatically based on the filename's extension, but you can still use the `headers` option to set your own headers or override the automatic header.
 :::

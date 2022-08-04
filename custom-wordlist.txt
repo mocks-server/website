@@ -20,6 +20,7 @@ cors
 CORS
 cleanStore
 createLoaders
+createServer
 css
 customizable
 customVariants
@@ -36,6 +37,7 @@ ESM
 extensibles
 extraData
 familiared
+fileSearchPlaces
 getter
 getters
 globalStore
