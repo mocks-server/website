@@ -35,7 +35,7 @@ Use only the API methods described in this docs. Use other methods under your ow
 :::
 
 :::warning
-When the `core` is received in the plugin, you must use `core.alerts`, but when you are creating your own core instance programmatically, then you must use `core.alertsApi` instead. This was made in v3.2 due to backward compatibility reasons, and it will be fixed in next major version.
+When the `core` is received in a plugin as a parameter, you must use `core.alerts`, but when you are creating your own core instance programmatically, then you must use `core.alertsApi` instead. This was made in v3.2 due to backward compatibility reasons, and it will be fixed in next major version.
 :::
 
 ## API

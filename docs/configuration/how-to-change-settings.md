@@ -76,6 +76,27 @@ module.exports = {
 };
 ```
 
+<details>
+<summary>
+How to change the configuration file path
+</summary>
+<div>
+
+The path of the configuration file can be changed using the `config.fileSearchPlaces` option argument:
+
+```sh
+mocks-server --config.fileSearchPlaces=config/some/path/mocks.config.js
+```
+
+An also using the correspondent environment variable:
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_PLACES='["config/some/path/mocks.config.js"]' mocks-server
+```
+
+</div>
+</details>
+
 Configuration files can also export a function. In that case, the programmatic configuration will be received as first parameter, so you can modify it and return the new one.
 
 ```js
@@ -133,7 +154,7 @@ MOCKS_CONFIG_FILE_SEARCH_PLACES='["myConfigFile.js","myConfigFile.json"]' npm ru
 
 ## Command line arguments
 
-Options can also be defined using command line arguments. Options must be prefixed with a double dash (`--`).
+Options can also be defined using command line arguments. Options must be prefixed with a double dash (`--`) when running NPM commands.
 
 In the [options docs](./options.md) you'll see options like `mock.routes.delay`. When provided using command line arguments, use the same format:
 

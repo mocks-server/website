@@ -27,10 +27,13 @@ The server provides a JavaScript API that enables you to control it and to tap i
 
 Apart from [creating your own `core` instance programmatically](#creating-your-own-instance), you can also use it from other system elements, because it is passed as an argument to them. Some elements to which the core instance is passed are:
 
-* __Plugins__: A plugin receives the core instance on its constructor and in all of its standardized methods. Read [plugins development](../plugins/development.md) for further info.
-* __Variant handlers__: A variant handler receives the core instance on its constructor. Read [variant handlers development](../variant-handlers/development.md) for further info.
+* __Plugins__: A plugin receives the core instance as a parameter on its constructor and in all of its standardized methods. Read [plugins development](../plugins/development.md) for further info.
+* __Variant handlers__: A variant handler receives the core instance as a parameter on its constructor. Read [variant handlers development](../variant-handlers/development.md) for further info.
   * __middleware variants__: The core is passed from the `middleware` variant handler to the middleware functions defined in that type of variants. So, it can be used directly in Express middlewares. Read the [middleware variant chapter](../usage/variants/middleware.md) for further info.
 
+:::tip
+Read the [plugins development](../plugins/development.md) and [variant handlers development](../plugins/development.md) chapters for further info.
+:::
 
 ## Creating your own instance
 
@@ -50,6 +53,10 @@ server.start().then(async () => {
   server.mock.collections.select("collection-a");
 });
 ```
+
+:::caution
+The example above shows how to use the `createServer` method provided by the `@mocks-server/main` package to create a server instance optimized for its programmatic usage, so it does not load files from the `mocks` folder nor configuration files, etc. Read the [API chapter](../api/javascript.md) for further info about how to create a server instance programmatically enabling all of the features you may want.
+:::
 
 :::tip
 Read the [API chapter](../api/javascript.md) for further info about core available methods
@@ -73,7 +80,7 @@ You can start, control and stop the mock server programmatically from your NodeJ
 You can load all configuration and fixtures programmatically. And, using configuration, you could also enable loading routes, variants and collections from files in the "/mocks" folder.
 
 ```js
-const createServer = require("@mocks-server/main");
+const { createServer } = require("@mocks-server/main");
 const { routes, collections } = require("./fixtures");
 
 beforeAll(async () => {
