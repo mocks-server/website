@@ -37,6 +37,7 @@ ESM
 extensibles
 extraData
 familiared
+filename
 fileSearchPlaces
 getter
 getters
