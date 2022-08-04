@@ -29,7 +29,13 @@ The [Mocks Server main distribution](https://github.com/mocks-server/main/tree/m
 
 The administration API is started on a different server of the API mock. By default, it is started in the `3110` port, but this can be changed using [configuration](#configuration).
 
-## API resources
+## Postman collection
+
+Once Mocks Server is running, you can use our Postman public collection to interact with the administration API:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/1246644-3976d7be-07fd-4ba6-b8d9-eb2943586f3c?action=collection%2Ffork&collection-url=entityId%3D1246644-3976d7be-07fd-4ba6-b8d9-eb2943586f3c%26entityType%3Dcollection%26workspaceId%3Dbd824f20-8630-4510-bd29-79d81e482f36)
+
+## Swagger
 
 Available API resources are described in the OpenAPI specification provided by the API server itself at [http://localhost:3110/docs/openapi.json](http://localhost:3110/docs/openapi.json).
 
@@ -40,6 +46,8 @@ Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3
 ```mdx-code-block
 <DocsImage src={Swagger} alt="Swagger UI" />
 ```
+
+## Javascript API client
 
 :::tip
 A __JavaScript client for the administration api__ is also distributed as a separated package: [@mocks-server/admin-api-client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client).

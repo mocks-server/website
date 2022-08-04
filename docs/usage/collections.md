@@ -192,7 +192,7 @@ curl -X PATCH -d '{"routes":{"collections":{"selected":"collection-b"}}}' -H 'Co
 
 ## Defining custom route variants
 
-Mocks Server provides a feature to change the variant of routes defined in the current collection while the server is running without the need to create another collection nor modify any code.
+Mocks Server provides a feature to change the variant of routes defined in the current collection while the server is running without the need to create another collection nor modify any code. So, you can modify the current collection route variants on the fly.
 
 For example, if the current collection defines that for the `route-A` it uses the `variant-B` (`"routes": ["route-A:variant-B"]`), you can change it temporarily to return the `variant-C` using any of the available APIs or integration tools. When doing so, the current collection will be modified in memory, and it will be restored whenever another collection is selected or routes or collections are reloaded.
 
