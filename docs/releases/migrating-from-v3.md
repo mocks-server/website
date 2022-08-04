@@ -28,7 +28,7 @@ Alerts are logged and [displayed in the interactive CLI](../integrations/command
 So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
 
 :::tip
-If you are already using v3.x, then __update to v3.6, which is fully compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then you'll be able to update to v4.
+If you are already using v3.x, then __update to v3.8, which is fully compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then you'll be able to update to v4.
 :::
 
 
@@ -89,8 +89,8 @@ From v3.6, a new REST API server is started in a different port of the API mock.
 
 ## Alerts
 
-* The __`core.alerts`__ getter in the core when created programmatically was different to the `core.alerts` property received in the plugins from v3.2 due to backward compatibility reasons. In v4 it will return an `alerts` instance in the first case too. In the first case, it was returning a plain alerts collection. So, if you are using a programmatic root core, you should start using `core.alertsApi.customFlat` to get the same values, because that alias will be maintained in v4. Note that, in the case of plugins, you should continue using the `alerts` property, which will not change in v4.
-* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins are receiving an `alerts` property in the core to be used instead, which was also available in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](../api/javascript.md#alerts) for further info.
+* The __`core.alerts`__ getter in the core when created programmatically was different to the `core.alerts` property received in the plugins from v3.2 due to backward compatibility reasons. In v4 it will return an `alerts` instance in the first case too. In the first case, it was returning a plain alerts collection. So, if you are using a programmatic root core, you should start using `core.alertsApi.customFlat` to get the same values, because that alias will be maintained in v4. Note that, when receiving the core as a parameter in plugins, you should continue using the `alerts` property, which will not change in v4.
+* The __`addAlert`__ and __`removeAlerts`__ methods that were being passed to plugins were deprecated in v3.1, and they will be removed in v4. Plugins are receiving an `alerts` property in the core to be used instead, which was also available in the root programmatic core using `core.alertsApi`. [Read the alerts API docs](../api/javascript/alerts.md) for further info.
 
 
 ## Plugins
@@ -131,7 +131,7 @@ __The code can be migrated from v3.5, which will be compatible both with the new
 
 ### Migrating variants defined as plain response object
 
-Variants using the `default` handler containing a plain response and status can be migrated simply adding a `type: "json"` property, and renaming the `response` property into `options`. So, a variant defined in version lower than 3.5 as:
+Variants using the `default` handler containing a plain object response and a status can be migrated simply adding a `type: "json"` property, and renaming the `response` property into `options`. So, a variant defined in version lower than 3.5 as:
 
 ```js
 module.exports = [
@@ -167,6 +167,94 @@ module.exports = [
         options: {
           status: 200,
           body: USERS,
+        },
+      },
+    ]
+  },
+]
+```
+
+### Migrating variants defined as plain text response
+
+Variants using the `default` handler containing a plain text response and a status can be migrated simply adding a `type: "text"` property, and renaming the `response` property into `options`. So, a variant defined in version lower than 3.7 as:
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    method: "GET",
+    variants: [
+      {
+        id: "success",
+        response: {
+          status: 200,
+          body: "Foo text",
+        },
+      },
+    ]
+  },
+]
+```
+
+From v3.7 it has to be defined as:
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    method: "GET",
+    variants: [
+      {
+        id: "success",
+        type: "text", // Add variant type property with "text" value
+        options: {
+          status: 200,
+          body: "Foo text",
+        },
+      },
+    ]
+  },
+]
+```
+
+### Migrating variants with empty body
+
+Variants using the `default` handler without body and a status can be migrated simply adding a `type: "status"` property. So, a variant defined in version lower than 3.8 as:
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    method: "GET",
+    variants: [
+      {
+        id: "success",
+        response: {
+          status: 200,
+        },
+      },
+    ]
+  },
+]
+```
+
+From v3.8 it has to be defined as:
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api/users",
+    method: "GET",
+    variants: [
+      {
+        id: "success",
+        type: "status", // Add variant type property with "status" value
+        options: {
+          status: 200,
         },
       },
     ]
