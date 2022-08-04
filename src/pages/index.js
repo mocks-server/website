@@ -54,7 +54,7 @@ const textContents = {
     Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
   `,
   routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resource, or many.`,
-  variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code> can define a response to send, or a middleware to execute, or a url to proxy the request...`,
+  variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code>, depending on its <code>type</code>, can define a response to send, or a middleware to execute, or a url to proxy the request, etc. The user can choose which variant has to be used by each route on each particular moment.`,
   collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.`,
   jsonCode: `
     [
@@ -74,7 +74,7 @@ const textContents = {
           },
           {
             "id": "not-found",
-            "type": "json",
+            "type": "status",
             "options": {
               "status": 404
             }
@@ -108,7 +108,7 @@ const textContents = {
           },
           {
             id: "not-found",
-            type: "json",
+            type: "status",
             options: {
               status: 404
             }
