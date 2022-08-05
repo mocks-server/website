@@ -96,7 +96,7 @@ project-root/
 
 ```mdx-code-block
 </TabItem>
-<TabItem value="TypeScript files">
+<TabItem value="TypeScript file">
 ```
 
 ```
