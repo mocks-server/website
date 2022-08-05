@@ -36,7 +36,7 @@ module.exports = {
         docs: {
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
-          editUrl: "https://github.com/mocks-server/website/edit/master/docs/",
+          editUrl: "https://github.com/mocks-server/website/edit/master/",
           path: "./docs",
           sidebarPath: require.resolve("./sidebars.json"),
         },
