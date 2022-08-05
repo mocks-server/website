@@ -50,23 +50,25 @@ module.exports = [
       {
         id: "success",
         delay: 1000,
+        // highlight-next-line
         type: "json", // variant type. Corresponds to the Variant Handler id
         options: { // options for the Variant Handler
           status: 200,
-          body: [
-            {
-              id: 1,
-              name: "John Doe"
-            },
-            {
-              id: 2,
-              name: "Jane Doe"
-            }
-          ]
+          body: [{ id: 1, name: "John Doe" }]
+        },
+      },
+      {
+        id: "all-users",
+        // highlight-next-line
+        type: "file", // variant type. Corresponds to the Variant Handler id
+        options: { // options for the Variant Handler
+          status: 200,
+          path: "../fixtures/all-users.json",
         },
       },
       {
         id: "error",
+        // highlight-next-line
         type: "text", // variant type. Corresponds to the Variant Handler id
         options: { // options for the Variant Handler
           status: 403,

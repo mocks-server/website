@@ -18,6 +18,11 @@ keywords:
   - cli
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## Methods
 
 There are multiple methods for defining Mocks Server configuration. Apart from changing it while the server is running using any of the available APIs or integration tools, you can set the configuration before starting the server using:
@@ -66,15 +71,7 @@ Mocks Server searches for configuration files in `process.cwd()`. [`Cosmiconfig`
 * A `mocks.config.js` or `mocks.config.cjs` CommonJS module exporting a function. __It receives programmatic configuration as first argument__.
 * A `mocks.config.js` or `mocks.config.cjs` CommonJS module exporting an async function. __It receives programmatic configuration as first argument__.
 
-```js
-module.exports = {
-  mock: {
-    collections: {
-      selected: "foo", // Set collection "foo" as initially selected
-    },
-  },
-};
-```
+Configuration files can also export a function. In that case, the programmatic configuration will be received as first parameter, so you can modify it and return the new one.
 
 <details>
 <summary>
@@ -97,13 +94,35 @@ MOCKS_CONFIG_FILE_SEARCH_PLACES='["config/some/path/mocks.config.js"]' mocks-ser
 </div>
 </details>
 
-Configuration files can also export a function. In that case, the programmatic configuration will be received as first parameter, so you can modify it and return the new one.
+```mdx-code-block
+<Tabs>
+<TabItem value="JS Object">
+```
+
+```js
+module.exports = {
+  mock: {
+    collections: {
+      selected: "foo", // Set collection "foo" as initially selected
+    },
+  },
+};
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JS function">
+```
 
 ```js
 module.exports = (config) => {
   console.log(config);
   return {
-    log: "verbose";
+    mock: {
+      collections: {
+        selected: "foo", // Set collection "foo" as initially selected
+      },
+    },
   };
 };
 ```
@@ -111,6 +130,59 @@ module.exports = (config) => {
 :::note
 Note that it is not required to return the whole configuration in the function, because the core itself extends the configuration received from all sources (programmatic, file, arguments, etc.)
 :::
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JS async function">
+```
+
+```js
+module.exports = async (config) => {
+  const selectedCollection = await getSelectedCollection();
+  return {
+    mock: {
+      collections: {
+        selected: selectedCollection
+      }
+    }
+  };
+};
+```
+
+:::note
+Note that it is not required to return the whole configuration in the function, because the core itself extends the configuration received from all sources (programmatic, file, arguments, etc.)
+:::
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JSON">
+```
+
+```json
+{
+  "mock": {
+    "collections": {
+      "selected": "foo"
+    }
+  }
+}
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="YAML">
+```
+
+```yaml
+mock:
+  collections:
+    selected: "foo" # Set collection "foo" as initially selected
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
 
 ## Environment variables
 

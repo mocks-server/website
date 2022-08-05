@@ -89,7 +89,7 @@ __The [quick start](./quick-start.md) chapter will help you to take your first s
 
 ## Usage
 
-Define your mocked API routes in JSON, JavaScript or TypeScript files. Mocks Server loads them automatically and watches for changes. Defining routes using any of the available APIs is also possible.
+Define your mocked API routes in JSON, YAML, JavaScript or TypeScript files. Mocks Server loads them automatically and watches for changes. Defining routes using any of the available APIs is also possible.
 
 __Each route can contain many different variants defining different responses, and you can choose which variant has to be used by each route on each particular moment.__
 

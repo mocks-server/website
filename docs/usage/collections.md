@@ -28,7 +28,7 @@ import MainConceptsSchema from '../assets/main-concepts.png';
 
 ## Description
 
-* A `collection` of route variants defines all current routes with their correspondent variant in the API mock.
+* A `collection` of route variants defines all current routes with their correspondent variant in the API mock. The user can choose which collection has to be used on each particular moment.
 * They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.
 
 So, basically, when you define a collection, you are saying to the server:
@@ -43,8 +43,13 @@ __The management of different responses for the same route and the ability to st
 
 ## Load
 
-* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` file, or event other formats [using Babel](../guides/using-babel.md).
+* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` or a `.yaml` file, or event other formats [using Babel](../guides/using-babel.md).
 * Collections can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
+
+```mdx-code-block
+<Tabs>
+<TabItem value="JS file">
+```
 
 ```
 project-root/
@@ -55,6 +60,83 @@ project-root/
 │   │   └── users.js
 │   └── collections.js <- DEFINE YOUR COLLECTIONS HERE
 └── mocks.config.js
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JSON file">
+```
+
+```
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   ├── common.js
+│   │   ├── books.js
+│   │   └── users.js
+│   └── collections.json <- DEFINE YOUR COLLECTIONS HERE
+└── mocks.config.js
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="YAML file">
+```
+
+```
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   ├── common.js
+│   │   ├── books.js
+│   │   └── users.js
+│   └── collections.yml <- DEFINE YOUR COLLECTIONS HERE
+└── mocks.config.js
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="TypeScript files">
+```
+
+```
+project-root/
+├── mocks/
+│   ├── routes/
+│   │   ├── common.ts
+│   │   ├── books.ts
+│   │   └── users.ts
+│   └── collections.ts <- DEFINE YOUR COLLECTIONS HERE
+└── mocks.config.js
+```
+
+:::info
+Read the [using Babel guide](../guides/using-babel.md) for further info about how to use TypeScript.
+:::
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JavaScript API">
+```
+
+```js
+const { createServer } = require("@mocks-server/main");
+const { routes, collections } = require("./fixtures");
+
+const core = createServer();
+
+core.start().then(() => {
+  // highlight-start
+  const { loadRoutes, loadCollections } = core.mock.createLoaders();
+  loadRoutes(routes);
+  loadCollections(collections);
+  // highlight-end
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
 ```
 
 ## Format
@@ -83,6 +165,22 @@ Collections must be defined as an array of objects containing:
     "routes": ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
   }
 ]
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Yaml">
+```
+
+```yml
+- id: "base" # collection id
+  routes: # collection routes
+    - "get-users:all"
+    - "get-user:id-1"
+- id: "user-2" # collection id
+  from: "base" # extends "base" collection
+  routes:
+    - "get-user:id-2" # "get-user" route uses "id-2" variant instead of "id-1"
 ```
 
 ```mdx-code-block
