@@ -121,4 +121,6 @@ useVariant
 useRouteVariant
 variantHandlers
 www
+YAML
+yaml
 

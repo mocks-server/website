@@ -37,7 +37,7 @@ project-root/
 ```
 
 * The server loads all files in the `mocks/routes` folder, which must contain the [route definitions](../usage/routes.md).
-* The `mocks/collections.json` file is used to define [collections](../usage/collections.md) of [route variants](../usage/variants.md).
+* The `mocks/collections.*` file is used to define [collections](../usage/collections.md) of [route variants](../usage/variants.md).
 * The server watches for changes in all files in the `mocks` folder, so changing a file will immediately update the mocked API.
 
 :::info
@@ -67,11 +67,95 @@ Remember that every file inside the `/routes` folder must export an array contai
 
 ## Defining collections
 
-The server reads the `mocks/collections.json` file and loads its content as [`collections`](../usage/collections.md). That file can also be renamed into `.js` or even `.ts`. Read the [using Babel guide for further info](./using-babel.md).
+The server reads the `mocks/collections.*` file and loads its content as [`collections`](../usage/collections.md). The file extension can be `.js`, `.json`, `.yaml` or `.yml` (and even `.ts`, read the [using Babel guide for further info](./using-babel.md)).
 
 :::info
-The `mocks/collections.json` file must export an array of [Mocks Server `collections`](../usage/collections.md).
+The `mocks/collections.*` file must export an array of [Mocks Server `collections`](../usage/collections.md).
 :::
+
+## Supported file formats
+
+All route files and collections file by default can be defined in JSON, YAML or JavaScript, using any of the next extensions:
+
+* `.js`
+* `.json`
+* `.yaml` or `.yml`
+
+:::tip
+`.ts` files are also supported when [Babel is enabled and configured properly](./using-babel.md)
+:::
+
+```mdx-code-block
+<Tabs>
+<TabItem value="JavaScript">
+```
+
+```
+└─ mocks/
+    ├── routes/ <- DEFINE YOUR ROUTES HERE
+    │   ├── common.js
+    │   └── users.js
+    └── collections.json <- DEFINE YOUR COLLECTIONS HERE
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JSON">
+```
+
+```
+└─ mocks/
+    ├── routes/ <- DEFINE YOUR ROUTES HERE
+    │   ├── common.json
+    │   └── users.json
+    └── collections.json <- DEFINE YOUR COLLECTIONS HERE
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="YAML">
+```
+
+```
+└─ mocks/
+    ├── routes/ <- DEFINE YOUR ROUTES HERE
+    │   ├── common.yml
+    │   └── users.yml
+    └── collections.yml <- DEFINE YOUR COLLECTIONS HERE
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="TypeScript">
+```
+
+```
+└─ mocks/
+    ├── routes/ <- DEFINE YOUR ROUTES HERE
+    │   ├── common.ts
+    │   └── users.ts
+    └── collections.ts <- DEFINE YOUR COLLECTIONS HERE
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Mixed">
+```
+
+You don't have to limit to a file format. Depending on the file content, you may prefer one type or another, so combining them is also possible:
+
+```
+└─ mocks/
+    ├── routes/ <- DEFINE YOUR ROUTES HERE
+    │   ├── common.js
+    │   └── users.json
+    └── collections.yml <- DEFINE YOUR COLLECTIONS HERE
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
 
 ## Other files and folders
 
