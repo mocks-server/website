@@ -85,13 +85,17 @@ project-root/
 * The `mocks/collections.json` file is used to define [collections](../usage/collections.md) of [route variants](../usage/variants.md).
 * The server watches for changes in all files in the `mocks` folder, so changing a file will immediately update the responses of the mocked API.
 
+:::tip
+Do you prefer defining files using any other language? Route files and the collections file [can be of type JSON, YAML or JavaScript](../guides/organizing-files.md), and TypeScript is also supported [when Babel is enabled](../guides/using-babel.md).
+:::
+
 :::info
 Collections and routes can also be defined programmatically. Read the [Javascript integration chapter](../integrations/javascript.md) for further info.
 :::
 
 ## First steps tutorial
 
-__In this brief tutorial we are going to use the interactive CLI to change the responses of the API mock in order to learn some basic concepts__. But remember that this can also be made using any of the available APIs in Mocks Server or any of the integration tools.
+__In this brief tutorial we are going to use the interactive CLI to change the responses of the API mock in order to learn some basic concepts__. But remember that this can also be made using any of the available APIs in Mocks Server or any of the other integration tools.
 
 ### Changing the current collection
 

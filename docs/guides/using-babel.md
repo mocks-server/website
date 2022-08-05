@@ -63,7 +63,7 @@ module.exports = {
 };
 ```
 
-Now, you can create files with extensions supported by default by [`@babel/register`](https://babeljs.io/docs/en/babel-register): `.es6`, `.es`, `.jsx`, `.mjs` and `.js`, and use syntax supported by [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env).
+Now, you can create files with extensions supported by default by [`@babel/register`](https://babeljs.io/docs/en/babel-register): `.es6`, `.es`, `.esm`, `.cjs`, `.jsx`, `.mjs` and `.js`, and use syntax supported by [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env).
 
 ```
 project-root/

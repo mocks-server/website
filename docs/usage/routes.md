@@ -36,7 +36,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 ## Load
 
 * Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](../guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
-* Files in the `mocks/routes` folder can be of type `.json`, `.js` or even `.ts`. Read the [using Babel guide for further info](../guides/using-babel.md).
+* Files in the `mocks/routes` folder can be of type `.json`, `.js`, `.yml` or even `.ts`. Read ["Organizing files"](../guides/organizing-files.md) and the ["Using Babel" guide for further info](../guides/using-babel.md).
 * Routes can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 
 ```mdx-code-block
@@ -68,6 +68,22 @@ project-root/
 │   │   ├── books.json
 │   │   └── users.json
 │   └── collections.json
+└── mocks.config.js
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="YAML files">
+```
+
+```
+project-root/
+├── mocks/
+│   ├── routes/ <- DEFINE YOUR ROUTES HERE
+│   │   ├── common.yml
+│   │   ├── books.yml
+│   │   └── users.yml
+│   └── collections.yaml
 └── mocks.config.js
 ```
 
@@ -115,7 +131,6 @@ core.start().then(() => {
 </TabItem>
 </Tabs>
 ```
-
 
 ## Format
 
@@ -167,6 +182,27 @@ __Depending on the variant type, the format of the variants may differ__. In the
 
 ```mdx-code-block
 </TabItem>
+<TabItem value="Yaml">
+```
+
+```yaml
+- id: "get-users"
+  url: "/api/users"
+  method: "GET"
+  variants:
+    - id: "success"
+      type: "json"
+      options:
+        status: 200
+        body:
+          - id: 1
+            name: "John Doe"
+          - id: 2
+            name: "Jane Doe"
+```
+
+```mdx-code-block
+</TabItem>
 <TabItem value="JavaScript">
 ```
 
@@ -194,6 +230,35 @@ module.exports = [
 
 ```mdx-code-block
 </TabItem>
+<TabItem value="TypeScript">
+```
+
+```ts
+import { allUsers } from "../fixtures/users";
+
+const routes = [
+  {
+    id: "get-users", // id of the route
+    url: "/api/users", // url in path-to-regexp format
+    method: "GET", // HTTP method
+    variants: [
+      {
+        id: "success", // id of the variant
+        type: "json", // variant type
+        options: {
+          status: 200,
+          body: allUsers
+        }
+      },
+    ]
+  }
+];
+
+export default routes;
+```
+
+```mdx-code-block
+</TabItem>
 </Tabs>
 ```
 
@@ -215,7 +280,6 @@ Read the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) document
 * Requests with a method different to the one defined in the route won't be handled by it. So, you have to define two different routes for handling two different methods of the same URL.
 * Valid values are next HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `TRACE` or `OPTIONS` _([usage of the `OPTIONS` method requires some additional configuration](../guides/using-the-options-method.md))_. Methods can be also defined using lower case.
 * The wildcard `*` can also be used as method. In that case, the route would handle all HTTP methods. Read [multiple methods](#multiple-methods) for further info.
-* Note that some types of variants are internally implemented using an [Express router](https://expressjs.com/en/4x/api.html#router) instead of an [Express middleware](https://expressjs.com/en/guide/using-middleware.html). In that case, selecting that variant would produce to ignore the method defined in the route, because, basically, that produces the variant to handle all route methods and subpaths. That is the case of the [`static` variant handler](./variants/static.md), for example.
 
 ```js
 const { allUsers } = require("../fixtures/users");
@@ -254,6 +318,10 @@ module.exports = [
   }
 ];
 ```
+
+:::note
+Note that some types of variants are internally implemented using an [Express router](https://expressjs.com/en/4x/api.html#router) instead of an [Express middleware](https://expressjs.com/en/guide/using-middleware.html). In that case, selecting that variant would produce to ignore the method defined in the route, because, basically, that produces the variant to handle all route methods and subpaths. That is the case of the [`static` variant handler](./variants/static.md), for example.
+:::
 
 ### Multiple methods
 
