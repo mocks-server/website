@@ -63,8 +63,10 @@ __`core.mock.createLoaders()`__: Return methods allowing to load routes and coll
 
 It returns an object containing next methods:
 
-* `loadRoutes(routes)`: `<Array of routes>` Load [`routes`](../../usage/routes.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added using this method__. Routes loaded by the files loader or other plugins will remain.
-* `loadCollections(collections)`: `<Array of collections>` Load [`collections`](../../usage/collections.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded collections will be replaced by the new ones, but only those added using this method__. Collections loaded by the files loader or other plugins will remain.
+* `loadRoutes(routes)` - Load [`routes`](../../usage/routes.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded routes will be replaced by the new ones, but only those added using this method__. Routes loaded by the files loader or other plugins will remain.
+  * `routes`: `<Array of routes>` - Array of [routes](../../usage/routes.md).
+* `loadCollections(collections)`: Load [`collections`](../../usage/collections.md) definitions with the same format that they are defined when using files. Each time this method is called, __all previously loaded collections will be replaced by the new ones, but only those added using this method__. Collections loaded by the files loader or other plugins will remain.
+  * `collections`: `<Array of collections>` - Array of [collections](../../usage/collections.md).
 
 ```mdx-code-block
 <ExampleDetails>

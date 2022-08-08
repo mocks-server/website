@@ -119,7 +119,7 @@ Use the same "dot notation".
 These options are provided by the core of Mocks Server, so they can be used in any Mocks Server distribution.
 
 * __`config.allowUnknownArguments`__ _(Boolean)_: If `true`, it allows to define unknown command line arguments. Default is `false`. This option can be defined only programmatically, using configuration file or environment variables.
-* __`config.fileSearchPlaces`__ _(Array of Strings)_: Paths to search for the configuration file. Default is described in the [configuration methods chapter](./how-to-change-settings.md#configuration-file). This option can be defined only programmatically or using environment variables.
+* __`config.fileSearchPlaces`__ _(Array of Strings)_: Paths to search for the configuration file. Default is described in the [configuration methods chapter](./how-to-change-settings.md#configuration-file). This option can be defined only programmatically or using arguments or environment variables.
 * __`config.readArguments`__ _(Boolean)_: If `false`, it disables the ability of defining options using command line arguments. Default is `true`. This option can be defined only programmatically, using configuration file or environment variables.
 * __`config.readEnvironment`__ _(Boolean)_: If `false`, it disables the ability of defining options using environment variables. Default is `true`. This option can be defined only programmatically.
 * __`config.readFile`__ _(Boolean)_: If `false`, it disables the ability of reading configuration file. Default is `true`. This option can be defined only programmatically, using configuration file or environment variables.

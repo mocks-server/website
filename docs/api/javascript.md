@@ -156,11 +156,11 @@ __`core.init([config])`__: Register plugins, initialize options and prepare all 
 
 ### start()
 
-__`core.start()`__: Start the server and plugins. Returns a promise. It calls to the `init` method internally if it was not done before.
+__`core.start()`__: Start the server, plugins, and all other internal elements. Returns a promise. It calls to the `init` method internally if it was not done before.
 
 ### stop()
 
-__`core.stop()`__: Stop the server and plugins. Returns a promise.
+__`core.stop()`__: Stop the server, plugins, and all other internal elements. Returns a promise.
 
 ## Children objects APIs
 
