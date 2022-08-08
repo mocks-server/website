@@ -32,7 +32,7 @@ const textContents = {
     Install it using NPM. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
   `,
   featuresFlexible: `
-    Define routes using <code>json</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
+    Define routes using <code>YAML</code>, <code>JSON</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
   `,
   featuresExtensible: `
     Use Express middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core JavaScript API](${docsUrl(
@@ -57,72 +57,94 @@ const textContents = {
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code>, depending on its <code>type</code>, can define a response to send, or a middleware to execute, or a url to proxy the request, etc. The user can choose which variant has to be used by each route on each particular moment.`,
   collections: `A <code>collection</code> of route variants defines all current routes and variants in the mocked API. They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.`,
   jsonCode: `
-    [
+[
+  {
+    "id": "get-user",
+    "url": "/api/user/:id",
+    "method": "GET",
+    "delay": 1000,
+    "variants": [
       {
-        "id": "get-user",
-        "url": "/api/user/:id",
-        "method": "GET",
-        "delay": 1000,
-        "variants": [
-          {
-            "id": "success",
-            "type": "json",
-            "options": {
-              "status": 200,
-              "body": { "id": 1, "name": "John Doe"}
-            }
-          },
-          {
-            "id": "not-found",
-            "type": "status",
-            "options": {
-              "status": 404
-            }
-          },
-          {
-            "id": "proxied",
-            "type": "proxy",
-            "options": {
-              "host": "https://jsonplaceholder.typicode.com/users/1"
-            }
-          }
-        ]
+        "id": "success",
+        "type": "json",
+        "options": {
+          "status": 200,
+          "body": { "id": 1, "name": "John Doe"}
+        }
+      },
+      {
+        "id": "not-found",
+        "type": "status",
+        "options": {
+          "status": 404
+        }
+      },
+      {
+        "id": "proxied",
+        "type": "proxy",
+        "options": {
+          "host": "https://jsonplaceholder.typicode.com/users/1"
+        }
       }
     ]
+  }
+]
   `,
   jsCode: `
-    module.exports = [
+module.exports = [
+  {
+    id: "get-user",
+    url: "/api/user/:id",
+    method: "GET",
+    delay: 1000,
+    variants: [
       {
-        id: "get-user",
-        url: "/api/user/:id",
-        method: "GET",
-        delay: 1000,
-        variants: [
-          {
-            id: "success",
-            type: "json",
-            options: {
-              status: 200,
-              body: { "id": 1, "name": "John Doe"}
-            }
-          },
-          {
-            id: "not-found",
-            type: "status",
-            options: {
-              status: 404
-            }
-          },
-          {
-            id: "proxied",
-            type: "proxy",
-            options: {
-              host: "https://jsonplaceholder.typicode.com/users/1"
-            }
-          }
-        ]
+        id: "success",
+        type: "json",
+        options: {
+          status: 200,
+          body: { "id": 1, "name": "John Doe"}
+        }
+      },
+      {
+        id: "not-found",
+        type: "status",
+        options: {
+          status: 404
+        }
+      },
+      {
+        id: "proxied",
+        type: "proxy",
+        options: {
+          host: "https://jsonplaceholder.typicode.com/users/1"
+        }
       }
-    ];
+    ]
+  }
+];
+  `,
+  yamlCode: `
+- id: "get-user"
+  url: "/api/user/:id"
+  method: "GET"
+  delay: 1000
+  variants:
+    - id: "success"
+      type: "json"
+      options:
+        status: 200
+        body:
+          id: 1
+          name: "John Doe"
+    - id: "not-found"
+      type: "status"
+      options:
+        status: 404
+    - id: "proxied"
+      type: "proxy"
+      options:
+        host: "https://jsonplaceholder.typicode.com/users/1"
   `,
 };
 
@@ -472,17 +494,27 @@ function Integrations({ background }) {
 }
 
 function CodeExample({ background }) {
+  const subHeading = useMemo(() => {
+    return (
+      <span>
+        A simple example about how <a href={useBaseUrl(docsUrl("usage/routes"))}>routes</a> and{" "}
+        <a href={useBaseUrl(docsUrl("usage/variants"))}>variants</a> can defined using different
+        languages
+      </span>
+    );
+  });
+
   return (
     <Section background={background}>
       <Heading text="Show me the code" centered className="with-subheading" />
-      <SubHeading
-        text="A simple example of how routes and variants can defined using different languages"
-        centered
-      />
+      <SubHeading text={subHeading} centered />
       <Row>
         <Column md={2} hiddenXs></Column>
         <Column md={8} xs={12}>
           <Tabs>
+            <TabItem value="YAML">
+              <CodeBlock language="yaml">{textContents.yamlCode}</CodeBlock>
+            </TabItem>
             <TabItem value="JSON">
               <CodeBlock language="json">{textContents.jsonCode}</CodeBlock>
             </TabItem>

@@ -10,7 +10,9 @@ addOptions
 addRouter
 ajv
 ajv-errors
+allowUnknownArguments
 async
+babelRegister
 behaviorsFolder
 bundler
 cli
@@ -61,6 +63,7 @@ javascript
 jQuery
 json
 JSONs
+jsonBodyParser
 lifecycle
 loadedFile
 localhost
@@ -100,6 +103,9 @@ programmatically
 propagations
 proxied
 README
+readArguments
+readEnvironment
+readFile
 redux
 removeRouter
 restoreVariants
@@ -117,6 +123,7 @@ theirself
 TypeScript
 UI
 url
+urlEncodedBodyParser
 urls
 uri
 uris
