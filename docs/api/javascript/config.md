@@ -71,6 +71,12 @@ __`core.config.validate(configuration, options)`__: Allows to pre-validate a con
 * `options` _(Object)_: Object with extra options for validation:
   * `allowAdditionalProperties` _(Boolean)_: _Default `false`_. If true, additional properties in the configuration would not produce validation errors.
 
+### getValidationSchema()
+
+__`getValidationSchema(options)`__: Returns a validation schema compatible with AJV for validating the configuration of all nested namespaces.
+* `options` _(Object)_: Object with extra options for validation:
+  * `allowAdditionalProperties` _(Boolean)_: _Default `false`_. If true, the validation schema will allow additional properties.
+
 ### namespaces
 
 __`core.config.namespaces`__: Getter returning array with all root namespaces.

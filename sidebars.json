@@ -152,6 +152,11 @@
           },
           {
             "type": "doc",
+            "id": "api/javascript/files",
+            "label": "files"
+          },
+          {
+            "type": "doc",
             "id": "api/javascript/logger",
             "label": "logger"
           },
