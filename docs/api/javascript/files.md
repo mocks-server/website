@@ -27,8 +27,6 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.files` object provides access to methods related to the files contained in the `/mocks` folder. You can use this API to force a reload of the files contents, or to get the content of any file in that folder, for example.
 
-by yourself without the need to take care of parsing contents or reload them when there is any change, because Mocks Server already does that work for you. 
-
 :::caution
 Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
 :::
