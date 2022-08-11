@@ -78,6 +78,7 @@ mocksSetDelay
 mocksSetConfig
 mocksConfigClient
 AdminApiClient
+MacOs
 Namespaces
 namespaces
 Namespace
@@ -112,6 +113,7 @@ restoreVariants
 restoreRouteVariants
 reusability
 setLevel
+SSL
 stringified
 subcollection
 subfolders
@@ -120,6 +122,7 @@ submenu
 subpaths
 subpath
 theirself
+TLS
 TypeScript
 UI
 url

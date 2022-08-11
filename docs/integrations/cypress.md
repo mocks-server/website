@@ -293,7 +293,7 @@ describe("users page", () => {
 
 ## Usage with TypeScript
 
-For those writing [TypesScript tests in Cypress](https://docs.cypress.io/guides/tooling/typescript-support.html), the package includes TypeScript declarations.
+For those writing [TypeScript tests in Cypress](https://docs.cypress.io/guides/tooling/typescript-support.html), the package includes TypeScript declarations.
 
 Add "@mocks-server/cypress-commands" to the `types` property in the `tsconfig.json` file. You may also need to set the TS `allowSyntheticDefaultImports` option to true:
 
