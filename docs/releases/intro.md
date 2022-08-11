@@ -129,7 +129,7 @@ __2022-06-27__
 
 __2022-06-03__
 
-* Pass new alerts API to plugins. Add an alert if old addAlert or removeAlerts methods are used. 
+* Pass new alerts API to plugins. Add an alert if old `addAlert` or `removeAlerts` methods are used. 
 
 ### [3.0]
 
@@ -160,7 +160,7 @@ __2021-12-05__
 
 __2021-07-07__
 
-* Support application/x-www-form-urlencoded
+* Support `application/x-www-form-urlencoded`
 
 ### [2.3]
 

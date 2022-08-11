@@ -79,6 +79,7 @@ mocksSetConfig
 mocksConfigClient
 AdminApiClient
 MacOs
+monorepo
 Namespaces
 namespaces
 Namespace
@@ -112,6 +113,8 @@ removeRouter
 restoreVariants
 restoreRouteVariants
 reusability
+schemas
+Semver
 setLevel
 SSL
 stringified
