@@ -15,6 +15,10 @@ keywords:
   - settings
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
 ## Preface
 
@@ -120,15 +124,17 @@ cy.mocksSetConfig({
 Configures the [Mocks Server administration API client](https://github.com/mocks-server/admin-api-client), used under the hood to communicate with the administration REST API.
 
 * __`configuration`__ _`<Object>`_ - It must be an object containing any of next properties:
-  * __`enabled`__ Enables or disables the API client.
-  * __`port`__ Changes the API client port. 
-  * __`host`__ Changes the API client host.
+  * __`enabled`__ _`<Boolean>`_ - Enables or disables the API client.
+  * __`port`__ _`<Number>`_ - Changes the API client port. 
+  * __`host`__ _`<String>`_ - Changes the API client host.
+  * __`https`__ _`<Boolean>`_ - If `true`, changes the client protocol to "https". Default is `false`. Read ["enabling HTTPS"](#enabling-https) for further info.
 
 ```js
 cy.mocksConfigClient({
   port: 3110,
   host: "127.0.0.1"
   enabled: true,
+  https: true,
 });
 ```
 
@@ -200,6 +206,7 @@ You can change both the host and port of the administration API using the `cy.mo
 * __`MOCKS_SERVER_LOGS`__: Log commands status on Cypress or not. Default is `true`.
 * __`MOCKS_SERVER_ADMIN_API_PORT`__: Modifies the admin API client port. Default is `3110`.
 * __`MOCKS_SERVER_ADMIN_API_HOST`__: Modifies the admin API client host. Default is `127.0.0.1`.
+* __`MOCKS_SERVER_ADMIN_API_HTTPS`__: If `true`, changes the admin API client protocol to "https". Default is `false`. Read ["enabling HTTPS"](#enabling-https) for further info.
 * __`MOCKS_SERVER_ENABLED`__: Disables requests to the Mocks Server admin API, so the commands will not fail even when Mocks Server is not running. This is useful to reuse same tests with a mocked API and a real API, because commands to change Mocks Server configuration will be ignored.
 
 > Note: These environment variables only affect to the default Mocks Server API client (except `MOCKS_SERVER_LOGS`). Read [usage with multiple Mocks Servers](#usage-with-multiple-mocks-servers) bellow for further info.
@@ -237,9 +244,10 @@ Note that changing the plugin environment variables values don't affect to custo
 Returns a new Mocks Server Admin API client to be provided to this plugin's Cypress commands, so they use that client instead of the default one. Configuration options are the same than described for the `cy.mocksConfigClient` command:
 
 * __`configuration`__ _`<Object>`_ - Optional (configuration can be changed also afterwards using the `cy.mocksConfigClient` command and passing the client to be configured). It should be an object containing any of next properties:
-  * __`enabled`__ Enables or disables the client.
-  * __`port`__ Changes the client port. 
-  * __`host`__ Changes the client host.
+  * __`enabled`__ _`<Boolean>`_ - Enables or disables the API client.
+  * __`port`__ _`<Number>`_ - Changes the API client port. 
+  * __`host`__ _`<String>`_ - Changes the API client host.
+  * __`https`__ _`<Boolean>`_ - If `true`, changes the client protocol to "https". Default is `false`. Read ["enabling HTTPS"](#enabling-https) for further info.
 
 ### Commands API when using a custom client
 
@@ -282,3 +290,131 @@ describe("users page", () => {
   });
 });
 ```
+
+## Usage with TypeScript
+
+For those writing [TypesScript tests in Cypress](https://docs.cypress.io/guides/tooling/typescript-support.html), the package includes TypeScript declarations.
+
+Add "@mocks-server/cypress-commands" to the `types` property in the `tsconfig.json` file. You may also need to set the TS `allowSyntheticDefaultImports` option to true:
+
+```json
+{
+  "compilerOptions": {
+    "types": ["cypress", "@mocks-server/cypress-commands"],
+    "allowSyntheticDefaultImports": true
+  }
+}
+```
+
+Or reference the package in the files using it:
+
+```typescript
+/// <reference types="@mocks-server/cypress-commands" />
+```
+
+## Enabling HTTPS
+
+The Mocks Server administration API supports enabling the HTTPS protocol. When it is enabled, the API client of this plugin must be configured properly in order to be able to connect.
+
+First, use the `MOCKS_SERVER_ADMIN_API_HTTPS` environment variable or the `cy.mocksConfigClient` command to enable HTTPS in the client:
+
+```mdx-code-block
+<Tabs>
+<TabItem value="cypress.json">
+```
+
+```json
+{
+  "env": {
+    "MOCKS_SERVER_ADMIN_API_HTTPS": true,
+  }
+}
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="cypress.config.js">
+```
+
+```js
+const { defineConfig } = require('cypress')
+
+module.exports = defineConfig({
+  env: {
+    MOCKS_SERVER_ADMIN_API_HTTPS: true,
+  }
+})
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Cypress command">
+```
+
+```js
+cy.mocksConfigClient({
+  https: true,
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+Then, you'll probably also need to provide the Admin API SSL/TLS certificate file paths to Cypress, otherwise the requests could be rejected. Provide the same certificate that you provided to the AdminApi plugin for enabling HTTPS:
+
+```mdx-code-block
+<Tabs>
+<TabItem value="cypress.json">
+```
+
+```json
+{
+  "clientCertificates": [
+    {
+      "url": "https://127.0.0.1",
+      "ca": [],
+      "certs": [
+        {
+          "cert": "certs/cert.pem",
+          "key": "certs/key.pem"
+        }
+      ]
+    }
+  ]
+}
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="cypress.config.js">
+```
+
+```js
+const { defineConfig } = require('cypress')
+
+module.exports = defineConfig({
+  clientCertificates: [
+    {
+      url: "https://127.0.0.1",
+      ca: [],
+      certs: [
+        {
+          cert: "certs/cert.pem",
+          key: "certs/key.pem"
+        }
+      ]
+    }
+  ]
+})
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+:::info
+Read the ["Enabling HTTPS" guide](../guides/https-protocol.md) for further info about enabling HTTPS in the administration API
+:::

@@ -45,6 +45,59 @@ Defining the API responses during the earliest phases of development will improv
 
 As explained, Mocks Server is able to handle different responses for each route, and store different sets of responses in order to simulate different API states. So, there is only one mock server running, but __it can contain and switch between many different predefined API state simulations, like each one of them was a different mock__.
 
+## Features summary
+
+### Routes
+
+* Makes able to define different responses or behaviors for the same route. The user can choose which one has to be used by each route on each particular moment. Out of the box, a route can:
+  * Send a JSON response
+  * Send a text response
+  * Send a response with an empty body
+  * Proxy the request to another host, allowing to modify both the request and the response
+  * Serve static files
+  * Execute a Express middleware, and send a response or let the next matching route to be executed
+  * Send a file content as response, setting the Content-Type header automatically based on the file extension
+
+### Collections
+* Allows to create collections defining the specific "responses" to be used by each different route. The user can choose which collection has to be used on each particular moment.
+* Collections can be created extending other collections. This makes able to store many different collections without too much maintenance and change the whole API behavior by simply changing the current one.
+
+### Protocols
+
+* Supports HTTP and HTTPS protocols
+
+### Defining routes and collections
+
+* Routes can be defined in YAML, JSON, JavaScript or TypeScript files. Using Babel is supported. The server loads them automatically and watches for changes.
+* Routes can be defined programmatically using the JavaScript API.
+
+### Easy to start and flexible
+
+* Provides a binary in an NPM package
+* Provides a JavaScript Class, allowing to create server instances from scratch
+* Provides a JavaScript method, allowing to start an instance with some presets, optimized for a programmatic usage
+
+### Easy to configure
+
+* Supports YAML, JSON or JavaScript configuration file
+* Environment variables or arguments can be used to change configuration
+* Configuration can also be changed using the JavaScript API
+
+### Easy to integrate
+
+Can be controlled using:
+
+* JavaScript API
+* Administration REST API
+* Interactive command line interface
+* Cypress commands
+
+### Very extensible
+
+* More route behaviors can be added
+* Plugins enable to tap into, modify, or extend the Mocks Server internal behavior
+* Custom Express routers can be added to the mock
+
 ## Installation
 
 Mocks Server is essentially a set of NPM packages, so it should be added as an NPM dependency of your project.

@@ -197,7 +197,7 @@ _(Array of Strings)_: Paths to search for the configuration file. Default is des
 ```
 
 ```sh
-npm run mocks -- --config.fileSearchPlaces=path/to/my-config.js --config.fileSearchPlaces=path/to/my-config.yml
+npm run mocks -- --config.fileSearchPlaces path/to/my-config.js path/to/my-config.yml
 ```
 
 ```mdx-code-block
@@ -962,6 +962,175 @@ const server = new Core({
 </ExampleDetails>
 ```
 
+### server.https.enabled
+
+_(Boolean)_: Enables HTTPS protocol in the mock server. Default is `false`
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+server:
+  https:
+    enabled: true
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --server.https.enabled
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_HTTPS_ENABLED=true npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  server: {
+    https: {
+      enabled: true
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+:::caution
+When enabling the `server.https.enabled` option, it is also needed to provide HTTPS certificate and key using the `server.https.cert` and `server.https.key` options. For further info [read the "Enabling HTTPS" guide](../guides/https-protocol.md).
+:::
+
+### server.https.cert
+
+_(String)_: Path to a valid SSL/TLS certificate to be used when HTTPS is enabled. It must be relative to the current `process.cwd()` or absolute. This option has no effect when `server.https.enabled` is `false`.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+server:
+  https:
+    cert: "certs/cert.pem"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --server.https.cert=certs/cert.pem
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_HTTPS_CERT=certs/cert.pem npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  server: {
+    https: {
+      cert: "certs/cert.pem"
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### server.https.key
+
+_(String)_: Path to a valid SSL/TLS certificate key to be used when HTTPS is enabled. It must be relative to the current `process.cwd()` or absolute. This option has no effect when `server.https.enabled` is `false`.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+server:
+  https:
+    key: "certs/key.pem"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --server.https.key=certs/key.pem
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_HTTPS_KEY=certs/key.pem npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  server: {
+    https: {
+      key: "certs/key.pem"
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
 ### server.jsonBodyParser.enabled
 
 _(Boolean)_: If `false`, it disables the [`json` `body-parser` built-in Express middleware](https://github.com/expressjs/body-parser). Default is `true`.
@@ -1384,60 +1553,6 @@ const server = new Core({
 </ExampleDetails>
 ```
 
-### plugins.adminApi.port
-
-_(Number)_: Port for the administration REST API. Default is `3110`.
-
-```mdx-code-block
-<ExampleDetails title="Examples">
-<Tabs>
-<TabItem value="YAML config file">
-```
-
-```yaml
-plugins:
-  adminApi:
-    port: 3510
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="Argument">
-```
-
-```sh
-npm run mocks -- --plugins.adminApi.port=3510
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="Environment">
-```
-
-```sh
-MOCKS_SERVER_PLUGINS_ADMIN_API_PORT=3510 npm run mocks
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="Programmatic">
-```
-
-```js
-const server = new Core({
-  plugins: {
-    adminApi: {
-      port: 3510,
-    }
-  }
-});
-```
-
-```mdx-code-block
-</TabItem>
-</Tabs>
-</ExampleDetails>
-```
 
 ### plugins.adminApi.host
 
@@ -1483,6 +1598,239 @@ const server = new Core({
   plugins: {
     adminApi: {
       host: "192.168.1.100",
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### plugins.adminApi.https.enabled
+
+_(Boolean)_: Enables HTTPS protocol in the admin API server. Default is `false`
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  adminApi:
+    https:
+      enabled: true
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.adminApi.https.enabled
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_PLUGINS_ADMIN_API_HTTPS_ENABLED=true npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    adminApi: {
+      https: {
+        enabled: true
+      }
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+:::caution
+When enabling the `plugin.adminApi.https.enabled` option, it is also needed to provide HTTPS certificate and key using the `plugin.adminApi.https.cert` and `plugin.adminApi.https.key` options. For further info [read the "Enabling HTTPS" guide](../guides/https-protocol.md).
+:::
+
+### plugins.adminApi.https.cert
+
+_(String)_: Path to a valid SSL/TLS certificate to be used when HTTPS is enabled in the `adminApi` plugin. It must be relative to the current `process.cwd()` or absolute. This option has no effect when `server.https.enabled` is `false`.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  adminApi:
+    https:
+      cert: "certs/cert.pem"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.adminApi.https.cert=certs/cert.pem
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_PLUGINS_ADMIN_API_HTTPS_CERT=certs/cert.pem npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    adminApi: {
+      https: {
+        cert: "certs/cert.pem"
+      }
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### plugins.adminApi.https.key
+
+_(String)_: Path to a valid SSL/TLS certificate key to be used when HTTPS is enabled. It must be relative to the current `process.cwd()` or absolute. This option has no effect when `plugins.adminApi.https.enabled` is `false`.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  adminApi:
+    https:
+      key: "certs/key.pem"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.adminApi.https.key=certs/key.pem
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_PLUGINS_ADMIN_API_HTTPS_KEY=certs/key.pem npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    adminApi: {
+      https: {
+        key: "certs/key.pem"
+      }
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### plugins.adminApi.port
+
+_(Number)_: Port for the administration REST API. Default is `3110`.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  adminApi:
+    port: 3510
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.adminApi.port=3510
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_PLUGINS_ADMIN_API_PORT=3510 npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    adminApi: {
+      port: 3510,
     }
   }
 });
