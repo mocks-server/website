@@ -15,6 +15,7 @@ async
 babelRegister
 behaviorsFolder
 bundler
+CHANGELOG
 cli
 CommonJS
 coreOptions
