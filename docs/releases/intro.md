@@ -46,7 +46,7 @@ NOTE: Release notes prior to the monorepo migration
 </summary>
 <div>
 
-All packages were migrated to a monorepo from release v2.6.3. Release notes of previous releases in the [mocks-server/main repository](https://github.com/mocks-server/main/releases) don't include details about changes in other packages. So, for details about previous releases of other packages, please refer to each package repository release notes history, which are maintained as publicly archived repositories.
+All packages were migrated to a monorepo from release v2.6.3. Release notes of previous releases in the [mocks-server/main repository](https://github.com/mocks-server/main/releases) don't include details about changes in other packages. So, for details about previous releases of other packages, please refer to each package's CHANGELOG.md file or old repository release notes. Old repositories are maintained as publicly archived repositories in the [mocks-server Github project](https://github.com/mocks-server).
 
 </div>
 </details>
