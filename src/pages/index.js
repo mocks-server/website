@@ -32,7 +32,7 @@ const textContents = {
     Install it using NPM. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
   `,
   featuresFlexible: `
-    Define routes using <code>YAML</code>, <code>JSON</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically.
+    Define routes using <code>YAML</code>, <code>JSON</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically. HTTP and HTTPS protocols are supported.
   `,
   featuresExtensible: `
     Use Express middlewares in routes. Define custom handlers for the routes. Add custom Express routers. Or create a plugin and have full access to the [core JavaScript API](${docsUrl(
@@ -356,7 +356,11 @@ function MainFeatures() {
       </Row>
       <Row>
         <Column md={12} xs={12} className="center-content">
-          <ActionButton type="secondary" href={useBaseUrl(docsUrl("overview"))} variant="text">
+          <ActionButton
+            type="secondary"
+            href={useBaseUrl(docsUrl("overview#features-summary"))}
+            variant="text"
+          >
             View all features
           </ActionButton>
         </Column>
