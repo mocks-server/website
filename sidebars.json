@@ -123,6 +123,7 @@
     "Guides": [
       "guides/organizing-files",
       "guides/using-babel",
+      "guides/https-protocol",
       "guides/using-the-options-method"
     ],
     "Releases": [

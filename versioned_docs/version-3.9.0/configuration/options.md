@@ -197,7 +197,7 @@ _(Array of Strings)_: Paths to search for the configuration file. Default is des
 ```
 
 ```sh
-npm run mocks -- --config.fileSearchPlaces=path/to/my-config.js --config.fileSearchPlaces=path/to/my-config.yml
+npm run mocks -- --config.fileSearchPlaces path/to/my-config.js path/to/my-config.yml
 ```
 
 ```mdx-code-block
