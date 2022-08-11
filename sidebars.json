@@ -129,6 +129,11 @@
     "Releases": [
       {
         "type": "doc",
+        "id": "releases/intro",
+        "label": "Intro and history"
+      },
+      {
+        "type": "doc",
         "id": "releases/migrating-from-v3",
         "label": "Preparing from v3 to v4"
       },
