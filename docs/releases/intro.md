@@ -53,7 +53,7 @@ All packages were migrated to a monorepo from release v2.6.3. Release notes of p
 
 ### [3.10]
 
-__2022-07-22__
+__2022-08-11__
 
 * HTTPS support. Add related options to core and plugin-admin-api
 
