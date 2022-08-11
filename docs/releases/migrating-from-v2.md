@@ -42,7 +42,7 @@ The main changes from v2.x to v3.x are:
   * The way in which __command line arguments__ are defined has also changed due to namespaces.
   * Defining configuration using __environment variables__ now is supported also.
 * __Methods for creating or reading settings programmatically__ (from the plugins, for example) have completely changed. Read the [configuration API section bellow for further info](#configuration-api).
-* The `Core` object in the `@mocks-server/core` package __now is exported as `default`__. __This only affects to users [using the programmatic API](versioned_docs/version-3.2.0/api-programmatic-usage.md).__
+* The `Core` object in the `@mocks-server/core` package __now is exported as `default`__. __This only affects to users [using the programmatic API](../api/javascript.md).__
 * __Some methods of the `Core` API have been removed__. Most of them are related to the configuration. See [programmatic API](#programmatic-api) below for further info.
 * __Arguments received by the plugins have changed__. Read [plugins](#plugins) below for further info.
 * __Drop support for Node.js 12.x__.
@@ -132,7 +132,7 @@ In order to make compatible your plugins with the v3 version, you have to:
 * Change the Core API deprecated methods for creating and reading settings if you were using them by the new ones. Read the [configuration API section bellow for further info](#configuration-api).
 * Change the arguments that they receive in the `constructor`, `register`, `init`, `start` and `stop` methods. Now they will receive:
   * __3.1__: A single argument as an object containing all needed methods and properties Previously, the `core` API was received as first argument, and from now it is received as a `{ core }` property in the first argument.
-  * __>=3.2__: A Mocks Server [`core` instance](versioned_docs/version-3.2.0/api-mocks-server-api.md), but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin.
+  * __>=3.2__: A Mocks Server [`core` instance](../api/javascript.md), but with some methods specifically scoped for the plugin. The core API docs also give details about the methods that are modified when the core is passed to a plugin.
 
 So, a plugin that in v2 was defined as:
 
@@ -206,12 +206,12 @@ class Plugin {
 ```
 
 :::note
-The old `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. The `core` property added in v3.1 can be still used in any v3.x version, but it will be also removed in v4. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](versioned_docs/version-3.2.0/plugins-developing-plugins.md) for further info about how to use them.
+The old `addAlert` and `removeAlerts` methods can still be used in v3, but they are considered deprecated since v3.1.0 and will be removed in next major version. The `core` property added in v3.1 can be still used in any v3.x version, but it will be also removed in v4. Any usage of these methods would produce an alert. Read the [updated documentation about creating plugins](../plugins/development.md) for further info about how to use them.
 :::
 
 ## Configuration API
 
-As a result of the [programmatic API changes](#programmatic-api), old methods for creating or reading settings are not available any more, such as `core.addSetting`, `core.settings.get`, `core.settings.set` or `core.lowLevelConfig`. Now you can create, read, or listen to configuration changes using the `core.config` object, or using the `config` object received in plugins, which is already namespaced with each plugin name. Here you have a brief example of how you can migrate from one system to another. For further information, you should read the [updated documentation about creating plugins](versioned_docs/version-3.2.0/plugins-developing-plugins.md).
+As a result of the [programmatic API changes](#programmatic-api), old methods for creating or reading settings are not available any more, such as `core.addSetting`, `core.settings.get`, `core.settings.set` or `core.lowLevelConfig`. Now you can create, read, or listen to configuration changes using the `core.config` object, or using the `config` object received in plugins, which is already namespaced with each plugin name. Here you have a brief example of how you can migrate from one system to another. For further information, you should read the [updated documentation about creating plugins](../plugins/development.md).
 
 If you were creating or reading settings like this in v2:
 
