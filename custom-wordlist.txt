@@ -15,6 +15,7 @@ async
 babelRegister
 behaviorsFolder
 bundler
+CHANGELOG
 cli
 CommonJS
 coreOptions
@@ -78,6 +79,8 @@ mocksSetDelay
 mocksSetConfig
 mocksConfigClient
 AdminApiClient
+MacOs
+monorepo
 Namespaces
 namespaces
 Namespace
@@ -111,7 +114,10 @@ removeRouter
 restoreVariants
 restoreRouteVariants
 reusability
+schemas
+Semver
 setLevel
+SSL
 stringified
 subcollection
 subfolders
@@ -120,6 +126,7 @@ submenu
 subpaths
 subpath
 theirself
+TLS
 TypeScript
 UI
 url
