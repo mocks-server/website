@@ -43,7 +43,7 @@ __The management of different responses for the same route and the ability to st
 
 ## Load
 
-* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` or a `.yaml` file, or event other formats [using Babel](../guides/using-babel.md).
+* Usually, collections must be defined in the `mocks/collections.js` file of your project. You can also use a `.json` or a `.yaml` file, or event other formats [using Babel](../guides/using-babel.md). That __file must export an array of collection__ (or a function returning an array of collections). Read _[Organizing files](../guides/organizing-files.md)_ for further info.
 * Collections can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 
 ```mdx-code-block
@@ -200,6 +200,31 @@ module.exports = [
     routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
   }
 ];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Async JS">
+```
+
+```js
+const { getBaseRoutes } = require("./helpers");
+
+module.exports = async function() {
+  const baseRoutes = await getBaseRoutes();
+  
+  return [
+    {
+      id: "base", // collection id
+      routes: baseRoutes // collection routes
+    },
+    {
+      id: "user-2", // collection id
+      from: "base", // extends "base" collection
+      routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
+    }
+  ];
+}
 ```
 
 ```mdx-code-block

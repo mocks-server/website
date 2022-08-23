@@ -34,6 +34,11 @@ Here you have listed the official Plugins included in the [Mocks Server main dis
 * Description: Registers the `proxy` Variant Handler.
 * Docs: Read [Proxy variant](../usage/variants/proxy.md) for further info.
 
+### openapi
+
+* NPM: [@mocks-server/plugin-openapi](https://www.npmjs.com/package/@mocks-server/plugin-openapi)
+* Description: Enables to create routes automatically from OpenAPI documents.
+* Docs: Read [OpenAPI integration](../integrations/openapi.md) for further info.
 
 ## Community
 
