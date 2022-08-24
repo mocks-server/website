@@ -23,7 +23,20 @@ import TabItem from '@theme/TabItem';
 
 ## Preface
 
-The [Mocks Server main distribution](https://github.com/mocks-server/main/tree/master/packages/main) includes the [openapi plugin](https://github.com/mocks-server/main/tree/master/packages/plugin-openapi) preinstalled. It provides a function to __automatically create routes from OpenAPI documents__, and also enables to define the OpenAPI documents to convert by creating files in the `/mocks/openapi` folder.
+The [Mocks Server main distribution](https://github.com/mocks-server/main/tree/master/packages/main) includes the [openapi plugin](https://github.com/mocks-server/main/tree/master/packages/plugin-openapi) preinstalled. It enables to __automatically create [Mocks Server routes](../usage/routes.md) from [OpenAPI documents](https://www.openapis.org/)__.
+
+### How does it work
+
+OpenAPI versions 3.0 and 3.1 are supported.
+
+__Routes and variants are created using the response examples found in the OpenAPI document's `paths` property__, or using status codes when the response has no content. Basically, it creates a different route variant from:
+
+* Each different example found on each `paths[path][method].responses[code].content[media-type].examples[example-id]` property.
+* Each different status code without content found on each `paths[path][method].responses[code]` property.
+
+:::info
+Read the __[OpenAPI conversion section](#openapi-conversion)__ for further info about the required OpenAPI structure for creating routes.
+:::
 
 ### Usage
 
@@ -35,29 +48,16 @@ The plugin can be used to create routes in two different ways:
 :::tip
 OpenAPI conversion supports JSON refs, so, routes can be created from complete or partial OpenAPI documents hosted on remote servers, defined in separated JSON files, etc. Check out the _[Recipes section](#recipes)_ for examples.
 :::
-
-### OpenAPI compatibility
-
-OpenAPI versions 3.0 and 3.1 are supported.
-
-__Routes and variants are created using the response examples found in the document `paths` property__, or using status codes when the response has no content. Basically, it creates a different route variant from:
-
-* Each different example found on each `paths[path][method].responses[code].content[media-type].examples[example-id]` property.
-* Each different status code without content found on each `paths[path][method].responses[code]` property.
-
-:::info
-Read the __[OpenAPI conversion section](#openapi-conversion)__ for further info about the required OpenAPI structure for creating routes.
-:::
-
 ## OpenAPI definitions
 
 Each OpenAPI document from which to generate routes has to be provided using an object with next properties:
 
-* __`basePath`__ _(String)_: Path to add to the url of every route created from the OpenAPI document.
+* __`basePath`__ _(String)_: Path to be added to the url of every route created from the OpenAPI document.
 * __`document`__ _(Object)_: OpenAPI document. Read __[OpenAPI conversion](#openapi-conversion)__ for further details.
 * __`refs`__ _(Object)_: Optional. Options for resolving possible `$refs` in the OpenAPI document. The [`json-refs` library](https://github.com/whitlockjc/json-refs) is used behind the scenes to resolve refs, so any of [its options](https://github.com/whitlockjc/json-refs/blob/master/docs/API.md#json-refsjsonrefsoptions--object) is supported here.
   * __`location`__ _(String)_: The location of the document being processed. It will be used to locate relative references found within the document being resolved. If this value is relative, it will be calculated from `process.cwd()`.
   * __`subDocPath`__ _(String)_: The JSON Pointer or array of path segments to the sub document location to search from.
+  * ...any other [`json-refs`](https://github.com/whitlockjc/json-refs) option.
 
 ## Usage through files
 
