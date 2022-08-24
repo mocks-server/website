@@ -524,7 +524,7 @@ Example
 
 ### Headers
 
-All headers defined in the OpenAPI `headers` response code will be added to all of the variants created for that code.
+All headers defined in the OpenAPI `headers` response code will be added to all of the variants created for that response status code.
 
 <details>
 <summary>
