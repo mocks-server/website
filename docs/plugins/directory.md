@@ -37,7 +37,7 @@ Here you have listed the official Plugins included in the [Mocks Server main dis
 ### openapi
 
 * NPM: [@mocks-server/plugin-openapi](https://www.npmjs.com/package/@mocks-server/plugin-openapi)
-* Description: Enables to create routes automatically from OpenAPI documents.
+* Description: Enables to create routes and collections automatically from OpenAPI documents.
 * Docs: Read [OpenAPI integration](../integrations/openapi.md) for further info.
 
 ## Community

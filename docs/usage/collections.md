@@ -30,6 +30,7 @@ import MainConceptsSchema from '../assets/main-concepts.png';
 
 * A `collection` of route variants defines all current routes with their correspondent variant in the API mock. The user can choose which collection has to be used on each particular moment.
 * They can be created extending other collections. So, you can store many collections and change the whole API behavior by simply changing the current one.
+* Plugins can provide ways of creating collections automatically. For example, the [`openapi` plugin](../plugins/directory.md) creates collections of routes from OpenAPI documents.
 
 So, basically, when you define a collection, you are saying to the server:
 
@@ -138,6 +139,10 @@ core.start().then(() => {
 </TabItem>
 </Tabs>
 ```
+
+:::tip
+Check out the __[Openapi integration chapter](../integrations/openapi.md)__ to learn how to create routes and collections automatically from OpenAPI documents 🎉
+:::
 
 ## Format
 
@@ -320,7 +325,7 @@ Mocks Server provides a feature to change the variant of routes defined in the c
 For example, if the current collection defines that for the `route-A` it uses the `variant-B` (`"routes": ["route-A:variant-B"]`), you can change it temporarily to return the `variant-C` using any of the available APIs or integration tools. When doing so, the current collection will be modified in memory, and it will be restored whenever another collection is selected or routes or collections are reloaded.
 
 :::info
-This is very useful when you need to change the response of only one route temporarily, because you don't need to create another collection or to modify an existent one.
+This is very useful when you need to change the response of only one route temporarily, because you don't need to create another collection, nor modify an existent one.
 :::
 
 ```mdx-code-block
