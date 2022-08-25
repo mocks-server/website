@@ -12,6 +12,7 @@ ajv
 ajv-errors
 allowUnknownArguments
 async
+asynchronies
 babelRegister
 behaviorsFolder
 bundler
@@ -88,6 +89,7 @@ namespace
 Netlify
 nodejs
 NodeJs
+nullable
 nvm
 onChange
 onChangeGlobalStore
