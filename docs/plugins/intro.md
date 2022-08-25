@@ -20,6 +20,7 @@ Having access to the whole core API, a plugin is able to do almost anything on M
 * Adding routes and collections programmatically
 * Adding new [Variant Handlers](../variant-handlers/intro.md)
 * Adding custom `Express` routers to the server.
+* Reading files from the `/mocks` folder, taking advantage of all supported types and hot reloading.
 * Creating new integration tools, interfaces, etc.
 
 ## Installing plugins
