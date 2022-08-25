@@ -97,7 +97,7 @@ From v3.6, a new REST API server is started in a different port of the API mock.
 
 ### Core property
 
-In version 3.1 a `core` property was added to the argument passed to the plugins. From `v3.2`, the whole core API was passed as first argument, but with some methods specifically scoped for the plugin. The `core` property was also maintained for backward compatibility but using it produced an alert. So, in v4 the `core` property will be definitively removed.
+In version v3.1 a `core` property was added to the argument passed to the plugins. From v3.2, the whole core API was passed as first argument, but with some methods specifically scoped for the plugin. The `core` property was also maintained for backward compatibility but using it produced an alert. So, in v4 the `core` property will be definitively removed.
 
 V3 example:
 
@@ -119,7 +119,7 @@ class Plugin {
 
 ### Formats
 
-From version 3.4, loading any plugin created as a function or as a plain object will produce an alert. In v4.x, plugins will have to be defined only as classes. So, it is strongly recommended that [any other format of plugin is converted into a class](../plugins/development.md) while using >=v3.4, so the code will be ready for migrating to v4.x.
+From version v3.4, loading any plugin created as a function or as a plain object will produce an alert. In v4.x, plugins will have to be defined only as classes. So, it is strongly recommended that [any other format of plugin is converted into a class](../plugins/development.md) while using >=v3.4, so the code will be ready for migrating to v4.x.
 
 ## Route variants handlers
 

@@ -40,7 +40,7 @@ Once Mocks Server is running, you can use our Postman public collection to inter
 Available API resources are described in the OpenAPI specification provided by the API server itself at [http://localhost:3110/docs/openapi.json](http://localhost:3110/docs/openapi.json).
 
 :::tip
-Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to checkout the API Swagger UI.
+Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to check out the API Swagger UI.
 :::
 
 ```mdx-code-block
@@ -73,6 +73,9 @@ You can use the next Mocks Server configuration properties to change the API con
 
 * __`plugins.adminApi.port`__ _(Number)_: Port for the administration REST API. Default is `3110`.
 * __`plugins.adminApi.host`__ _(String)_: Host for the administration REST API. Default is `0.0.0.0` (Reachable to all IPv4 addresses on the local machine).
+* __`plugins.adminApi.https.enabled`__ _(Boolean)_: Enables the HTTPS protocol in the administration REST API. For further information [read the "Enabling HTTPS" guide](../guides/https-protocol.md).
+* __`plugins.adminApi.https.cert`__ _(String)_: Path to the HTTPS certificate. Relative to the current `process.cwd()` or absolute.
+* __`plugins.adminApi.https.key`__ _(String)_: Path to the HTTPS certificate key. Relative to the current `process.cwd()` or absolute.
 
 :::info
 Learn more about how to set Mocks Server settings in the [configuration chapter](../configuration/how-to-change-settings.md)

@@ -79,6 +79,11 @@
         "type": "doc",
         "id": "integrations/rest-api",
         "label": "REST API"
+      },
+      {
+        "type": "doc",
+        "id": "integrations/openapi",
+        "label": "OpenAPI"
       }
     ],
     "Customization": [
@@ -136,9 +141,15 @@
     "Guides": [
       "guides/organizing-files",
       "guides/using-babel",
+      "guides/https-protocol",
       "guides/using-the-options-method"
     ],
     "Releases": [
+      {
+        "type": "doc",
+        "id": "releases/intro",
+        "label": "Intro and history"
+      },
       {
         "type": "doc",
         "id": "releases/migrating-from-v3",

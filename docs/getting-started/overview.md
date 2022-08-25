@@ -68,16 +68,16 @@ As explained, Mocks Server is able to handle different responses for each route,
 
 ### Defining routes and collections
 
-* Routes can be defined in files:
+* Routes and collections can be defined in files:
   * Supports YAML, JSON, JavaScript or TypeScript files
   * Using Babel is supported
   * Async is supported. Files can export a function returning a promise
   * The server loads them automatically and watches for changes
-* Routes can also be defined programmatically using the JavaScript API
+* Routes and collections can also be defined programmatically using the JavaScript API
 
 ### OpenAPI
 
-* Routes can be generated automatically from OpenAPI documents
+* Routes and collections can be generated automatically from OpenAPI documents
 
 ### Easy to start and flexible
 

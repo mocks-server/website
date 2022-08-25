@@ -229,6 +229,14 @@ html[data-theme='dark'] {
 /* Integrations */
 
 .integrations {
+  .container {
+    p + .row {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.integration {
   a {
     &:hover {
       img {
@@ -245,6 +253,21 @@ html[data-theme='dark'] {
     height: 120px;
     border-radius: 50%;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  }
+
+  .texts {
+    margin-top: 0.5rem;
+    .name {
+      font-weight: bold;
+      display: block;
+      font-size: 1.2rem;
+    }
+    .description {
+      display: block;
+      color: var(--ifm-color-gray-700);
+      font-size: 1rem;
+      line-height: 1.2rem;
+    }
   }
 }
 
@@ -356,5 +379,19 @@ html[data-theme='dark'] {
       text-align: center;
       font-size: 10px;
     }
+  }
+}
+
+.footer-contents {
+  span {
+    display: block;
+  }
+  .disclaimer {
+    margin-top:1rem;
+    font-size: 12px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-bottom: 20px;
+    color: var(--ifm-color-gray-600);
   }
 }

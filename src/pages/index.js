@@ -24,6 +24,9 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 function docsUrl(page) {
+  if (page.endsWith("/")) {
+    return `docs/${page}`;
+  }
   return `docs/${page}/`;
 }
 
@@ -464,34 +467,74 @@ function Upcoming({ background }) {
   );
 }
 
+function Integration({ url, logo, name, description }) {
+  return (
+    <div className="integration">
+      <div className="image">
+        <a href={useBaseUrl(docsUrl(url))}>
+          <img alt={name} src={useBaseUrl(logo)} />
+        </a>
+      </div>
+      <div className="texts">
+        <span className="name">{name}</span>
+        <span className="description">{description}</span>
+      </div>
+    </div>
+  );
+}
+
 function Integrations({ background }) {
   return (
     <Section background={background} className="integrations">
       <Heading text="Integrations" centered className="with-subheading" />
       <SubHeading text="Works well with many ecosystems, and more are coming..." centered />
       <Row>
-        <Column md={2} hiddenSm hiddenXs></Column>
+        <Column md={3} hiddenSm hiddenXs></Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <a href={useBaseUrl(docsUrl("integrations/javascript"))}>
-            <img alt="NodeJS" src={useBaseUrl("img/nodejs-logo.png")} />
-          </a>
-        </Column>
-        <Column md={2} sm={4} xs={4} className="center-content">
-          <a href={useBaseUrl(docsUrl("integrations/command-line"))}>
-            <img alt="Shell" src={useBaseUrl("img/shell-logo.png")} />
-          </a>
+          <Integration
+            url="integrations/javascript"
+            logo="img/nodejs-logo.png"
+            name="NodeJS"
+            description="Controllable using JavaScript"
+          />
         </Column>
         <Column md={2} sm={4} xs={4} className="center-content">
-          <a href={useBaseUrl(docsUrl("integrations/rest-api"))}>
-            <img alt="REST API" src={useBaseUrl("img/rest-api-logo.png")} />
-          </a>
+          <Integration
+            url="integrations/command-line"
+            logo="img/shell-logo.png"
+            name="Shell"
+            description="Interactive command line interface"
+          />
         </Column>
-        <Column md={2} sm={12} xs={12} className="center-content">
-          <a href={useBaseUrl(docsUrl("integrations/cypress"))}>
-            <img alt="Cypress" src={useBaseUrl("img/cypress-logo.png")} />
-          </a>
+        <Column md={2} sm={4} xs={4} className="center-content">
+          <Integration
+            url="integrations/rest-api"
+            logo="img/rest-api-logo.png"
+            name="REST API"
+            description="Controllable through REST API"
+          />
         </Column>
-        <Column md={2} hiddenSm hiddenXs></Column>
+        <Column md={3} hiddenSm hiddenXs></Column>
+      </Row>
+      <Row>
+        <Column md={4} hiddenSm hiddenXs></Column>
+        <Column md={2} sm={6} xs={6} className="center-content">
+          <Integration
+            url="integrations/cypress"
+            logo="img/cypress-logo.png"
+            name="Cypress"
+            description="Cypress commands allowing to control it"
+          />
+        </Column>
+        <Column md={2} sm={6} xs={6} className="center-content">
+          <Integration
+            url="integrations/openapi"
+            logo="img/openapi-logo.png"
+            name="OpenAPI"
+            description="Create routes and collections from OpenAPI documents"
+          />
+        </Column>
+        <Column md={4} hiddenSm hiddenXs></Column>
       </Row>
     </Section>
   );
@@ -572,11 +615,11 @@ const Index = () => {
         <title>{siteConfig.title}</title>
         <meta
           name="description"
-          content="Node.js mock server supporting route variants and multiple mocks"
+          content="Node.js mock server running live, interactive mocks in place of real APIs. Makes able to define different responses for the same route. The user can choose which response has to be used by each route on each particular moment."
         />
         <meta
           name="keywords"
-          content="Node.js, mock server, REST API, javascript, typescript, simulated api, interactive, command line interface, testing tools, http, simulated response, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares"
+          content="Node.js, mock server, REST API, javascript, typescript, simulated api, interactive, command line interface, testing tools, http, simulated response, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares, openAPI"
         />
       </Head>
       <HeaderHero />
