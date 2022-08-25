@@ -615,7 +615,7 @@ const Index = () => {
         <title>{siteConfig.title}</title>
         <meta
           name="description"
-          content="Node.js mock server supporting route variants and multiple mocks"
+          content="Node.js mock server running live, interactive mocks in place of real APIs. Makes able to define different responses for the same route. The user can choose which response has to be used by each route on each particular moment."
         />
         <meta
           name="keywords"
