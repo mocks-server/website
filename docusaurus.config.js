@@ -158,7 +158,12 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © 2019-${new Date().getFullYear()}  Javier Brea`,
+      copyright: `
+        <div class="footer-contents">
+          <span>Copyright © 2019-${new Date().getFullYear()}  Javier Brea</span>
+          <span class="disclaimer">Trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names,trademarks and brands does not imply endorsement.</span>
+        </div>
+      `,
       logo: {
         alt: "Mocks Server logo",
         src: "img/logo-white.svg",
