@@ -35,9 +35,10 @@ import RoutesVariants from '../assets/routes-variants.png';
 
 ## Load
 
-* Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](../guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__.
+* Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](../guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__ (or a function returning an array of routes).
 * Files in the `mocks/routes` folder can be of type `.json`, `.js`, `.yml` or even `.ts`. Read ["Organizing files"](../guides/organizing-files.md) and the ["Using Babel" guide for further info](../guides/using-babel.md).
 * Routes can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
+* Plugins can provide ways of creating routes automatically. For example, the [`openapi` plugin](../plugins/directory.md) creates routes from OpenAPI documents.
 
 ```mdx-code-block
 <Tabs>
@@ -131,6 +132,10 @@ core.start().then(() => {
 </TabItem>
 </Tabs>
 ```
+
+:::tip
+Check out the __[Openapi integration chapter](../integrations/openapi.md)__ to learn how to create routes automatically from OpenAPI documents 🎉
+:::
 
 ## Format
 
@@ -226,6 +231,36 @@ module.exports = [
     ]
   }
 ];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Async JS">
+```
+
+```js
+const { getAllUsers } = require("../fixtures/users");
+
+module.exports = async function() {
+  const allUsers = await getAllUsers();
+  return [
+    {
+      id: "get-users", // id of the route
+      url: "/api/users", // url in path-to-regexp format
+      method: "GET", // HTTP method
+      variants: [
+        {
+          id: "success", // id of the variant
+          type: "json", // variant type
+          options: {
+            status: 200,
+            body: allUsers
+          }
+        },
+      ]
+    }
+  ];
+}
 ```
 
 ```mdx-code-block

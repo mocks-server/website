@@ -38,7 +38,7 @@ When backward compatibility mechanisms are provided and something is going to be
 
 ## History
 
-Here you have a brief summary of the main changes of each release. __For a full detailed history of the correspondent versions of each package, please checkout the [Github repository release notes](https://github.com/mocks-server/main/releases)__
+Here you have a brief summary of the main changes of each release. __For a full detailed history of the correspondent versions of each package, please check out the [Github repository release notes](https://github.com/mocks-server/main/releases)__
 
 <details>
 <summary>

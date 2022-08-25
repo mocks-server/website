@@ -47,7 +47,7 @@ Collections and routes can also be defined programmatically. Read the [Javascrip
 
 ## Defining routes
 
-The server searches for all files in the `mocks/routes` folder, __including subfolders__, and load their content as [routes](../usage/routes.md). So, every file in that folder must export an array of [routes](../usage/routes.md).
+The server searches for all files in the `mocks/routes` folder, __including subfolders__, and load their content as [routes](../usage/routes.md). So, __every file in that folder must export an array of [routes](../usage/routes.md)__, or a function returning an array of routes.
 
 In the folder, you can organize the files in the way you want. As a suggestion, you could create a different file for each API entity, and a different folder for each API domain. This would help to maintain your routes organized. For example:
 
@@ -62,15 +62,15 @@ routes/
 ```
 
 :::caution
-Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](../usage/routes.md).
+Remember that every file inside the `/routes` folder must export an array containing [Mocks Server routes](../usage/routes.md), or a function returning an array of routes. Read _[Supported file contents](#supported-file-contents)_ for further info.
 :::
 
 ## Defining collections
 
 The server reads the `mocks/collections.*` file and loads its content as [`collections`](../usage/collections.md). The file extension can be `.js`, `.json`, `.yaml` or `.yml` (and even `.ts`, read the [using Babel guide for further info](./using-babel.md)).
 
-:::info
-The `mocks/collections.*` file must export an array of [Mocks Server `collections`](../usage/collections.md).
+:::caution
+The `mocks/collections.*` file must export an array of [Mocks Server `collections`](../usage/collections.md), or a function returning an array of collections. Read _[Supported file contents](#supported-file-contents)_ for further info.
 :::
 
 ## Supported file formats
@@ -157,14 +157,123 @@ You don't have to limit to a file format. Depending on the file content, you may
 </Tabs>
 ```
 
+## Supported file contents
+
+Both routes and collections files at the end must export an array of valid routes or collections. But __they can also export a function returning a valid array, or a promise resolved with a valid array__. So, async stuff can be used for defining routes or collections in files:
+
+```mdx-code-block
+<Tabs>
+<TabItem value="Json">
+```
+
+```json
+[
+  {
+    "id": "base", // collection id
+    "routes": ["get-users:all", "get-user:id-1"] // collection routes
+  },
+  {
+    "id": "user-2", // collection id
+    "from": "base", // extends "base" collection
+    "routes": ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
+  }
+]
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Yaml">
+```
+
+```yml
+- id: "base" # collection id
+  routes: # collection routes
+    - "get-users:all"
+    - "get-user:id-1"
+- id: "user-2" # collection id
+  from: "base" # extends "base" collection
+  routes:
+    - "get-user:id-2" # "get-user" route uses "id-2" variant instead of "id-1"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="JavaScript">
+```
+
+```js
+module.exports = [
+  {
+    id: "base", // collection id
+    routes: ["get-users:all", "get-user:id-1"] // collection routes
+  },
+  {
+    id: "user-2", // collection id
+    from: "base", // extends "base" collection
+    routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Async JS">
+```
+
+```js
+const { getBaseRoutes } = require("./helpers");
+
+module.exports = async function() {
+  const baseRoutes = await getBaseRoutes();
+
+  return [
+    {
+      id: "base", // collection id
+      routes: baseRoutes // collection routes
+    },
+    {
+      id: "user-2", // collection id
+      from: "base", // extends "base" collection
+      routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
+    }
+  ];
+}
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="TypeScript">
+```
+
+```ts
+const collections = [
+  {
+    id: "base", // collection id
+    routes: baseRoutes // collection routes
+  },
+  {
+    id: "user-2", // collection id
+    from: "base", // extends "base" collection
+    routes: ["get-user:id-2"] // "get-user" route uses "id-2" variant instead of "id-1"
+  }
+];
+
+export default collections;
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
 ## Other files and folders
 
-You can create other files and folders in the `mocks` folder, Mocks Server will simply ignore them. So, for example, if you want to maintain the data you use in your `routes` separated from the definition of the `routes` theirself, you could create a `data` folder, and import it from the route files.
+You can create other files and folders in the `mocks` folder, Mocks Server will simply ignore them. So, for example, if you want to maintain the data you use in your `routes` separated from the definition of the `routes` theirself, you could create a `fixtures` folder, and import it from the route files.
 
 ```
 project-root/
 ├── mocks/
-│   ├── data/
+│   ├── fixtures/
 │   │   └── users.js
 │   ├── routes/
 │   │   └── users.js
@@ -174,7 +283,7 @@ project-root/
 
 ```mdx-code-block
 <Tabs>
-<TabItem value="data/users.js">
+<TabItem value="fixtures/users.js">
 ```
 
 ```js
@@ -197,7 +306,7 @@ module.exports = [
 
 ```js
 // highlight-next-line
-const users = require("../data/users");
+const users = require("../fixtures/users");
 
 module.exports = [
   {
@@ -232,6 +341,10 @@ module.exports = [
 </TabItem>
 </Tabs>
 ```
+
+:::tip
+By keeping your fixtures in a separated folder, but also inside the `/mocks` folder, you'll take advantage of the files watcher. So, any change in the fixture files will be automatically refreshed in the API mock.
+:::
 
 ## Hot reloading
 

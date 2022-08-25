@@ -164,7 +164,7 @@ __`core.stop()`__: Stop the server, plugins, and all other internal elements. Re
 
 ## Children objects APIs
 
-Continue reading to checkout the API docs of other objects available in the `core` instance:
+Continue reading to check out the API docs of other objects available in the `core` instance:
 
 ```mdx-code-block
 <DocCardList items={useCurrentSidebarCategory().items}/>

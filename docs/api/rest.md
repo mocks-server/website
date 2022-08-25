@@ -32,7 +32,7 @@ The [Mocks Server main distribution](https://github.com/mocks-server/main/tree/m
 ### Swagger
 
 :::tip
-Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to checkout the API resources in the Swagger UI.
+Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to check out the API resources in the Swagger UI.
 :::
 
 ```mdx-code-block
