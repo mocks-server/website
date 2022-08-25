@@ -42,7 +42,7 @@ The main changes from v2.x to v3.x are:
   * The way in which __command line arguments__ are defined has also changed due to namespaces.
   * Defining configuration using __environment variables__ now is supported also.
 * __Methods for creating or reading settings programmatically__ (from the plugins, for example) have completely changed. Read the [configuration API section bellow for further info](#configuration-api).
-* The `Core` object in the `@mocks-server/core` package __now is exported as `default`__. __This only affects to users [using the programmatic API](api-programmatic-usage).__
+* The `Core` object in the `@mocks-server/core` package __now is exported as `default`__. __This only affects to users [using the programmatic API](api-programmatic-usage.md).__
 * __Some methods of the `Core` API have been removed__. Most of them are related to the configuration. See [programmatic API](#programmatic-api) below for further info.
 * __Arguments received by the plugins have changed__. Read [plugins](#plugins) below for further info.
 * __Drop support for Node.js 12.x__.

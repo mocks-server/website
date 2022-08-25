@@ -1,4 +1,7 @@
 function docsUrl(page) {
+  if (page.endsWith("/")) {
+    return `docs/${page}`;
+  }
   return `docs/${page}/`;
 }
 
@@ -29,6 +32,7 @@ module.exports = {
   },
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
+  trailingSlash: true,
   presets: [
     [
       "@docusaurus/preset-classic",
