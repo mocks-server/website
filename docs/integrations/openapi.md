@@ -66,7 +66,7 @@ Each OpenAPI document from which to generate routes has to be provided using an 
 
 * __`basePath`__ _(String)_: Path to be added to the url of every route created from the OpenAPI document.
 * __`document`__ _(Object)_: OpenAPI document. Read __[OpenAPI conversion](#openapi-conversion)__ for further details.
-* __`collection`__ _(Object)_: Optional. Allows to create a collection with the routes generated from the OpenAPI document. When not provided, no collection will be created for this particular document routes (but the routes will still be added to the plugin's default collection).
+* __`collection`__ _(Object)_: Optional. Allows to create a [collection](../usage/collections.md) with the first [variant](../usage/variants.md) of each [route](../usage/routes.md) generated from the OpenAPI document. When not provided, no collection will be created for this particular document routes (but the routes will still be added to the [plugin's default collection](#all-documents-collection)).
   * __`id`__ _(String)_: ID for the collection.
   * __`from`__ _(String)_: Collection ID from which the collection will extend.
 * __`refs`__ _(Object)_: Optional. Options for resolving possible `$refs` in the OpenAPI document. The [`json-refs` library](https://github.com/whitlockjc/json-refs) is used behind the scenes to resolve refs, so any of [its options](https://github.com/whitlockjc/json-refs/blob/master/docs/API.md#json-refsjsonrefsoptions--object) is supported here.
@@ -576,7 +576,7 @@ module.exports = [
 
 The plugin supports to create routes from multiple OpenAPI documents. A different collection can be created from each different document, but the plugin also __allows to create a collection containing all routes from all OpenAPI documents loaded__. So, all routes from all OpenAPI documents can be available at the same time in the API mock.
 
-__By default, it creates a collection with "openapi" id, containing all routes from all documents__, but you can use the plugin options to change the collection name and the collection to extend from. The creation of this default collection can also be disabled setting the `plugins.openapi.collection.id` to `null`.
+__By default, it creates a collection with "openapi" id, containing all routes from all documents__, but you can use the plugin options to change the collection name and the collection to extend from. The creation of this default collection can also be disabled setting the `plugins.openapi.collection.id` option to `null`.
 
 <details>
 <summary>
