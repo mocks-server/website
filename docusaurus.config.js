@@ -1,5 +1,5 @@
 function docsUrl(page) {
-  return `docs/${page}`;
+  return `docs/${page}/`;
 }
 
 module.exports = {
