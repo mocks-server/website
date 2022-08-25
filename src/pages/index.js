@@ -502,7 +502,7 @@ function Integrations({ background }) {
           <Integration
             url="integrations/command-line"
             logo="img/shell-logo.png"
-            name="Shell"
+            name="Terminal"
             description="Interactive command line interface"
           />
         </Column>
