@@ -576,7 +576,7 @@ module.exports = [
 
 The plugin supports to create routes from multiple OpenAPI documents. A different collection can be created from each different document, but the plugin also __allows to create a collection containing all routes from all OpenAPI documents loaded__. So, all routes from all OpenAPI documents can be available at the same time in the API mock.
 
-__By default, it creates a collection with "openapi" id, containing all routes from all documents__, but you can use the plugin options to change the collection name and the collection to extend from.
+__By default, it creates a collection with "openapi" id, containing all routes from all documents__, but you can use the plugin options to change the collection name and the collection to extend from. The creation of this default collection can also be disabled setting the `plugins.openapi.collection.id` to `null`.
 
 <details>
 <summary>
@@ -641,7 +641,7 @@ Here are described the plugin's options. Take into account that these options on
 
 You can use the next [Mocks Server configuration](../configuration/how-to-change-settings.md) properties to change the plugin's options:
 
-* __`plugins.openapi.collection.id`__ _(String)_: Id for the collection to be created with __all routes from all OpenAPI documents__. Default is "openapi"
+* __`plugins.openapi.collection.id`__ _(String | Null)_: Id for the collection to be created with __all routes from all OpenAPI documents__. Default is "openapi". When it is set to `null`, no collection will be created.
 * __`plugins.openapi.collection.from`__ _(String)_: When provided, the created collection will extend from this one.
 
 ## Programmatic usage

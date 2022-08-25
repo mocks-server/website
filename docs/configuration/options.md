@@ -1443,6 +1443,12 @@ const server = new Core({
 
 Each plugin can add its own options when it is installed. These options can also be defined and changed using [the same methods as the core options](./how-to-change-settings.md). Note that all plugins options must be defined under the `plugins` namespace, and all options of a plugin must be defined under its own plugin id namespace (`plugins.[plugin-id].[option]`)
 
+:::info
+These extra options are added by the plugins included in the `@mocks-server/main` distribution.
+
+For another plugins options, please refer to their own documentation.
+:::
+
 ### plugins.inquirerCli.enabled
 
 _(Boolean)_: Start interactive CLI plugin or not. Default is `true`.
@@ -1842,8 +1848,118 @@ const server = new Core({
 </ExampleDetails>
 ```
 
-:::info
-These extra options are added by the [@mocks-server/plugin-admin-api](../plugins/directory.md) and the [@mocks-server/plugin-inquirer-cli](../plugins/directory.md) plugins, which are both included in the Mocks Server main distribution.
+### plugins.openapi.collection.id
 
-For another plugins options, please refer to their own documentation.
-:::
+_(String | Null)_: Id for the collection to be created with all routes from all OpenAPI documents. Default is "openapi". When it is set to `null`, no collection will be created.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  openapi:
+    collection:
+      id: "all-openapi-routes"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.openapi.collection.id=all-openapi-routes
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_PLUGINS_OPENAPI_COLLECTION_ID=all-openapi-routes npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    openapi: {
+      collection: {
+        id: "all-openapi-routes"
+      },
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### plugins.openapi.collection.from
+
+_(String)_: Id of the collection to extend from when creating the collection with all routes from all OpenAPI documents.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  openapi:
+    collection:
+      from: "base"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.openapi.collection.from="base"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_PLUGINS_OPENAPI_COLLECTION_FROM=base npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    openapi: {
+      collection: {
+        from: "base"
+      },
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
