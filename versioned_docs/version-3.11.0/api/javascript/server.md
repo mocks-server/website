@@ -94,3 +94,37 @@ core.server.removeRouter("/custom-path", customRouter);
 ```mdx-code-block
 </ExampleDetails>
 ```
+
+### protocol
+
+__`core.server.protocol`__: Returns currently used protocol ("http" or "https") depending if HTTPS is enabled or not.
+
+```mdx-code-block
+<ExampleDetails>
+```
+
+```js
+// highlight-next-line
+console.log(core.server.protocol) // -> http
+```
+
+```mdx-code-block
+</ExampleDetails>
+```
+
+### url
+
+__`core.server.url`__: Returns current server base url. If the host equals to `0.0.0.0` (its default value), it is replaced by `localhost`
+
+```mdx-code-block
+<ExampleDetails>
+```
+
+```js
+// highlight-next-line
+console.log(core.server.url) // -> http://localhost:3100
+```
+
+```mdx-code-block
+</ExampleDetails>
+```
