@@ -1,0 +1,14 @@
+# Block old versions to avoid duplications
+User-agent: *
+Disallow: /docs/next/
+Disallow: /docs/3*/
+Disallow: /docs/2*/
+Disallow: /docs/1*/
+
+# Allow Algolia to crawl all
+User-agent: Algolia Blog
+Allow: /
+Allow: /docs/next/
+Allow: /docs/3*/
+Allow: /docs/2*/
+Allow: /docs/1*/
