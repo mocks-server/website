@@ -459,7 +459,7 @@ function Upcoming({ background }) {
             external
             variant="text"
           >
-            Checkout the Github project
+            Check out the Github project
           </ActionButton>
         </Column>
       </Row>
