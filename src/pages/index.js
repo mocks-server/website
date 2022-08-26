@@ -54,7 +54,7 @@ const textContents = {
   )}).
   `,
   upcoming: `
-    Web user interface, mock WebSockets, Docker image, Open API integration, TypeScript definitions...
+    Docker image, TypeScript definitions, WebSocket mock, gRPC mock, Web user interface...
   `,
   routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resource, or many.`,
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code>, depending on its <code>type</code>, can define a response to send, or a middleware to execute, or a url to proxy the request, etc. The user can choose which variant has to be used by each route on each particular moment.`,
@@ -619,7 +619,7 @@ const Index = () => {
         />
         <meta
           name="keywords"
-          content="Node.js, mock server, REST API, javascript, typescript, simulated api, interactive, command line interface, testing tools, http, simulated response, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares, openAPI"
+          content="Node.js, mock server, REST API, javascript, typescript, simulated api, interactive, command line interface, testing tools, http, simulated response, api mock, hot reloading, testing, plugins, pluggable, route variants, mock, Cypress, express, middlewares, OpenAPI"
         />
       </Head>
       <HeaderHero />

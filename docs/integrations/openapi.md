@@ -54,8 +54,8 @@ Read the __[OpenAPI conversion section](#openapi-conversion)__ for further info 
 
 The plugin can be used to create routes in two different ways:
 
-* It searches for files in the `/mocks/openapi` folder and it automatically converts the exported plugin's [OpenAPI definitions](#openapi-definitions) into [routes](../usage/routes.md) and loads them.
-* It provides JavaScript functions to create routes and collections from [OpenAPI definitions](#openapi-definitions). The returned routes and collections should be loaded manually. The function could be used to export routes in a file in the `mocks/routes` folder, or to load routes programmatically, for example.
+* __[Usage through files](#usage-through-files)__. It searches for files in the `/mocks/openapi` folder and it automatically converts the exported plugin's [OpenAPI definitions](#openapi-definitions) into [routes](../usage/routes.md) and loads them.
+* __[Programmatic usage](#programmatic-usage)__. It provides JavaScript functions to create routes and collections from [OpenAPI definitions](#openapi-definitions). The returned routes and collections should be loaded manually. The function could be used to export routes in a file in the `mocks/routes` folder, or to load routes programmatically, for example.
 
 :::tip
 OpenAPI conversion supports JSON refs, so, routes can be created from complete or partial OpenAPI documents hosted on remote servers, defined in separated JSON files, etc. Check out the _[Recipes section](#recipes)_ for examples.
@@ -767,3 +767,139 @@ module.exports = [
 :::caution
 When using relative refs, remember to [configure properly the location option](#configuring-refs).
 :::
+
+### Multiple OpenAPI documents
+
+The plugin allows to create routes from multiple API documents. Each file in the `/mocks/openapi` folder can export multiple [definitions](#openapi-definitions). Using the collection option, you'll be able to have all routes available at the same time, or to switch between one API and another.
+
+The next example:
+
+* Creates routes from remote OpenAPI document in the `/api-1` path, and a collection named `api-1` only with that routes.
+* Creates routes from local OpenAPI document in the `/api-2` path, and a collection named `api-2` only with that routes.
+* Load routes defined "manually" in the `routes` folder, and a collection named `base` only with that routes.
+* Configures this plugin to create a collection using routes from all OpenAPI documents, extending from the `base` collection.
+
+```mdx-code-block
+<Tabs>
+<TabItem value="mocks/openapi/definitions.js">
+```
+
+```js
+module.exports = [
+  {
+    basePath: "/api-2", // basePath to add to the url of every created route
+    collection: {
+      id: "api-2",
+    },
+    document: { // OpenAPI document
+      $ref: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/api-with-examples.json"
+    }
+  },
+  {
+    basePath: "/api-3", // basePath to add to the url of every created route
+    collection: {
+      id: "api-3",
+    },
+    document: { // OpenAPI document
+      $ref: "../documents/openapi.json"
+    }
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="mocks/routes/users.js">
+```
+
+```js
+module.exports = [
+  {
+    id: "get-users",
+    url: "/api-1/users",
+    method: "GET",
+    variants: [
+      {
+        id: "success",
+        type: "json", // variant of type json
+        options: {
+          status: 200, // status to send
+          body: [ // body to send
+            {
+              id: 1,
+              name: "John Doe"
+            },
+          ]
+        },
+      }
+    ]
+  }
+];
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="mocks/collections.js">
+```
+
+```js
+module.exports = [
+  {
+    id: "base",
+    routes: ["get-users:success"],
+  }
+]
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="mocks.config.js">
+```
+
+```js
+module.exports = {
+  mock: {
+    collections: {
+      selected: "all-routes"
+    },
+  },
+  plugins: {
+    openapi: {
+      collection: {
+        id: "all-routes",
+        from: "base"
+      }
+    }
+  }
+}
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="File tree">
+```
+
+```
+project-root/
+├── mocks/
+│   ├── documents/
+│   │   └── openapi.json
+│   ├── openapi/
+│   │   └── definitions.js
+│   ├── routes/
+│   │   └── users.js
+│   └── collections.js
+└── mocks.config.js
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+So, there will be 4 collections in the server:
+
+* `base`: Only routes defined "manually" are available (`/api-1/users`)
+* `api-2`: Only routes created from remote OpenAPI document are available (`/api-2/*`)
+* `api-3`: Only routes created from local OpenAPI document are available (`/api-3/*`)
+* `all-routes`: All routes are available (`/api-1/users`, `/api-2/*`, `/api-3/*`)
