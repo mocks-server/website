@@ -6,5 +6,5 @@ Disallow: /docs/2*/
 Disallow: /docs/1*/
 
 # Allow Algolia to crawl all
-User-agent: Algolia Blog
+User-agent: Algolia Crawler
 Allow: /
