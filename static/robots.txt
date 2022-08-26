@@ -7,8 +7,4 @@ Disallow: /docs/1*/
 
 # Allow Algolia to crawl all
 User-agent: Algolia Blog
-Allow: /docs/next/
-Allow: /docs/3*/
-Allow: /docs/2*/
-Allow: /docs/1*/
 Allow: /
