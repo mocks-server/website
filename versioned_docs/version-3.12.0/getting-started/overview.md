@@ -59,7 +59,7 @@ As explained, Mocks Server is able to handle different responses for each route,
   * Send a file content as response, setting the Content-Type header automatically based on the file extension
 
 ### Collections
-* Allows to create collections defining the specific "responses" to be used by each different route. The user can choose which collection has to be used on each particular moment.
+* Allows to create collections defining the specific "responses" to be used by each different route. The user can choose which collection has to be used on each particular moment
 * Collections can be created extending other collections. This makes able to store many different collections without too much maintenance and change the whole API behavior by simply changing the current one.
 
 ### Protocols
@@ -68,8 +68,16 @@ As explained, Mocks Server is able to handle different responses for each route,
 
 ### Defining routes and collections
 
-* Routes can be defined in YAML, JSON, JavaScript or TypeScript files. Using Babel is supported. The server loads them automatically and watches for changes.
-* Routes can be defined programmatically using the JavaScript API.
+* Routes and collections can be defined in files:
+  * Supports YAML, JSON, JavaScript or TypeScript files
+  * Using Babel is supported
+  * Async is supported. Files can export a function returning a promise
+  * The server loads them automatically and watches for changes
+* Routes and collections can also be defined programmatically using the JavaScript API
+
+### OpenAPI
+
+* Routes and collections can be generated automatically from OpenAPI documents
 
 ### Easy to start and flexible
 

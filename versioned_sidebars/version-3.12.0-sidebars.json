@@ -79,6 +79,11 @@
         "type": "doc",
         "id": "integrations/rest-api",
         "label": "REST API"
+      },
+      {
+        "type": "doc",
+        "id": "integrations/openapi",
+        "label": "OpenAPI"
       }
     ],
     "Customization": [

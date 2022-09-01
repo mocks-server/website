@@ -38,7 +38,7 @@ When backward compatibility mechanisms are provided and something is going to be
 
 ## History
 
-Here you have a brief summary of the main changes of each release. __For a full detailed history of the correspondent versions of each package, please checkout the [Github repository release notes](https://github.com/mocks-server/main/releases)__
+Here you have a brief summary of the main changes of each release. __For a full detailed history of the correspondent versions of each package, please check out the [Github repository release notes](https://github.com/mocks-server/main/releases)__
 
 <details>
 <summary>
@@ -46,10 +46,24 @@ NOTE: Release notes prior to the monorepo migration
 </summary>
 <div>
 
-All packages were migrated to a monorepo from release v2.6.3. Release notes of previous releases in the [mocks-server/main repository](https://github.com/mocks-server/main/releases) don't include details about changes in other packages. So, for details about previous releases of other packages, please refer to each package's CHANGELOG.md file or old repository release notes. Old repositories are maintained as publicly archived repositories in the [mocks-server Github project](https://github.com/mocks-server).
+All packages were migrated to a monorepo from release v2.6.3. Release notes of previous releases in the [mocks-server/main repository](https://github.com/mocks-server/main/releases) don't include details about changes in other packages. So, for details about previous releases of other packages, please refer to each package's CHANGELOG.md file or to old repositories release notes. Old repositories are maintained as publicly archived repositories in the [mocks-server Github project](https://github.com/mocks-server).
 
 </div>
 </details>
+
+### [3.12]
+
+__2022-09-01__
+
+* Add `config.fileSearchFrom` and `config.fileSearchStop` options
+
+### [3.11]
+
+__2022-08-25__
+
+* OpenAPI integration. Add plugin-openapi to the main distribution
+* Support asynchronies in files. Files in the "/mocks" folder can export an async function
+* Support nullable options in configuration
 
 ### [3.10]
 
