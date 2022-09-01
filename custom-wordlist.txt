@@ -31,6 +31,7 @@ customizable
 customVariants
 customRouteVariants
 cy
+cwd
 dependant
 descendent
 devDependencies
@@ -45,6 +46,8 @@ familiared
 filename
 filename's
 fileSearchPlaces
+fileSearchStop
+fileSearchFrom
 getter
 getters
 getValidationSchema

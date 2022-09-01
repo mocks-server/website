@@ -62,7 +62,7 @@ In the [examples on the next page](./options.md) you'll see options like `mock.c
 
 ## Configuration file
 
-Mocks Server searches for a configuration file in the `process.cwd()` by default. [`Cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next file names and formats:
+Mocks Server searches for a configuration file in the `process.cwd` by default. [`Cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next file names and formats:
 
 * A `mocks` property in a `package.json` file
 * A `.mocksrc file with JSON or YAML syntax.`
