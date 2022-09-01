@@ -62,7 +62,7 @@ In the [examples on the next page](./options.md) you'll see options like `mock.c
 
 ## Configuration file
 
-Mocks Server searches for configuration files in `process.cwd()`. [`Cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next files formats:
+Mocks Server searches for a configuration file in the `process.cwd()` by default. [`Cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) is used to provide this feature, so it is compatible with next file names and formats:
 
 * A `mocks` property in a `package.json` file
 * A `.mocksrc file with JSON or YAML syntax.`
@@ -75,21 +75,69 @@ Configuration files can also export a function. In that case, the programmatic c
 
 <details>
 <summary>
-How to change the configuration file path
+How to search for the configuration file in another folder
 </summary>
 <div>
 
-The path of the configuration file can be changed using the `config.fileSearchPlaces` option argument:
+By default, Mocks Server searches for any of the mentioned configuration files in the `process.cwd` folder. But you can define a custom folder to start searching for the configuration file using the `config.fileSearchFrom` option.
+
+```sh
+mocks-server --config.fileSearchFrom=./configs
+```
+
+:::caution
+Note that it will search in all parent folders recursively until finding a file or arriving at the `config.fileSearchStop` folder, which by default is also `process.cwd`. So, if you define a `config.fileSearchFrom` folder that is not under the `process.cwd` path, you should also provide the `config.fileSearchStop` folder. Otherwise, it would search recursively until the root path if no config file is found.
+
+```sh
+mocks-server --config.fileSearchFrom=../configs --config.fileSearchStop=../configs
+```
+::: 
+
+</div>
+</details>
+
+<details>
+<summary>
+How to change the possible configuration file names
+</summary>
+<div>
+
+You can define custom file names to search for using the `config.fileSearchPlaces` argument:
+
+```sh
+mocks-server --config.fileSearchPlaces=mocks.config.js --config.fileSearchPlaces=mocks.json
+```
+
+And also using the corresponding environment variable:
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_PLACES='["mocks.config.js","mocks.json"]' mocks-server
+```
+
+</div>
+</details>
+
+<details>
+<summary>
+How to define a fixed file path for the configuration file
+</summary>
+<div>
+
+The path of the configuration file can be defined using the `config.fileSearchPlaces` option argument:
 
 ```sh
 mocks-server --config.fileSearchPlaces=config/some/path/mocks.config.js
 ```
 
-An also using the correspondent environment variable:
+And also using the corresponding environment variable:
 
 ```sh
 MOCKS_CONFIG_FILE_SEARCH_PLACES='["config/some/path/mocks.config.js"]' mocks-server
 ```
+
+:::caution
+Note that this option expects an array as input because it is intended to define the names of the files to search for. If you want to use the default file names, but in another folder, use the `config.fileSearchFrom` option instead.
+:::
 
 </div>
 </details>

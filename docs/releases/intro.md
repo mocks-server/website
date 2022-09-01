@@ -51,6 +51,12 @@ All packages were migrated to a monorepo from release v2.6.3. Release notes of p
 </div>
 </details>
 
+### [3.12]
+
+__2022-09-01__
+
+* Add `config.fileSearchFrom` and `config.fileSearchStop` options
+
 ### [3.11]
 
 __2022-08-25__
