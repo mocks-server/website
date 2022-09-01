@@ -186,6 +186,56 @@ const server = new Core({
 </ExampleDetails>
 ```
 
+### config.fileSearchFrom
+
+_(String)_: Start searching for the configuration file from this folder, and keep searching up in the parent directories until arriving at the [`config.fileSearchStop`](#configfilesearchstop) folder. _Default is `process.cwd`_.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="Arguments">
+```
+
+```sh
+npm run mocks -- --config.fileSearchFrom configs/mocks-server
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_FROM='configs/mocks-server' npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  config: {
+    fileSearchFrom: "configs/mocks-server"
+  },
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+:::caution
+Note that it will search in all parent folders recursively until finding a file or arriving at the `config.fileSearchStop` folder, which by default is also `process.cwd`. So, if you define a `config.fileSearchFrom` folder that is not under the `process.cwd` path, you should also provide the `config.fileSearchStop` folder. Otherwise, it would search recursively until the root path if no config file is found.
+
+```sh
+mocks-server --config.fileSearchFrom=../configs --config.fileSearchStop=../configs
+```
+::: 
+
 ### config.fileSearchPlaces
 
 _(Array of Strings)_: Paths to search for the configuration file. Default is described in the [configuration methods chapter](./how-to-change-settings.md#configuration-file). It can be defined in any source, except configuration files.
@@ -221,6 +271,48 @@ const server = new Core({
       "path/to/my-config.js",
       "path/to/my-config.yml"
     ],
+  },
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### config.fileSearchStop
+
+_(String)_: Directory where the search for the configuration file will stop. _Default is `process.cwd`_.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="Arguments">
+```
+
+```sh
+npm run mocks -- --config.fileSearchStop /path/to/stop-folder
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_STOP='/path/to/stop-folder' npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  config: {
+    fileSearchStop: "/path/to/stop-folder",
   },
 });
 ```
