@@ -40,7 +40,7 @@ Once Mocks Server is running, you can use our Postman public collection to inter
 Available API resources are described in the OpenAPI specification provided by the API server itself at [http://localhost:3110/docs/openapi.json](http://localhost:3110/docs/openapi.json).
 
 :::tip
-Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to checkout the API Swagger UI.
+Start Mocks Server and browse to [http://localhost:3110/docs](http://localhost:3110/docs) to check out the API Swagger UI.
 :::
 
 ```mdx-code-block

@@ -32,8 +32,8 @@ This allows to add new Variant Handlers to provide more features to Mocks Server
 
 But, adding your own Variant Handlers, you would be able to create new types of variants allowing to:
 
-* Convert an OpenAPI file into Mocks Server routes.
-* Send an API response with a predefined body format.
+* Read files in the `mocks` folder and create routes from your own format
+* Send an API response with a predefined body format
 * etc...
 
 ## Example

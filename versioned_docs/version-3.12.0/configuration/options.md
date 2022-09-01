@@ -186,6 +186,56 @@ const server = new Core({
 </ExampleDetails>
 ```
 
+### config.fileSearchFrom
+
+_(String)_: Start searching for the configuration file from this folder, and keep searching up in the parent directories until arriving at the [`config.fileSearchStop`](#configfilesearchstop) folder. _Default is `process.cwd`_.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="Arguments">
+```
+
+```sh
+npm run mocks -- --config.fileSearchFrom configs/mocks-server
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_FROM='configs/mocks-server' npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  config: {
+    fileSearchFrom: "configs/mocks-server"
+  },
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+:::caution
+Note that it will search in all parent folders recursively until finding a file or arriving at the `config.fileSearchStop` folder, which by default is also `process.cwd`. So, if you define a `config.fileSearchFrom` folder that is not under the `process.cwd` path, you should also provide the `config.fileSearchStop` folder. Otherwise, it would search recursively until the root path if no config file is found.
+
+```sh
+mocks-server --config.fileSearchFrom=../configs --config.fileSearchStop=../configs
+```
+::: 
+
 ### config.fileSearchPlaces
 
 _(Array of Strings)_: Paths to search for the configuration file. Default is described in the [configuration methods chapter](./how-to-change-settings.md#configuration-file). It can be defined in any source, except configuration files.
@@ -221,6 +271,48 @@ const server = new Core({
       "path/to/my-config.js",
       "path/to/my-config.yml"
     ],
+  },
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### config.fileSearchStop
+
+_(String)_: Directory where the search for the configuration file will stop. _Default is `process.cwd`_.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="Arguments">
+```
+
+```sh
+npm run mocks -- --config.fileSearchStop /path/to/stop-folder
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_CONFIG_FILE_SEARCH_STOP='/path/to/stop-folder' npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  config: {
+    fileSearchStop: "/path/to/stop-folder",
   },
 });
 ```
@@ -1443,6 +1535,12 @@ const server = new Core({
 
 Each plugin can add its own options when it is installed. These options can also be defined and changed using [the same methods as the core options](./how-to-change-settings.md). Note that all plugins options must be defined under the `plugins` namespace, and all options of a plugin must be defined under its own plugin id namespace (`plugins.[plugin-id].[option]`)
 
+:::info
+These extra options are added by the plugins included in the `@mocks-server/main` distribution.
+
+For another plugins options, please refer to their own documentation.
+:::
+
 ### plugins.inquirerCli.enabled
 
 _(Boolean)_: Start interactive CLI plugin or not. Default is `true`.
@@ -1842,8 +1940,118 @@ const server = new Core({
 </ExampleDetails>
 ```
 
-:::info
-These extra options are added by the [@mocks-server/plugin-admin-api](../plugins/directory.md) and the [@mocks-server/plugin-inquirer-cli](../plugins/directory.md) plugins, which are both included in the Mocks Server main distribution.
+### plugins.openapi.collection.id
 
-For another plugins options, please refer to their own documentation.
-:::
+_(String | Null)_: Id for the collection to be created with all routes from all OpenAPI documents. Default is "openapi". When it is set to `null`, no collection will be created.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  openapi:
+    collection:
+      id: "all-openapi-routes"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.openapi.collection.id=all-openapi-routes
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_PLUGINS_OPENAPI_COLLECTION_ID=all-openapi-routes npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    openapi: {
+      collection: {
+        id: "all-openapi-routes"
+      },
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
+
+### plugins.openapi.collection.from
+
+_(String)_: Id of the collection to extend from when creating the collection with all routes from all OpenAPI documents.
+
+```mdx-code-block
+<ExampleDetails title="Examples">
+<Tabs>
+<TabItem value="YAML config file">
+```
+
+```yaml
+plugins:
+  openapi:
+    collection:
+      from: "base"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Argument">
+```
+
+```sh
+npm run mocks -- --plugins.openapi.collection.from="base"
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Environment">
+```
+
+```sh
+MOCKS_SERVER_PLUGINS_OPENAPI_COLLECTION_FROM=base npm run mocks
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Programmatic">
+```
+
+```js
+const server = new Core({
+  plugins: {
+    openapi: {
+      collection: {
+        from: "base"
+      },
+    }
+  }
+});
+```
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+</ExampleDetails>
+```
