@@ -84,6 +84,7 @@ As explained, Mocks Server is able to handle different responses for each route,
 * Provides a binary in an NPM package
 * Provides a JavaScript Class, allowing to create server instances from scratch
 * Provides a JavaScript method, allowing to start an instance with some presets, optimized for a programmatic usage
+* Provides Docker images
 
 ### Easy to configure
 

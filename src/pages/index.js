@@ -32,7 +32,7 @@ function docsUrl(page) {
 
 const textContents = {
   featuresQuickAndSimple: `
-    Install it using NPM. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
+    Install it using NPM or Docker. Add files defining responses for the API routes. Start it with a single command. Change responses using settings, even while it is running.
   `,
   featuresFlexible: `
     Define routes using <code>YAML</code>, <code>JSON</code>, <code>JavaScript</code> or <code>TypeScript</code>. Configure [Babel](https://babeljs.io/) at your convenience for reading files. Or define routes programmatically. HTTP and HTTPS protocols are supported.
@@ -54,7 +54,7 @@ const textContents = {
   )}).
   `,
   upcoming: `
-    Docker image, TypeScript definitions, WebSocket mock, gRPC mock, Web user interface...
+    TypeScript definitions, mock assertions, WebSocket mock, gRPC mock, Web user interface...
   `,
   routes: `A <code>route</code> defines the url and method of an API resource. Wildcards can be used in urls and methods, so one <code>route</code> can simulate one real API resource, or many.`,
   variants: `Each <code>route</code> can contain many different <code>variants</code>. Each <code>variant</code>, depending on its <code>type</code>, can define a response to send, or a middleware to execute, or a url to proxy the request, etc. The user can choose which variant has to be used by each route on each particular moment.`,
@@ -517,7 +517,7 @@ function Integrations({ background }) {
         <Column md={3} hiddenSm hiddenXs></Column>
       </Row>
       <Row>
-        <Column md={4} hiddenSm hiddenXs></Column>
+        <Column md={3} hiddenSm hiddenXs></Column>
         <Column md={2} sm={6} xs={6} className="center-content">
           <Integration
             url="integrations/cypress"
@@ -534,7 +534,15 @@ function Integrations({ background }) {
             description="Create routes and collections from OpenAPI documents"
           />
         </Column>
-        <Column md={4} hiddenSm hiddenXs></Column>
+        <Column md={2} sm={6} xs={6} className="center-content">
+          <Integration
+            url="integrations/docker"
+            logo="img/docker-logo.png"
+            name="Docker"
+            description="Run Mocks Server as a Docker container"
+          />
+        </Column>
+        <Column md={3} hiddenSm hiddenXs></Column>
       </Row>
     </Section>
   );
