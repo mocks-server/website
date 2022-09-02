@@ -22,6 +22,19 @@ The project mainly consists on NPM packages published to the NPM registry, and e
 
 In the Github repository, which is a monorepo, the releases are usually tagged following the versions of `@mocks-server/main` package. Releases in other packages that don't affect to the `@mocks-server/main` version are tagged as fixes of the latest version.
 
+### Docker images versioning
+
+Docker images does not follow strictly the Semver rules. They are versioned based on the version of the Mocks Server package they execute. Here you have a table with the correspondences between Mocks Server NPM packages and the Docker images. In case a modification has to be made in a Docker image without implying a new package version, it will be released as a bug fix, so, only the patch version would be upgraded.
+
+| Docker image | NPM package |
+| --- | --- |
+| [mocksserver/main](https://hub.docker.com/repository/docker/mocksserver/main) | [@mocks-server/main](https://www.npmjs.com/package/@mocks-server/main) |
+
+
+:::info
+The Node.js version used on each new release of a Docker image will be the active one on that date.
+:::
+
 ### Website versioning
 
 This documentation website does not follow the Semver rules, but it is versioned following the versions of `@mocks-server/main` package. Each minor or major release of that package produces this documentation to be versioned as well. Fixes in that package or releases in other packages that don't affect to the `@mocks-server/main` version, but should be documented, are updated in the current version of this docs.

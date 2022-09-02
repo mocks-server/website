@@ -77,6 +77,11 @@
         "type": "doc",
         "id": "integrations/openapi",
         "label": "OpenAPI"
+      },
+      {
+        "type": "doc",
+        "id": "integrations/docker",
+        "label": "Docker"
       }
     ],
     "Customization": [
