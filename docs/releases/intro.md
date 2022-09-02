@@ -24,7 +24,7 @@ In the Github repository, which is a monorepo, the releases are usually tagged f
 
 ### Docker images versioning
 
-Docker images does not follow strictly the Semver rules. They are versioned based on the version of the Mocks Server package they execute. Here you have a table with the correspondencies between Mocks Server NPM packages and the Docker images. In case a modification has to be made in a Docker image without implying a new package version, it will be released as a bugfix. So, only the patch version would be upgraded.
+Docker images does not follow strictly the Semver rules. They are versioned based on the version of the Mocks Server package they execute. Here you have a table with the correspondences between Mocks Server NPM packages and the Docker images. In case a modification has to be made in a Docker image without implying a new package version, it will be released as a bug fix, so, only the patch version would be upgraded.
 
 | Docker image | NPM package |
 | --- | --- |
