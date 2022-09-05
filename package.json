@@ -39,7 +39,7 @@
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "prop-types": "15.8.1",
-    "sass": "1.54.5"
+    "sass": "1.54.8"
   },
   "lint-staged": {
     "src/**/*.js": "eslint",
