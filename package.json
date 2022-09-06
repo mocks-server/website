@@ -16,8 +16,8 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.1.2",
-    "@fortawesome/free-solid-svg-icons": "6.1.2",
+    "@fortawesome/fontawesome-svg-core": "6.2.0",
+    "@fortawesome/free-solid-svg-icons": "6.2.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -26,8 +26,8 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.18.9",
     "@babel/preset-react": "7.18.6",
-    "@docusaurus/core": "2.0.1",
-    "@docusaurus/preset-classic": "2.0.1",
+    "@docusaurus/core": "2.1.0",
+    "@docusaurus/preset-classic": "2.1.0",
     "clsx": "1.2.1",
     "docusaurus-plugin-sass": "0.2.2",
     "eslint": "8.23.0",
@@ -39,7 +39,7 @@
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "prop-types": "15.8.1",
-    "sass": "1.54.5"
+    "sass": "1.54.8"
   },
   "lint-staged": {
     "src/**/*.js": "eslint",

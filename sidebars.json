@@ -152,6 +152,11 @@
     ],
     "API": [
       {
+        "type": "doc",
+        "id": "api/data-model",
+        "label": "Data Model"
+      },
+      {
         "type": "category",
         "label": "JavaScript",
         "link": {"type": "doc", "id": "api/javascript"},
