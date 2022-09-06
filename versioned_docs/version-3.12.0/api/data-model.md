@@ -40,7 +40,7 @@ Currently, the APIs are in the process of reengineering and for the moment some 
 
 Even when some entities in the real implementation are in fact unique, the model still represents them having an `id` attribute, as if it would be possible to exist many instances of the entity. This was made because this is theoretically true, and many instances could exist, but in favor of simplicity in the APIs only one is created.
 
-For example, the `Server` unique entity in the JavaScript API is accesible through the `core.server` attribute, and through the `/server` path in the REST API. A more faithful representation would be to make it available through `core.servers[0]` or `/servers/0`, for example, but this would possibly be more confusing from the API point of view. So, the API is developed with simplicity in mind, but the data model represents the possible scalability of the system.
+For example, the `Server` unique entity in the JavaScript API is accessible through the `core.server` attribute, and through the `/server` path in the REST API. A more faithful representation would be to make it available through `core.servers[0]` or `/servers/0`, for example, but this would possibly be more confusing from the API point of view. So, the API is developed with simplicity in mind, but the data model represents the possible scalability of the system.
 
 ## Source code and updates
 
