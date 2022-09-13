@@ -142,9 +142,10 @@
         "id": "releases/intro",
         "label": "Intro and history"
       },
+      "releases/migrating-from-v3",
       {
         "type": "doc",
-        "id": "releases/migrating-from-v3",
+        "id": "releases/preparing-for-v4",
         "label": "Preparing from v3 to v4"
       },
       "releases/migrating-from-v2",

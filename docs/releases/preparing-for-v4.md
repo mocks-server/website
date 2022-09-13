@@ -1,5 +1,5 @@
 ---
-id: migrating-from-v3
+id: preparing-for-v4
 title: Preparing migration from v3 to v4
 description: How to prepare Mocks Server migration from v3.x to v4.x
 keywords:
@@ -19,16 +19,18 @@ If you are already using Mocks Server v2.x you should [migrate first from v2.x t
 
 ## Preface
 
-Even when v4 release is still not published, we are deprecating some things in v3 that will be removed in v4. While v4 is not released, every change in v3.x will be completely backward compatible, but __users upgrading to next minor versions would probably receive alerts about usage of deprecated methods, etc__.
+By the days of this doc was published, we were deprecating some things in v3 that were definitively removed in v4. Every change in v3.x was completely backward compatible, but __users upgrading to v3 minor versions would probably receive alerts about usage of deprecated methods, etc__.
+
+So, every time you upgrade to a v3 minor version and receive a deprecation alert, __you can come to this page and see how to adapt your code for the v4 version__, so you'll be able to prepare to it progressively and finally update to v4 with very few breaking changes.
+
+Note that this document is mainly written in future tense, because when it was written the version 4 was not released yet. Anyway, all changes and processes described here are still valid, and this doc can be used as a guide to update from v3.0 version to v3.12, and then modify your code progressively to be ready to [update to v4](./migrating-from-v3.md).
 
 :::info
 Alerts are logged and [displayed in the interactive CLI](../integrations/command-line.md), apart from being available using any of the Mocks Server APIs.
 :::
 
-So, every time you upgrade a minor version and receive a deprecation alert, you can come to this page and see how to adapt your code for the next major version, so you'll be able to prepare to it progressively and finally update to v4 without breaking changes.
-
 :::tip
-If you are already using v3.x, then __update to v3.8, which is fully compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then you'll be able to update to v4.
+If you are already using v3.x, then __update to v3.12, which is compatible with v3.x and v4.x__. You will receive alerts for each thing you have to change before updating to v4.x. So, you can modify your code progressively until there are no more alerts, and then you'll be able to update to v4 reading the [migrating from v3 doc](./migrating-from-v3.md).
 :::
 
 
