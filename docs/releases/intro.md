@@ -64,6 +64,21 @@ All packages were migrated to a monorepo from release v2.6.3. Release notes of p
 </div>
 </details>
 
+### [4.0]
+
+__2022-09-14__
+
+Read the [how to migrate from v3 to v4 guide](./migrating-from-v3.md) for further info about next breaking changes:
+
+* Added support for `.cjs` files out of the box
+* Removed legacy properties in collections and variants.
+* Removed legacy options
+* Removed legacy methods in the JavaScript API
+* Removed legacy Administration REST API path
+* Removed legacy formats for defining plugins, and removed legacy plugin parameters.
+* Removed legacy format for defining variant handlers.
+* Removed legacy proxy handler. proxy-v4 handler renamed into proxy.
+
 ### [3.12]
 
 __2022-09-01__

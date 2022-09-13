@@ -31,6 +31,10 @@ Read the [usage chapter](../usage/basics.md) in 5 minutes ⏱ to fully understan
 
 For using the interactive CLI may be there some additional requirements. The [Inquirer](https://www.npmjs.com/package/inquirer) library is used for displaying it. You can [check its OS Terminals support here](https://www.npmjs.com/package/inquirer#support-os-terminals).
 
+:::info
+Mocks Server can be also started using Docker. Read the [Docker integration guide](../integrations/docker.md) for further info.
+:::
+
 ## NPM installation
 
 Add it to your project dependencies using NPM:
@@ -65,5 +69,4 @@ npm run mocks
 :::note
 If you are going to use the [JavaScript API](../integrations/javascript.md) to start Mocks Server, this step is not required.
 :::
-
 

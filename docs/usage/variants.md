@@ -257,7 +257,7 @@ module.exports = [
       {
         id: "from-real-api", // id of the variant
         delay: 1000, // delay of the variant
-        type: "proxy-v4", // variant type
+        type: "proxy", // variant type
         options: { // options for the variant type handler
           host: "http://127.0.0.1:8080", // proxy host
         },

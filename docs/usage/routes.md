@@ -36,7 +36,7 @@ import RoutesVariants from '../assets/routes-variants.png';
 ## Load
 
 * Usually, routes must be defined in the `mocks/routes` folder of your project. You can [organize files inside that folder at your convenience](../guides/organizing-files.md), even creating subfolders, the only rule is that __every file must export an array of routes__ (or a function returning an array of routes).
-* Files in the `mocks/routes` folder can be of type `.json`, `.js`, `.yml` or even `.ts`. Read ["Organizing files"](../guides/organizing-files.md) and the ["Using Babel" guide for further info](../guides/using-babel.md).
+* Files in the `mocks/routes` folder can be of type `.json`, `.js`, `.cjs`, `.yml` or even `.ts`. Read ["Organizing files"](../guides/organizing-files.md) and the ["Using Babel" guide for further info](../guides/using-babel.md).
 * Routes can also be loaded programmatically using the [JavaScript API](../integrations/javascript.md).
 * Plugins can provide ways of creating routes automatically. For example, the [`openapi` plugin](../plugins/directory.md) creates routes from OpenAPI documents.
 
@@ -356,6 +356,10 @@ module.exports = [
 
 :::note
 Note that some types of variants are internally implemented using an [Express router](https://expressjs.com/en/4x/api.html#router) instead of an [Express middleware](https://expressjs.com/en/guide/using-middleware.html). In that case, selecting that variant would produce to ignore the method defined in the route, because, basically, that produces the variant to handle all route methods and subpaths. That is the case of the [`static` variant handler](./variants/static.md), for example.
+:::
+
+:::note
+The `GET` method will be also called when the request is made with the `HEAD` one if no specific `HEAD` route is added before for that path.
 :::
 
 ### Multiple methods

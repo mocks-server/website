@@ -136,12 +136,12 @@ module.exports = {
               to: "https://github.com/mocks-server/main/blob/master/.github/CODE_OF_CONDUCT.md",
             },
             {
-              label: "Github",
-              to: "https://github.com/mocks-server/main",
+              label: "Github Issues",
+              to: "https://github.com/mocks-server/main/issues",
             },
             {
-              label: "Issues",
-              to: "https://github.com/mocks-server/main/issues",
+              label: "Twitter",
+              to: "https://twitter.com/MocksServer",
             },
           ],
         },

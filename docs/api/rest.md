@@ -48,5 +48,5 @@ Once Mocks Server is running, you can also use our Postman public collection to 
 ## Javascript client
 
 :::tip
-A __JavaScript client for the administration api__ is also distributed as a separated package: [@mocks-server/admin-api-client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client).
+A __JavaScript client for the administration api__ is also distributed as an NPM package: [@mocks-server/admin-api-client](https://github.com/mocks-server/main/tree/master/packages/admin-api-client).
 :::

@@ -26,16 +26,8 @@ import ExampleDetails from '@site/src/components/ExampleDetails';
 
 The `core.alerts` object provides access to methods related to Mocks Server alerts. Use alerts to inform the user about deprecated methods or other warning messages, or about current errors. For example, when an error happens loading files, the server adds automatically an alert in order to let the user know about the error.
 
-:::info
-Here are described only some methods of the `alerts` API, for further info please read the [`@mocks-server/nested-collections` docs](https://github.com/mocks-server/main/tree/master/packages/nested-collections/README.md), but take into account that in Mocks Server, the alerts `set` method is extended and supports passing a third `error` argument. 
-:::
-
 :::caution
 Use only the API methods described in this docs. Use other methods under your own risk, and take into account that they may change in minor versions without considering it as a breaking change.
-:::
-
-:::warning
-When the `core` is received in a plugin as a parameter, you must use `core.alerts`, but when you are creating your own core instance programmatically, then you must use `core.alertsApi` instead. This was made in v3.2 due to backward compatibility reasons, and it will be fixed in next major version.
 :::
 
 ## API
@@ -44,9 +36,13 @@ When the `core` is received in a plugin as a parameter, you must use `core.alert
 When the core is passed to a plugin as a parameter, the `alerts` object is an `alerts` subcollection instead of the root `alerts` instance. The `alerts` subcollection is namespaced with the plugin id, so it is easy to trace where the alerts come from.
 :::
 
+:::info
+Here are described only some methods of the `alerts` API, for further info please read the [`@mocks-server/nested-collections` docs](https://github.com/mocks-server/main/tree/master/packages/nested-collections/README.md), but take into account that in Mocks Server, the alerts `set` method is extended and supports passing a third `error` argument. Flat items are also different in Mocks Server.
+:::
+
 ### onChange()
 
-__`core.alerts.onChange(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback.
+__`core.alerts.onChange(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback. The event will be triggered whenever an item in the current alerts collection or any of the descendent collections change. Changes in parent collections are ignored.
 * `callback()` (Function): Function to be executed whenever alerts change.
 
 ```mdx-code-block
@@ -58,6 +54,7 @@ __`core.alerts.onChange(callback)`__: Add a callback to be executed when alerts 
 // highlight-next-line
 const removeListener = core.alerts.onChange(() => {
   console.log("Alerts have changed!");
+  console.log(core.alerts.flat);
 });
 
 // Remove event listener
@@ -83,7 +80,7 @@ __`core.alerts.remove(id)`__: Removes an alert.
 
 ### clean()
 
-__`core.alerts.clean`__: Removes all alerts, including descendant collections.
+__`core.alerts.clean()`__: Removes all alerts, including descendant collections.
 
 ### collection()
 
@@ -91,7 +88,30 @@ __`core.alerts.collection(id)`__: Allows to create a new subcollection of alerts
 
 ### flat
 
-__`core.alerts.flat`__: Returns all collection items and descendent collection items in a flat array. It adds a `collection` id to each item. For nested collections, the `id` is built with all parents ids and self id joined with `:`.
+__`core.alerts.flat`__: Returns all collection items and descendent collection items in a flat array. For nested collections, the `id` of each item is built with all parents ids and self id joined with `:`
+
+```mdx-code-block
+<ExampleDetails>
+```
+
+```js
+// highlight-next-line
+console.log(core.alerts.flat);
+// highlight-next-line
+/*
+[
+  {
+    id: "mock:collections:load",
+    message: "No collections found",
+    error: null
+  }
+]
+*/
+```
+
+```mdx-code-block
+</ExampleDetails>
+```
 
 ### root
 
