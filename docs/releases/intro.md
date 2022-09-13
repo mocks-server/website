@@ -66,7 +66,7 @@ All packages were migrated to a monorepo from release v2.6.3. Release notes of p
 
 ### [4.0]
 
-__TBD__
+__2022-09-14__
 
 Read the [how to migrate from v3 to v4 guide](./migrating-from-v3.md) for further info about next breaking changes:
 
