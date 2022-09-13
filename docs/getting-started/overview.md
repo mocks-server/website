@@ -180,7 +180,9 @@ For changing [options](../configuration/how-to-change-settings.md) while it is r
 
 ## Integrations
 
-Providing a [Javascript API](../integrations/javascript.md), an [interactive command line interface](../integrations/command-line.md) and a [REST API](../integrations/cypress.md) for __changing the responses of the mocked API while it is running, it is easy to use both for development and testing__. Tools providing integrations with other ecosystems are also available, such as [Cypress commands](../integrations/cypress.md).
+Providing a [Javascript API](../integrations/javascript.md), an [interactive command line interface](../integrations/command-line.md) and a [REST API](../integrations/cypress.md) for __changing the responses of the mocked API while it is running, it is easy to use both for development and testing__.
+
+Tools providing integrations with other ecosystems are also available, such as [Cypress commands](../integrations/cypress.md) or [Docker image](../integrations/docker.md).
 
 ## Customization
 
@@ -188,4 +190,4 @@ Mocks Server provides many ways for you to make it fit your requirements, giving
 
 * Add new formats for defining routes using [custom variant handlers](../variant-handlers/intro.md).
 * [Plugins](../plugins/intro.md) enable you to tap into, modify, or extend its internal behavior.
-* Add custom Express routers using the JavaScript API.
+* Add custom Express routers using the [JavaScript API](../api/javascript.md).

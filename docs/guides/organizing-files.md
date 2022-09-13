@@ -67,7 +67,7 @@ Remember that every file inside the `/routes` folder must export an array contai
 
 ## Defining collections
 
-The server reads the `mocks/collections.*` file and loads its content as [`collections`](../usage/collections.md). The file extension can be `.js`, `.json`, `.yaml` or `.yml` (and even `.ts`, read the [using Babel guide for further info](./using-babel.md)).
+The server reads the `mocks/collections.*` file and loads its content as [`collections`](../usage/collections.md). The file extension can be `.js`, `.cjs`, `.json`, `.yaml` or `.yml` (and even `.ts`, read the [using Babel guide for further info](./using-babel.md)).
 
 :::caution
 The `mocks/collections.*` file must export an array of [Mocks Server `collections`](../usage/collections.md), or a function returning an array of collections. Read _[Supported file contents](#supported-file-contents)_ for further info.
@@ -77,7 +77,7 @@ The `mocks/collections.*` file must export an array of [Mocks Server `collection
 
 All route files and collections file by default can be defined in JSON, YAML or JavaScript, using any of the next extensions:
 
-* `.js`
+* `.js` or `.cjs`
 * `.json`
 * `.yaml` or `.yml`
 

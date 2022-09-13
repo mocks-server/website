@@ -109,6 +109,10 @@ __`core.mock.customRouteVariants`__: Getter returning an array of current custom
 The `core.mock.routes` object provides methods related to [`routes`](../../usage/routes.md) and [`variants`](../../usage/variants.md).
 :::
 
+### delay
+
+__`core.mock.routes.delay`__: Returns the current routes global delay
+
 
 ### plain
 

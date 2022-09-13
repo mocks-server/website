@@ -21,13 +21,9 @@ keywords:
 
 Variants of type `proxy` allow to proxy the request to another host and pass response back. They also make able to modify the request before sending it to the other host, or to modify the response before sending it to the client.
 
-:::caution
-Due to backward compatibility reasons, the current proxy variant which is recommended to use is named `proxy-v4`. All docs and examples in this page are only valid when using the type `proxy-v4`. In the next major version the `proxy-v4` variant will replace the `proxy` one, which currently is legacy.
-:::
-
 ## Options
 
-The `options` property in a variant of type `proxy-v4` must be an object containing next properties:
+The `options` property in a variant of type `proxy` must be an object containing next properties:
 
 * __`host`__ _(String|Function)_: The proxy host. Equivalent to the [`express-http-proxy` `host` option](https://github.com/villadora/express-http-proxy#host), so it can also be a function.
 * __`options`__ _(Object)_: Object containing any of the [options supported by the `express-http-proxy` package](https://github.com/villadora/express-http-proxy#options). Some of them are:
@@ -36,7 +32,7 @@ The `options` property in a variant of type `proxy-v4` must be an object contain
   * __...__ all other [`express-http-proxy` options](https://github.com/villadora/express-http-proxy#options) are also supported.
 
 :::info 
-A variant of type `proxy-v4` uses the [express-http-proxy](https://github.com/villadora/express-http-proxy) package under the hood, and it supports all of its options.
+A variant of type `proxy` uses the [express-http-proxy](https://github.com/villadora/express-http-proxy) package under the hood, and it supports all of its options.
 :::
 
 ## Examples
@@ -56,7 +52,7 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        type: "proxy-v4", // Variant of type "proxy-v4"
+        type: "proxy", // Variant of type "proxy"
         // highlight-start
         options: {
           host: "http://127.0.0.1:8080", // proxy host
@@ -82,7 +78,7 @@ module.exports = [
     variants: [
       {
         id: "proxied",
-        type: "proxy-v4", // Variant of type "proxy-v4"
+        type: "proxy", // Variant of type "proxy"
         // highlight-start
         options: {
           host: "http://127.0.0.1:8080", // proxy host
@@ -129,7 +125,7 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        type: "proxy-v4", // This route variant will use the "proxy-v4" handler
+        type: "proxy", // This route variant will use the "proxy" handler
         options: {
           host: "http://127.0.0.1:8080", // proxy host
         },
@@ -172,7 +168,7 @@ module.exports = [
     variants: [
       {
         id: "add-prefix",
-        type: "proxy-v4",
+        type: "proxy",
         // highlight-start
         options: {
           host: "http://127.0.0.1:8080",
@@ -208,7 +204,7 @@ module.exports = [
     variants: [
       {
         id: "real-api",
-        type: "proxy-v4",
+        type: "proxy",
         // highlight-start
         options: {
           host: "http://127.0.0.1:8080",

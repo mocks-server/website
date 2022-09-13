@@ -45,6 +45,10 @@ Once you have [installed Mocks Server and added the npm script](./installation.m
 npm run mocks
 ```
 
+:::info
+Mocks Server can be also started using Docker. Read the [Docker integration guide](../integrations/docker.md) for further info.
+:::
+
 ## Interactive CLI
 
 When it is started, the interactive CLI is displayed. It allows you to see some details about the current configuration. Using the arrow keys and the `Return` key you can choose menu options in order to perform some actions, like changing the current collection, setting a delay time for the server responses, etc.
