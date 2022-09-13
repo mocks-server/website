@@ -42,7 +42,7 @@ Here are described only some methods of the `alerts` API, for further info pleas
 
 ### onChange()
 
-__`core.alerts.onChange(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback. The event will be triggered whenever an item in the current collecion or any of the descendent collections change. Changes in parent collections are ignored.
+__`core.alerts.onChange(callback)`__: Add a callback to be executed when alerts change. Returns a function for removing the added callback. The event will be triggered whenever an item in the current alerts collection or any of the descendent collections change. Changes in parent collections are ignored.
 * `callback()` (Function): Function to be executed whenever alerts change.
 
 ```mdx-code-block
