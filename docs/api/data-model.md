@@ -31,7 +31,7 @@ The diagram is an __abstract representation of the entities, attributes and thei
 [![Data model diagram](../assets/data-model.svg)](../assets/data-model.svg)
 
 :::caution
-Currently, the APIs are in the process of reengineering and for the moment some of their parts may not be fully compliant with the data model. They will be progressively adapted to it in coming releases.
+Currently, the APIs are in the process of reengineering and for the moment some of their parts may not be fully compliant with the data model. They will be progressively adapted to it in oncoming releases.
 :::
 
 ## Notes
