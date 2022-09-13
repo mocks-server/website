@@ -123,6 +123,7 @@ restoreVariants
 restoreRouteVariants
 reusability
 scalability
+scalable
 schemas
 Semver
 setLevel
