@@ -37,7 +37,7 @@
     "husky": "8.0.2",
     "is-ci": "3.0.1",
     "lint-staged": "13.1.0",
-    "prettier": "2.8.0",
+    "prettier": "2.8.1",
     "prop-types": "15.8.1",
     "sass": "1.56.1"
   },
