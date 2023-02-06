@@ -148,7 +148,7 @@ Routes must be defined as objects containing:
 * __`variants`__ _(Array)_: Array of variants. Each variant usually defines a different response to be sent when the route is requested.
 
 :::info
-__Depending on the variant type, the format of the variants may differ__. In the next examples we'll see ho to define a variant of type `json`, which sends a JSON response. For further info about how to define variants [read the next chapter](./variants.md).
+__Depending on the variant type, the format of the variants may differ__. In the next examples we'll see how to define a variant of type `json`, which sends a JSON response. For further info about how to define variants [read the next chapter](./variants.md).
 :::
 
 ```mdx-code-block
