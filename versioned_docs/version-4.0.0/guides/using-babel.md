@@ -90,9 +90,9 @@ module.exports = {
       enabled: true,
       // highlight-start
       options: {
-        only: (filePath) => {
+        only: [(filePath) => {
           return filePath.includes("/mocks/") || filePath.includes("/my-folder-to-include/");
-        },
+        }],
       },
       // highlight-end
     },
