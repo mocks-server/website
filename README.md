@@ -2,7 +2,15 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/389bc98a-a293-4f34-aebc-b3eaece3f011/deploy-status)](https://app.netlify.com/sites/mocks-server/deploys) [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 
-Deployed at [https://www.mocks-server.org][website-url]
+> [!WARNING]
+> **Project discontinued**
+>
+> This project is no longer maintained and has been archived.
+> It will not receive new features, bug fixes, or security updates.
+>
+> Thank you to everyone who used the project, reported issues, and contributed over the years. Your support is greatly appreciated.
+
+Deployed at [https://mocks-server.javierbrea.com][website-url]
 
 ## How to
 
@@ -22,10 +30,9 @@ npm start
 - Search provided by [Algolia](https://www.algolia.com/)
 - Hosted on [Netlify][netlify-url].
 
-[website-url]: https://www.mocks-server.org
+[website-url]: https://mocks-server.javierbrea.com
 [facebook-open-source]: https://opensource.facebook.com/
 [docusaurus-url]: https://docusaurus.io/
 [undraw-url]: https://undraw.co/
 [netlify-url]: https://www.netlify.com/
 [docusaurus-readme]: website/README.md
-

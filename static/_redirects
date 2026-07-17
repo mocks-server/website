@@ -1,5 +1,7 @@
 # Redirect default Netlify subdomain to primary domain
-https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
+https://mocks-server.netlify.com/* https://mocks-server.javierbrea.com/:splat 301!
+https://mocks-server.org/* https://mocks-server.javierbrea.com/:splat 301!
+https://www.mocks-server.org/* https://mocks-server.javierbrea.com/:splat 301!
 
 # Redirects
 /docs /docs/overview
@@ -53,7 +55,6 @@ https://mocks-server.netlify.com/* https://www.mocks-server.org/:splat 301!
 /docs/plugin-inquirer-cli /docs/integrations/command-line
 /docs/plugins-inquirer-cli /docs/integrations/command-line
 /docs/next/plugin-inquirer-cli /docs/next/integrations/command-line
-
 
 /docs/plugins-admin-api /docs/integrations/admin-api
 /docs/next/plugins-admin-api /docs/next/integrations/admin-api

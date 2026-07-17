@@ -8,7 +8,7 @@ function docsUrl(page) {
 module.exports = {
   title: "Mocks Server",
   tagline: "Node.js mock server",
-  url: "https://www.mocks-server.org",
+  url: "https://mocks-server.javierbrea.com",
   baseUrl: "/",
   organizationName: "mocks-server",
   projectName: "mocks-server",
@@ -59,6 +59,14 @@ module.exports = {
   ],
   plugins: ["docusaurus-plugin-sass"],
   themeConfig: {
+    announcementBar: {
+      id: "deprecation-notice",
+      content:
+        '<div class="deprecation-notice"><b>Important Notice: Project Discontinued</b></br>This project is no longer maintained and will not receive new features, bug fixes, or security updates.',
+      backgroundColor: "#FCCB01",
+      textColor: "#000000",
+      isCloseable: false,
+    },
     prism: {
       defaultLanguage: "javascript",
       additionalLanguages: ["bash", "json"],
@@ -171,7 +179,7 @@ module.exports = {
       logo: {
         alt: "Mocks Server logo",
         src: "img/logo-white.svg",
-        href: "https://www.mocks-server.org",
+        href: "https://mocks-server.javierbrea.com",
       },
     },
     algolia: {

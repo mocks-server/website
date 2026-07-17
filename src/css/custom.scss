@@ -38,3 +38,12 @@ details.code-example {
   --ifm-alert-foreground-color: var( --ifm-color-secondary-contrast-foreground );
   --ifm-alert-border-color: var(--ifm-color-secondary-dark);
 }
+
+.deprecation-notice {
+  padding: 10px;
+  font-size: 16px;
+}
+
+div[class^='announcementBar'] {
+  height: auto;
+}

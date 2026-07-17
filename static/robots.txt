@@ -5,4 +5,4 @@ Disallow: /docs/3*/
 Disallow: /docs/2*/
 Disallow: /docs/1*/
 
-Sitemap: https://www.mocks-server.org/sitemap.xml
+Sitemap: https://mocks-server.javierbrea.com/sitemap.xml
