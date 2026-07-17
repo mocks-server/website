@@ -1,5 +1,3 @@
-# Mocks Server Documentation website
-
 > [!WARNING]
 > **Project discontinued**
 >
@@ -7,6 +5,8 @@
 > It will not receive new features, bug fixes, or security updates.
 >
 > Thank you to everyone who used the project, reported issues, and contributed over the years. Your support is greatly appreciated.
+
+# Mocks Server Documentation website
 
 Deployed at [https://mocks-server.javierbrea.com][website-url]
 
