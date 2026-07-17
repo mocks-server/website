@@ -1,7 +1,5 @@
 # Mocks Server Documentation website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/389bc98a-a293-4f34-aebc-b3eaece3f011/deploy-status)](https://app.netlify.com/sites/mocks-server/deploys) [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
-
 > [!WARNING]
 > **Project discontinued**
 >
